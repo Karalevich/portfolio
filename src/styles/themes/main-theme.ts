@@ -17,8 +17,25 @@ export const mainTheme = createTheme({
         },
       },
     },
+    MuiSvgIcon: {
+      styleOverrides: {},
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          width: '40px',
+          borderRadius: '50% !important',
+          marginBottom: '4.7vh',
+          minHeight: '0',
+          minWidth: '0',
+          padding: '0',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        },
+      },
+    },
   },
-    typography: {
+  typography: {
     fontFamily: [
       '-apple-system',
       'Inter',
@@ -32,5 +49,5 @@ export const mainTheme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
-  }
+  },
 })

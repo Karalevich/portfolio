@@ -1,0 +1,22 @@
+@import './src/styles/variables';
+
+.wrapper {
+  margin-top: 5.7vh;
+  margin-bottom: 22.2vh;
+  display: flex;
+  justify-content: center;
+
+  .switcher {
+
+    cursor: pointer;
+  }
+
+  .light {
+    fill: $black !important;
+  }
+
+  .dark {
+    fill: $white !important;
+  }
+
+}

@@ -1,0 +1,42 @@
+@import './src/styles/variables.scss';
+
+.banner {
+  width: 60rem;
+  height: 51.9vh;
+  margin-right: 8.5rem;
+  margin-left: 21rem;
+  background: $white url("../../../img/banner-bcg.png") no-repeat;
+  background-position: 2.5rem 4.5vh;
+  background-size: auto;
+  padding-top: 10vh;
+  padding-left: 4.5rem;
+  box-sizing: border-box;
+}
+
+.strong {
+  color: $element;
+}
+
+.message {
+  width: 50%;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: $paragraph;
+  margin: 2vh 0;
+}
+
+@media screen and (max-width: 767px) {
+
+}
+
+@media screen and (max-width: 1279px) {
+  .banner {
+    width: 89.6%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+
+}
