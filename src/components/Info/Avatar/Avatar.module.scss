@@ -1,0 +1,25 @@
+@import './src/styles/variables';
+
+.avatar {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .name {
+      margin-top: 3.44vh;
+      margin-bottom: 1.77vh;
+      font-style: normal;
+      font-weight: 500;
+    }
+  }
+
+  .socialMedia {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding-bottom: 2.77vh;
+    margin-top: 1.66vh;
+    border-bottom: 1.5px solid $light-bcg;
+  }
+}

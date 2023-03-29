@@ -34,6 +34,15 @@ export const mainTheme = createTheme({
         },
       },
     },
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          width: '9.375rem',
+          height: '9.375rem',
+          backgroundColor: '#f0f0f6'
+        },
+      },
+    },
   },
   typography: {
     fontFamily: [
