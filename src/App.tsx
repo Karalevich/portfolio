@@ -3,7 +3,7 @@ import React from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Home from './components/Home/Home'
 import Nav from './components/Navbar/Navbar'
-import { mainTheme } from './styles/themes/main-theme'
+import { mainTheme } from './styles/themes/mainTheme'
 import Info from './components/Info/Info'
 
 

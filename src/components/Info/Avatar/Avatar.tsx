@@ -3,10 +3,11 @@ import styles from './Avatar.module.scss'
 import { AvatarComponent } from './types'
 import { styled } from '@mui/material/styles'
 import Badge from '@mui/material/Badge'
-import { Avatar as MUIAvatar, SvgIconProps } from '@mui/material'
+import { Avatar as MUIAvatar } from '@mui/material'
 import avatarImg from '../../../img/AK-removebg.webp'
 import { Tooltip } from '../../Custom/Tooltip'
-import { FacebookIcon, LeetcodeIcon, LinkedinIcon, TwitterIcon, VkIcon, GitHubIcon } from '../../Custom/Icons'
+import { ICONS, INFO } from '../../../constants/personalInfo'
+import classnames from 'classnames'
 
 
 export const Avatar: AvatarComponent = () => {
@@ -22,27 +23,42 @@ export const Avatar: AvatarComponent = () => {
         </StyledBadge>
         <h4 className={styles.name}>Andrei Karalevich</h4>
         <p className={styles.occupation}>Front-End Engineer</p>
-        {socialMediaIcons()}
       </header>
       <main className={styles.socialMedia}>
-
+        {socialMediaIcons()}
       </main>
+      <footer className={styles.footer}>
+        {personalInfo()}
+      </footer>
     </section>
   )
 }
 
+const personalInfo = () => {
+  const infos = []
+  for (const [key, value] of Object.entries(INFO)) {
+    const info = <div className={styles.info} key={key}>
+      <span className={styles.property}>{key}:</span>
+      <span className={classnames(styles.value, {[styles.available]: key === 'Status'})}>{value}</span>
+    </div>
+    infos.push(info)
+  }
+  return infos
+}
+
 const socialMediaIcons = () => {
-  const icons = [[<VkIcon/>, 'VKontakte'], [<FacebookIcon/>, 'Facebook'], [<TwitterIcon/>, 'Twitter'], [
-    <LinkedinIcon/>, 'Linkedin'], [<LeetcodeIcon/>, 'Leetcode'], [<GitHubIcon/>, 'Github']]
-  return icons.map(icon => (
-    <Tooltip title={icon[1]} placement='top' arrow>
-      <div className={styles.iconWrapper}>
-        {icon[0]}
-      </div>
+  const icn = []
+  for (const [key, value] of Object.entries(ICONS)) {
+    const mediaIcon = <Tooltip title={key} placement='top' key={key} arrow>
+      <a href={value[1] as string} target="_blank" className={styles.link}>
+        <div className={styles.iconWrapper}>
+          {value[0]}
+        </div>
+      </a>
     </Tooltip>
-  ))
-
-
+    icn.push(mediaIcon)
+  }
+  return icn
 }
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -75,7 +91,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
       opacity: 1,
     },
     '100%': {
-      // transform: 'scale(2.4)',
       opacity: 0,
     },
   },
