@@ -1,0 +1,52 @@
+@import './src/styles/variables';
+
+.skills {
+  margin-top: 2.77vh;
+  width: 100%;
+  padding-bottom: 2.77vh;
+  border-bottom: 1.5px solid $light-bcg;
+
+  .header {
+    padding-bottom: 1.6vh;
+
+    .title {
+      font-weight: 500;
+      line-height: 123.6%;
+    }
+  }
+
+  .body {
+    .skill {
+      list-style-type: none;
+      color: $paragraph;
+      margin-bottom: 1.22vh;
+
+      .description {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5vh;
+      }
+
+      .progress {
+        width: 100%;
+        height: 4px;
+        padding: 2px;
+        border: 1px solid $element;
+        transform: scaleY(0.5); /* scale down the line */
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        box-sizing: content-box;
+
+
+        .size {
+          height: 3px;
+          background-color: $element;
+          border-radius: 30px;
+        }
+      }
+    }
+
+  }
+}
