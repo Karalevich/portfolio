@@ -73,6 +73,26 @@ p {
   line-height: 24px;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  background: hsla(0, 0%, 100%, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: gainsboro;
+
+  &:hover {
+    background: $paragraph;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: hsla(0,0%,100%,.09);
+  border-radius: 3px;
+}
+
+
 @media screen and (max-width: 767px) {
   html {
     font-size: 75%;

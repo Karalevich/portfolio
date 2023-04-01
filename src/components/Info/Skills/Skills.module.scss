@@ -16,6 +16,14 @@
   }
 
   .body {
+    .skillsList {
+      max-height: 15vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 6px;
+      width: 102%;
+    }
+
     .skill {
       list-style-type: none;
       color: $paragraph;
@@ -26,6 +34,14 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 0.5vh;
+      }
+
+      .extra {
+         display: flex;
+        justify-content: flex-start;
+        .extraSkill {
+          color: transparent;
+        }
       }
 
       .progress {

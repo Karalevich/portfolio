@@ -27,7 +27,7 @@ export const SKILLS = [
     skillName: 'React',
     skillValue: 85,
   },
-    {
+  {
     skillName: 'Vue',
     skillValue: 70,
   },
@@ -35,11 +35,11 @@ export const SKILLS = [
     skillName: 'TypeScript',
     skillValue: 80,
   },
-    {
+  {
     skillName: 'HTML',
     skillValue: 95,
   },
-    {
+  {
     skillName: 'CSS',
     skillValue: 90,
   },
@@ -59,10 +59,41 @@ export const SKILLS = [
     skillName: 'Jest',
     skillValue: 90,
   },
-
 ]
-// edux, Jest, Axios, Webpack, HTML, Canvas, CSS, GIT, GitHub, GitLab, Eslint, Babel, Storybook, Node.js,
-//   Express.js, Docker, MongoDB, GraphQL, Python, RxJS, jQuery, Flutter, Firebase, Websockets.
+
+export const EXTRA_SKILLS = [
+  {
+    skillName: 'GitHub, GitLab',
+  },
+  {
+    skillName: 'Babel, Eslint, Webpack',
+  },
+  {
+    skillName: 'Sass, Less, Material UI',
+  },
+  {
+    skillName: 'Redux, Vuex, MobX',
+  },
+  {
+    skillName: 'Express.js, JWT, Axios',
+  },
+  {
+    skillName: 'MongoDB, Docker',
+  },
+  {
+    skillName: 'Python, Firebase, RxJS',
+  },
+  {
+    skillName: 'Storybook, Figma',
+  },
+  {
+    skillName: 'Web Worker',
+  },
+  {
+    skillName: 'Service Worker',
+  },
+]
+
 export const LANGUAGES = [
   {
     skillName: 'English',
@@ -72,7 +103,7 @@ export const LANGUAGES = [
     skillName: 'Belarusian',
     skillValue: 100,
   },
-    {
+  {
     skillName: 'Russian',
     skillValue: 100,
   },

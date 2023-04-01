@@ -108,3 +108,21 @@ export function TwitterIcon(props: SvgIconProps) {
     </SvgIcon>
   )
 }
+
+export function DownloadIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props} width="14" height="14" viewBox="0 0 14 14">
+      <path
+        d="M1.33333 10.9524H10.6667V6.28572H11.8333V11.6191C11.8333 11.7959 11.7719 11.9654 11.6625 12.0905C11.5531 12.2155 11.4047 12.2857 11.25 12.2857H0.750001C0.595292 12.2857 0.446919 12.2155 0.337522 12.0905C0.228126 11.9654 0.166668 11.7959 0.166668 11.6191V6.28572H1.33333V10.9524ZM7.16667 4.28572H10.0833L6 8.95239L1.91667 4.28572H4.83333V0.285721H7.16667V4.28572Z"/>
+    </SvgIcon>
+  )
+}
+
+export function ExtraSkillIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props} >
+      <rect x="0.5" y="0.5" width="9" height="9" stroke="#ffb400"/>
+      <rect x="5.5" y="5.5" width="9" height="9" stroke="#ffb400"/>
+    </SvgIcon>
+  )
+}
