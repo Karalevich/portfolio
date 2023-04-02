@@ -1,6 +1,15 @@
-import { FacebookIcon, LeetcodeIcon, LinkedinIcon, TwitterIcon, VkIcon } from '../components/Custom/Icons'
+import {
+  BackendIcon, ConsultingIcon, EcommerceIcon,
+  FacebookIcon,
+  FrontedIcon, GameIcon, LandingIcon,
+  LeetcodeIcon,
+  LinkedinIcon,
+  TwitterIcon,
+  VkIcon,
+} from '../components/Custom/Icons'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import React from 'react'
+import { ServiceT } from './types'
 
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -108,3 +117,36 @@ export const LANGUAGES = [
     skillValue: 100,
   },
 ]
+
+export const SERVICES: {[property: string]: ServiceT} = {
+  'Front Development': {
+    icon: FrontedIcon,
+    preview: 'Client-side development.',
+    description: 'Including the use of all the best practices and the most modern tools such as JS, TS, React, Vue.'
+  },
+   'E-Commerce': {
+    icon: EcommerceIcon,
+    preview: 'Build high-performing e-commerce.',
+    description: 'And trading platforms, whether you’re dealing stocks or selling shoes.'
+  },
+  'Back Development': {
+    icon: BackendIcon,
+    preview: 'Server-side development.',
+    description: 'Creation of moderate-complexity servers to support the client part using NodeJS, MongoDB, Python.'
+  },
+   'Web Game': {
+    icon: GameIcon,
+    preview: 'Design browser games.',
+    description: 'And production of game architecture and create fascinating characters for entertaining clients.'
+  },
+   'Landing Page': {
+    icon: LandingIcon,
+    preview: 'Creation layouts of any complexity.',
+    description: 'Including standalone pages for both B2B and B2C to collect user info, drive sales and more.'
+  },
+   'Product Consulting': {
+    icon: ConsultingIcon,
+    preview: 'Analyze and benchmark product.',
+    description: 'Also create intelligent development strategies for a smoother, optimal UX.'
+  },
+}

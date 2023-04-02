@@ -1,0 +1,97 @@
+@import './src/styles/variables.scss';
+
+.services {
+  margin-top: 7.78vh;
+
+  .header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5.55vh;
+
+    .title {
+      margin-bottom: 2.77vh;
+    }
+
+    .introduction {
+      width: 27.375rem;
+      text-align: center;
+    }
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .item {
+      list-style-type: none;
+      width: 21.5vw;
+      height: 25vh;
+      margin-bottom: 2.2vh;
+    }
+
+    .card {
+      height: 100%;
+      width: 100%;
+      border-radius: 2px;
+      padding: 3.1vh 1.75vw;
+
+
+      .cardHeader {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        .icon {
+          fill: $element;
+          width: 4.625rem;
+          height: 4.625rem;
+        }
+      }
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: inherit;
+        position: relative;
+        transition: margin-top 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+        .name {
+          margin-top: 2.9vh;
+          font-weight: 500;
+          margin-bottom: 2.44vh;
+        }
+
+        .description {
+          text-align: center;
+          margin-bottom: 3vh;
+          margin-top: 2rem;
+          transition: margin-top 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        }
+
+        .fullDescription {
+          margin-top: 0;
+        }
+
+        .order {
+          width: 21.5vw;
+          font-weight: 700;
+          font-size: 0.75rem;
+
+          .arrow {
+            height: 0.5rem;
+            margin-left: -10px;
+          }
+        }
+      }
+
+      .fullMain {
+        margin-top: -11.1vh;
+      }
+    }
+  }
+}
