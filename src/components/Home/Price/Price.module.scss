@@ -1,0 +1,104 @@
+@import './src/styles/variables.scss';
+
+.price {
+  margin-top: 7.78vh;
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+
+    .item {
+      list-style-type: none;
+      width: 21.5vw;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      border-radius: 2px;
+      padding: 6vh 2.15vw 2.77vh 2.15vw;
+      position: relative;
+
+      .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2.22vh;
+
+        .title {
+          font-weight: 600;
+          margin-bottom: 2.22vh;
+        }
+
+        .charge {
+          display: flex;
+          align-items: flex-end;
+          margin-bottom: 1vh;
+
+          .hour {
+            margin-left: 0.7vw;
+          }
+        }
+
+        .popular {
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: $element;
+          width: 100%;
+          height: 3.33vh;
+        }
+
+        .description {
+          text-align: center;
+        }
+      }
+
+      .main {
+        margin-bottom: 2.33vh;
+
+        .duty {
+          display: flex;
+          height: 4.24vh;
+          list-style-type: none;
+
+          .active {
+            color: $black;
+          }
+
+          .check {
+            fill: $element;
+            margin-right: 1.05vw;
+          }
+
+          .close {
+            fill: $paragraph;
+            margin-right: 1.05vw;
+          }
+        }
+      }
+
+      .footer {
+        display: flex;
+        justify-content: center;
+
+        .order {
+          width: 11.74vw;
+          height: 38px;
+          border-radius: 30px !important;
+          font-weight: 700;
+        }
+      }
+
+    }
+  }
+
+
+}

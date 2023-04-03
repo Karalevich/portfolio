@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5.55vh;
+
+  .title {
+    margin-bottom: 2.77vh;
+  }
+
+  .introduction {
+    width: 27.375rem;
+    text-align: center;
+  }
+}

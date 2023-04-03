@@ -10,6 +10,7 @@ import {
 import GitHubIcon from '@mui/icons-material/GitHub'
 import React from 'react'
 import { ServiceT } from './types'
+import { PriceItemProps } from '../components/Home/Price/types'
 
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -118,35 +119,164 @@ export const LANGUAGES = [
   },
 ]
 
-export const SERVICES: {[property: string]: ServiceT} = {
+export const SERVICES: { [property: string]: ServiceT } = {
   'Front Development': {
     icon: FrontedIcon,
     preview: 'Client-side development.',
-    description: 'Including the use of all the best practices and the most modern tools such as JS, TS, React, Vue.'
+    description: 'Including the use of all the best practices and the most modern tools such as JS, TS, React, Vue.',
   },
-   'E-Commerce': {
+  'E-Commerce': {
     icon: EcommerceIcon,
     preview: 'Build high-performing e-commerce.',
-    description: 'And trading platforms, whether you’re dealing stocks or selling shoes.'
+    description: 'And trading platforms, whether you’re dealing stocks or selling shoes.',
   },
   'Back Development': {
     icon: BackendIcon,
     preview: 'Server-side development.',
-    description: 'Creation of moderate-complexity servers to support the client part using NodeJS, MongoDB, Python.'
+    description: 'Creation of moderate-complexity servers to support the client part using NodeJS, MongoDB, Python.',
   },
-   'Web Game': {
+  'Web Game': {
     icon: GameIcon,
     preview: 'Design browser games.',
-    description: 'And production of game architecture and create fascinating characters for entertaining clients.'
+    description: 'And production of game architecture and create fascinating characters for entertaining clients.',
   },
-   'Landing Page': {
+  'Landing Page': {
     icon: LandingIcon,
     preview: 'Creation layouts of any complexity.',
-    description: 'Including standalone pages for both B2B and B2C to collect user info, drive sales and more.'
+    description: 'Including standalone pages for both B2B and B2C to collect user info, drive sales and more.',
   },
-   'Product Consulting': {
+  'Product Consulting': {
     icon: ConsultingIcon,
     preview: 'Analyze and benchmark product.',
-    description: 'Also create intelligent development strategies for a smoother, optimal UX.'
+    description: 'Also create intelligent development strategies for a smoother, optimal UX.',
   },
 }
+
+export const PRICES: Array<PriceItemProps> = [
+  {
+    title: 'Silver',
+    description: 'Most businesses that want just a landing page',
+    price: 35,
+    isPopular: false,
+    duties: [{
+      name: 'HTML,CSS for static pages',
+      isRequired: true,
+    },
+      {
+        name: 'SEO Optimization',
+        isRequired: true,
+      },
+      {
+        name: 'Creating complex web apps',
+        isRequired: false,
+      },
+      {
+        name: 'Work in modern frameworks',
+        isRequired: false,
+      },
+      {
+        name: 'Build involved animations',
+        isRequired: false,
+      },
+      {
+        name: 'Tests covered',
+        isRequired: false,
+      },
+      {
+        name: 'Performance optimization',
+        isRequired: false,
+      },
+      {
+        name: 'Server-side programming',
+        isRequired: false,
+      },
+      {
+        name: 'Integration with aside API',
+        isRequired: false,
+      }],
+  },
+  {
+    title: 'Gold',
+    description: 'Most businesses that want Frontend services',
+    price: 55,
+    isPopular: true,
+    duties: [{
+      name: 'HTML,CSS for static pages',
+      isRequired: true,
+    },
+      {
+        name: 'SEO Optimization',
+        isRequired: true,
+      },
+      {
+        name: 'Creating complex web apps',
+        isRequired: true,
+      },
+      {
+        name: 'Work in modern frameworks',
+        isRequired: true,
+      },
+      {
+        name: 'Build involved animations',
+        isRequired: true,
+      },
+      {
+        name: 'Tests covered',
+        isRequired: true,
+      },
+      {
+        name: 'Performance optimization',
+        isRequired: true,
+      },
+      {
+        name: 'Server-side programming',
+        isRequired: false,
+      },
+      {
+        name: 'Integration with aside API',
+        isRequired: false,
+      }],
+  },
+  {
+    title: 'Diamond',
+    description: 'Most businesses that want Fullstack services',
+    price: 75,
+    isPopular: false,
+    duties: [{
+      name: 'HTML,CSS for static pages',
+      isRequired: true,
+    },
+      {
+        name: 'SEO Optimization',
+        isRequired: true,
+      },
+      {
+        name: 'Creating complex web apps',
+        isRequired: true,
+      },
+      {
+        name: 'Work in modern frameworks',
+        isRequired: true,
+      },
+      {
+        name: 'Build involved animations',
+        isRequired: true,
+      },
+      {
+        name: 'Tests covered',
+        isRequired: true,
+      },
+      {
+        name: 'Performance optimization',
+        isRequired: true,
+      },
+      {
+        name: 'Server-side programming',
+        isRequired: true,
+      },
+      {
+        name: 'Integration with aside API',
+        isRequired: true,
+      }],
+  },
+]

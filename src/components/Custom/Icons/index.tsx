@@ -303,3 +303,34 @@ export function OrderIcon(props: SvgIconProps) {
     </SvgIcon>
   )
 }
+
+export function CheckIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props} viewBox="0 0 24 24">
+      <g clip-path="url(#clip0_938_973)">
+        <path d="M10 15.172L19.192 5.979L20.607 7.393L10 18L3.636 11.636L5.05 10.222L10 15.172Z"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_938_973">
+          <rect width="24" height="24" fill="white"/>
+        </clipPath>
+      </defs>
+    </SvgIcon>
+  )
+}
+
+export function CloseIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props} viewBox="0 0 24 24">
+      <g clip-path="url(#clip0_938_980)">
+        <path
+          d="M12 10.586L16.95 5.63599L18.364 7.04999L13.414 12L18.364 16.95L16.95 18.364L12 13.414L7.05 18.364L5.636 16.95L10.586 12L5.636 7.04999L7.05 5.63599L12 10.586Z"/>
+      </g>
+      <defs>
+        <clipPath id="clip0_938_980">
+          <rect width="24" height="24" fill="white"/>
+        </clipPath>
+      </defs>
+    </SvgIcon>
+  )
+}

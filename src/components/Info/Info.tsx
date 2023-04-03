@@ -27,7 +27,7 @@ export const Info: InfoComponent = () => {
       <Skills title={'Languages'} skills={LANGUAGES} isProgressBar={true}/>
       <Skills title={'Skills'} skills={SKILLS} isProgressBar={true}/>
       <Skills title={'Extra Skills'} skills={EXTRA_SKILLS} isProgressBar={false}/>
-      <Tooltip title={'Wish download my resume in pdf format?'} >
+      <Tooltip title={'Wish download my resume in pdf format?'} placement={'top'}>
         <Button onClick={onClickHandler} variant="contained" className={styles.download} endIcon={<DownloadIcon/>}>
           Download CV
         </Button>
