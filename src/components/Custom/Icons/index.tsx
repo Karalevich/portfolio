@@ -307,7 +307,7 @@ export function OrderIcon(props: SvgIconProps) {
 export function CheckIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 24 24">
-      <g clip-path="url(#clip0_938_973)">
+      <g clipPath="url(#clip0_938_973)">
         <path d="M10 15.172L19.192 5.979L20.607 7.393L10 18L3.636 11.636L5.05 10.222L10 15.172Z"/>
       </g>
       <defs>
@@ -322,7 +322,7 @@ export function CheckIcon(props: SvgIconProps) {
 export function CloseIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props} viewBox="0 0 24 24">
-      <g clip-path="url(#clip0_938_980)">
+      <g clipPath="url(#clip0_938_980)">
         <path
           d="M12 10.586L16.95 5.63599L18.364 7.04999L13.414 12L18.364 16.95L16.95 18.364L12 13.414L7.05 18.364L5.636 16.95L10.586 12L5.636 7.04999L7.05 5.63599L12 10.586Z"/>
       </g>
@@ -331,6 +331,15 @@ export function CloseIcon(props: SvgIconProps) {
           <rect width="24" height="24" fill="white"/>
         </clipPath>
       </defs>
+    </SvgIcon>
+  )
+}
+
+export function StarIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props} viewBox="0 0 18 18">
+      <path
+        d="M9 13.2448L12.9107 12.2343L14.5446 17.3684L9 13.2448ZM18 6.60873H11.1161L9 0L6.88393 6.60873H0L5.57143 10.7051L3.45535 17.3138L9.02679 13.2175L12.4554 10.7051L18 6.60873Z"/>
     </SvgIcon>
   )
 }

@@ -9,7 +9,7 @@ import CountUp from 'react-countup'
 
 
 export const Price: PriceComponent = () => {
-  const prices = PRICES.map(price => <PriceItem {...price}/>)
+  const prices = PRICES.map(price => <PriceItem key={price.title} {...price}/>)
   return (
     <section className={styles.price}>
       <ServiceHeader title={'Price Plan'}
@@ -35,11 +35,11 @@ const PriceItem: PriceItemComponent = ({ title, description, price, isPopular, d
     return (
       <li className={styles.duty} key={duty.name}>
         {duty.isRequired ? <CheckIcon className={styles.check}/> : <CloseIcon className={styles.close}/>}
-        <p className={duty.isRequired && styles.active}>{duty.name}</p>
+        <p className={duty.isRequired ? styles.active : undefined}>{duty.name}</p>
       </li>
     )
   })
-  return (<li className={styles.item} key={title}>
+  return (<li className={styles.item}>
     <Card className={styles.card} elevation={isCardHover ? 2 : 0} onMouseEnter={toggleIsCardHover(true)}
           onMouseLeave={toggleIsCardHover(false)}>
       <header className={styles.header}>
@@ -48,7 +48,7 @@ const PriceItem: PriceItemComponent = ({ title, description, price, isPopular, d
         <div className={styles.charge}>
           <h2>
             <strong>
-              $<CountUp start={0.00} end={price} duration={3} scrollSpyDelay={300} enableScrollSpy scrollSpyOnce/>.00
+              $<CountUp start={0} end={price} duration={3} scrollSpyDelay={300} enableScrollSpy scrollSpyOnce/>.00
             </strong>
           </h2>
           <span className={styles.hour}>/Hour</span>

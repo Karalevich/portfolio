@@ -1,3 +1,56 @@
+@import './src/styles/variables.scss';
+
 .recommendations {
   margin-top: 7.78vh;
+
+  .card {
+    height: 35.88vh;
+    width: 21.53vw;
+    padding: 1.74vw;
+    border-radius: 2px;
+
+    .stars {
+      margin-bottom: 1.3vh;
+
+      .star {
+        fill: $element;
+        font-size: 1.125rem;
+        margin-right: 0.7vw;
+      }
+    }
+
+    .title {
+      margin-bottom: 1.5vh;
+    }
+
+    .description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4; /* number of lines to show */
+      line-clamp: 4;
+      -webkit-box-orient: vertical;
+      margin-bottom: 3vh;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+
+      .avatar {
+        width: 5rem;
+        height: 5rem;
+        margin-right: 0.8125rem;
+        border-radius: 50%;
+        background-color: transparent;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-around;
+      }
+    }
+  }
 }

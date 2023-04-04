@@ -11,6 +11,8 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import React from 'react'
 import { ServiceT } from './types'
 import { PriceItemProps } from '../components/Home/Price/types'
+import david from '../assets/img/David.png'
+import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -279,4 +281,82 @@ export const PRICES: Array<PriceItemProps> = [
         isRequired: true,
       }],
   },
+]
+
+export const RECOMMENDATIONS: Array<RecommendationProps> = [
+  {
+    author: 'David Tanaka',
+    occupation: 'Program Manager',
+    title: 'Responsible work!',
+    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
+      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
+      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
+      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
+      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
+      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
+    image: david
+  },
+   {
+    author: 'David Tanaka',
+    occupation: 'Program Manager',
+    title: 'Great work!',
+    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
+      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
+      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
+      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
+      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
+      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
+    image: david
+  },
+   {
+    author: 'David Tanaka',
+    occupation: 'Program Manager',
+    title: 'Awesome work!',
+    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
+      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
+      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
+      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
+      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
+      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
+    image: david
+  },
+   {
+    author: 'David Tanaka',
+    occupation: 'Program Manager',
+    title: 'Amazing work!',
+    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
+      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
+      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
+      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
+      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
+      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
+    image: david
+  },
+   {
+    author: 'David Tanaka',
+    occupation: 'Program Manager',
+    title: 'Excellent work!',
+    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
+      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
+      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
+      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
+      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
+      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
+    image: david
+  }
 ]
