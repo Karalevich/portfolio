@@ -1,0 +1,44 @@
+@import './src/styles/variables.scss';
+
+.workPreview {
+  margin-top: 7.78vh;
+
+  .stepper {
+    .label {
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .place {
+      font-weight: 400;
+      color: $paragraph;
+      text-transform: capitalize;
+      font-size: 0.875rem;
+      align-items: center;
+    }
+
+    .spec {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 10.5vw;
+      .occupation{
+        color: $black;
+        font-weight: 400;
+        font-size: 0.9375rem;
+      }
+
+      .date{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.625rem;
+        color: $white;
+        background-color: $element;
+        width: 7.7vw;
+        height: 2vh;
+        border-radius: 1px;
+      }
+    }
+  }
+}

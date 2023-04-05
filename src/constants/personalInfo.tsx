@@ -283,6 +283,8 @@ export const PRICES: Array<PriceItemProps> = [
   },
 ]
 
+export const linkedInRecommendations = 'https://www.linkedin.com/in/a112k/details/recommendations/'
+
 export const RECOMMENDATIONS: Array<RecommendationProps> = [
   {
     author: 'David Tanaka',
@@ -297,9 +299,9 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david
+    image: david,
   },
-   {
+  {
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Great work!',
@@ -312,9 +314,9 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david
+    image: david,
   },
-   {
+  {
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Awesome work!',
@@ -327,9 +329,9 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david
+    image: david,
   },
-   {
+  {
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Amazing work!',
@@ -342,9 +344,9 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david
+    image: david,
   },
-   {
+  {
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Excellent work!',
@@ -357,6 +359,49 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david
-  }
+    image: david,
+  },
+]
+
+export const WORK_HISTORY = [
+  {
+    label: 'Nexon America',
+    place: 'Los Angeles, CA',
+    occupation: 'FrontEnd Engineer',
+    date: 'Jul 2022 - Mar 2023',
+    description: `Nexon Co., Ltd. is a Japanese-South Korean video game publisher. It publishes titles including MapleStory, Dungeon&Fighter, Sudden Attack, and KartRider.
+     Headquartered in Japan, the company has offices located in South Korea, the United States, Taiwan and Thailand.`,
+  },
+    {
+    label: 'Unemployment gap',
+    place: 'Grassau, Germany',
+    occupation: 'Sabbatical',
+    date: 'Apr 2022 - Jun 2023',
+    description: `I was preparing for a big international move.`,
+  },
+  {
+    label: 'Wargaming',
+    place: 'Saint Petersburg, Russia',
+    occupation: 'Web Engineer',
+    date: 'May 2021 - Mar 2022',
+    description: `Wargaming Group Limited is a global video game company headquartered in Nicosia, Cyprus. 
+    The group operates across more than 16 offices and development studios globally`,
+  },
+  {
+    label: 'LeverX Group',
+    place: 'Minsk, Belarus',
+    occupation: 'FrontEnd Engineer',
+    date: 'Nov 2020 - May 2021',
+    description: `LeverX Group is an international company and systems integrator. Includes LeverX and Emerline. 
+    LeverX specializes in implementing and customizing SAP solutions. The company has been successfully 
+    cooperating with SAP for over 19 years.`,
+  },
+   {
+    label: 'Freelance',
+    place: 'Belarus',
+    occupation: 'FrontEnd Engineer',
+    date: 'Oct 2019 - Nov 2020',
+    description: `ClimateGuard is a technological startup developer of software and technical solutions 
+    in the field of climate monitoring`,
+  },
 ]
