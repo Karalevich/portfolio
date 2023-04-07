@@ -1,4 +1,9 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
-type WorkPreviewProps = {  }
+type WorkPreviewProps = {}
 export type WorkPreviewComponent = FunctionComponent<WorkPreviewProps>
+
+export enum DIRECTION {
+  UP = 'UP',
+  DOWN = 'DOWN'
+}

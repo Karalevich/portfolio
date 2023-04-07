@@ -16,6 +16,8 @@ export const Home: HomeComponent = () => {
       <Price/>
       <Recommendations/>
       <WorkPreview/>
+      <Price/>
+      <Recommendations/>
     </section>
   )
 }
