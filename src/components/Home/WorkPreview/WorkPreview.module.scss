@@ -3,10 +3,15 @@
 .workPreview {
   margin-top: 7.78vh;
 
+  .switch {
+    float: right;
+  }
+
   .stepper {
     .label {
       font-weight: 500;
       text-transform: capitalize;
+      margin-bottom: 5px;
     }
 
     .place {
@@ -20,7 +25,7 @@
     .spec {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-around;
       width: 10.5vw;
       .occupation{
         color: $black;

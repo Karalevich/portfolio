@@ -372,7 +372,7 @@ export const WORK_HISTORY = [
     description: `Nexon Co., Ltd. is a Japanese-South Korean video game publisher. It publishes titles including MapleStory, Dungeon&Fighter, Sudden Attack, and KartRider.
      Headquartered in Japan, the company has offices located in South Korea, the United States, Taiwan and Thailand.`,
   },
-    {
+  {
     label: 'Unemployment gap',
     place: 'Grassau, Germany',
     occupation: 'Sabbatical',
@@ -396,12 +396,43 @@ export const WORK_HISTORY = [
     LeverX specializes in implementing and customizing SAP solutions. The company has been successfully 
     cooperating with SAP for over 19 years.`,
   },
-   {
+  {
     label: 'Freelance',
     place: 'Belarus',
     occupation: 'FrontEnd Engineer',
     date: 'Oct 2019 - Nov 2020',
     description: `ClimateGuard is a technological startup developer of software and technical solutions 
     in the field of climate monitoring`,
+  },
+]
+
+export const EDUCATION_HISTORY = [
+  {
+    name: 'Online University «Netology»',
+    occupation: 'Student',
+    date: 'Sep 2018 - Oct 2019',
+    document: 'Certificate of web training',
+    description: `Frontenders create the face of the site - what you see on any page on the Internet. 
+    They also organize the work of components: content, buttons, internal links. The key task of such specialists is 
+    to transfer the design layout to the code and make sure that verything worked conveniently and quickly.`,
+  },
+  {
+    name: 'Belarusian National Technical University',
+    occupation: 'Student',
+    date: 'Sep 2011 - Jun 2016',
+    document: 'Engineer diploma',
+    description: `The Belarusian National Technical University (BNTU) is one of the leading technical
+     universities of Belarus and the CIS. The BNTU has been training engineers since 1920. BNTU comprises 17 faculties 
+     offering high-quality training in 89 specialities and 121 specializations. Trains over 35 000 students in advanced 
+     BA, MA, PhD, and post-doctoral programs.`,
+  },
+  {
+    name: 'Lyceum BNTU',
+    occupation: 'Student',
+    date: 'Oct 2009 - Nov 2011',
+    document: 'High School Diploma',
+    description: `The school provided graduates with a general secondary education, while providing in-depth training in the disciplines of physics and mathematics.
+    Also development of students' interest in technical disciplines. Familiarization of students with the main directions of development of modern science and technology.
+    Active involvement of students in the research work of the departments, the public life of the institute.`,
   },
 ]

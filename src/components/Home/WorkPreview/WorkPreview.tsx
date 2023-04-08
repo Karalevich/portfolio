@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
 import styles from './WorkPreview.module.scss'
 import { styled } from '@mui/material/styles'
 import { DIRECTION, WorkPreviewComponent } from './types'
@@ -17,15 +17,18 @@ import { useInView } from 'react-intersection-observer'
 import { useScrollLock } from 'src/hooks/useScrollLock'
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
 import { FreelanceIcon, LeverIcon, NexonIcon, SabbaticalIcon, WargamingIcon } from 'src/components/Custom/Icons/Motion'
+import { SCROLL_DELAY } from '../../../constants/settings'
+import { Switch } from 'src/components/Custom/Switch'
 
 
 export const WorkPreview: WorkPreviewComponent = () => {
-  const [activeStep, setActiveStep] = useState<number>(0)
+  const [activeStep, setActiveStep] = useState<number>(-1)
   const [isStepsExpended, setIsStepsExpended] = useState<boolean>(false)
   const { lockScroll, unlockScroll, isScrollLocked } = useScrollLock()
   const { ref: inViewRef, inView } = useInView({ rootMargin: '-30% 0px -50% 0px' })
   const workRef = useRef<null | HTMLElement>(null)
   let direction: DIRECTION = DIRECTION.DOWN
+  let deltaY = 0
 
   const setRefs = useCallback((node: HTMLElement | null) => {
     workRef.current = node
@@ -33,24 +36,29 @@ export const WorkPreview: WorkPreviewComponent = () => {
   }, [inViewRef])
 
   const onScrollAction = (event: WheelEvent) => {
-    controlDirection(event)
-    console.log(isScrollLocked)
+    if (!isStepsExpended) {
+      controlDirection(event)
 
-    if (inView && activeStep !== WORK_HISTORY.length - 1) {
-      lockScroll()
-    }
+      if (inView) {
+        lockScroll()
+      }
 
-    if (activeStep === Math.floor(WORK_HISTORY.length / 2) || activeStep === Math.ceil(WORK_HISTORY.length / 2)) {
-      workRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }
+      if (activeStep === Math.floor(WORK_HISTORY.length / 2) || activeStep === Math.ceil(WORK_HISTORY.length / 2)) {
+        workRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
 
-    if ((direction === DIRECTION.UP && activeStep === 0) ||
-      (direction === DIRECTION.DOWN && activeStep === WORK_HISTORY.length)) {
-      unlockScroll()
-    } else if (isScrollLocked && direction === DIRECTION.DOWN) {
-      handleNext()
-    } else if (direction === DIRECTION.UP && activeStep !== 0 && isScrollLocked) {
-      handleBack()
+      if ((direction === DIRECTION.UP && activeStep === -1) ||
+        (direction === DIRECTION.DOWN && activeStep === WORK_HISTORY.length)) {
+        unlockScroll()
+      } else if (isScrollLocked && direction === DIRECTION.DOWN) {
+        deltaY += event.deltaY
+        if (deltaY > SCROLL_DELAY) {
+          handleNext()
+          deltaY = 0
+        }
+      } else if (direction === DIRECTION.UP && isScrollLocked) {
+        handleBack()
+      }
     }
   }
 
@@ -60,15 +68,14 @@ export const WorkPreview: WorkPreviewComponent = () => {
     return () => {
       window.removeEventListener('wheel', onScrollAction)
     }
-  }, [onScrollAction, inView])
+  }, [onScrollAction, inView, isStepsExpended])
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1 <= WORK_HISTORY.length ? prevActiveStep + 1 : WORK_HISTORY.length - 1)
-
   }
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1 >= 0 ? prevActiveStep - 1 : 0)
+    setActiveStep((prevActiveStep) => prevActiveStep - 1 >= -1 ? prevActiveStep - 1 : -1)
   }
 
   const controlDirection = (event: WheelEvent) => {
@@ -76,6 +83,18 @@ export const WorkPreview: WorkPreviewComponent = () => {
       direction = DIRECTION.DOWN
     } else {
       direction = DIRECTION.UP
+    }
+  }
+
+  const handleSwitch = (event: ChangeEvent<HTMLInputElement>) => {
+    setIsStepsExpended(event.target.checked)
+    if (event.target.checked) {
+      unlockScroll()
+      setActiveStep(WORK_HISTORY.length)
+    } else {
+      lockScroll()
+      unlockScroll()
+      setActiveStep(-1)
     }
   }
 
@@ -92,6 +111,7 @@ export const WorkPreview: WorkPreviewComponent = () => {
         padding: '5vh 2.43vw',
         borderRadius: '2px',
       }}>
+        <Switch className={styles.switch} checked={isStepsExpended} onChange={handleSwitch}/>
         <Stepper activeStep={activeStep} orientation="vertical" className={styles.stepper}
                  connector={<ColorlibConnector/>}>
           {WORK_HISTORY.map((step, index) => (
@@ -124,7 +144,7 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
     [`& .${stepLabelClasses.labelContainer}`]: {
       'span[class*="date"]': {
         backgroundColor: '#ffb400',
-        color: '#ffffff'
+        color: '#ffffff',
       },
     },
   },
@@ -215,12 +235,12 @@ const ColorlibStepIconRoot = styled('div')<{
   alignItems: 'center',
   ...(ownerState.active && {
     background:
-      'linear-gradient(180deg, rgba(255,180,0,0.93) 0%, rgba(255,203,42,1) 50%, rgba(255,247,124,1) 100%)',
+      'linear-gradient(180deg, rgba(255,158,0,1) 0%, rgba(255,180,0,1) 50%, rgba(255,212,110,1) 100%)',
     boxShadow: '0 1px 5px 0 rgba(0,0,0,.25)',
   }),
   ...(ownerState.completed && {
     background:
-      'linear-gradient(180deg, rgba(255,180,0,0.93) 0%, rgba(255,203,42,1) 50%, rgba(255,247,124,1) 100%)',
+      'linear-gradient(180deg, rgba(255,158,0,1) 0%, rgba(255,180,0,1) 50%, rgba(255,212,110,1) 100%)',
   }),
 }))
 
