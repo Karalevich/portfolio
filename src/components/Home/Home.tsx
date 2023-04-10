@@ -7,6 +7,7 @@ import Price from './Price/Price'
 import Recommendations from './Recommendations/Recommendations'
 import WorkPreview from './WorkPreview/WorkPreview'
 import EducationPreview from './EducationPreview/EducationPreview'
+import Portfolio from './Portfolio/Portfolio'
 
 
 export const Home: HomeComponent = () => {
@@ -18,6 +19,7 @@ export const Home: HomeComponent = () => {
       <Recommendations/>
       <WorkPreview/>
       <EducationPreview/>
+      <Portfolio/>
     </section>
   )
 }

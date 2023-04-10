@@ -13,6 +13,7 @@ import { ServiceT } from './types'
 import { PriceItemProps } from '../components/Home/Price/types'
 import david from '../assets/img/David.png'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
+import { ProjectT } from 'src/components/Home/Portfolio/types'
 
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -434,5 +435,28 @@ export const EDUCATION_HISTORY = [
     description: `The school provided graduates with a general secondary education, while providing in-depth training in the disciplines of physics and mathematics.
     Also development of students' interest in technical disciplines. Familiarization of students with the main directions of development of modern science and technology.
     Active involvement of students in the research work of the departments, the public life of the institute.`,
+  },
+]
+
+export const PORTFOLIO: Array<{tab: string, projects: Array<ProjectT>}> = [
+  {
+    tab: 'All Categories',
+    projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }],
+  },
+  {
+    tab: 'Frontend',
+    projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }],
+  },
+  {
+    tab: 'Full Stack',
+    projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }],
+  },
+  {
+    tab: 'Games',
+    projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }],
+  },
+  {
+    tab: 'Landings',
+    projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }],
   },
 ]

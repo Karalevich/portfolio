@@ -6,7 +6,7 @@ import { Button } from '@mui/material'
 import { SERVICES } from 'src/constants/personalInfo'
 import { OrderIcon } from 'src/components/Custom/Icons'
 import classnames from 'classnames'
-import ServiceHeader from '../ServiceHeader/ServiceHeader'
+import SectionHeader from '../SectionHeader/SectionHeader'
 
 
 export const ServicesPreview: ServicesPreviewComponent = () => {
@@ -17,7 +17,7 @@ export const ServicesPreview: ServicesPreviewComponent = () => {
 
   return (
     <section className={styles.services}>
-      <ServiceHeader title={'My Services'}
+      <SectionHeader title={'My Services'}
                      introduction={'Based on commercial experience with a wide range of diverse projects and a constant desire to learn and\n' +
                      '          master new technologies, I provide the following services'}/>
       <main>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Price.module.scss'
 import { PriceComponent, PriceItemComponent } from './types'
-import ServiceHeader from '../ServiceHeader/ServiceHeader'
+import SectionHeader from '../SectionHeader/SectionHeader'
 import { Button, Card } from '@mui/material'
 import { PRICES } from 'src/constants/personalInfo'
 import { CheckIcon, CloseIcon } from '../../Custom/Icons'
@@ -12,7 +12,7 @@ export const Price: PriceComponent = () => {
   const prices = PRICES.map(price => <PriceItem key={price.title} {...price}/>)
   return (
     <section className={styles.price}>
-      <ServiceHeader title={'Price Plan'}
+      <SectionHeader title={'Price Plan'}
                      introduction={'This is the typical base pay range for this role across the U.S. ' +
                      'This range may vary to specific work locations, like San Francisco ' +
                      'area or New York area. And also it depends on specifics, types, and models of work.'}/>

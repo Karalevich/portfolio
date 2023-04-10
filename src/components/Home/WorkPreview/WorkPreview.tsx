@@ -2,7 +2,7 @@ import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 're
 import styles from './WorkPreview.module.scss'
 import { styled } from '@mui/material/styles'
 import { DIRECTION, WorkPreviewComponent } from './types'
-import ServiceHeader from '../ServiceHeader/ServiceHeader'
+import SectionHeader from '../SectionHeader/SectionHeader'
 import {
   Box, collapseClasses,
   Step, stepClasses,
@@ -104,7 +104,7 @@ export const WorkPreview: WorkPreviewComponent = () => {
 
   return (
     <section className={styles.workPreview}>
-      <ServiceHeader title={'Work History'} introduction={'I have a broad range of projects that I worked on: ' +
+      <SectionHeader title={'Work History'} introduction={'I have a broad range of projects that I worked on: ' +
       'huge B2B platform, E-commerce and game companies like Wargaming and Nexon America which have different target markets.'}/>
       <Box ref={setRefs} sx={{
         backgroundColor: 'white',
@@ -148,7 +148,6 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
       },
     },
   },
-
   [`& .${stepContentClasses.root}`]: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -176,7 +175,14 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
       bottom: 0,
     },
   },
+  [`&.${stepClasses.root}:last-child`]: {
+    [`& .${stepContentClasses.root}`]: {
+      '&:after': {
+        border: 'none',
+      },
+    },
 
+  },
   [`& .${collapseClasses.root}`]: {
     width: '45vw',
   },

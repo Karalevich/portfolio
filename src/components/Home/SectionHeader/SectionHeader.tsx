@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './ServiceHeader.module.scss'
-import { ServiceHeaderComponent } from './types'
+import styles from './SectionHeader.module.scss'
+import { SectionHeaderComponent } from './types'
 
 
-export const ServiceHeader: ServiceHeaderComponent = ({title, introduction}) => {
+export const SectionHeader: SectionHeaderComponent = ({title, introduction}) => {
   return (
     <header className={styles.header}>
       <h2 className={styles.title}>{title}</h2>
@@ -14,4 +14,4 @@ export const ServiceHeader: ServiceHeaderComponent = ({title, introduction}) => 
   )
 }
 
-export default ServiceHeader
+export default SectionHeader

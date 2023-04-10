@@ -1,3 +1,54 @@
+@import './src/styles/variables.scss';
+
 .educationPreview {
   margin-top: 7.78vh;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    border-bottom: 1.5px solid $light-bcg;
+    padding-bottom: 1rem;
+    margin-bottom: 3.1vh;
+
+    .title {
+      font-weight: 500;
+      text-transform: capitalize;
+      margin-bottom: 3.1vh;
+    }
+
+    .header {
+      .spec {
+        display: flex;
+
+        .occupation {
+          color: $black;
+          font-weight: 400;
+          font-size: 0.9375rem;
+          margin-right: 1.25rem;
+        }
+
+        .date {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 0.625rem;
+          width: 7.7vw;
+          height: 2vh;
+          border-radius: 1px;
+          background-color: $element;
+          color: $white;
+        }
+      }
+    }
+
+    .main {
+      width: 60%;
+    }
+  }
+
+  .item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
 }

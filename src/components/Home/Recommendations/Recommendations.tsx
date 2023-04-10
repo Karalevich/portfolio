@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Recommendations.module.scss'
 import { RecommendationComponent, RecommendationsComponent } from './types'
-import ServiceHeader from '../ServiceHeader/ServiceHeader'
+import SectionHeader from '../SectionHeader/SectionHeader'
 import Card from '@mui/material/Card/Card'
 import { linkedInRecommendations, RECOMMENDATIONS } from '../../../constants/personalInfo'
 import { CarouselProvider, DotGroup, Slide, Slider } from 'pure-react-carousel'
@@ -15,7 +15,7 @@ export const Recommendations: RecommendationsComponent = () => {
   const recommendations = RECOMMENDATIONS.map((rec, index) => <Recommendation key={rec.title} {...rec} index={index}/>)
   return (
     <section className={styles.recommendations}>
-      <ServiceHeader title={'Recommendations'}
+      <SectionHeader title={'Recommendations'}
                      introduction={'All recommendations are real and left in LinkedIn by my colleagues ' +
                      'or managers with whom I have worked before. You can see the original recommendation ' +
                      'by clicking on the preview.'}/>
