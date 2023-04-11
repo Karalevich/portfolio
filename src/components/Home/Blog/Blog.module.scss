@@ -1,0 +1,77 @@
+@import './src/styles/variables.scss';
+
+.blog {
+  .card {
+    border-radius: 2px;
+    width: 21.53vw;
+
+    .media {
+      height: 18.75rem;
+    }
+
+    .title {
+      font-weight: 500;
+      text-transform: capitalize;
+      margin-bottom: 0.5rem;
+    }
+
+    .content {
+      padding-bottom: 0;
+    }
+
+    .description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* number of lines to show */
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+
+    .button {
+      padding-left: 16px;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      .arrow {
+        height: 0.5rem;
+        margin-left: -10px;
+      }
+    }
+  }
+
+  .main {
+    position: relative;
+
+    .buttonBack, .buttonNext {
+      border: none;
+      border-radius: 50%;
+      height: 2rem;
+      width: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(230,230,230,0.9);
+
+      &:disabled {
+        background-color: rgba(200,200,200,0.7);
+      }
+    }
+
+    .buttonBack {
+      position: absolute;
+      top: 140px;
+      left: 5px;
+    }
+
+    .buttonNext {
+      position: absolute;
+      top: 140px;
+      right: 20px;
+    }
+  }
+}
+
+

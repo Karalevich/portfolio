@@ -1,7 +1,6 @@
 @import './src/styles/variables.scss';
 
 .portfolio {
-  margin-top: 7.78vh;
 
   .tabs {
     width: 62.5%;
@@ -18,7 +17,6 @@
         list-style: none;
         width: 19.375rem;
         height: 18.75rem;
-        background-color: $dark-bcg2;
       }
     }
   }

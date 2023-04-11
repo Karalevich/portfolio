@@ -14,6 +14,7 @@ import { PriceItemProps } from '../components/Home/Price/types'
 import david from '../assets/img/David.png'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import { ProjectT } from 'src/components/Home/Portfolio/types'
+import blog from '../assets/img/blog.avif'
 
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -459,4 +460,57 @@ export const PORTFOLIO: Array<{tab: string, projects: Array<ProjectT>}> = [
     tab: 'Landings',
     projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }],
   },
+]
+
+export const POSTS = [
+  {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  },
+   {
+    title: 'How to create animated svg',
+    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    img: blog
+  }
 ]

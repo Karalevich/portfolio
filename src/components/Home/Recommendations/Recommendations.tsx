@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './Recommendations.module.scss'
 import { RecommendationComponent, RecommendationsComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
@@ -8,7 +8,7 @@ import { CarouselProvider, DotGroup, Slide, Slider } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
 import { StarIcon } from 'src/components/Custom/Icons'
 import { Avatar, Button } from '@mui/material'
-import MovingIcon from '@mui/icons-material/Moving';
+import MovingIcon from '@mui/icons-material/Moving'
 
 
 export const Recommendations: RecommendationsComponent = () => {
@@ -38,6 +38,8 @@ export const Recommendations: RecommendationsComponent = () => {
   )
 }
 
+export default Recommendations
+
 const Recommendation: RecommendationComponent = ({ index, title, author, occupation, description, image }) => {
   const stars = []
   for (let i = 0; i < 5; i++) {
@@ -64,15 +66,13 @@ const Recommendation: RecommendationComponent = ({ index, title, author, occupat
           </div>
         </footer>
         <div className={styles.redirect}>
-                <a href={linkedInRecommendations} target="_blank">
-          <Button className={styles.linkedin} variant="outlined" endIcon={<MovingIcon/>}>
-            Read on LinkedIn
-          </Button>
-      </a>
+          <a href={linkedInRecommendations} target="_blank">
+            <Button className={styles.linkedin} variant="outlined" endIcon={<MovingIcon/>}>
+              Read on LinkedIn
+            </Button>
+          </a>
         </div>
       </Card>
     </Slide>
   )
 }
-
-export default Recommendations
