@@ -23,14 +23,14 @@ export const Blog: BlogComponent = () => {
           totalSlides={POSTS.length}
           step={1}
           naturalSlideWidth={310}
-          naturalSlideHeight={474}
+          naturalSlideHeight={440}
           currentSlide={0}
         >
           <Slider>
             {posts}
           </Slider>
-          <ButtonBack className={styles.buttonBack}><ArrowBackIosNewIcon fontSize={'inherit'}/></ButtonBack>
-          <ButtonNext className={styles.buttonNext}><ArrowForwardIosIcon fontSize={'inherit'}/></ButtonNext>
+          <ButtonBack className={styles.buttonBack}><ArrowBackIosNewIcon color={'secondary'} fontSize={'inherit'}/></ButtonBack>
+          <ButtonNext className={styles.buttonNext}><ArrowForwardIosIcon color={'secondary'} fontSize={'inherit'}/></ButtonNext>
         </CarouselProvider>
       </main>
     </section>

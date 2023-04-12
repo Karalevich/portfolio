@@ -1,0 +1,39 @@
+@import './src/styles/variables.scss';
+
+.contact {
+  display: flex;
+  justify-content: space-between;
+  .title {
+    margin-top: 4.375rem;
+    margin-bottom: 3.125rem;
+    text-transform: capitalize;
+  }
+
+  .info {
+    padding: 1.56rem;
+    border-radius: 2px !important;
+
+    .input {
+      margin-bottom: 1.56rem;
+
+      label {
+        font-weight: 500;
+        color: $paragraph;
+      }
+    }
+  }
+
+  .leaveInfo {
+    width: 58.76%;
+  }
+
+  .contactInfo {
+    width: 38.14%;
+
+    .infoList {
+      .item {
+        list-style: none;
+      }
+    }
+  }
+}

@@ -3,7 +3,9 @@ import {
   FacebookIcon,
   FrontedIcon, GameIcon, LandingIcon,
   LeetcodeIcon,
-  LinkedinIcon,
+  LinkedinIcon, LocationIcon,
+  MailIcon,
+  MobileIcon,
   TwitterIcon,
   VkIcon,
 } from '../components/Custom/Icons'
@@ -15,6 +17,7 @@ import david from '../assets/img/David.png'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import { ProjectT } from 'src/components/Home/Portfolio/types'
 import blog from '../assets/img/blog.avif'
+import { ContactCardProps } from '../components/Home/Contact/types'
 
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -439,7 +442,7 @@ export const EDUCATION_HISTORY = [
   },
 ]
 
-export const PORTFOLIO: Array<{tab: string, projects: Array<ProjectT>}> = [
+export const PORTFOLIO: Array<{ tab: string, projects: Array<ProjectT> }> = [
   {
     tab: 'All Categories',
     projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }],
@@ -466,51 +469,99 @@ export const POSTS = [
   {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
+    img: blog,
   },
-   {
+  {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog
-  }
+    img: blog,
+  },
+]
+
+export const CONTACT_INFO: Array<ContactCardProps> = [
+  {
+    icon: LocationIcon,
+    info: [{
+      title: 'Country',
+      value: 'USA',
+    },
+      {
+        title: 'City',
+        value: 'Los Angeles',
+      },
+      {
+        title: 'Street',
+        value: '5211 Pacific Concourse Dr',
+      }],
+  },
+  {
+    icon: MailIcon,
+    info: [{
+      title: 'Email',
+      value: 'karalevichandrei@gmail.com',
+    },
+      {
+        title: 'Skype',
+        value: 'live:.cid.c2a08e082c21be73',
+      },
+      {
+        title: 'Teams',
+        value: 'karalevichandrei@gmail.com',
+      }],
+  },
+  {
+    icon: MobileIcon,
+    info: [{
+      title: 'Personal',
+      value: '+1-253-212-8501',
+    },
+      {
+        title: 'Telegram',
+        value: 'why_nnot',
+      },
+      {
+        title: 'WhatsApp',
+        value: '+1-253-212-8501',
+      }],
+  },
 ]

@@ -9,6 +9,7 @@ import WorkPreview from './WorkPreview/WorkPreview'
 import EducationPreview from './EducationPreview/EducationPreview'
 import Portfolio from './Portfolio/Portfolio'
 import Blog from './Blog/Blog'
+import Contact from './Contact/Contact'
 
 
 export const Home: HomeComponent = () => {
@@ -22,6 +23,7 @@ export const Home: HomeComponent = () => {
       <EducationPreview/>
       <Portfolio/>
       <Blog/>
+      <Contact/>
     </section>
   )
 }
