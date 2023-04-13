@@ -10,6 +10,7 @@ import EducationPreview from './EducationPreview/EducationPreview'
 import Portfolio from './Portfolio/Portfolio'
 import Blog from './Blog/Blog'
 import Contact from './Contact/Contact'
+import Map from './Map/Map'
 
 
 export const Home: HomeComponent = () => {
@@ -24,6 +25,10 @@ export const Home: HomeComponent = () => {
       <Portfolio/>
       <Blog/>
       <Contact/>
+      <Map/>
+      <cite className={styles.copyright}>
+        <p className={styles.text}>Copyright © 2023 Portfolio Andrei Karalevich</p>
+      </cite>
     </section>
   )
 }

@@ -7,7 +7,7 @@ import { CONTACT_INFO } from 'src/constants/personalInfo'
 
 
 export const Contact: ContactComponent = () => {
-  const infoCards = CONTACT_INFO.map(info => <ContactCard {...info}/>)
+  const infoCards = CONTACT_INFO.map(info => <ContactCard key={info.icon.toString()} {...info}/>)
   return (
     <section className={styles.contact}>
       <article className={styles.leaveInfo}>
@@ -26,9 +26,9 @@ export const Contact: ContactComponent = () => {
         <header>
           <h2 className={styles.title}>Contact information</h2>
         </header>
-        <main>
+        <ul className={styles.cardList}>
           {infoCards}
-        </main>
+        </ul>
       </article>
     </section>
   )
@@ -39,13 +39,16 @@ export default Contact
 const ContactCard: ContactCardComponent = ({ info, icon }) => {
   const infoList = info.map(inf => (
     <li className={styles.item} key={inf.title}>
-      <span>{inf.title}</span><span>{inf.value}</span>
+      <h4 className={styles.itemTitle}>{inf.title}:</h4>
+      <span className={styles.value}><a href={`${inf.href}`} target={'_blank'}>{inf.value}</a></span>
     </li>
   ))
   return (
-    <Card>
-      <header className={styles.iconWrapper}>{icon({})}</header>
-      <main>
+    <Card className={styles.card} elevation={0}>
+      <header className={styles.header}>
+        <span className={styles.iconWrapper}>{icon({fontSize: 'small'})}</span>
+      </header>
+      <main className={styles.main}>
         <ul className={styles.infoList}>
           {infoList}
         </ul>

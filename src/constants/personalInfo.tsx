@@ -472,47 +472,47 @@ export const POSTS = [
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'How to creat animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'How to creae animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'How to ceate animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'How t create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'How o create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'Ho to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'How to create animated sg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'How to create anmated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
   {
-    title: 'How to create animated svg',
+    title: 'How to create animaed svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
   },
@@ -521,47 +521,62 @@ export const POSTS = [
 export const CONTACT_INFO: Array<ContactCardProps> = [
   {
     icon: LocationIcon,
-    info: [{
-      title: 'Country',
-      value: 'USA',
-    },
+    info: [
+      {
+        title: 'Country',
+        value: 'USA',
+        href: 'http://maps.google.com/?q=1200 5211 Pacific Concourse Dr, Los Angeles, CA 90045-6907, USA',
+      },
       {
         title: 'City',
         value: 'Los Angeles',
+        href: 'http://maps.google.com/?q=1200 5211 Pacific Concourse Dr, Los Angeles, CA 90045-6907, USA',
       },
       {
         title: 'Street',
         value: '5211 Pacific Concourse Dr',
-      }],
+        href: 'http://maps.google.com/?q=1200 5211 Pacific Concourse Dr, Los Angeles, CA 90045-6907, USA',
+      },
+    ],
   },
   {
     icon: MailIcon,
-    info: [{
-      title: 'Email',
-      value: 'karalevichandrei@gmail.com',
-    },
+    info: [
+      {
+        title: 'Email',
+        value: 'karalevichandrei@gmail.com',
+        href: 'mailto:karalevichandrei@gmail.com',
+      },
       {
         title: 'Skype',
         value: 'live:.cid.c2a08e082c21be73',
+        href: 'skype:live:.cid.c2a08e082c21be73?chat',
       },
       {
         title: 'Teams',
         value: 'karalevichandrei@gmail.com',
-      }],
+        href: 'https://teams.microsoft.com/l/chat/0/0?users=sam98kris@gmail.com',
+      },
+    ],
   },
   {
     icon: MobileIcon,
-    info: [{
-      title: 'Personal',
-      value: '+1-253-212-8501',
-    },
+    info: [
+      {
+        title: 'Personal',
+        value: '+1 (253) 212 8501',
+        href: 'tel:+12532128501',
+      },
       {
         title: 'Telegram',
         value: 'why_nnot',
+        href: 'https://t.me/why_nnot',
       },
       {
         title: 'WhatsApp',
-        value: '+1-253-212-8501',
-      }],
+        value: '+1 (253) 212 8501',
+        href: 'https://wa.me/+12532128501',
+      },
+    ],
   },
 ]
