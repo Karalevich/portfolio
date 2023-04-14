@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import styles from './Info.module.scss'
 import { InfoComponent } from './types'
 import Avatar from './Avatar/Avatar'
@@ -10,7 +10,8 @@ import cv from '../../assets/cv.pdf'
 import { Tooltip } from '../Custom/Tooltip'
 
 
-export const Info: InfoComponent = () => {
+export const Info: InfoComponent = forwardRef(({isFixed, ...other}, ref) => {
+
   const onClickHandler = async () => {
     const response = await fetch(cv)
     const blob = await response.blob()
@@ -22,7 +23,7 @@ export const Info: InfoComponent = () => {
     alink.click()
   }
   return (
-    <aside className={styles.info}>
+    <aside className={isFixed ? styles.infoFixed : styles.infoAbsolute} {...other} ref={ref}>
       <Avatar/>
       <Skills title={'Languages'} skills={LANGUAGES} isProgressBar={true}/>
       <Skills title={'Skills'} skills={SKILLS} isProgressBar={true}/>
@@ -35,6 +36,6 @@ export const Info: InfoComponent = () => {
 
     </aside>
   )
-}
+})
 
 export default Info

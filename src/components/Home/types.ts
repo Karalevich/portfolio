@@ -1,4 +1,6 @@
-import { FunctionComponent } from "react"
+import { ForwardedRef, FunctionComponent } from 'react'
 
-type HomeProps = {  }
+type HomeProps = {
+  ref?: ForwardedRef<HTMLElement>
+}
 export type HomeComponent = FunctionComponent<HomeProps>

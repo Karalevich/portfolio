@@ -1,4 +1,7 @@
-import { FunctionComponent } from "react"
+import { ForwardedRef, FunctionComponent } from 'react'
 
-type InfoProps = {  }
+type InfoProps = {
+  ref: ForwardedRef<HTMLElement>,
+  isFixed: boolean
+}
 export type InfoComponent = FunctionComponent<InfoProps>

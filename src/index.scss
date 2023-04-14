@@ -86,7 +86,7 @@ p {
 
 ::-webkit-scrollbar-thumb {
 
-  background: radial-gradient(circle, rgba(68,68,68,0.3) 0%, rgba(28,28,28,0.32) 100%);
+  background: radial-gradient(circle, rgba(68, 68, 68, 0.3) 0%, rgba(28, 28, 28, 0.32) 100%);
   background-clip: padding-box;
   border-radius: 3px;
   min-height: 28px;
@@ -101,6 +101,18 @@ p {
 ::-webkit-scrollbar-track {
   background: hsla(0, 0%, 100%, .09);
   border-radius: 3px;
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  margin-left: 6.75rem;
+
+  &-text {
+    font-size: 0.75rem;
+  }
 }
 
 

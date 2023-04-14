@@ -1,7 +1,7 @@
 import { HomeComponent } from './types'
 import styles from './Home.module.scss'
 import Banner from './Banner/Banner'
-import React from 'react'
+import React, { forwardRef, useEffect } from 'react'
 import ServicesPreview from './SrvicesPreview/ServicesPreview'
 import Price from './Price/Price'
 import Recommendations from './Recommendations/Recommendations'
@@ -13,9 +13,9 @@ import Contact from './Contact/Contact'
 import Map from './Map/Map'
 
 
-export const Home: HomeComponent = () => {
+export const Home: HomeComponent = forwardRef((props, ref) => {
   return (
-    <section className={styles.home}>
+    <section className={styles.home} ref={ref}>
       <Banner/>
       <ServicesPreview/>
       <Price/>
@@ -26,11 +26,8 @@ export const Home: HomeComponent = () => {
       <Blog/>
       <Contact/>
       <Map/>
-      <cite className={styles.copyright}>
-        <p className={styles.text}>Copyright © 2023 Portfolio Andrei Karalevich</p>
-      </cite>
     </section>
   )
-}
+})
 
 export default Home
