@@ -108,7 +108,7 @@ export const WorkPreview: WorkPreviewComponent = () => {
       'huge B2B platform, E-commerce and game companies like Wargaming and Nexon America which have different target markets.'}/>
       <Box ref={setRefs} sx={{
         backgroundColor: 'white',
-        padding: '5vh 2.43vw',
+        padding: '2.8rem 2.43vw',
         borderRadius: '2px',
       }}>
         <Switch className={styles.switch} checked={isStepsExpended} onChange={handleSwitch}/>
@@ -155,7 +155,7 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
     paddingTop: '30px',
     paddingBottom: '20px',
     borderLeft: 'none',
-    marginLeft: '24px',
+    marginLeft: '1.5rem',
 
     '&:after': {
       content: '""',
@@ -216,7 +216,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
     },
   },
   [`&.${stepConnectorClasses.root}`]: {
-    marginLeft: '24px',
+    marginLeft: '1.5rem',
   },
   [`& .${stepConnectorClasses.line}`]: {
     width: 3,

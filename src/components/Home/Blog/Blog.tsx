@@ -42,7 +42,7 @@ export default Blog
 const Post: PostContent = ({ index, img, title, description }) => {
 
   return (
-    <Slide index={index || 0}>
+    <Slide index={index || 0} innerClassName={styles.slide}>
       <Card className={styles.card} elevation={0}>
         <CardMedia className={styles.media} component="img" image={img} alt={title}/>
         <CardContent className={styles.content}>

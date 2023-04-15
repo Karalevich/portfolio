@@ -15,7 +15,7 @@ export const Banner: BannerComponent = () => {
       <main className={styles.message}>I have 3 years of experience in Software engineering and creating distinctive user
         interfaces for advanced digital companies.
       </main>
-      <Button variant="contained" endIcon={<ArrowForwardIcon />}>Hire me</Button>
+      <Button className={styles.button} variant="contained" endIcon={<ArrowForwardIcon className={styles.arrow} />}>Hire me</Button>
     </article>
   )
 }

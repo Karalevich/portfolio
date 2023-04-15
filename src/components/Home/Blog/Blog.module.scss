@@ -1,9 +1,11 @@
 @import './src/styles/variables.scss';
 
 .blog {
+  .slide {
+    padding-right: 1rem;
+  }
   .card {
     border-radius: 2px;
-    width: 21.53vw;
 
     .media {
       height: 18.75rem;

@@ -9,7 +9,7 @@
 
     .item {
       list-style-type: none;
-      width: 21.5vw;
+      width: 31.95%;
     }
 
     .card {
@@ -18,24 +18,24 @@
       align-items: center;
       height: 100%;
       border-radius: 2px;
-      padding: 6vh 2.15vw 2.77vh 2.15vw;
+      padding: 3.375rem 2.15vw 1.559rem 2.15vw;
       position: relative;
 
       .header {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-bottom: 2.22vh;
+        margin-bottom: 1.25rem;
 
         .title {
           font-weight: 600;
-          margin-bottom: 2.22vh;
+          margin-bottom: 1.25rem;
         }
 
         .charge {
           display: flex;
           align-items: flex-end;
-          margin-bottom: 1vh;
+          margin-bottom: 0.5625rem;
 
           .hour {
             margin-left: 0.7vw;
@@ -51,7 +51,7 @@
           align-items: center;
           background-color: $element;
           width: 100%;
-          height: 3.33vh;
+          height: 1.875rem;
         }
 
         .description {
@@ -60,11 +60,11 @@
       }
 
       .main {
-        margin-bottom: 2.33vh;
+        margin-bottom: 1.25rem;
 
         .duty {
           display: flex;
-          height: 4.24vh;
+          height: 2.385rem;
           list-style-type: none;
 
           .active {
@@ -89,7 +89,7 @@
 
         .order {
           width: 11.74vw;
-          height: 38px;
+          height: 2.375rem;
           border-radius: 30px !important;
           font-weight: 700;
         }

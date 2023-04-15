@@ -21,8 +21,11 @@ export const App: React.FC<unknown> = () => {
         const firstElementBottom = Math.floor(fixedNode.getBoundingClientRect().bottom)
         const viewportBottom = window.innerHeight
 
-        if (firstElementBottom <= viewportBottom) {
+        if (!isFixed && firstElementBottom <= viewportBottom) {
+          console.log(fixedNode.getBoundingClientRect().bottom)
+
           setIsFixed(true)
+
         }
 
         if (Math.abs(scrollNode.getBoundingClientRect().top) < fixedNode.offsetHeight - viewportBottom) {

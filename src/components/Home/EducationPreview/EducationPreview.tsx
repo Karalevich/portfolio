@@ -14,7 +14,7 @@ export const EducationPreview: EducationPreviewComponent = () => {
       and got an engineering diploma with a bachelor's degree, which gave me a good base in Math and Computer Science.`}/>
       <Box sx={{
         backgroundColor: 'white',
-        padding: '5vh 2.43vw',
+        padding: '2.8rem 2.43vw',
         borderRadius: '2px',
       }}>
         <ul className={styles.list}>

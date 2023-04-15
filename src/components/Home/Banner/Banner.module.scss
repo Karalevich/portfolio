@@ -2,13 +2,24 @@
 
 .banner {
   width: 100%;
-  height: 51.9vh;
+  height: 29.1875rem;
   background: $white url("../../../assets/img/banner-bcg.png") no-repeat;
-  background-position: 2.5rem 4.5vh;
+  background-position: 2.5rem 4.4rem;
   background-size: auto;
-  padding-top: 10vh;
+  padding-top: 8.875rem;
   padding-left: 4.5rem;
   box-sizing: border-box;
+}
+
+.button {
+  height: 2.5rem;
+  display: flex !important;
+  align-items: center;
+  line-height: 1rem;
+}
+
+.arrow {
+  font-size: 1.5rem !important;
 }
 
 .strong {

@@ -7,8 +7,8 @@
 
   .header {
     .name {
-      margin-top: 3.44vh;
-      margin-bottom: 1.77vh;
+      margin-top: 1.9375rem;
+      margin-bottom: 1rem;
       font-style: normal;
       font-weight: 500;
     }
@@ -18,8 +18,8 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding-bottom: 2.77vh;
-    margin-top: 1.66vh;
+    padding-bottom: 1.5625rem;
+    margin-top: 0.9375rem;
     border-bottom: 1.5px solid $light-bcg;
   }
 
@@ -46,22 +46,22 @@
 
   .footer {
     width: 100%;
-    margin-top: 2.77vh;
-    padding-bottom: 2.77vh;
+    margin-top: 1.5625rem;
+    padding-bottom: 1.5625rem;
     border-bottom: 1.5px solid $light-bcg;
     font-size: 0.9375rem;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 1.2rem;
     color: $black;
 
     .info {
-      margin-bottom: 1.1vh;
+      margin-bottom: 0.625rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
 
       .property {
-        padding: 0 5px;
+        padding: 0 0.3125rem;
         box-sizing: border-box;
         background-color: $element;
       }

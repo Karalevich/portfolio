@@ -1,14 +1,15 @@
 @import './src/styles/variables';
 
 .infoFixed, .infoAbsolute {
-  width: 19.063rem;
+  width: 21.18%;
+  max-width: 338px;
   background-color: $white;
   padding: 5.55vh 2.81rem 2.775vh 2.5rem;
 
   .download {
     width: 100%;
-    margin-top: 2.77vh;
-    height: 40px;
+    margin-top: 1.558rem;
+    height: 2.5rem;
     line-height: 1.5rem;
 
     svg{

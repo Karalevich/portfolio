@@ -1,7 +1,7 @@
 @import './src/styles/variables.scss';
 
 .educationPreview {
-  margin-top: 7.78vh;
+  margin-top: 4.376rem;
 
   .item {
     display: flex;
@@ -9,12 +9,12 @@
     list-style: none;
     border-bottom: 1.5px solid $light-bcg;
     padding-bottom: 1rem;
-    margin-bottom: 3.1vh;
+    margin-bottom: 1.75rem;
 
     .title {
       font-weight: 500;
       text-transform: capitalize;
-      margin-bottom: 3.1vh;
+      margin-bottom: 1.75rem;
     }
 
     .header {
@@ -34,7 +34,7 @@
           align-items: center;
           font-size: 0.625rem;
           width: 7.7vw;
-          height: 2vh;
+          height: 1.125rem;
           border-radius: 1px;
           background-color: $element;
           color: $white;

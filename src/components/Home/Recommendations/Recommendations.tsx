@@ -48,7 +48,7 @@ const Recommendation: RecommendationComponent = ({ index, title, author, occupat
 
 
   return (
-    <Slide index={index || 0}>
+    <Slide index={index || 0} innerClassName={styles.slide} >
       <Card className={styles.card} elevation={0}>
         <header>
           <ul className={styles.stars}>
