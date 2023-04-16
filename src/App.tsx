@@ -5,12 +5,16 @@ import Home from './components/Home/Home'
 import Nav from './components/Navbar/Navbar'
 import { mainTheme } from './styles/themes/mainTheme'
 import Info from './components/Info/Info'
+import Copyright from './components/Copyright/Copyright'
+import Menu from './components/Menu/Menu'
 
 
 export const App: React.FC<unknown> = () => {
   const infoRef = useRef<null | HTMLElement>(null)
   const homeRef = useRef<null | HTMLElement>(null)
   const [isFixed, setIsFixed] = useState(false)
+  const [isOpenNav, setIsOpenNav] = useState(false)
+  const [isOpenInfo, setIsOpenInfo] = useState(false)
 
   useEffect(() => {
     function handleScroll() {
@@ -19,13 +23,11 @@ export const App: React.FC<unknown> = () => {
 
       if (fixedNode && scrollNode) {
         const firstElementBottom = Math.floor(fixedNode.getBoundingClientRect().bottom)
+        const firstElementHeight = Math.floor(fixedNode.getBoundingClientRect().height)
         const viewportBottom = window.innerHeight
 
-        if (!isFixed && firstElementBottom <= viewportBottom) {
-          console.log(fixedNode.getBoundingClientRect().bottom)
-
+        if (!isFixed && viewportBottom < firstElementHeight && firstElementBottom <= viewportBottom) {
           setIsFixed(true)
-
         }
 
         if (Math.abs(scrollNode.getBoundingClientRect().top) < fixedNode.offsetHeight - viewportBottom) {
@@ -40,10 +42,18 @@ export const App: React.FC<unknown> = () => {
     }
   }, [])
 
+  const toggleNav = (open: boolean) => {
+    setIsOpenNav(open)
+  }
+  const toggleInfo = (open: boolean) => {
+    setIsOpenInfo(open)
+  }
+
   return (
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>
-        <Info ref={infoRef} isFixed={isFixed}/>
+        <Menu toggleNav={toggleNav} toggleInfo={toggleInfo}/>
+        <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo}/>
         <Routes>
           <Route path={'/'} element={<Navigate replace to='/home'/>}/>
           <Route path={'/home'} element={<Home ref={homeRef}/>}/>
@@ -53,10 +63,8 @@ export const App: React.FC<unknown> = () => {
           <Route path={'/blog'} element={<Home/>}/>
           <Route path={'/contact'} element={<Home/>}/>
         </Routes>
-        <Nav/>
-        <cite className='copyright'>
-          <p className='copyright-text'>Copyright © 2023 Portfolio Andrei Karalevich</p>
-        </cite>
+        <Nav toggleNav={toggleNav} isOpen={isOpenNav}/>
+        <Copyright/>
       </ BrowserRouter>
     </ThemeProvider>
   )

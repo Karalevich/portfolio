@@ -1,7 +1,17 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
-type NavProps = {  }
+type NavProps = {
+  toggleNav: (open: boolean) => void,
+  isOpen: boolean
+}
 export type NavComponent = FunctionComponent<NavProps>
 
-export type IndexToTabNameT = {[property: string]: number}
-export type TabNameToIndexT = {[property: number]: string}
+type NavTabsProps = {
+  className?: string,
+  closeDrawer?: () => void
+}
+
+export type NavTabsComponent = FunctionComponent<NavTabsProps>
+
+export type IndexToTabNameT = { [property: string]: number }
+export type TabNameToIndexT = { [property: number]: string }

@@ -1,16 +1,53 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, KeyboardEvent, MouseEvent } from 'react'
 import styles from './Info.module.scss'
-import { InfoComponent } from './types'
+import { InfoComponent, InfoDrawerComponent } from './types'
 import Avatar from './Avatar/Avatar'
 import Skills from './Skills/Skills'
 import { EXTRA_SKILLS, LANGUAGES, SKILLS } from '../../constants/personalInfo'
-import { Button } from '@mui/material'
+import { Button, SwipeableDrawer } from '@mui/material'
 import { DownloadIcon } from '../Custom/Icons'
 import cv from '../../assets/cv.pdf'
 import { Tooltip } from '../Custom/Tooltip'
+import classnames from 'classnames'
+
+export const Info: InfoComponent = forwardRef(({ isOpen, toggleInfo, isFixed }, ref) => {
+  const toggleDrawer = (open: boolean) =>
+    (event: KeyboardEvent | MouseEvent) => {
+      if (
+        event &&
+        event.type === 'keydown' &&
+        ((event as KeyboardEvent).key === 'Tab' ||
+          (event as KeyboardEvent).key === 'Shift')
+      ) {
+        return
+      }
+      toggleInfo(open)
+    }
+
+  const closeDrawer = () => {
+    toggleInfo(false)
+  }
 
 
-export const Info: InfoComponent = forwardRef(({isFixed, ...other}, ref) => {
+  return (
+    <>
+      <SwipeableDrawer
+        open={isOpen}
+        anchor={'left'}
+        onClose={toggleDrawer(false)}
+        onOpen={toggleDrawer(true)}
+        className={styles.mobile}
+      >
+        <InfoDrawer isFixed={isFixed} closeDrawer={closeDrawer} ref={ref}/>
+      </SwipeableDrawer>
+      <InfoDrawer isFixed={isFixed} className={styles.fullScreen} ref={ref}/>
+    </>
+  )
+})
+
+export default Info
+
+export const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawer, className }, ref) => {
 
   const onClickHandler = async () => {
     const response = await fetch(cv)
@@ -23,7 +60,11 @@ export const Info: InfoComponent = forwardRef(({isFixed, ...other}, ref) => {
     alink.click()
   }
   return (
-    <aside className={isFixed ? styles.infoFixed : styles.infoAbsolute} {...other} ref={ref}>
+    <aside ref={ref} className={classnames({
+      [styles.infoFixed]: isFixed,
+      [styles.infoAbsolute]: !isFixed,
+      [`${className}`]: className,
+    })}>
       <Avatar/>
       <Skills title={'Languages'} skills={LANGUAGES} isProgressBar={true}/>
       <Skills title={'Skills'} skills={SKILLS} isProgressBar={true}/>
@@ -33,9 +74,7 @@ export const Info: InfoComponent = forwardRef(({isFixed, ...other}, ref) => {
           Download CV
         </Button>
       </Tooltip>
-
     </aside>
   )
 })
 
-export default Info

@@ -4,3 +4,12 @@
   margin-right: 9.375%;
   margin-left: 23.26%;
 }
+
+@media only screen and (max-width: 1023px) {
+  .home {
+    width: 90%;
+    max-width: 1067px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

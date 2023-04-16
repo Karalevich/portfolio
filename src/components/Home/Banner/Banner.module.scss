@@ -34,18 +34,11 @@
   margin: 2vh 0;
 }
 
-@media screen and (max-width: 767px) {
 
-}
-
-@media screen and (max-width: 1279px) {
+@media only screen and (max-width: 1023px) {
   .banner {
-    width: 89.6%;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
   }
-}
-
-@media screen and (min-width: 1280px) {
-
 }

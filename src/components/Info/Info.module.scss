@@ -12,7 +12,7 @@
     height: 2.5rem;
     line-height: 1.5rem;
 
-    svg{
+    svg {
       font-size: 1rem;
       margin-left: 1rem;
     }
@@ -29,4 +29,25 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 1023px) {
+  .mobile {
+    display: flex;
+  }
+  .fullScreen {
+    display: none;
+  }
+  .infoFixed, .infoAbsolute  {
+    position: initial;
+    width: 22rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+
 }

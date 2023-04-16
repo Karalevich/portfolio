@@ -21,8 +21,30 @@
 
   &:hover {
     background-color: $paragraph;
+
     svg {
       fill: $light-bcg2;
     }
   }
+}
+
+.mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 1023px) {
+  .mobile {
+    display: flex;
+  }
+  .fullScreen {
+    display: none;
+  }
+  .nav {
+    position: initial;
+    width: 5.0625rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+
 }

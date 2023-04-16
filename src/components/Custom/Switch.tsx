@@ -4,15 +4,15 @@ import { Switch as MUISwitch, SwitchProps} from '@mui/material'
 export const Switch = styled((props: SwitchProps) => (
   <MUISwitch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
 ))(({ theme }) => ({
-  width: 42,
-  height: 26,
+  width: '2.625rem',
+  height: '1.625rem',
   padding: 0,
   '& .MuiSwitch-switchBase': {
     padding: 0,
     margin: 2,
     transitionDuration: '300ms',
     '&.Mui-checked': {
-      transform: 'translateX(16px)',
+      transform: 'translateX(1rem)',
       color: '#fff',
       '& + .MuiSwitch-track': {
         //backgroundColor: theme.palette.mode === 'dark' ? '#2ECA45' : '#65C466',
@@ -25,7 +25,7 @@ export const Switch = styled((props: SwitchProps) => (
     },
     '&.Mui-focusVisible .MuiSwitch-thumb': {
       //color: '#33cf4d',
-      border: '6px solid #fff',
+      border: '0.375rem solid #fff',
     },
     '&.Mui-disabled .MuiSwitch-thumb': {
       color:
@@ -39,8 +39,8 @@ export const Switch = styled((props: SwitchProps) => (
   },
   '& .MuiSwitch-thumb': {
     boxSizing: 'border-box',
-    width: 22,
-    height: 22,
+    width: '1.375rem',
+    height: '1.375rem',
   },
   '& .MuiSwitch-track': {
     borderRadius: 26 / 2,

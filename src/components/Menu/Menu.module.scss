@@ -1,0 +1,27 @@
+@import './src/styles/variables';
+
+.menu {
+  display: none;
+  height: 3.333rem;
+  background-color: $white;
+  position: sticky;
+  top: 0;
+  left: 0;
+  margin-bottom: 1.25rem;
+  z-index: 10;
+  justify-content: space-between;
+  padding: 0.667rem 3.083rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .menu {
+    display: flex;
+  }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .menu {
+    display: flex;
+  }
+}
