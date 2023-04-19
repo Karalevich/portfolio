@@ -13,10 +13,34 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1.25rem;
+
       .project {
         list-style: none;
         width: 31.96%;
         height: 18.75rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .portfolio {
+    .tabs {
+      width: 65%;
+    }
+
+    .tabPanel {
+      .projectList {
+        gap: 2rem;
+
+        .project {
+          width: 30.95%;
+          height: 16.667rem;
+        }
       }
     }
   }

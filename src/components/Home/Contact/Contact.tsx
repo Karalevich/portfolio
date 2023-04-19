@@ -18,7 +18,7 @@ export const Contact: ContactComponent = () => {
             <Input className={styles.input} fullWidth label={'Your Email (Required)'} required id='email'/>
             <Input className={styles.input} fullWidth label={'Subject'} id='subject'/>
             <Input className={styles.input} fullWidth label={'Yor Message'} multiline rows={8} id='textarea'/>
-            <Button variant="contained">Send Message</Button>
+            <Button className={styles.send} variant="contained">Send Message</Button>
           </Card>
         </header>
       </article>

@@ -52,3 +52,28 @@
     margin-bottom: 0;
   }
 }
+
+@media only screen and (max-width: 767px) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .educationPreview {
+    margin-top: 4.376rem;
+
+    .item {
+      .header {
+        width: 30%;
+        .spec {
+          .date {
+            width: 9.25rem;
+          }
+        }
+      }
+
+      .main {
+        width: 70%;
+      }
+    }
+  }
+}

@@ -13,3 +13,10 @@ export type RecommendationProps = {
 }
 export type RecommendationComponent = FunctionComponent<RecommendationProps>
 
+
+type DynamicCSSProps = {
+  slideCount: number,
+  windowWidth: number
+}
+export type DynamicCSSComponent = FunctionComponent<DynamicCSSProps>
+

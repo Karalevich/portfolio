@@ -5,7 +5,15 @@
   margin-left: 23.26%;
 }
 
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 767px) {
+  .home {
+    width: 91.5%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
   .home {
     width: 90%;
     max-width: 1067px;

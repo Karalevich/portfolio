@@ -24,15 +24,16 @@ export const Portfolio: PortfolioComponent = () => {
           width: `${Math.ceil(100 / PORTFOLIO.length)}%`,
           overflow: 'inherit',
           color: '#2B2B2B',
-          transition: 'color 500ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          transition: 'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           marginBottom: '5px',
         },
         '.Mui-selected': {
-          color: '#ffb400',
+          color: 'black',
+          fontWeight: 700
         },
         '.MuiTabs-indicator': {
           borderRadius: '3px',
-          height: '3px',
+          height: '2px',
         },
       }}>
         {PORTFOLIO.map(p => (

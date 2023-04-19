@@ -1,29 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Recommendations.module.scss'
-import { RecommendationComponent, RecommendationsComponent } from './types'
+import { DynamicCSSComponent, RecommendationsComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
 import Card from '@mui/material/Card/Card'
 import { linkedInRecommendations, RECOMMENDATIONS } from '../../../constants/personalInfo'
 import { CarouselProvider, DotGroup, Slide, Slider } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
-import { StarIcon } from 'src/components/Custom/Icons'
-import { Avatar, Button } from '@mui/material'
-import MovingIcon from '@mui/icons-material/Moving'
+import { MOBILE_SIZE } from 'src/constants/settings'
+import SliderContent from './SliderContent'
 
 
 export const Recommendations: RecommendationsComponent = () => {
-  const recommendations = RECOMMENDATIONS.map((rec, index) => <Recommendation key={rec.title} {...rec} index={index}/>)
+  const [countOfSlide, setCountOfSlide] = useState(3)
+  const [countOfStep, setCountOfStep] = useState(2)
+  const [widthOfWindow, setWidthOfWindow] = useState(0)
+
+  const setSettingsOfSlide = () => {
+    const innerWidth = window.innerWidth
+    setWidthOfWindow(innerWidth)
+    if (innerWidth < MOBILE_SIZE && widthOfWindow >= MOBILE_SIZE) {
+      setCountOfSlide(1)
+      setCountOfStep(1)
+    }else if(innerWidth >= MOBILE_SIZE && widthOfWindow < MOBILE_SIZE){
+      setCountOfSlide(3)
+      setCountOfStep(2)
+    }
+  }
+
+
+  useEffect(() => {
+    setSettingsOfSlide()
+    window.addEventListener('resize', setSettingsOfSlide)
+    return () => window.removeEventListener('resize', setSettingsOfSlide)
+  }, [widthOfWindow])
+
+
   return (
     <section className={styles.recommendations}>
+      <DynamicCSS slideCount={RECOMMENDATIONS.length} windowWidth={widthOfWindow}/>
       <SectionHeader title={'Recommendations'}
                      introduction={'All recommendations are real and left in LinkedIn by my colleagues ' +
                      'or managers with whom I have worked before. You can see the original recommendation ' +
                      'by clicking on the preview.'}/>
-      <main>
+      <main className={styles.main}>
         <CarouselProvider
-          visibleSlides={3}
+          isIntrinsicHeight
+          visibleSlides={countOfSlide}
           totalSlides={RECOMMENDATIONS.length}
-          step={2}
+          step={countOfStep}
           naturalSlideWidth={310}
           naturalSlideHeight={323}
           currentSlide={0}
@@ -40,39 +64,15 @@ export const Recommendations: RecommendationsComponent = () => {
 
 export default Recommendations
 
-const Recommendation: RecommendationComponent = ({ index, title, author, occupation, description, image }) => {
-  const stars = []
-  for (let i = 0; i < 5; i++) {
-    stars.push(<StarIcon className={styles.star} key={i}/>)
-  }
 
+const DynamicCSS: DynamicCSSComponent = ({ slideCount, windowWidth }) => {
+  const windowWidthRm = (windowWidth / 12).toFixed(2)
+  const css = `:root { --slide-count: ${slideCount}; --window-width: ${windowWidthRm} }`
 
   return (
-    <Slide index={index || 0} innerClassName={styles.slide} >
-      <Card className={styles.card} elevation={0}>
-        <header>
-          <ul className={styles.stars}>
-            {stars}
-          </ul>
-          <h4 className={styles.title}>{title}</h4>
-        </header>
-        <main>
-          <p className={styles.description}>{description}</p>
-        </main>
-        <footer className={styles.footer}>
-          <Avatar className={styles.avatar} alt={author} src={image}/>
-          <div className={styles.info}>
-            <h4>{author}</h4><p>{occupation}</p>
-          </div>
-        </footer>
-        <div className={styles.redirect}>
-          <a href={linkedInRecommendations} target="_blank">
-            <Button className={styles.linkedin} variant="outlined" endIcon={<MovingIcon/>}>
-              Read on LinkedIn
-            </Button>
-          </a>
-        </div>
-      </Card>
-    </Slide>
+    <style>
+      {css}
+    </style>
   )
 }
+

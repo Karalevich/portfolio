@@ -34,65 +34,85 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+  }
 
+  .cardList {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-    .cardList {
+  .card {
+    border-radius: 2px;
+    height: 32%;
+    padding: 1.5625rem 1.5625rem 1rem 1.5625rem;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.9375rem;
+    }
+
+    .iconWrapper {
+      background-color: $element;
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main {
       flex: 1;
+    }
+
+    .infoList {
+      color: $paragraph;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+    }
 
-      .card {
-        border-radius: 2px;
-        height: 32%;
-        padding: 1.5625rem 1.5625rem 1rem 1.5625rem;
-        display: flex;
-        flex-direction: column;
+    .item {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
 
-        .header {
-          display: flex;
-          justify-content: center;
-          margin-bottom: 1.9375rem;
+      .itemTitle {
+        font-weight: 500;
+      }
 
-          .iconWrapper {
-            background-color: $element;
-            height: 2.5rem;
-            width: 2.5rem;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-          }
+      .value {
+        transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+        &:hover {
+          color: $element;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .contact {
+    .card {
+      .item {
+        .itemTitle {
+          font-size: 1.25rem;
         }
 
-        .main {
-          flex: 1;
-        }
-
-        .infoList {
-          color: $paragraph;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-
-          .item {
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-
-            .itemTitle {
-              font-weight: 500;
-            }
-
-            .value {
-              transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-              &:hover {
-                color: $element;
-              }
-
-            }
-          }
+        .value {
+          font-size: 1rem;
         }
       }
     }

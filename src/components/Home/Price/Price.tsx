@@ -46,7 +46,7 @@ const PriceItem: PriceItemComponent = ({ title, description, price, isPopular, d
         {isPopular && <span className={styles.popular}>Most Popular</span>}
         <h3 className={styles.title}>{title}</h3>
         <div className={styles.charge}>
-          <h2>
+          <h2 className={styles.numbers}>
             <strong>
               $<CountUp start={0} end={price} duration={3} scrollSpyDelay={300} enableScrollSpy scrollSpyOnce/>.00
             </strong>

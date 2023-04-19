@@ -19,6 +19,7 @@ export const Blog: BlogComponent = () => {
                      introduction={`I like to share my experience and knowledge, that\`s why I decided to create my own small blog.`}/>
       <main className={styles.main}>
         <CarouselProvider
+          isIntrinsicHeight
           visibleSlides={3}
           totalSlides={POSTS.length}
           step={1}

@@ -1,11 +1,10 @@
 import Card from '@mui/material/Card/Card'
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './ServicesPreview.module.scss'
 import { ServicesPreviewComponent, ServicePreviewComponent } from './types'
 import { Button } from '@mui/material'
 import { SERVICES } from 'src/constants/personalInfo'
 import { OrderIcon } from 'src/components/Custom/Icons'
-import classnames from 'classnames'
 import SectionHeader from '../SectionHeader/SectionHeader'
 
 
@@ -31,22 +30,16 @@ export const ServicesPreview: ServicesPreviewComponent = () => {
 
 
 const Service: ServicePreviewComponent = ({ title, preview, description, icon }) => {
-  const [isShowActions, setIsShowActions] = useState(false)
-
-  const toggleIsShowActions = (value: boolean) => () => {
-    setIsShowActions(value)
-  }
   return (
     <li className={styles.item} key={title}>
-      <Card className={styles.card} elevation={0} onMouseEnter={toggleIsShowActions(true)}
-            onMouseLeave={toggleIsShowActions(false)}>
+      <Card className={styles.card} elevation={0} >
         <header className={styles.cardHeader}>
           {icon({ fontSize: 'large', className: `${styles.icon}` })}
         </header>
-        <main className={classnames(styles.main, { [styles.fullMain]: isShowActions })}>
+        <main className={styles.main}>
           <h4 className={styles.name}>{title}</h4>
           <p className={styles.preview}>{preview}</p>
-          <p className={classnames(styles.description, { [styles.fullDescription]: isShowActions })}>{description}</p>
+          <p className={styles.description}>{description}</p>
           <Button className={styles.order} size="small" endIcon={<OrderIcon className={styles.arrow}/>}>
             Order now
           </Button>
