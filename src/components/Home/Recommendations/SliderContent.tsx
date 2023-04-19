@@ -34,7 +34,7 @@ const SliderContent: SliderContentComponent = ({ widthOfWindow }) => {
     stars.push(<StarIcon className={styles.star} key={i}/>)
   }
   const recommendations = RECOMMENDATIONS.map(({ title, author, occupation, description, image }, index) => (
-    <Slide index={index || 0} innerClassName={styles.innerSlide} className={styles.slide}>
+    <Slide key={title} index={index || 0} innerClassName={styles.innerSlide} >
       <Card className={styles.card} elevation={0}>
         <header>
           <ul className={styles.stars}>

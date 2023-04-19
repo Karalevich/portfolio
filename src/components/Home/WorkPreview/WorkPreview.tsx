@@ -35,7 +35,8 @@ export const WorkPreview: WorkPreviewComponent = () => {
     inViewRef(node)
   }, [inViewRef])
 
-  const onScrollAction = (event: WheelEvent) => {
+  const onScrollAction = (event: any) => {
+    console.log(event)
     if (!isStepsExpended) {
       controlDirection(event)
 
@@ -65,8 +66,14 @@ export const WorkPreview: WorkPreviewComponent = () => {
 
   useEffect(() => {
     window.addEventListener('wheel', onScrollAction, { passive: false })
+    const handleTouchmove = () => {
+      console.log('kek')
+      document.dispatchEvent(new Event('wheel'))
+    }
+    window.addEventListener('touchmove', onScrollAction)
     return () => {
       window.removeEventListener('wheel', onScrollAction)
+      window.removeEventListener('touchmove', onScrollAction)
     }
   }, [onScrollAction, inView, isStepsExpended])
 

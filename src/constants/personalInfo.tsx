@@ -18,6 +18,7 @@ import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import { ProjectT } from 'src/components/Home/Portfolio/types'
 import blog from '../assets/img/blog.avif'
 import { ContactCardProps } from '../components/Home/Contact/types'
+import { PostProps } from '../components/Home/Blog/types'
 
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -465,7 +466,7 @@ export const PORTFOLIO: Array<{ tab: string, projects: Array<ProjectT> }> = [
   },
 ]
 
-export const POSTS = [
+export const POSTS: Array<PostProps> = [
   {
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',

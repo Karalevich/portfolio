@@ -1,12 +1,15 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
-type BlogProps = {  }
+type BlogProps = {}
 export type BlogComponent = FunctionComponent<BlogProps>
 
-type PostProps = {
-  index: number,
+export type PostProps = {
   img: string,
   title: string,
   description: string
 }
-export type PostContent = FunctionComponent<PostProps>
+
+type PostsProps = {
+  widthOfWindow: number
+}
+export type PostsContent = FunctionComponent<PostsProps>

@@ -17,7 +17,7 @@ export const Recommendations: RecommendationsComponent = () => {
   const setSettingsOfSlide = () => {
     const innerWidth = window.innerWidth
     setWidthOfWindow(innerWidth)
-    if (innerWidth < MOBILE_SIZE && widthOfWindow >= MOBILE_SIZE) {
+    if (innerWidth < MOBILE_SIZE && (widthOfWindow >= MOBILE_SIZE || widthOfWindow === 0)) {
       setCountOfSlide(1)
       setCountOfStep(1)
     }else if(innerWidth >= MOBILE_SIZE && widthOfWindow < MOBILE_SIZE){
@@ -36,7 +36,7 @@ export const Recommendations: RecommendationsComponent = () => {
 
   return (
     <section className={styles.recommendations}>
-      <DynamicCSS slideCount={RECOMMENDATIONS.length} windowWidth={widthOfWindow}/>
+      <DynamicCSS slideCount={RECOMMENDATIONS.length} />
       <SectionHeader title={'Recommendations'}
                      introduction={'All recommendations are real and left in LinkedIn by my colleagues ' +
                      'or managers with whom I have worked before. You can see the original recommendation ' +
@@ -62,9 +62,8 @@ export const Recommendations: RecommendationsComponent = () => {
 export default Recommendations
 
 
-const DynamicCSS: DynamicCSSComponent = ({ slideCount, windowWidth }) => {
-  const windowWidthRm = (windowWidth / 12).toFixed(2)
-  const css = `:root { --slide-count: ${slideCount}; --window-width: ${windowWidthRm} }`
+const DynamicCSS: DynamicCSSComponent = ({ slideCount }) => {
+  const css = `:root { --recommendation-count: ${slideCount}; }`
 
   return (
     <style>

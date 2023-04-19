@@ -12,11 +12,7 @@ export const EducationPreview: EducationPreviewComponent = () => {
     <section className={styles.educationPreview}>
       <SectionHeader title={'Education'} introduction={`I graduated from the Belarusian National  Technical University 
       and got an engineering diploma with a bachelor's degree, which gave me a good base in Math and Computer Science.`}/>
-      <Box sx={{
-        backgroundColor: 'white',
-        padding: '2.8rem 2.43vw',
-        borderRadius: '2px',
-      }}>
+      <Box className={styles.wrapper}>
         <ul className={styles.list}>
           {educationList}
         </ul>
@@ -39,7 +35,7 @@ const EducationItem: EducationItemComponent = ({ name, occupation, date, documen
       </header>
       <main className={styles.main}>
         <h4 className={styles.title}>{document}</h4>
-        <p>{description}</p>
+        <p className={styles.description}>{description}</p>
       </main>
     </li>
   )

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './Portfolio.module.scss'
 import { PortfolioComponent, TabPanelComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import { Card, CardActionArea, Tab, Tabs } from '@mui/material'
+import { Card, CardActionArea, Tab, Tabs, tabsClasses } from '@mui/material'
 import { PORTFOLIO } from 'src/constants/personalInfo'
 
 
@@ -17,19 +17,20 @@ export const Portfolio: PortfolioComponent = () => {
     <section className={styles.portfolio}>
       <SectionHeader title={'Portfolio'} introduction={`Web technologies are not only my job but also hobby to which I devote all my 
        time and passion. You can look at my pet projects below.`}/>
-      <Tabs value={tabIndex} onChange={handleChange} className={styles.tabs} sx={{
+      <Tabs variant="scrollable"
+        scrollButtons={false} value={tabIndex} onChange={handleChange} className={styles.tabs} sx={{
         minHeight: 0,
         marginBottom: '2rem',
         '.MuiTab-root': {
-          width: `${Math.ceil(100 / PORTFOLIO.length)}%`,
+          width: `auto`,
           overflow: 'inherit',
           color: '#2B2B2B',
           transition: 'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           marginBottom: '5px',
         },
         '.Mui-selected': {
-          color: 'black',
-          fontWeight: 700
+          color: 'black !important',
+          fontWeight: 600
         },
         '.MuiTabs-indicator': {
           borderRadius: '3px',

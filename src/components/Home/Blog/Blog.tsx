@@ -1,37 +1,59 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Blog.module.scss'
-import { BlogComponent, PostContent } from './types'
+import { BlogComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import { ButtonBack, ButtonNext, CarouselProvider, Slide, Slider } from 'pure-react-carousel'
-import Card from '@mui/material/Card/Card'
+import { ButtonBack, ButtonNext, CarouselProvider } from 'pure-react-carousel'
 import { POSTS } from 'src/constants/personalInfo'
-import { Button, CardContent, CardMedia } from '@mui/material'
-import { OrderIcon } from '../../Custom/Icons'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { MOBILE_SIZE } from '../../../constants/settings'
+import { DynamicCSSComponent } from '../Recommendations/types'
+import Posts from './Posts'
 
 
 export const Blog: BlogComponent = () => {
-  const posts = POSTS.map((post, index) => <Post key={post.title} index={index} {...post} />)
+  const [countOfSlide, setCountOfSlide] = useState(3)
+  const [widthOfWindow, setWidthOfWindow] = useState(0)
+
+  const setSettingsOfSlide = () => {
+    const innerWidth = window.innerWidth
+    setWidthOfWindow(innerWidth)
+    if (innerWidth < MOBILE_SIZE && (widthOfWindow >= MOBILE_SIZE || widthOfWindow === 0)) {
+      setCountOfSlide(1)
+    } else if (innerWidth >= MOBILE_SIZE && widthOfWindow < MOBILE_SIZE) {
+      setCountOfSlide(3)
+    }
+  }
+
+
+  useEffect(() => {
+    setSettingsOfSlide()
+    window.addEventListener('resize', setSettingsOfSlide)
+    return () => window.removeEventListener('resize', setSettingsOfSlide)
+  }, [widthOfWindow])
+
   return (
     <section className={styles.blog}>
+      <DynamicCSS slideCount={POSTS.length} />
       <SectionHeader title={'Blog'}
                      introduction={`I like to share my experience and knowledge, that\`s why I decided to create my own small blog.`}/>
       <main className={styles.main}>
         <CarouselProvider
           isIntrinsicHeight
-          visibleSlides={3}
+          visibleSlides={countOfSlide}
           totalSlides={POSTS.length}
           step={1}
           naturalSlideWidth={310}
           naturalSlideHeight={440}
           currentSlide={0}
         >
-          <Slider>
-            {posts}
-          </Slider>
-          <ButtonBack className={styles.buttonBack}><ArrowBackIosNewIcon color={'secondary'} fontSize={'inherit'}/></ButtonBack>
-          <ButtonNext className={styles.buttonNext}><ArrowForwardIosIcon color={'secondary'} fontSize={'inherit'}/></ButtonNext>
+          <Posts widthOfWindow={widthOfWindow}/>
+          <ButtonBack className={styles.buttonBack}>
+            <ArrowBackIosNewIcon color={'secondary'} fontSize={'inherit'}/>
+          </ButtonBack>
+          <ButtonNext className={styles.buttonNext}>
+            <ArrowForwardIosIcon color={'secondary'} fontSize={'inherit'}/>
+          </ButtonNext>
         </CarouselProvider>
       </main>
     </section>
@@ -40,20 +62,13 @@ export const Blog: BlogComponent = () => {
 
 export default Blog
 
-const Post: PostContent = ({ index, img, title, description }) => {
+
+const DynamicCSS: DynamicCSSComponent = ({ slideCount }) => {
+  const css = `:root { --posts-count: ${slideCount}; }`
 
   return (
-    <Slide index={index || 0} innerClassName={styles.slide}>
-      <Card className={styles.card} elevation={0}>
-        <CardMedia className={styles.media} component="img" image={img} alt={title}/>
-        <CardContent className={styles.content}>
-          <h4 className={styles.title}>{title}</h4>
-          <p className={styles.description}>{description}</p>
-        </CardContent>
-        <Button className={styles.button} endIcon={<OrderIcon className={styles.arrow}/>}>
-          Learn More
-        </Button>
-      </Card>
-    </Slide>
+    <style>
+      {css}
+    </style>
   )
 }

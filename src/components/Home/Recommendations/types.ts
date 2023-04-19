@@ -20,7 +20,6 @@ export type SliderContentComponent = FunctionComponent<SliderContentComponentPro
 
 type DynamicCSSProps = {
   slideCount: number,
-  windowWidth: number
 }
 export type DynamicCSSComponent = FunctionComponent<DynamicCSSProps>
 

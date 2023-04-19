@@ -100,7 +100,38 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .contact {
+    flex-wrap: wrap;
 
+    .leaveInfo {
+      width: 100%;
+    }
+
+    .contactInfo {
+      width: 100%;
+    }
+
+    .card {
+      height: 16.917rem;
+      margin-bottom: 2rem;
+      padding: 2rem 2rem 1.5rem 2rem;
+
+      .iconWrapper {
+        height: 3.333rem;
+        width: 3.333rem;
+      }
+
+      .item {
+        .itemTitle {
+          font-size: 1.5rem;
+        }
+
+        .value {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {

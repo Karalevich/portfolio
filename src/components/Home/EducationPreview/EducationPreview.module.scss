@@ -3,6 +3,12 @@
 .educationPreview {
   margin-top: 4.376rem;
 
+  .wrapper {
+    background-color: $white;
+    padding: 2.8rem 2.43vw;
+    border-radius: 2px;
+  }
+
   .item {
     display: flex;
     justify-content: space-between;
@@ -54,7 +60,52 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .educationPreview {
+    .wrapper {
+      background: none;
+      padding-top: 0;
+    }
 
+    .item {
+      background-color: $white;
+      flex-direction: column;
+      padding: 2rem;
+      border-radius: 2px;
+
+      .title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .header {
+        margin-bottom: 1.5rem;
+
+        .spec {
+
+          .occupation {
+            font-size: 1.25rem;
+            color: $paragraph;
+          }
+
+          .date {
+            font-size: 0.833rem;
+            width: 9.25rem;
+            height: 1.5rem;
+            border-radius: 1px;
+
+          }
+        }
+      }
+
+      .main {
+        width: 100%;
+
+        .description {
+          text-align: justify;
+        }
+      }
+    }
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -64,6 +115,7 @@
     .item {
       .header {
         width: 30%;
+
         .spec {
           .date {
             width: 9.25rem;
