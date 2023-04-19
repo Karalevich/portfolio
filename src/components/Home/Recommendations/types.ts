@@ -11,7 +11,11 @@ export type RecommendationProps = {
   image: string,
   index?: number
 }
-export type RecommendationComponent = FunctionComponent<RecommendationProps>
+
+type SliderContentComponentProps = {
+  widthOfWindow: number
+}
+export type SliderContentComponent = FunctionComponent<SliderContentComponentProps>
 
 
 type DynamicCSSProps = {

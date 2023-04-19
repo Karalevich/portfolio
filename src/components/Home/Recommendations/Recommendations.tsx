@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styles from './Recommendations.module.scss'
 import { DynamicCSSComponent, RecommendationsComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import Card from '@mui/material/Card/Card'
-import { linkedInRecommendations, RECOMMENDATIONS } from '../../../constants/personalInfo'
-import { CarouselProvider, DotGroup, Slide, Slider } from 'pure-react-carousel'
+import { RECOMMENDATIONS } from '../../../constants/personalInfo'
+import { CarouselProvider, DotGroup } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
 import { MOBILE_SIZE } from 'src/constants/settings'
 import SliderContent from './SliderContent'
@@ -52,9 +51,7 @@ export const Recommendations: RecommendationsComponent = () => {
           naturalSlideHeight={323}
           currentSlide={0}
         >
-          <Slider>
-            {recommendations}
-          </Slider>
+          <SliderContent widthOfWindow={widthOfWindow}/>
           <DotGroup className={styles.dots}/>
         </CarouselProvider>
       </main>
