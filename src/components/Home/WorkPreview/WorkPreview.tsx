@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import styles from './WorkPreview.module.scss'
 import { styled } from '@mui/material/styles'
-import { DIRECTION, WorkPreviewComponent } from './types'
+import { WorkPreviewComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
 import {
   Box, collapseClasses,
@@ -13,95 +13,33 @@ import {
   Stepper,
 } from '@mui/material'
 import { WORK_HISTORY } from '../../../constants/personalInfo'
-import { useInView } from 'react-intersection-observer'
-import { useScrollLock } from 'src/hooks/useScrollLock'
+import { InView } from 'react-intersection-observer'
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
 import { FreelanceIcon, LeverIcon, NexonIcon, SabbaticalIcon, WargamingIcon } from 'src/components/Custom/Icons/Motion'
-import { SCROLL_DELAY } from '../../../constants/settings'
 import { Switch } from 'src/components/Custom/Switch'
 
 
 export const WorkPreview: WorkPreviewComponent = () => {
   const [activeStep, setActiveStep] = useState<number>(-1)
   const [isStepsExpended, setIsStepsExpended] = useState<boolean>(false)
-  const { lockScroll, unlockScroll, isScrollLocked } = useScrollLock()
-  const { ref: inViewRef, inView } = useInView({ rootMargin: '-30% 0px -50% 0px' })
-  const workRef = useRef<null | HTMLElement>(null)
-  let direction: DIRECTION = DIRECTION.DOWN
-  let deltaY = 0
-
-  const setRefs = useCallback((node: HTMLElement | null) => {
-    workRef.current = node
-    inViewRef(node)
-  }, [inViewRef])
-
-  const onScrollAction = (event: any) => {
-    console.log(event)
-    if (!isStepsExpended) {
-      controlDirection(event)
-
-      if (inView) {
-        lockScroll()
-      }
-
-      if (activeStep === Math.floor(WORK_HISTORY.length / 2) || activeStep === Math.ceil(WORK_HISTORY.length / 2)) {
-        workRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      }
-
-      if ((direction === DIRECTION.UP && activeStep === -1) ||
-        (direction === DIRECTION.DOWN && activeStep === WORK_HISTORY.length)) {
-        unlockScroll()
-      } else if (isScrollLocked && direction === DIRECTION.DOWN) {
-        deltaY += event.deltaY
-        if (deltaY > SCROLL_DELAY) {
-          handleNext()
-          deltaY = 0
-        }
-      } else if (direction === DIRECTION.UP && isScrollLocked) {
-        handleBack()
-      }
-    }
-  }
-
-
-  useEffect(() => {
-    window.addEventListener('wheel', onScrollAction, { passive: false })
-    const handleTouchmove = () => {
-      console.log('kek')
-      document.dispatchEvent(new Event('wheel'))
-    }
-    window.addEventListener('touchmove', onScrollAction)
-    return () => {
-      window.removeEventListener('wheel', onScrollAction)
-      window.removeEventListener('touchmove', onScrollAction)
-    }
-  }, [onScrollAction, inView, isStepsExpended])
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1 <= WORK_HISTORY.length ? prevActiveStep + 1 : WORK_HISTORY.length - 1)
-  }
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1 >= -1 ? prevActiveStep - 1 : -1)
-  }
-
-  const controlDirection = (event: WheelEvent) => {
-    if (event.deltaY > 0) {
-      direction = DIRECTION.DOWN
-    } else {
-      direction = DIRECTION.UP
-    }
-  }
 
   const handleSwitch = (event: ChangeEvent<HTMLInputElement>) => {
     setIsStepsExpended(event.target.checked)
     if (event.target.checked) {
-      unlockScroll()
       setActiveStep(WORK_HISTORY.length)
     } else {
-      lockScroll()
-      unlockScroll()
       setActiveStep(-1)
+    }
+  }
+
+  const stepInViewHandler = (stepIndex: number) => (inView: boolean, entry: IntersectionObserverEntry) => {
+    if (inView && !isStepsExpended) {
+      if(stepIndex === WORK_HISTORY.length - 1){
+        setIsStepsExpended(true)
+        setActiveStep(WORK_HISTORY.length)
+      }else{
+        setActiveStep(stepIndex)
+      }
     }
   }
 
@@ -113,23 +51,25 @@ export const WorkPreview: WorkPreviewComponent = () => {
     <section className={styles.workPreview}>
       <SectionHeader title={'Work History'} introduction={'I have a broad range of projects that I worked on: ' +
       'huge B2B platform, E-commerce and game companies like Wargaming and Nexon America which have different target markets.'}/>
-      <Box ref={setRefs} sx={{
+      <Box sx={{
         backgroundColor: 'white',
         padding: '2.8rem 2.43vw',
         borderRadius: '2px',
-      }}>
+      }} >
         <Switch className={styles.switch} checked={isStepsExpended} onChange={handleSwitch}/>
         <Stepper activeStep={activeStep} orientation="vertical" className={styles.stepper}
                  connector={<ColorlibConnector/>}>
           {WORK_HISTORY.map((step, index) => (
-            <ColorlibStep key={step.label} expanded={isStepsExpended}>
-              <StepLabel StepIconComponent={ColorlibStepIcon} optional={spec(step.occupation, step.date)}>
-                <h4 className={styles.label}>{step.label}</h4>
-                <h6 className={styles.place}>{step.place}</h6>
-              </StepLabel>
-              <StepContent>
-                <p>{step.description}</p>
-              </StepContent>
+            <ColorlibStep expanded={isStepsExpended || index < activeStep} key={step.label}>
+              <InView as="div" rootMargin={`0px 0px -${60 - index * 2}% 0px`} onChange={stepInViewHandler(index)}>
+                <StepLabel StepIconComponent={ColorlibStepIcon} optional={spec(step.occupation, step.date)}>
+                  <h4 className={styles.label}>{step.label}</h4>
+                  <h6 className={styles.place}>{step.place}</h6>
+                </StepLabel>
+                <StepContent>
+                  <p className={styles.description}>{step.description}</p>
+                </StepContent>
+              </InView>
             </ColorlibStep>
           ))}
         </Stepper>

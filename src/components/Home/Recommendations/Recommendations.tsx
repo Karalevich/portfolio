@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Recommendations.module.scss'
-import { DynamicCSSComponent, RecommendationsComponent } from './types'
+import { RecommendationsComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import { RECOMMENDATIONS } from '../../../constants/personalInfo'
+import { POSTS, RECOMMENDATIONS } from '../../../constants/personalInfo'
 import { CarouselProvider, DotGroup } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
 import { MOBILE_SIZE } from 'src/constants/settings'
 import SliderContent from './SliderContent'
+import DynamicCSS from '../../Custom/DynamicCSS/DynamicCSS'
 
 
 export const Recommendations: RecommendationsComponent = () => {
@@ -20,7 +21,7 @@ export const Recommendations: RecommendationsComponent = () => {
     if (innerWidth < MOBILE_SIZE && (widthOfWindow >= MOBILE_SIZE || widthOfWindow === 0)) {
       setCountOfSlide(1)
       setCountOfStep(1)
-    }else if(innerWidth >= MOBILE_SIZE && widthOfWindow < MOBILE_SIZE){
+    } else if (innerWidth >= MOBILE_SIZE && widthOfWindow < MOBILE_SIZE) {
       setCountOfSlide(3)
       setCountOfStep(2)
     }
@@ -36,7 +37,7 @@ export const Recommendations: RecommendationsComponent = () => {
 
   return (
     <section className={styles.recommendations}>
-      <DynamicCSS slideCount={RECOMMENDATIONS.length} />
+      <DynamicCSS properties={[{ value: RECOMMENDATIONS.length, prop: 'recommendation-count' }]}/>
       <SectionHeader title={'Recommendations'}
                      introduction={'All recommendations are real and left in LinkedIn by my colleagues ' +
                      'or managers with whom I have worked before. You can see the original recommendation ' +
@@ -60,15 +61,3 @@ export const Recommendations: RecommendationsComponent = () => {
 }
 
 export default Recommendations
-
-
-const DynamicCSS: DynamicCSSComponent = ({ slideCount }) => {
-  const css = `:root { --recommendation-count: ${slideCount}; }`
-
-  return (
-    <style>
-      {css}
-    </style>
-  )
-}
-

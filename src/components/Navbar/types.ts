@@ -9,6 +9,8 @@ export type NavComponent = FunctionComponent<NavProps>
 type NavTabsProps = {
   className?: string,
   closeDrawer?: () => void
+  handleSwitchTheme: () => void,
+  isLightTheme: boolean
 }
 
 export type NavTabsComponent = FunctionComponent<NavTabsProps>

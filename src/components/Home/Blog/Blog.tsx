@@ -7,8 +7,8 @@ import { POSTS } from 'src/constants/personalInfo'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { MOBILE_SIZE } from '../../../constants/settings'
-import { DynamicCSSComponent } from '../Recommendations/types'
 import Posts from './Posts'
+import DynamicCSS from 'src/components/Custom/DynamicCSS/DynamicCSS'
 
 
 export const Blog: BlogComponent = () => {
@@ -34,7 +34,7 @@ export const Blog: BlogComponent = () => {
 
   return (
     <section className={styles.blog}>
-      <DynamicCSS slideCount={POSTS.length} />
+      <DynamicCSS properties={[{ value: POSTS.length, prop: 'posts-count' }]}/>
       <SectionHeader title={'Blog'}
                      introduction={`I like to share my experience and knowledge, that\`s why I decided to create my own small blog.`}/>
       <main className={styles.main}>
@@ -61,14 +61,3 @@ export const Blog: BlogComponent = () => {
 }
 
 export default Blog
-
-
-const DynamicCSS: DynamicCSSComponent = ({ slideCount }) => {
-  const css = `:root { --posts-count: ${slideCount}; }`
-
-  return (
-    <style>
-      {css}
-    </style>
-  )
-}

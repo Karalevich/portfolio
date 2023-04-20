@@ -106,11 +106,12 @@
       margin-left: -4%;
 
       .buttonBack {
+        top: 11.666rem;
         left: -1px;
       }
 
       .buttonNext {
-        top: 140px;
+        top: 11.666rem;
         right: 7px;
       }
     }
@@ -153,6 +154,11 @@
         }
       }
     }
+
+    .buttonBack, .buttonNext {
+      top: 11.666rem;
+    }
+
   }
 }
 

@@ -18,8 +18,3 @@ type SliderContentComponentProps = {
 export type SliderContentComponent = FunctionComponent<SliderContentComponentProps>
 
 
-type DynamicCSSProps = {
-  slideCount: number,
-}
-export type DynamicCSSComponent = FunctionComponent<DynamicCSSProps>
-

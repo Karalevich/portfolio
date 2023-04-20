@@ -49,6 +49,7 @@ export const App: React.FC<unknown> = () => {
     setIsOpenInfo(open)
   }
 
+
   return (
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>

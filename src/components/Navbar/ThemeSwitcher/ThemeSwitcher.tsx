@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './ThemeSwitcher.module.scss'
 import { ThemeSwitcherComponent } from './types'
 import { SwitchThemeIcon } from '../../Custom/Icons'
 import classname from 'classnames'
 
 
-export const ThemeSwitcher: ThemeSwitcherComponent = () => {
-  const [isLightTheme, setIsLightTheme] = useState(true)
+export const ThemeSwitcher: ThemeSwitcherComponent = ({handleSwitchTheme, isLightTheme}) => {
+  const switchTheme = () => {
+    handleSwitchTheme()
+  }
+
   return (
     <div className={styles.wrapper}>
-      <SwitchThemeIcon onClick={() => setIsLightTheme(!isLightTheme)} className={classname(styles.switcher, {
+      <SwitchThemeIcon onClick={switchTheme} className={classname(styles.switcher, {
         [styles.light]: isLightTheme,
         [styles.dark]: !isLightTheme,
       })}/>

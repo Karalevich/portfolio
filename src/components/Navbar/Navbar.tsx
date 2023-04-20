@@ -8,6 +8,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Tooltip } from '../Custom/Tooltip'
 import { styled } from '@mui/material/styles'
 import classnames from 'classnames'
+import DynamicCSS from '../Custom/DynamicCSS/DynamicCSS'
+import { CSSProp } from '../Custom/DynamicCSS/types'
 
 const tabNameToIndex: TabNameToIndexT = {
   0: '/home',
@@ -27,9 +29,27 @@ const indexToTabName: IndexToTabNameT = {
   '/contact': 5,
 }
 
+const LIGHT = [
+  { prop: 'background', value: '#FFFFFF' },
+]
+
+const DARK = [
+  { prop: 'background', value: '#242526' },
+]
+
 
 export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
+  const [theme, setTheme] = useState<Array<CSSProp>>(LIGHT)
+  const [isLightTheme, setIsLightTheme] = useState(true)
 
+  const handleSwitchTheme = () => {
+    setIsLightTheme(!isLightTheme)
+    if (isLightTheme) {
+      setTheme(DARK)
+    } else {
+      setTheme(LIGHT)
+    }
+  }
   const toggleDrawer = (open: boolean) =>
     (event: KeyboardEvent | MouseEvent) => {
       if (
@@ -50,6 +70,7 @@ export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
 
   return (
     <>
+      <DynamicCSS properties={theme}/>
       <SwipeableDrawer
         open={isOpen}
         anchor={'right'}
@@ -57,16 +78,16 @@ export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
         onOpen={toggleDrawer(true)}
         className={styles.mobile}
       >
-        <NavTabs closeDrawer={closeDrawer}/>
+        <NavTabs handleSwitchTheme={handleSwitchTheme} closeDrawer={closeDrawer} isLightTheme={isLightTheme}/>
       </SwipeableDrawer>
-      <NavTabs  className={styles.fullScreen}/>
+      <NavTabs handleSwitchTheme={handleSwitchTheme} className={styles.fullScreen} isLightTheme={isLightTheme}/>
     </>
   )
 }
 
 export default Nav
 
-export const NavTabs: NavTabsComponent = ({ className, closeDrawer }) => {
+export const NavTabs: NavTabsComponent = ({ className, closeDrawer, handleSwitchTheme, isLightTheme }) => {
   const params = useLocation()
   const navigate = useNavigate()
   const [value, setValue] = useState(indexToTabName[params.pathname] || 0)
@@ -79,7 +100,7 @@ export const NavTabs: NavTabsComponent = ({ className, closeDrawer }) => {
 
   return (
     <nav className={classnames(styles.nav, { [`${className}`]: className })}>
-      <ThemeSwitcher/>
+      <ThemeSwitcher handleSwitchTheme={handleSwitchTheme} isLightTheme={isLightTheme}/>
       {/*<LanguageSwitcher/>*/}
 
       <StyledTabs value={value} onChange={handleChange} orientation="vertical" centered>

@@ -119,6 +119,10 @@
       .iconWrapper {
         height: 3.333rem;
         width: 3.333rem;
+
+        svg{
+          font-size: 1.7rem;
+        }
       }
 
       .item {
@@ -130,6 +134,11 @@
           font-size: 1.25rem;
         }
       }
+    }
+
+    .send {
+      font-size: 1.167rem;
+      font-weight: 600;
     }
   }
 }
