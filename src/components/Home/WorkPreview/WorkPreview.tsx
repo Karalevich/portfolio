@@ -34,10 +34,10 @@ export const WorkPreview: WorkPreviewComponent = () => {
 
   const stepInViewHandler = (stepIndex: number) => (inView: boolean, entry: IntersectionObserverEntry) => {
     if (inView && !isStepsExpended) {
-      if(stepIndex === WORK_HISTORY.length - 1){
+      if (stepIndex === WORK_HISTORY.length - 1) {
         setIsStepsExpended(true)
         setActiveStep(WORK_HISTORY.length)
-      }else{
+      } else {
         setActiveStep(stepIndex)
       }
     }
@@ -52,10 +52,11 @@ export const WorkPreview: WorkPreviewComponent = () => {
       <SectionHeader title={'Work History'} introduction={'I have a broad range of projects that I worked on: ' +
       'huge B2B platform, E-commerce and game companies like Wargaming and Nexon America which have different target markets.'}/>
       <Box sx={{
-        backgroundColor: 'white',
+        backgroundColor: 'var(--background)',
+        transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         padding: '2.8rem 2.43vw',
         borderRadius: '2px',
-      }} >
+      }}>
         <Switch className={styles.switch} checked={isStepsExpended} onChange={handleSwitch}/>
         <Stepper activeStep={activeStep} orientation="vertical" className={styles.stepper}
                  connector={<ColorlibConnector/>}>
@@ -87,7 +88,6 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
         background: 'linear-gradient(0deg, rgba(255,180,0,0.93) 0%, rgba(255,203,42,1) 50%, rgba(255,247,124,1) 100%)',
       },
     },
-
     [`& .${stepLabelClasses.labelContainer}`]: {
       'span[class*="date"]': {
         backgroundColor: '#ffb400',
@@ -110,13 +110,13 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
       bottom: 0,
       left: '20px',
       width: '100%',
-      borderBottom: '1.5px solid #F0F0F6',
+      borderBottom: '1.5px solid var(--substrate2)',
     },
     '&:before': {
       content: '""',
       width: 3,
       position: 'absolute',
-      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+      backgroundColor: '#eaeaf0',
       top: 0,
       left: 0,
       bottom: 0,
@@ -133,16 +133,17 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
   [`& .${collapseClasses.root}`]: {
     width: '45vw',
   },
-
-  [`& .${stepLabelClasses.root}`]: {
-    //paddingTop: '0px',
-  },
-
   [`& .${stepLabelClasses.labelContainer}`]: {
     display: 'flex',
     flexDirection: 'row-reverse',
     justifyContent: 'flex-end',
     gap: 'calc(25%)',
+  },
+  [`& .${stepLabelClasses.active} + span`]: {
+    'span[class*="date"]': {
+      backgroundColor: '#ffb400 !important',
+      color: '#ffffff',
+    },
   },
 }))
 
@@ -177,7 +178,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
 const ColorlibStepIconRoot = styled('div')<{
   ownerState: { completed?: boolean; active?: boolean };
 }>(({ theme, ownerState }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
+  backgroundColor: '#ccc',
   zIndex: 1,
   color: '#fff',
   width: '3.125rem',

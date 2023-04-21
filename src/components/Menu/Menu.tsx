@@ -17,8 +17,8 @@ export const Menu: MenuComponent = ({ toggleNav, toggleInfo }) => {
 
   return (
     <header className={styles.menu}>
-      <IconButton onClick={openInfo}><MenuIcon/></IconButton>
-      <IconButton onClick={openNav}><MoreVertIcon/></IconButton>
+      <IconButton onClick={openInfo} className={styles.icon}><MenuIcon/></IconButton>
+      <IconButton onClick={openNav} className={styles.icon}><MoreVertIcon/></IconButton>
     </header>
   )
 }

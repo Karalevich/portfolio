@@ -3,7 +3,7 @@
 .menu {
   display: none;
   height: 3.333rem;
-  background-color: $white;
+  background-color: $background;
   position: sticky;
   top: 0;
   left: 0;
@@ -11,6 +11,10 @@
   z-index: 10;
   justify-content: space-between;
   padding: 0.667rem 3.083rem;
+
+  .icon{
+    color: $nav-bcg-btn;
+  }
 }
 
 @media only screen and (max-width: 767px) {

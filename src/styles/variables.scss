@@ -1,11 +1,17 @@
 $element: #ffb400;
 $project: rgba(255, 180, 0, 0.95);
-$black: #2B2B2B;
-$dark-bcg: #18191A;
-$dark-bcg2: #3A3B3C;
-$black2: #242526;
 $paragraph: #767676;
-$light-bcg: #f0f0f6;
-$light-bcg2: #e4e6eb;
-$white: var(--background);
 $available: #7EB942;
+
+
+$main-text: var(--main-text);
+$background: var(--background);
+$text: var(--text);
+$scrollbar-thumb: var(--scrollbar-thumb);
+$scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
+$nav-bcg-btn: var(--nav-bcg-btn);
+$nav-bcg-svg: var(--nav-bcg-svg);
+$substrate: var(--substrate);
+$substrate2: var(--substrate2);
+$skeleton: var(--skeleton);
+$tooltip: var(--tooltip);

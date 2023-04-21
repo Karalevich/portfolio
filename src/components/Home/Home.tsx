@@ -1,7 +1,7 @@
 import { HomeComponent } from './types'
 import styles from './Home.module.scss'
 import Banner from './Banner/Banner'
-import React, { forwardRef, useEffect } from 'react'
+import React, { forwardRef } from 'react'
 import ServicesPreview from './ServicesPreview/ServicesPreview'
 import Price from './Price/Price'
 import Recommendations from './Recommendations/Recommendations'

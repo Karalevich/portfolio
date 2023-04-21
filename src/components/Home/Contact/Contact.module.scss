@@ -14,6 +14,8 @@
   .info {
     padding: 1.56rem;
     border-radius: 2px !important;
+    background-color: $background;
+    transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
 
     .input {
       margin-bottom: 1.56rem;
@@ -49,6 +51,8 @@
     padding: 1.5625rem 1.5625rem 1rem 1.5625rem;
     display: flex;
     flex-direction: column;
+    background-color: $background;
+    transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
 
     .header {
       display: flex;
@@ -64,6 +68,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      svg{
+        color: $main-text;
+      }
     }
 
     .main {

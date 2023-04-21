@@ -10,6 +10,7 @@ import { styled } from '@mui/material/styles'
 import classnames from 'classnames'
 import DynamicCSS from '../Custom/DynamicCSS/DynamicCSS'
 import { CSSProp } from '../Custom/DynamicCSS/types'
+import { DARK, LIGHT } from 'src/constants/settings'
 
 const tabNameToIndex: TabNameToIndexT = {
   0: '/home',
@@ -28,15 +29,6 @@ const indexToTabName: IndexToTabNameT = {
   '/blog': 4,
   '/contact': 5,
 }
-
-const LIGHT = [
-  { prop: 'background', value: '#FFFFFF' },
-]
-
-const DARK = [
-  { prop: 'background', value: '#242526' },
-]
-
 
 export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
   const [theme, setTheme] = useState<Array<CSSProp>>(LIGHT)
@@ -117,12 +109,12 @@ export const NavTabs: NavTabsComponent = ({ className, closeDrawer, handleSwitch
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   '.Mui-selected': {
-    color: '#2B2B2B !important',
+    color: 'var(--main-text) !important',
     'div[class*="iconWrapper"]': {
       backgroundColor: '#ffb400',
       '&:hover': {
         'svg': {
-          fill: '#2B2B2B',
+          fill: 'var(--main-text)',
         },
       },
     },

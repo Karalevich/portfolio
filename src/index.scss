@@ -27,8 +27,9 @@ body {
   margin: 0;
   font-family: -apple-system, Inter, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
   Droid Sans, Helvetica Neue, sans-serif;
-  background-color: $light-bcg;
-  color: $black;
+  background-color: $substrate;
+  color: $main-text;
+  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms
 }
 
 body {
@@ -75,6 +76,10 @@ h6 {
   font-size: 1rem;
 }
 
+h1, h2, h3, h4, h5, h6  {
+  color: $main-text;
+}
+
 p {
   color: $paragraph;
   font-size: 0.9375rem;
@@ -90,20 +95,20 @@ p {
 
 ::-webkit-scrollbar-thumb {
 
-  background: radial-gradient(circle, rgba(68, 68, 68, 0.3) 0%, rgba(28, 28, 28, 0.32) 100%);
+  background: $scrollbar-thumb;
   background-clip: padding-box;
   border-radius: 3px;
   min-height: 28px;
   padding: 100px 0 0;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+ box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
 
   &:hover {
-    background: rgba(0, 0, 0, .4);
+    background: $scrollbar-thumb-hover;
   }
 }
 
 ::-webkit-scrollbar-track {
-  background: hsla(0, 0%, 100%, .09);
+  background: hsla(0, 0%, 100%, 0);
   border-radius: 3px;
 }
 

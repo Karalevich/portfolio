@@ -17,9 +17,6 @@ export const mainTheme = createTheme({
         },
       },
     },
-    MuiSvgIcon: {
-      styleOverrides: {},
-    },
     MuiTab: {
       styleOverrides: {
         root: {
@@ -39,7 +36,19 @@ export const mainTheme = createTheme({
         root: {
           width: '9.375rem',
           height: '9.375rem',
-          backgroundColor: '#f0f0f6'
+          backgroundColor: 'var(--substrate2)',
+          transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          backgroundColor: 'var(--tooltip) !important',
+          color: 'var(--text)',
+        },
+        arrow: {
+          color: 'var(--tooltip) !important',
         },
       },
     },

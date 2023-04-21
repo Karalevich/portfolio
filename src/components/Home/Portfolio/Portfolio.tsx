@@ -24,12 +24,13 @@ export const Portfolio: PortfolioComponent = () => {
         '.MuiTab-root': {
           width: `auto`,
           overflow: 'inherit',
-          color: '#2B2B2B',
+          color: 'var(--main-text)',
+          fontWeight: 400,
           transition: 'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
           marginBottom: '5px',
         },
         '.Mui-selected': {
-          color: 'black !important',
+          color: 'var(--main-text) !important',
           fontWeight: 600
         },
         '.MuiTabs-indicator': {
@@ -53,11 +54,11 @@ export default Portfolio
 const TabPanel: TabPanelComponent = ({ projects, activeTab, index, ...other }) => {
   const projectList = projects.map(project => (
     <li key={project.name} className={styles.project}>
-      <Card sx={{ width: '100%', height: '100%', borderRadius: '2px' }} elevation={0}>
+      <Card sx={{ width: '100%', height: '100%', borderRadius: '2px', backgroundColor: 'var(--skeleton)' }} elevation={0}>
         <CardActionArea sx={{
           height: '100%',
           '.MuiCardActionArea-focusHighlight': {
-            background: '#ffffff',
+            background: 'var(--skeleton)',
           },
 
           '&:hover': {

@@ -38,7 +38,7 @@ export const Info: InfoComponent = forwardRef(({ isOpen, toggleInfo, isFixed }, 
         onOpen={toggleDrawer(true)}
         className={styles.mobile}
       >
-        <InfoDrawer isFixed={isFixed} closeDrawer={closeDrawer} ref={ref}/>
+        <InfoDrawer isFixed={isFixed} closeDrawer={closeDrawer} />
       </SwipeableDrawer>
       <InfoDrawer isFixed={isFixed} className={styles.fullScreen} ref={ref}/>
     </>

@@ -12,6 +12,6 @@ type InfoDrawerProps = {
   className?: string,
   closeDrawer?: () => void,
   isFixed: boolean,
-  ref: ForwardedRef<HTMLElement>,
+  ref?: ForwardedRef<HTMLElement>,
 }
 export type InfoDrawerComponent = FunctionComponent<InfoDrawerProps>

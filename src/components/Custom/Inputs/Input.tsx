@@ -18,7 +18,6 @@ const Input: InputComponent = ({ label, className, ...other }) => {
 const LabelCustom = styled(InputLabel)(({ theme }) => ({
   '&.MuiInputLabel-root': {
     position: 'initial',
-    //display: 'inline',
     marginBottom: '0.5rem',
     transform: 'none',
 
@@ -33,7 +32,8 @@ const InputCustom = styled(InputBase)(({ theme }) => ({
     marginTop: theme.spacing(0),
   },
   '& .MuiInputBase-input': {
-    backgroundColor: theme.palette.mode === 'light' ? '#F0F0F6' : '#2b2b2b',
+    backgroundColor: 'var(--substrate2)',
+    color: 'var(--main-text)',
     fontSize: '1rem',
     padding: '10px 12px',
     transition: theme.transitions.create([
@@ -42,8 +42,7 @@ const InputCustom = styled(InputBase)(({ theme }) => ({
       'box-shadow',
     ]),
     '&:focus': {
-      boxShadow: `${alpha('#000000', 0.5)} 0 0 0 0.1rem`,
-      borderColor: theme.palette.primary.main,
+      boxShadow: `#767676 0 0 0 0.1rem`,
     },
   },
 }))
