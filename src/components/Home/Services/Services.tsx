@@ -1,14 +1,15 @@
 import Card from '@mui/material/Card/Card'
 import React from 'react'
-import styles from './ServicesPreview.module.scss'
-import { ServicesPreviewComponent, ServicePreviewComponent } from './types'
+import styles from './Services.module.scss'
+import { ServicesComponent, ServiceComponent } from './types'
 import { Button } from '@mui/material'
 import { SERVICES } from 'src/constants/personalInfo'
 import { OrderIcon } from 'src/components/Custom/Icons'
 import SectionHeader from '../SectionHeader/SectionHeader'
+import { useNavigate } from 'react-router-dom'
 
 
-export const ServicesPreview: ServicesPreviewComponent = () => {
+export const Services: ServicesComponent = () => {
   const serviceList = []
   for (const [key, value] of Object.entries(SERVICES)) {
     serviceList.push(Service({ title: key, ...value }))
@@ -29,10 +30,14 @@ export const ServicesPreview: ServicesPreviewComponent = () => {
 }
 
 
-const Service: ServicePreviewComponent = ({ title, preview, description, icon }) => {
+const Service: ServiceComponent = ({ title, preview, description, icon, navigatePath }) => {
+  const redirect = useNavigate()
+  const handleRedirect = () => {
+    redirect(`/service/${navigatePath}`)
+  }
   return (
     <li className={styles.item} key={title}>
-      <Card className={styles.card} elevation={0} >
+      <Card className={styles.card} elevation={0}>
         <header className={styles.cardHeader}>
           {icon({ fontSize: 'large', className: `${styles.icon}` })}
         </header>
@@ -40,7 +45,8 @@ const Service: ServicePreviewComponent = ({ title, preview, description, icon })
           <h4 className={styles.name}>{title}</h4>
           <p className={styles.preview}>{preview}</p>
           <p className={styles.description}>{description}</p>
-          <Button className={styles.order} size="small" endIcon={<OrderIcon className={styles.arrow}/>}>
+          <Button onClick={handleRedirect} className={styles.order} size="small"
+                  endIcon={<OrderIcon className={styles.arrow}/>}>
             Order now
           </Button>
         </main>
@@ -49,4 +55,4 @@ const Service: ServicePreviewComponent = ({ title, preview, description, icon })
   )
 }
 
-export default ServicesPreview
+export default Services

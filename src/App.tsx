@@ -7,6 +7,13 @@ import { mainTheme } from './styles/themes/mainTheme'
 import Info from './components/Info/Info'
 import Copyright from './components/Copyright/Copyright'
 import Menu from './components/Menu/Menu'
+import Contact from './components/Home/Contact/Contact'
+import styles from './components/Home/Home.module.scss'
+import Portfolio from './components/Home/Portfolio/Portfolio'
+import CV from './components/Home/CV/CV'
+import Services from './components/Home/Services/Services'
+import ServicePage from './components/Home/Services/ServicePage/ServicePage'
+
 
 
 export const App: React.FC<unknown> = () => {
@@ -22,15 +29,23 @@ export const App: React.FC<unknown> = () => {
       const scrollNode = homeRef.current
 
       if (fixedNode && scrollNode) {
-        const firstElementBottom = Math.floor(fixedNode.getBoundingClientRect().bottom)
-        const firstElementHeight = Math.floor(fixedNode.getBoundingClientRect().height)
+        const fixedNodeBottom = Math.floor(fixedNode.getBoundingClientRect().bottom)
+        const fixedNodeHeight = Math.floor(fixedNode.getBoundingClientRect().height)
+        const scrollNodeHeight = Math.floor(scrollNode.getBoundingClientRect().height)
+        const scrollNodeTop = Math.abs(scrollNode.getBoundingClientRect().top)
         const viewportBottom = window.innerHeight
 
-        if (!isFixed && viewportBottom < firstElementHeight && firstElementBottom <= viewportBottom) {
+
+        if (scrollNodeHeight <= fixedNodeHeight) {
+          setIsFixed(false)
+          return
+        }
+
+        if (!isFixed && viewportBottom < fixedNodeHeight && fixedNodeBottom <= viewportBottom) {
           setIsFixed(true)
         }
 
-        if (Math.abs(scrollNode.getBoundingClientRect().top) < fixedNode.offsetHeight - viewportBottom) {
+        if (scrollNodeTop < fixedNode.offsetHeight - viewportBottom) {
           setIsFixed(false)
         }
       }
@@ -55,15 +70,18 @@ export const App: React.FC<unknown> = () => {
       <BrowserRouter>
         <Menu toggleNav={toggleNav} toggleInfo={toggleInfo}/>
         <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo}/>
-        <Routes>
-          <Route path={'/'} element={<Navigate replace to='/home'/>}/>
-          <Route path={'/home'} element={<Home ref={homeRef}/>}/>
-          <Route path={'/services'} element={<Home/>}/>
-          <Route path={'/cv'} element={<Home/>}/>
-          <Route path={'/portfolio'} element={<Home/>}/>
-          <Route path={'/blog'} element={<Home/>}/>
-          <Route path={'/contact'} element={<Home/>}/>
-        </Routes>
+        <section className={styles.home} ref={homeRef}>
+          <Routes>
+            <Route path={'/'} element={<Navigate replace to='/home'/>}/>
+            <Route path={'/home'} element={<Home/>}/>
+            <Route path={'/services'} element={<Services/>}/>
+            <Route path={'/service/:servicePage'} element={<ServicePage/>}/>
+            <Route path={'/cv'} element={<CV/>}/>
+            <Route path={'/portfolio'} element={<Portfolio/>}/>
+            <Route path={'/blog'} element={<Home/>}/>
+            <Route path={'/contact'} element={<Contact/>}/>
+          </Routes>
+        </section>
         <Nav toggleNav={toggleNav} isOpen={isOpenNav}/>
         <Copyright/>
       </ BrowserRouter>

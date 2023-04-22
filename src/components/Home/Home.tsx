@@ -1,33 +1,28 @@
 import { HomeComponent } from './types'
-import styles from './Home.module.scss'
 import Banner from './Banner/Banner'
-import React, { forwardRef } from 'react'
-import ServicesPreview from './ServicesPreview/ServicesPreview'
-import Price from './Price/Price'
+import React from 'react'
+import Services from './Services/Services'
 import Recommendations from './Recommendations/Recommendations'
-import WorkPreview from './WorkPreview/WorkPreview'
-import EducationPreview from './EducationPreview/EducationPreview'
 import Portfolio from './Portfolio/Portfolio'
 import Blog from './Blog/Blog'
 import Contact from './Contact/Contact'
-import Map from './Map/Map'
+import CV from './CV/CV'
+import Price from './Price/Price'
 
 
-export const Home: HomeComponent = forwardRef((props, ref) => {
+export const Home: HomeComponent = () => {
   return (
-    <section className={styles.home} ref={ref}>
+    <>
       <Banner/>
-      <ServicesPreview/>
+      <Services/>
       <Price/>
       <Recommendations/>
-      <WorkPreview/>
-      <EducationPreview/>
+      <CV/>
       <Portfolio/>
       <Blog/>
       <Contact/>
-      <Map/>
-    </section>
+    </>
   )
-})
+}
 
 export default Home

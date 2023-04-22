@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './Recommendations.module.scss'
 import { RecommendationsComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import { POSTS, RECOMMENDATIONS } from '../../../constants/personalInfo'
+import { RECOMMENDATIONS } from '../../../constants/personalInfo'
 import { CarouselProvider, DotGroup } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
 import { MOBILE_SIZE } from 'src/constants/settings'
@@ -12,7 +12,6 @@ import DynamicCSS from '../../Custom/DynamicCSS/DynamicCSS'
 
 export const Recommendations: RecommendationsComponent = () => {
   const [countOfSlide, setCountOfSlide] = useState(3)
-  const [countOfStep, setCountOfStep] = useState(2)
   const [widthOfWindow, setWidthOfWindow] = useState(0)
 
   const setSettingsOfSlide = () => {
@@ -20,10 +19,8 @@ export const Recommendations: RecommendationsComponent = () => {
     setWidthOfWindow(innerWidth)
     if (innerWidth < MOBILE_SIZE && (widthOfWindow >= MOBILE_SIZE || widthOfWindow === 0)) {
       setCountOfSlide(1)
-      setCountOfStep(1)
     } else if (innerWidth >= MOBILE_SIZE && widthOfWindow < MOBILE_SIZE) {
       setCountOfSlide(3)
-      setCountOfStep(2)
     }
   }
 
@@ -47,7 +44,6 @@ export const Recommendations: RecommendationsComponent = () => {
           isIntrinsicHeight
           visibleSlides={countOfSlide}
           totalSlides={RECOMMENDATIONS.length}
-          step={countOfStep}
           naturalSlideWidth={310}
           naturalSlideHeight={323}
           currentSlide={0}

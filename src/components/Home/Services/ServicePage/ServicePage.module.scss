@@ -1,0 +1,50 @@
+.servicePage {
+  width: 100%;
+  padding-top: 3.125rem;
+
+  .header {
+    margin-bottom: 4.375rem;
+
+    .serviceTitle {
+      margin-bottom: 1.5625rem;
+      text-transform: capitalize;
+    }
+
+    .previewImg {
+      width: 100%;
+      height: 28.125rem;
+      object-fit: cover;
+    }
+  }
+
+  .main {
+    .projectsTitle {
+      text-transform: capitalize;
+      margin-bottom: 3.125rem;
+      width: 77.6%;
+    }
+
+    .firstArticle, .secondArticle {
+      margin-bottom: 3rem;
+      min-height: 23.8125rem;
+    }
+
+
+    .firstArticleImage, .secondArticleImage {
+      width: 56.2%;
+      height: 23.8125rem;
+      object-fit: cover;
+      float: right;
+    }
+
+    .secondArticleImage {
+      float: left;
+      width: 38.55%;
+    }
+
+
+    .text {
+      margin-bottom: 3rem;
+    }
+  }
+}

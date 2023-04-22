@@ -14,11 +14,13 @@ import React from 'react'
 import { ServiceT } from './types'
 import { PriceItemProps } from '../components/Home/Price/types'
 import david from '../assets/img/David.png'
+import frontendImg from '../assets/img/frontend.png'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import { ProjectT } from 'src/components/Home/Portfolio/types'
 import blog from '../assets/img/blog.avif'
 import { ContactCardProps } from '../components/Home/Contact/types'
 import { PostProps } from '../components/Home/Blog/types'
+import { ServicePage } from '../components/Home/Services/ServicePage/types'
 
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -127,36 +129,51 @@ export const LANGUAGES = [
   },
 ]
 
+export enum SERVICES_NAVIGATION {
+  FRONTEND='frontend',
+  ECOMMERCE='ecommerce',
+  BACKEND='backend',
+  WEBGAME='webgame',
+  LANDING='landing',
+  CONSULTING='consulting',
+}
+
 export const SERVICES: { [property: string]: ServiceT } = {
-  'Front Development': {
+  'FrontEnd Development': {
     icon: FrontedIcon,
     preview: 'Client-side development.',
     description: 'Including the use of all the best practices and the most modern tools such as JS, TS, React, Vue.',
+    navigatePath: SERVICES_NAVIGATION.FRONTEND
   },
   'E-Commerce': {
     icon: EcommerceIcon,
     preview: 'Build high-performing e-commerce.',
     description: 'And trading platforms, whether you’re dealing stocks or selling shoes.',
+    navigatePath: SERVICES_NAVIGATION.ECOMMERCE
   },
-  'Back Development': {
+  'BackEnd Development': {
     icon: BackendIcon,
     preview: 'Server-side development.',
     description: 'Creation of moderate-complexity servers to support the client part using NodeJS, MongoDB, Python.',
+    navigatePath: SERVICES_NAVIGATION.BACKEND
   },
   'Web Game': {
     icon: GameIcon,
     preview: 'Design browser games.',
     description: 'And production of game architecture and create fascinating characters for entertaining clients.',
+    navigatePath: SERVICES_NAVIGATION.WEBGAME
   },
   'Landing Page': {
     icon: LandingIcon,
     preview: 'Creation layouts of any complexity.',
     description: 'Including standalone pages for both B2B and B2C to collect user info, drive sales and more.',
+    navigatePath: SERVICES_NAVIGATION.LANDING
   },
   'Product Consulting': {
     icon: ConsultingIcon,
     preview: 'Analyze and benchmark product.',
     description: 'Also create intelligent development strategies for a smoother, optimal UX.',
+    navigatePath: SERVICES_NAVIGATION.CONSULTING
   },
 }
 
@@ -581,3 +598,162 @@ export const CONTACT_INFO: Array<ContactCardProps> = [
     ],
   },
 ]
+
+export const SERVICE_PAGES: { [property: string]: ServicePage } = {
+  [SERVICES_NAVIGATION.FRONTEND]: {
+    serviceTitle: 'FrontEnd Development',
+    image: frontendImg,
+    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
+    firstArticle: {
+      image: frontendImg,
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
+        '\n' +
+        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
+        '\n' +
+        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
+    },
+    secondArticle: {
+      image: frontendImg,
+      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
+        '\n' +
+        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+        '\n' +
+        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
+        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
+    },
+    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
+      '\n' +
+      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+  },
+  [SERVICES_NAVIGATION.ECOMMERCE]: {
+    serviceTitle: 'E-Commerce',
+    image: '',
+    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
+    firstArticle: {
+      image: '',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
+        '\n' +
+        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
+        '\n' +
+        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
+    },
+    secondArticle: {
+      image: '',
+      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
+        '\n' +
+        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+        '\n' +
+        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
+        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
+    },
+    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
+      '\n' +
+      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+  },
+  [SERVICES_NAVIGATION.BACKEND]: {
+    serviceTitle: 'BackEnd Development',
+    image: '',
+    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
+    firstArticle: {
+      image: '',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
+        '\n' +
+        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
+        '\n' +
+        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
+    },
+    secondArticle: {
+      image: '',
+      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
+        '\n' +
+        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+        '\n' +
+        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
+        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
+    },
+    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
+      '\n' +
+      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+  },
+  [SERVICES_NAVIGATION.WEBGAME]: {
+    serviceTitle: 'Web Game',
+    image: '',
+    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
+    firstArticle: {
+      image: '',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
+        '\n' +
+        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
+        '\n' +
+        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
+    },
+    secondArticle: {
+      image: '',
+      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
+        '\n' +
+        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+        '\n' +
+        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
+        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
+    },
+    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
+      '\n' +
+      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+  },
+  [SERVICES_NAVIGATION.LANDING]: {
+    serviceTitle: 'Landing page',
+    image: '',
+    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
+    firstArticle: {
+      image: '',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
+        '\n' +
+        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
+        '\n' +
+        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
+    },
+    secondArticle: {
+      image: '',
+      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
+        '\n' +
+        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+        '\n' +
+        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
+        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
+    },
+    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
+      '\n' +
+      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+  },
+  [SERVICES_NAVIGATION.CONSULTING]: {
+    serviceTitle: 'Product Consulting',
+    image: '',
+    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
+    firstArticle: {
+      image: '',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
+        '\n' +
+        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
+        '\n' +
+        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
+    },
+    secondArticle: {
+      image: '',
+      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
+        '\n' +
+        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+        '\n' +
+        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
+        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
+    },
+    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
+      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
+      '\n' +
+      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+  },
+}

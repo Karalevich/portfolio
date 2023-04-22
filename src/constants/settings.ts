@@ -31,3 +31,4 @@ export const DARK = [
   { prop: 'skeleton', value: '#3A3B3C' },
   { prop: 'tooltip', value: 'rgba(240,240,246, 0.9)' },
 ]
+
