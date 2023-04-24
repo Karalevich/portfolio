@@ -33,7 +33,7 @@ export const Services: ServicesComponent = () => {
 const Service: ServiceComponent = ({ title, preview, description, icon, navigatePath }) => {
   const redirect = useNavigate()
   const handleRedirect = () => {
-    redirect(`/service/${navigatePath}`)
+    redirect(`/services/${navigatePath}`)
   }
   return (
     <li className={styles.item} key={title}>

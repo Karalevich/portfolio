@@ -1,7 +1,7 @@
-import React, { useState, KeyboardEvent, MouseEvent } from 'react'
+import React, { useState, KeyboardEvent, MouseEvent, useEffect } from 'react'
 import styles from './Navbar.module.scss'
 import { IndexToTabNameT, NavComponent, NavTabsComponent, TabNameToIndexT } from './types'
-import { SvgIconProps, SwipeableDrawer, Tab, Tabs } from '@mui/material'
+import { SvgIconProps, SwipeableDrawer, Tab, Tabs, useMediaQuery } from '@mui/material'
 import { CvIcon, BlogIcon, ContactIcon, HomeIcon, PortfolioIcon, ServicesIcon } from '../Custom/Icons'
 import ThemeSwitcher from './ThemeSwitcher/ThemeSwitcher'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -13,26 +13,27 @@ import { CSSProp } from '../Custom/DynamicCSS/types'
 import { DARK, LIGHT } from 'src/constants/settings'
 
 const tabNameToIndex: TabNameToIndexT = {
-  0: '/home',
-  1: '/services',
-  2: '/cv',
-  3: '/portfolio',
-  4: '/blog',
-  5: '/contact',
+  0: 'home',
+  1: 'services',
+  2: 'cv',
+  3: 'portfolio',
+  4: 'blog',
+  5: 'contact',
 }
 
 const indexToTabName: IndexToTabNameT = {
-  '/home': 0,
-  '/services': 1,
-  '/cv': 2,
-  '/portfolio': 3,
-  '/blog': 4,
-  '/contact': 5,
+  'home': 0,
+  'services': 1,
+  'cv': 2,
+  'portfolio': 3,
+  'blog': 4,
+  'contact': 5,
 }
 
 export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
   const [theme, setTheme] = useState<Array<CSSProp>>(LIGHT)
   const [isLightTheme, setIsLightTheme] = useState(true)
+  const isTabletOrMobile = useMediaQuery('(max-width: 1023px)')
 
   const handleSwitchTheme = () => {
     setIsLightTheme(!isLightTheme)
@@ -59,20 +60,21 @@ export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
     toggleNav(false)
   }
 
-
   return (
     <>
       <DynamicCSS properties={theme}/>
-      <SwipeableDrawer
-        open={isOpen}
-        anchor={'right'}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
-        className={styles.mobile}
-      >
-        <NavTabs handleSwitchTheme={handleSwitchTheme} closeDrawer={closeDrawer} isLightTheme={isLightTheme}/>
-      </SwipeableDrawer>
-      <NavTabs handleSwitchTheme={handleSwitchTheme} className={styles.fullScreen} isLightTheme={isLightTheme}/>
+      {isTabletOrMobile
+        ? <SwipeableDrawer
+          open={isOpen}
+          anchor={'right'}
+          onClose={toggleDrawer(false)}
+          onOpen={toggleDrawer(true)}
+          className={styles.mobile}
+        >
+          <NavTabs handleSwitchTheme={handleSwitchTheme} closeDrawer={closeDrawer} isLightTheme={isLightTheme}/>
+        </SwipeableDrawer>
+        : <NavTabs handleSwitchTheme={handleSwitchTheme} className={styles.fullScreen} isLightTheme={isLightTheme}/>
+      }
     </>
   )
 }
@@ -80,12 +82,16 @@ export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
 export default Nav
 
 export const NavTabs: NavTabsComponent = ({ className, closeDrawer, handleSwitchTheme, isLightTheme }) => {
-  const params = useLocation()
+  const { pathname } = useLocation()
   const navigate = useNavigate()
-  const [value, setValue] = useState(indexToTabName[params.pathname] || 0)
+  const [value, setValue] = useState(indexToTabName[pathname.split('/')[1]] || 0)
+
+  useEffect(() => {
+    setValue(indexToTabName[pathname.split('/')[1]] || 0)
+  }, [pathname])
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    navigate(`${tabNameToIndex[newValue]}`)
+    navigate(`/${tabNameToIndex[newValue]}`)
     setValue(newValue)
     closeDrawer && setTimeout(() => closeDrawer(), 400)
   }

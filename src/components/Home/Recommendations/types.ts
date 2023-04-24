@@ -13,7 +13,7 @@ export type RecommendationProps = {
 }
 
 type SliderContentComponentProps = {
-  widthOfWindow: number
+isTabletOrMobile: boolean
 }
 export type SliderContentComponent = FunctionComponent<SliderContentComponentProps>
 

@@ -5,9 +5,9 @@ import {
   LeetcodeIcon,
   LinkedinIcon, LocationIcon,
   MailIcon,
-  MobileIcon,
-  TwitterIcon,
-  VkIcon,
+  MobileIcon, ReactIcon, ReduxIcon,
+  TwitterIcon, TypeScriptIcon,
+  VkIcon, VueIcon, VueXIcon,
 } from '../components/Custom/Icons'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import React from 'react'
@@ -130,12 +130,12 @@ export const LANGUAGES = [
 ]
 
 export enum SERVICES_NAVIGATION {
-  FRONTEND='frontend',
-  ECOMMERCE='ecommerce',
-  BACKEND='backend',
-  WEBGAME='webgame',
-  LANDING='landing',
-  CONSULTING='consulting',
+  FRONTEND = 'frontend',
+  ECOMMERCE = 'ecommerce',
+  BACKEND = 'backend',
+  WEBGAME = 'webgame',
+  LANDING = 'landing',
+  CONSULTING = 'consulting',
 }
 
 export const SERVICES: { [property: string]: ServiceT } = {
@@ -143,37 +143,37 @@ export const SERVICES: { [property: string]: ServiceT } = {
     icon: FrontedIcon,
     preview: 'Client-side development.',
     description: 'Including the use of all the best practices and the most modern tools such as JS, TS, React, Vue.',
-    navigatePath: SERVICES_NAVIGATION.FRONTEND
+    navigatePath: SERVICES_NAVIGATION.FRONTEND,
   },
   'E-Commerce': {
     icon: EcommerceIcon,
     preview: 'Build high-performing e-commerce.',
     description: 'And trading platforms, whether you’re dealing stocks or selling shoes.',
-    navigatePath: SERVICES_NAVIGATION.ECOMMERCE
+    navigatePath: SERVICES_NAVIGATION.ECOMMERCE,
   },
   'BackEnd Development': {
     icon: BackendIcon,
     preview: 'Server-side development.',
     description: 'Creation of moderate-complexity servers to support the client part using NodeJS, MongoDB, Python.',
-    navigatePath: SERVICES_NAVIGATION.BACKEND
+    navigatePath: SERVICES_NAVIGATION.BACKEND,
   },
   'Web Game': {
     icon: GameIcon,
     preview: 'Design browser games.',
     description: 'And production of game architecture and create fascinating characters for entertaining clients.',
-    navigatePath: SERVICES_NAVIGATION.WEBGAME
+    navigatePath: SERVICES_NAVIGATION.WEBGAME,
   },
   'Landing Page': {
     icon: LandingIcon,
     preview: 'Creation layouts of any complexity.',
     description: 'Including standalone pages for both B2B and B2C to collect user info, drive sales and more.',
-    navigatePath: SERVICES_NAVIGATION.LANDING
+    navigatePath: SERVICES_NAVIGATION.LANDING,
   },
   'Product Consulting': {
     icon: ConsultingIcon,
     preview: 'Analyze and benchmark product.',
     description: 'Also create intelligent development strategies for a smoother, optimal UX.',
-    navigatePath: SERVICES_NAVIGATION.CONSULTING
+    navigatePath: SERVICES_NAVIGATION.CONSULTING,
   },
 }
 
@@ -601,8 +601,8 @@ export const CONTACT_INFO: Array<ContactCardProps> = [
 
 export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   [SERVICES_NAVIGATION.FRONTEND]: {
-    serviceTitle: 'FrontEnd Development',
-    image: frontendImg,
+    serviceTitle: 'Frontend Development',
+    icons: [VueIcon, ReduxIcon, ReactIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     firstArticle: {
       image: frontendImg,
@@ -628,7 +628,7 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   },
   [SERVICES_NAVIGATION.ECOMMERCE]: {
     serviceTitle: 'E-Commerce',
-    image: '',
+    icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     firstArticle: {
       image: '',
@@ -653,8 +653,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
       'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
   },
   [SERVICES_NAVIGATION.BACKEND]: {
-    serviceTitle: 'BackEnd Development',
-    image: '',
+    serviceTitle: 'Backend Development',
+    icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     firstArticle: {
       image: '',
@@ -680,7 +680,7 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   },
   [SERVICES_NAVIGATION.WEBGAME]: {
     serviceTitle: 'Web Game',
-    image: '',
+    icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     firstArticle: {
       image: '',
@@ -706,7 +706,7 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   },
   [SERVICES_NAVIGATION.LANDING]: {
     serviceTitle: 'Landing page',
-    image: '',
+    icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     firstArticle: {
       image: '',
@@ -732,7 +732,7 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   },
   [SERVICES_NAVIGATION.CONSULTING]: {
     serviceTitle: 'Product Consulting',
-    image: '',
+    icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     firstArticle: {
       image: '',

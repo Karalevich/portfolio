@@ -6,12 +6,11 @@ import Card from '@mui/material/Card/Card'
 import { Button, CardContent, CardMedia } from '@mui/material'
 import { POSTS } from '../../../constants/personalInfo'
 import classnames from 'classnames'
-import { MOBILE_SIZE } from '../../../constants/settings'
 import styles from './Blog.module.scss'
 import { PostsContent } from './types'
 
 
-const Posts: PostsContent = ({ widthOfWindow }) => {
+const Posts: PostsContent = ({ isTabletOrMobile }) => {
   const carouselContext = useContext(CarouselContext)
   const [currentSlide, setCurrentSlide] = useState(carouselContext?.state?.currentSlide)
   useEffect(() => {
@@ -20,13 +19,9 @@ const Posts: PostsContent = ({ widthOfWindow }) => {
     }
 
     carouselContext?.subscribe(onChange)
-    window.addEventListener('resize', onChange)
-    return () => {
-      carouselContext?.unsubscribe(onChange)
-      window.removeEventListener('resize', onChange)
-    }
 
-  }, [carouselContext])
+    return () => carouselContext?.unsubscribe(onChange)
+  }, [])
 
 
   const recommendations = POSTS.map(({ img, title, description }, index) => (
@@ -49,7 +44,7 @@ const Posts: PostsContent = ({ widthOfWindow }) => {
     <Slider
       classNameAnimation={classnames({
         [styles.lastSlide]: currentSlide === POSTS.length - 1,
-        [styles.sliderTray]: widthOfWindow < MOBILE_SIZE,
+        [styles.sliderTray]: isTabletOrMobile,
       })}>
       {recommendations}
     </Slider>

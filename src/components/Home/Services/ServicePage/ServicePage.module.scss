@@ -1,3 +1,5 @@
+@import './src/styles/variables';
+
 .servicePage {
   width: 100%;
   padding-top: 3.125rem;
@@ -6,15 +8,68 @@
     margin-bottom: 4.375rem;
 
     .serviceTitle {
-      margin-bottom: 1.5625rem;
+      margin-bottom: 1.1rem;
+      text-transform: capitalize;
+    }
+
+    .breadcrumbs {
+      margin-bottom: 0.6rem;
+
+      .MuiBreadcrumbs-separator {
+        color: $paragraph;
+      }
+    }
+
+    .currentService {
       text-transform: capitalize;
     }
 
     .previewImg {
       width: 100%;
       height: 28.125rem;
-      object-fit: cover;
+      background: url("../../../../assets/img/service-page.webp") no-repeat, $service-page-bcg;
+      background-size: contain;
+      padding: 10rem 0 0 30rem;
     }
+
+    .stack {
+      font-family: 'Nunito Sans', sans-serif;
+      text-transform: capitalize;
+      color: $service-page-color;
+      width: max-content;
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      flex-direction: column;
+    }
+
+    //.first {
+    //  width: 110%;
+    //}
+
+    .second {
+      align-self: flex-end;
+    }
+
+    .iconWrapper {
+      font-size: 3rem;
+      position: absolute;
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
+
+    }
+
+    .link:hover {
+      text-decoration: underline;
+      text-underline-position: under;
+      text-decoration-color: $element;
+    }
+
+    //    .previewImg:hover .iconWrapper {
+    //  transition: all 0.5s ease-in-out;
+    //  transform: rotate(360deg);
+    //}
+
+
   }
 
   .main {
@@ -41,7 +96,6 @@
       float: left;
       width: 38.55%;
     }
-
 
     .text {
       margin-bottom: 3rem;

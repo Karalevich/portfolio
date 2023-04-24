@@ -49,6 +49,10 @@ export const mainTheme = createTheme({
         },
         arrow: {
           color: 'var(--tooltip) !important',
+          top: '20px',
+          '&: before': {
+            backgroundColor: 'var(--tooltip) !important',
+          }
         },
       },
     },

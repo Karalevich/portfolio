@@ -10,6 +10,6 @@ export type PostProps = {
 }
 
 type PostsProps = {
-  widthOfWindow: number
+  isTabletOrMobile: boolean
 }
 export type PostsContent = FunctionComponent<PostsProps>

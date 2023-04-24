@@ -5,36 +5,32 @@ import { SliderContentComponent } from './types'
 import { StarIcon } from '../../Custom/Icons'
 import styles from './Recommendations.module.scss'
 import Card from '@mui/material/Card/Card'
-import { Avatar, Button } from '@mui/material'
+import { Avatar, Button, useMediaQuery } from '@mui/material'
 import { linkedInRecommendations, RECOMMENDATIONS } from '../../../constants/personalInfo'
 import MovingIcon from '@mui/icons-material/Moving'
 import classnames from 'classnames'
 import { MOBILE_SIZE } from '../../../constants/settings'
 
 
-const SliderContent: SliderContentComponent = ({ widthOfWindow }) => {
+const SliderContent: SliderContentComponent = ({isTabletOrMobile}) => {
   const carouselContext = useContext(CarouselContext)
   const [currentSlide, setCurrentSlide] = useState(carouselContext?.state?.currentSlide)
+
   useEffect(() => {
     function onChange() {
       setCurrentSlide(carouselContext.state.currentSlide)
     }
 
     carouselContext?.subscribe(onChange)
-    window.addEventListener('resize', onChange)
-    return () => {
-      carouselContext?.unsubscribe(onChange)
-      window.removeEventListener('resize', onChange)
-    }
-
-  }, [carouselContext])
+    return () => carouselContext?.unsubscribe(onChange)
+  }, [])
 
   const stars: Array<ReactElement> = []
   for (let i = 0; i < 5; i++) {
     stars.push(<StarIcon className={styles.star} key={i}/>)
   }
   const recommendations = RECOMMENDATIONS.map(({ title, author, occupation, description, image }, index) => (
-    <Slide key={title} index={index || 0} innerClassName={styles.innerSlide} >
+    <Slide key={title} index={index || 0} innerClassName={styles.innerSlide}>
       <Card className={styles.card} elevation={0}>
         <header>
           <ul className={styles.stars}>
@@ -68,7 +64,7 @@ const SliderContent: SliderContentComponent = ({ widthOfWindow }) => {
     <Slider
       classNameAnimation={classnames({
         [styles.lastSlide]: currentSlide === RECOMMENDATIONS.length - 1,
-        [styles.sliderTray]: widthOfWindow < MOBILE_SIZE,
+        [styles.sliderTray]: isTabletOrMobile,
       })}>
       {recommendations}
     </Slider>

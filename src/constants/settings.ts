@@ -13,6 +13,8 @@ export const LIGHT = [
   { prop: 'nav-bcg-svg', value: '#e4e6eb' },
   { prop: 'skeleton', value: 'rgba(0, 0, 0, 0.6)' },
   { prop: 'tooltip', value: 'rgba(12,20,28,0.9)' },
+  { prop: 'service-page-bcg', value: 'linear-gradient(90deg, rgba(106,134,244,1) 0%, rgba(187,221,255,1) 100%)' },
+  { prop: 'service-page-color', value: 'hsl(188 100% 36% / 1)' },
 ]
 
 export const DARK = [
@@ -30,5 +32,7 @@ export const DARK = [
   { prop: 'nav-bcg-svg', value: '#767676' },
   { prop: 'skeleton', value: '#3A3B3C' },
   { prop: 'tooltip', value: 'rgba(240,240,246, 0.9)' },
+  { prop: 'service-page-bcg', value: 'linear-gradient(90deg, rgba(24,39,103,1) 0%, rgba(24,92,159,1) 100%)' },
+  { prop: 'service-page-color', value: 'lightpink' },
 ]
 
