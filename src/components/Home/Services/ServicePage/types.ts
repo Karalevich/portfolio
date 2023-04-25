@@ -13,12 +13,11 @@ export type ServicePage = {
   serviceTitle: string,
   icons: Array<(props: SvgIconProps) => ReactElement>,
   projectsTitle: string,
-  firstArticle: Article,
-  secondArticle: Article,
-  thirdArticle: string
+  examples: Array<Article>
 }
 
 type Article = {
   image?: string,
-  text: string
+  text: Array<string>,
+  link?: string
 }

@@ -14,10 +14,11 @@ import React from 'react'
 import { ServiceT } from './types'
 import { PriceItemProps } from '../components/Home/Price/types'
 import david from '../assets/img/David.png'
-import frontendImg from '../assets/img/frontend.png'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import { ProjectT } from 'src/components/Home/Portfolio/types'
 import blog from '../assets/img/blog.avif'
+import demandbase from '../assets/img/services/demandbase.avif'
+import nexon from '../assets/img/services/nexon.avif'
 import { ContactCardProps } from '../components/Home/Contact/types'
 import { PostProps } from '../components/Home/Blog/types'
 import { ServicePage } from '../components/Home/Services/ServicePage/types'
@@ -602,158 +603,182 @@ export const CONTACT_INFO: Array<ContactCardProps> = [
 export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   [SERVICES_NAVIGATION.FRONTEND]: {
     serviceTitle: 'Frontend Development',
-    icons: [VueIcon, ReduxIcon, ReactIcon, VueXIcon, TypeScriptIcon],
+    icons: [VueIcon, ReduxIcon, VueXIcon, TypeScriptIcon, ReactIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
-    firstArticle: {
-      image: frontendImg,
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
-        '\n' +
-        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
-        '\n' +
-        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
-    },
-    secondArticle: {
-      image: frontendImg,
-      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
-        '\n' +
-        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-        '\n' +
-        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
-        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
-    },
-    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
-      '\n' +
-      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+    examples: [
+      {
+        image: nexon,
+        link: 'https://www.nexon.com/main/en',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      },
+      {
+        image: demandbase,
+        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }, {
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }],
   },
   [SERVICES_NAVIGATION.ECOMMERCE]: {
     serviceTitle: 'E-Commerce',
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
-    firstArticle: {
-      image: '',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
-        '\n' +
-        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
-        '\n' +
-        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
-    },
-    secondArticle: {
-      image: '',
-      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
-        '\n' +
-        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-        '\n' +
-        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
-        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
-    },
-    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
-      '\n' +
-      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+    examples: [
+      {
+        image: nexon,
+        link: 'https://www.nexon.com/main/en',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      },
+      {
+        image: demandbase,
+        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }, {
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }],
   },
   [SERVICES_NAVIGATION.BACKEND]: {
     serviceTitle: 'Backend Development',
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
-    firstArticle: {
-      image: '',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
-        '\n' +
-        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
-        '\n' +
-        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
-    },
-    secondArticle: {
-      image: '',
-      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
-        '\n' +
-        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-        '\n' +
-        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
-        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
-    },
-    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
-      '\n' +
-      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+    examples: [
+      {
+        image: nexon,
+        link: 'https://www.nexon.com/main/en',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      },
+      {
+        image: demandbase,
+        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }, {
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }],
   },
   [SERVICES_NAVIGATION.WEBGAME]: {
     serviceTitle: 'Web Game',
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
-    firstArticle: {
-      image: '',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
-        '\n' +
-        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
-        '\n' +
-        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
-    },
-    secondArticle: {
-      image: '',
-      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
-        '\n' +
-        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-        '\n' +
-        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
-        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
-    },
-    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
-      '\n' +
-      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+    examples: [
+      {
+        image: nexon,
+        link: 'https://www.nexon.com/main/en',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      },
+      {
+        image: demandbase,
+        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }, {
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }],
   },
   [SERVICES_NAVIGATION.LANDING]: {
     serviceTitle: 'Landing page',
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
-    firstArticle: {
-      image: '',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
-        '\n' +
-        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
-        '\n' +
-        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
-    },
-    secondArticle: {
-      image: '',
-      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
-        '\n' +
-        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-        '\n' +
-        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
-        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
-    },
-    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
-      '\n' +
-      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+    examples: [
+      {
+        image: nexon,
+        link: 'https://www.nexon.com/main/en',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      },
+      {
+        image: demandbase,
+        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }, {
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }],
   },
   [SERVICES_NAVIGATION.CONSULTING]: {
     serviceTitle: 'Product Consulting',
-    icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
+    icons: [ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon, ReactIcon],
     projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
-    firstArticle: {
-      image: '',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum.\n' +
-        '\n' +
-        'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.\n' +
-        '\n' +
-        'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus.',
-    },
-    secondArticle: {
-      image: '',
-      text: '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tempus leo et, ac id lorem. In magna viverra morbi sodales etiam volutpat vitae tortor. Sit nulla vitae nisl tellus ut mollis. Sit elit, id semper elit id. Egestas et eget volutpat dictum sem.\n' +
-        '\n' +
-        '2. Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-        '\n' +
-        '3. Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n' +
-        'Mollis fermentum dui fermentum magna est nunc aliquet duis.',
-    },
-    thirdArticle: 'Ut non sem odio ut donec in erat massa nisi. Nibh et congue facilisis risus. Neque commodo tincidunt bibendum euismod rutrum. Eu metus urna vitae sem nulla. Nam fusce quam ipsum adipiscing varius curabitur consequat.\n' +
-      'Ornare purus in placerat netus elementum. Eget leo augue integer mi. Amet vestibulum et dui quis in blandit. Purus consequat sit sed lectus ultrices aliquam augue gravida. Sed augue iaculis at tempor nibh feugiat.\n' +
-      '\n' +
-      'Volutpat mattis pharetra vivamus sit. Non sed lacus, etiam volutpat sed. Phasellus rhoncus ut condimentum elit, semper at. Turpis justo tellus nunc odio nisl, non est risus. Morbi sed pharetra fermentum at. Consequat malesuada nec pretium malesuada pharetra vitae sit.\n',
+    examples: [
+      {
+        image: nexon,
+        link: 'https://www.nexon.com/main/en',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      },
+      {
+        image: demandbase,
+        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }, {
+        text: [
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
+          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
+          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+        ],
+      }],
   },
 }
