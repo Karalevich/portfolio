@@ -1,19 +1,20 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import styles from './ServicePage.module.scss'
 import { CustomSeparatorComponent, ServicePageComponent } from './types'
 import Recommendations from '../../Recommendations/Recommendations'
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import { linkedInRecommendations, SERVICE_PAGES } from '../../../../constants/personalInfo'
-import { Breadcrumbs, Button, Link as MUILink } from '@mui/material'
+import { useParams, Link } from 'react-router-dom'
+import { SERVICE_PAGES } from '../../../../constants/personalInfo'
+import { Breadcrumbs, Button, useMediaQuery } from '@mui/material'
 import classnames from 'classnames'
 import MovingIcon from '@mui/icons-material/Moving'
-import Card from '@mui/material/Card/Card'
+
 
 export const ServicePage: ServicePageComponent = () => {
   const { servicePage } = useParams()
   const ref = useRef<HTMLHeadingElement | null>(null)
   const { serviceTitle, projectsTitle, examples } = SERVICE_PAGES[servicePage as string]
   const [firstWord, secondWord] = serviceTitle.split(' ')
+  const isTabletOrDesktop = useMediaQuery('(min-width:768px)')
 
   const articles = examples.map(({ image, link, text }, index) => (
     <article className={styles.article} key={index}>
@@ -29,7 +30,7 @@ export const ServicePage: ServicePageComponent = () => {
         </div>
       </div>
       }
-      {text.map((t, index) => <p className={styles.text}>{t}</p>)}
+      {text.map((t, index) => <p key={index} className={classnames(styles.text, {[styles.mainIdea]: !image && index === 0})}>{t}</p>)}
     </article>
   ))
 
@@ -39,10 +40,10 @@ export const ServicePage: ServicePageComponent = () => {
         <h2 className={styles.serviceTitle}>{serviceTitle}</h2>
         <CustomSeparator currentService={servicePage as string}/>
         <div className={styles.previewImg}>
-          <h1 className={styles.stack} ref={ref}>
+          {isTabletOrDesktop && <h1 className={styles.stack} ref={ref}>
             <span className={styles.first}>{firstWord} </span>
             <span className={styles.second}>{secondWord}</span>
-          </h1>
+          </h1>}
         </div>
       </header>
       <main className={styles.main}>

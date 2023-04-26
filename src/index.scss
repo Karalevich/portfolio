@@ -29,12 +29,8 @@ body {
   Droid Sans, Helvetica Neue, sans-serif;
   background-color: $substrate;
   color: $main-text;
-  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms
-}
-
-body {
-  overflow: overlay;
-  scrollbar-gutter: stable;
+  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  will-change: scroll-position;
 }
 
 #root {
@@ -76,7 +72,7 @@ h6 {
   font-size: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6  {
+h1, h2, h3, h4, h5, h6 {
   color: $main-text;
 }
 
@@ -100,7 +96,7 @@ p {
   border-radius: 3px;
   min-height: 28px;
   padding: 100px 0 0;
- box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
 
   &:hover {
     background: $scrollbar-thumb-hover;
@@ -113,6 +109,10 @@ p {
 }
 
 @media only screen and (max-width: 767px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
   html {
     font-size: 3.2vw;
   }
@@ -128,15 +128,16 @@ p {
   h6 {
     font-size: 1.25rem;
   }
-  p{
+  p {
     font-size: 1.25rem;
     line-height: 1.8rem;
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-  html {
-    font-size: 1.5625vw;
+  body {
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
   h1 {
     font-size: 4rem;
@@ -150,7 +151,7 @@ p {
   h6 {
     font-size: 1.25rem;
   }
-  p{
+  p {
     font-size: 1.25rem;
     line-height: 1.8rem;
   }
@@ -158,9 +159,16 @@ p {
 
 @media only screen and (min-width: 1024px) and (max-width: 1600px) {
   html {
-     font-size: 1.111vw;
+    font-size: 1.111vw;
   }
 }
+
+@media only screen and (min-width: 1024px) {
+  body {
+    overflow-y: overlay;
+  }
+}
+
 
 
 

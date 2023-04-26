@@ -604,30 +604,44 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   [SERVICES_NAVIGATION.FRONTEND]: {
     serviceTitle: 'Frontend Development',
     icons: [VueIcon, ReduxIcon, VueXIcon, TypeScriptIcon, ReactIcon],
-    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
+    projectsTitle: 'As a Frontend Engineer I have worked with a wide range of different projects and technologies, here you can get acquainted with some of them.',
     examples: [
       {
         image: nexon,
         link: 'https://www.nexon.com/main/en',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          'Nexon.com is the official and main website of Nexon, where users can find information about the company, its games, and its services, as well as access support and community resources.',
+          `Among other things, I was responsible for the login/registration page and the user account page.
+            The project is built on a stack of Vue, VueX technologies. And supports a large number of different variations of 
+            authorization methods, Web, Steam, Xbox, PSP, Nexon Game Launcher and also varies depending on the region and age of 
+            the player.`,
+          `I made a particularly significant contribution to the development and refinement of the user login process, working closely with a team of designers and backend engineers, 
+          I was able to develop an interface that greatly facilitated and accelerated the process of creating an account.`,
         ],
       },
       {
         image: demandbase,
         link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `Demandbase.com is private (you can check demo) account-based marketing (ABM) platform for B2B companies. The platform allows businesses to identify and target the accounts that are most
+           likely to become customers, personalize their marketing messages, and measure the impact of their marketing efforts.`,
+          `The project is built on the stack of React, Redux, React-Router, React-Thunk, React-Saga technologies. And it includes a huge number of interconnected pages, settings and a web component, which makes this project extremely complex.`,
+          `The project had problems with extensibility. I suggested eliminating the bottleneck of the application. Replacing 
+          Redux-Thunk with Redux-Saga to eliminate difficulties in maintaining asynchronous request from client to server. 
+          And also gradually introduce a more reliable useHooks syntax as an alternative to the outdated version of React15, 
+          and get rid of compatibility problems with modern libraries. Also I developed a new way to create customer preference tracking tags, which increased our customers' revenue.`,
         ],
       }, {
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `The main idea of frontend development is to create the user-facing part of a website or application, which is
+           what users see and interact with. Frontend development involves creating the visual and interactive components 
+           of a website or application, such as the layout, design, colors, typography, buttons, forms, animations, and other elements.`,
+          `Frontend developers use web technologies such as HTML, CSS, and JavaScript to create these user-facing components. 
+          They also use frontend frameworks and libraries such as React, Angular, and Vue.js to simplify the development 
+          process and create more complex user interfaces`,
+          `The goal of frontend development is to create a user experience that is intuitive, engaging, and easy to use. 
+          This requires a deep understanding of user behavior and design principles, as well as technical expertise 
+          in web development technologies.`,
         ],
       }],
   },
