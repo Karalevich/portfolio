@@ -12,7 +12,6 @@ export type CustomSeparatorComponent = FunctionComponent<CustomSeparatorProps>
 export type ServicePage = {
   serviceTitle: string,
   icons: Array<(props: SvgIconProps) => ReactElement>,
-  projectsTitle: string,
   examples: Array<Article>
 }
 

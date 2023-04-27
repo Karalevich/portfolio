@@ -12,7 +12,7 @@ import MovingIcon from '@mui/icons-material/Moving'
 export const ServicePage: ServicePageComponent = () => {
   const { servicePage } = useParams()
   const ref = useRef<HTMLHeadingElement | null>(null)
-  const { serviceTitle, projectsTitle, examples } = SERVICE_PAGES[servicePage as string]
+  const { serviceTitle, examples } = SERVICE_PAGES[servicePage as string]
   const [firstWord, secondWord] = serviceTitle.split(' ')
   const isTabletOrDesktop = useMediaQuery('(min-width:768px)')
 
@@ -47,7 +47,10 @@ export const ServicePage: ServicePageComponent = () => {
         </div>
       </header>
       <main className={styles.main}>
-        <h3 className={styles.projectsTitle}>{projectsTitle}</h3>
+        <h3 className={styles.projectsTitle}>
+          As a Software Engineer I have worked with a wide range of different projects
+          and technologies, here you can get acquainted with some of them.
+        </h3>
         {articles}
       </main>
       <footer>

@@ -19,6 +19,12 @@ import { ProjectT } from 'src/components/Home/Portfolio/types'
 import blog from '../assets/img/blog.avif'
 import demandbase from '../assets/img/services/demandbase.avif'
 import nexon from '../assets/img/services/nexon.avif'
+import nexongc from '../assets/img/services/nexongc.avif'
+import armory from '../assets/img/services/armory.avif'
+import profile from '../assets/img/services/profile.avif'
+import profileModal from '../assets/img/services/profile-modal.avif'
+import clans from '../assets/img/services/clans.avif'
+import dockyard from '../assets/img/services/dockyard.avif'
 import { ContactCardProps } from '../components/Home/Contact/types'
 import { PostProps } from '../components/Home/Blog/types'
 import { ServicePage } from '../components/Home/Services/ServicePage/types'
@@ -604,7 +610,6 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   [SERVICES_NAVIGATION.FRONTEND]: {
     serviceTitle: 'Frontend Development',
     icons: [VueIcon, ReduxIcon, VueXIcon, TypeScriptIcon, ReactIcon],
-    projectsTitle: 'As a Frontend Engineer I have worked with a wide range of different projects and technologies, here you can get acquainted with some of them.',
     examples: [
       {
         image: nexon,
@@ -646,99 +651,177 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
       }],
   },
   [SERVICES_NAVIGATION.ECOMMERCE]: {
-    serviceTitle: 'E-Commerce',
+    serviceTitle: 'E-Commerce Development',
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
-    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     examples: [
       {
-        image: nexon,
-        link: 'https://www.nexon.com/main/en',
+        image: armory,
+        link: 'https://armory.worldofwarships.com/en',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `Armory.worldofwarships.com is the official website for the Armory feature in the popular online game 
+          World of Warships. The Armory is an in-game store where players can use their in-game currency or real money 
+          to purchase various items such as premium ships, containers, and special upgrades.`,
+          `On the website, players can browse through the available items in the Armory and learn more about their 
+          features and benefits. They can also purchase items directly from the website and then log in to the game to claim them.`,
+          `The application is written in ReactJS using modern approaches and best practices. I was engaged in maintaining and 
+          updating the logic and visual characteristics of components in Storybook, some of the components that you will 
+          find in the application were developed from scratch: tooltips, selectors, dropdowns.`,
         ],
       },
       {
-        image: demandbase,
-        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        image: nexongc,
+        link: 'https://www.nexongamecard.com',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `The Nexon Game Card is a digital prepaid card that can be used to make purchases online in various gaming, music, and
+           other entertainment platforms. The Nexon Game Card website website also offers a range of tools and 
+           features to manage your Nexon Game Card account, such as checking your balance, redeeming codes, and viewing your 
+           transaction history.`,
+          `When you purchase a Nexon Game Card card, you receive a unique code that can be redeemed on the website or directly 
+          on a participating retailer's website. The value of the card can then be used to purchase virtual items or 
+          in-game currency for various online games such as MapleStory, World of Tanks, and Warframe, or to buy digital 
+          music or movies from participating providers like iTunes or Google Play.`,
+          `I completely rebranded the company's affiliate website "Nexon Game Card" which increased gift card sales and
+           generated additional annual revenue.`,
         ],
       }, {
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `E-commerce development is the process of creating an online platform that enables 
+            businesses to sell their products or services over the internet. This can involve developing a custom 
+            e-commerce website, integrating online payment systems, setting up shipping and delivery mechanisms, 
+            and implementing marketing and analytics tools to help businesses manage their online sales.`,
+          `E-commerce development requires a range of technical skills, including web development, database management, 
+          and online payment processing, as well as an understanding of business operations and consumer behavior. 
+          As such, many businesses opt to work with e-commerce development companies or professionals to ensure that 
+          their online platform is optimized for sales and meets the needs of their customers.`,
+          `Overall, e-commerce has revolutionized the way that businesses operate and has opened up new opportunities 
+          for both businesses and consumers to engage in online transactions, and e-commerce development is a crucial 
+          part of building successful online businesses in today's digital landscape.`,
         ],
       }],
   },
   [SERVICES_NAVIGATION.BACKEND]: {
     serviceTitle: 'Backend Development',
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
-    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     examples: [
       {
-        image: nexon,
-        link: 'https://www.nexon.com/main/en',
+        image: profile,
+        link: 'https://profile.worldofwarships.eu/statistics/595813816/pve',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `Profile.worldofwarships.eu is a website that provides information and statistics about players and their 
+              performance in the online multiplayer game World of Warships. The website is affiliated with Wargaming, 
+              the company that developed and published World of Warships.`,
+          `Players can access their own profile by logging in with their World of Warships account credentials. Once 
+          logged in, they can view detailed statistics about their gameplay, such as their win rate, average damage 
+          per battle, and the types of ships they use most frequently.`,
+          `In general, I was responsible for the frontend part of this app to ensure a seamless user experience, 
+          I would have implemented features such as pagination, filtering, and sorting to make it easy for users to 
+          find the information they are looking for. I would have also made sure that the website is mobile-responsive 
+          and works well on a variety of devices and screen sizes. But I also made a significant contribution to the 
+          development of the backend part of this application. One of the main feature of which I am proud is the 
+          profile privacy settings, you can read a little more below.`,
         ],
       },
       {
-        image: demandbase,
-        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        image: profileModal,
+        link: 'ttps://profile.worldofwarships.eu/statistics/595813816/pve',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `Profile privacy settings in profile.worldofwarships.eu allow players to control who can view their 
+              statistics and other information on the website.`,
+          `Players can choose to make their profile either public, private, or visible to only their friends. If a 
+          player sets their profile to public, anyone can view their profile and statistics. If a player sets their 
+          profile to private, no one can view their profile or statistics except for the player themselves. 
+          If a player sets their profile to visible to friends only, only players who have a unique link can view your 
+          profile and statistics.`,
+          `To create the profile settings feature on the Backend part I would have created the API endpoints using Python 
+          and FastAPI frameworks. To ensure the security and privacy of user data, I would have used authentication 
+          and authorization mechanisms using JSON Web Tokens and role-based access control.`,
+          `I would also have used error handling and validation to ensure that the API endpoints are robust and
+           can handle a variety of inputs and scenarios. This would include validating user input, handling errors 
+           gracefully, and returning meaningful error messages to the client.`,
+          `Overall, creating the profile settings feature using Python and FastAPI would have been a challenging but 
+          rewarding project that required a strong understanding of backend development, data modeling, API design, 
+          and security best practices. And even the fact that I've never worked with python before didn't stop me from doing my job quickly and 
+          efficiently. I like to try new technologies and approaches in my work. You can see even more examples of 
+          working with the backend using MERN stack in my personal projects on the portfolio tab.`,
         ],
       }, {
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `Backend development is a crucial part of building any web application, as it provides the foundation for the entire system. 
+        Without a robust and well-designed backend, the frontend and user experience would not be possible.`,
+          `Backend development refers to the server-side programming that powers the functionality and logic of a web application.
+           It includes everything that happens behind the scenes, such as data storage, processing, and retrieval, 
+           user authentication and authorization, and the handling of requests and responses between the client-side
+            and the server-side.`,
         ],
       }],
   },
   [SERVICES_NAVIGATION.WEBGAME]: {
     serviceTitle: 'Web Game',
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
-    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     examples: [
       {
-        image: nexon,
-        link: 'https://www.nexon.com/main/en',
+        image: clans,
+        link: 'https://clans.worldofwarships.eu/clan-profile/500192219?source=search',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `Clans.worldofwarships.eu is a website that allows World of Warships players to create, manage, and join clans. World of 
+            Warships is a popular online multiplayer game that simulates naval combat, and clans are groups of players who band 
+            together to compete against other clans and participate in clan-based activities`,
+          `This is not a classic web game as we are usually used to seeing. This is more of a web platform that helps to 
+          play the computer game World of Warships, but at the same time, this site is made very interactive. The website 
+          provides a range of tools and features to help clan leaders and members organize their activities and 
+          communicate with each other.`,
+          `Some of the key features of clans include:`,
+          `1.Clan management tools: Clan leaders can manage their clan's roster, set recruitment requirements, and customize 
+          their clan's profile and emblem. 
+          2.Clan battles: Clans can participate in clan battles, which are competitive matches between clans that offer rewards and rankings.
+          3.Events: The website provides information about upcoming events and activities, including tournaments and special missions. 
+          4.Communication tools: Clans can use the website's messaging system and forums to communicate with each other, 
+          plan events, and discuss strategy. 
+          5.Leaderboards: The website provides rankings for clans based on their performance in various activities, 
+          such as clan battles.`,
+          `I  implemented TypeScript into the project and also implemented a new functional approach using hooks instead
+           of class components. So I did huge work and also isolated duplicated code into individual components, 
+           writing types, and interfaces.  Also dozens of different improvements and updates. So the final result very 
+           satisfied us even more than we expected. The load time decreased significantly and what is important, the 
+           speed of implementing new features and the frequency of appearance of new bugs decrease as well.`
         ],
       },
       {
-        image: demandbase,
-        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        image: dockyard,
+        link: 'https://dockyard.worldofwarships.com',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
-        ],
+        `The Dockyard is a application that provides players of the popular online multiplayer game 
+        World of Warships with access to the game's dockyard feature. The dockyard is a special seasonable feature that allows 
+        players to build and customize their own ships, with each dockyard event featuring a different ship for players 
+        to construct.`,
+          `And what is most exciting, they can do it both in a web browser and in the desktop game itself. To achieve this 
+          goal, the CEF browser engine built into the game is used.`,
+          `I was responsible for developing the player interface, which allowed players to control the stages of building 
+          a ship using the next, previous, stop, play buttons. The player can re-view the animation of the construction 
+          of the ship as many times as he wishes. All this was done using React, Redux stack.`,
+          `Please note that this is a seasonal event that runs several times a year and may not be available at the moment. 
+          If you are interested in this project, you can find more information in my LinkedIn profile.`
+          ],
       }, {
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
-        ],
+          `Web game development is the process of creating games that can be played through web browsers. These games 
+          can range from simple puzzle games to complex multiplayer games that involve real-time interaction between 
+          players from all over the world.`,
+          `Web game development requires a good understanding of programming languages such as JavaScript, HTML, and CSS.
+          One of the main advantages of web game development is the ease of distribution, as games can be easily accessed 
+          by players without the need for downloads or installations. Web games can also be played on a variety of devices, 
+          including desktops, laptops, smartphones, and tablets.`,
+          `However, web game development also comes with its own set of challenges, including browser compatibility 
+          issues, security concerns, and performance optimization. Developers must ensure that their games are 
+          compatible with a wide range of browsers and devices, and that they are secure from potential attacks.`,
+          `Overall, web game development offers a unique and exciting opportunity for developers to create engaging and 
+          accessible games that can be enjoyed by players all around the world.`
+         ],
       }],
   },
   [SERVICES_NAVIGATION.LANDING]: {
     serviceTitle: 'Landing page',
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
-    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     examples: [
       {
         image: nexon,
@@ -768,7 +851,6 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
   [SERVICES_NAVIGATION.CONSULTING]: {
     serviceTitle: 'Product Consulting',
     icons: [ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon, ReactIcon],
-    projectsTitle: 'At vero eos et accusam et justo duo dolores rebum stet clita kasd gubergren.',
     examples: [
       {
         image: nexon,
