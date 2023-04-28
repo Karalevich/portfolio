@@ -1,19 +1,15 @@
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import React, { useEffect, useRef, useState } from 'react'
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import Home from './components/Home/Home'
+import { BrowserRouter } from 'react-router-dom'
 import Nav from './components/Navbar/Navbar'
 import { mainTheme } from './styles/themes/mainTheme'
 import Info from './components/Info/Info'
 import Copyright from './components/Copyright/Copyright'
 import Menu from './components/Menu/Menu'
-import Contact from './components/Home/Contact/Contact'
 import styles from './components/Home/Home.module.scss'
-import Portfolio from './components/Home/Portfolio/Portfolio'
-import CV from './components/Home/CV/CV'
-import Services from './components/Home/Services/Services'
-import ServicePage from './components/Home/Services/ServicePage/ServicePage'
-
+import ScrollToTop from './components/Custom/ScrollToTop'
+import './index.scss'
+import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
 
 
 export const App: React.FC<unknown> = () => {
@@ -68,19 +64,11 @@ export const App: React.FC<unknown> = () => {
   return (
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>
+        <ScrollToTop/>
         <Menu toggleNav={toggleNav} toggleInfo={toggleInfo}/>
         <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo}/>
         <section className={styles.home} ref={homeRef}>
-          <Routes>
-            <Route path={'/'} element={<Navigate replace to='/home'/>}/>
-            <Route path={'/home'} element={<Home/>}/>
-            <Route path={'/services'} element={<Services/>}/>
-            <Route path={'/services/:servicePage'} element={<ServicePage/>}/>
-            <Route path={'/cv'} element={<CV/>}/>
-            <Route path={'/portfolio'} element={<Portfolio/>}/>
-            <Route path={'/blog'} element={<Home/>}/>
-            <Route path={'/contact'} element={<Contact/>}/>
-          </Routes>
+          <AnimatedRoutes/>
         </section>
         <Nav toggleNav={toggleNav} isOpen={isOpenNav}/>
         <Copyright/>
@@ -88,3 +76,5 @@ export const App: React.FC<unknown> = () => {
     </ThemeProvider>
   )
 }
+
+

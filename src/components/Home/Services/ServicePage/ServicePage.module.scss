@@ -32,7 +32,7 @@
       padding: 10rem 10rem 0 0;
       display: flex;
       justify-content: end;
-      position: relative;
+      flex-direction: column;
     }
 
     .stack {
@@ -44,6 +44,18 @@
       flex-wrap: wrap;
       flex-direction: column;
       height: fit-content;
+      flex-grow: 1;
+      align-self: flex-end;
+    }
+
+    .order {
+      height: 2.5rem;
+      display: flex !important;
+      align-items: center;
+      line-height: 1rem;
+      align-self: center;
+      margin-top: 4rem;
+      font-weight: 600;
     }
 
     .center {
@@ -146,19 +158,35 @@
       text-indent: 2rem;
     }
 
-    .text:last-child{
+    .text:last-child {
       margin-bottom: 0;
     }
 
-    .mainIdea{
-      background-color: rgba(255, 180, 0, 0.2);
+    .mainIdea {
+      background-color: $bcg-service-idea;
       padding: 1rem;
+      color: $main-text;
     }
   }
 }
 
 @media only screen and (max-width: 767px) {
   .servicePage {
+    .header {
+      .stack {
+        padding-right: 2.3rem;
+      }
+
+      .order {
+        margin-top: 11.3rem;
+
+        svg {
+          font-size: 1rem;
+          margin-left: -5px;
+        }
+      }
+    }
+
     .main {
       .article {
         margin-bottom: 1rem;

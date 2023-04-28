@@ -35,7 +35,7 @@
   margin: 2vh 0;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .banner {
     width: 100%;
     margin-right: auto;
@@ -75,11 +75,29 @@
     width: 100%;
     margin-right: auto;
     margin-left: auto;
-    padding: 7rem 6rem 7.9rem;
+    padding: 7rem 2rem 7.9rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-size: calc(100% - 6rem) calc(100% - 7rem)
+    justify-content: space-between;
+    background-size: calc(100% - 2rem) calc(100% - 6rem);
+    background-repeat: repeat;
+
+    .name {
+      text-align: center;
+
+      .pronoun {
+        display: none;
+      }
+    }
+
+    .occupation {
+      text-align: center;
+    }
+  }
+
+  .button {
+    margin-top: 1rem !important;
   }
 
   .message {

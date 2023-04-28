@@ -14,7 +14,7 @@ export const Contact: ContactComponent = () => {
       <section className={styles.contact}>
         <article className={styles.leaveInfo}>
           <header>
-            <h2 className={styles.title}>Leave us your info</h2>
+            <h2 className={styles.title}>Leave me your info</h2>
             <Card className={styles.info} elevation={0}>
               <Input className={styles.input} fullWidth label={'Your Full Name (Required)'} required id='name'/>
               <Input className={styles.input} fullWidth label={'Your Email (Required)'} required id='email'/>

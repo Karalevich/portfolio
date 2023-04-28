@@ -25,6 +25,8 @@ import profile from '../assets/img/services/profile.avif'
 import profileModal from '../assets/img/services/profile-modal.avif'
 import clans from '../assets/img/services/clans.avif'
 import dockyard from '../assets/img/services/dockyard.avif'
+import ignition from '../assets/img/services/ignition.avif'
+import maplestory from '../assets/img/services/maplestory.avif'
 import { ContactCardProps } from '../components/Home/Contact/types'
 import { PostProps } from '../components/Home/Blog/types'
 import { ServicePage } from '../components/Home/Services/ServicePage/types'
@@ -783,14 +785,14 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
            of class components. So I did huge work and also isolated duplicated code into individual components, 
            writing types, and interfaces.  Also dozens of different improvements and updates. So the final result very 
            satisfied us even more than we expected. The load time decreased significantly and what is important, the 
-           speed of implementing new features and the frequency of appearance of new bugs decrease as well.`
+           speed of implementing new features and the frequency of appearance of new bugs decrease as well.`,
         ],
       },
       {
         image: dockyard,
         link: 'https://dockyard.worldofwarships.com',
         text: [
-        `The Dockyard is a application that provides players of the popular online multiplayer game 
+          `The Dockyard is a application that provides players of the popular online multiplayer game 
         World of Warships with access to the game's dockyard feature. The dockyard is a special seasonable feature that allows 
         players to build and customize their own ships, with each dockyard event featuring a different ship for players 
         to construct.`,
@@ -800,8 +802,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
           a ship using the next, previous, stop, play buttons. The player can re-view the animation of the construction 
           of the ship as many times as he wishes. All this was done using React, Redux stack.`,
           `Please note that this is a seasonal event that runs several times a year and may not be available at the moment. 
-          If you are interested in this project, you can find more information in my LinkedIn profile.`
-          ],
+          If you are interested in this project, you can find more information in my LinkedIn profile.`,
+        ],
       }, {
         text: [
           `Web game development is the process of creating games that can be played through web browsers. These games 
@@ -815,8 +817,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
           issues, security concerns, and performance optimization. Developers must ensure that their games are 
           compatible with a wide range of browsers and devices, and that they are secure from potential attacks.`,
           `Overall, web game development offers a unique and exciting opportunity for developers to create engaging and 
-          accessible games that can be enjoyed by players all around the world.`
-         ],
+          accessible games that can be enjoyed by players all around the world.`,
+        ],
       }],
   },
   [SERVICES_NAVIGATION.LANDING]: {
@@ -824,27 +826,55 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
     icons: [ReactIcon, ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon],
     examples: [
       {
-        image: nexon,
-        link: 'https://www.nexon.com/main/en',
+        image: ignition,
+        link: 'https://maplestory.nexon.net/micro-site/ignition',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `MapleStory is a popular massively multiplayer online role-playing game (MMORPG) developed by Nexon. 
+          The website appears to be a micro-site within the official MapleStory website, dedicated to promoting a 
+          specific update or event known as "Ignition."`,
+          `The Ignition is a major update to the game that introduces new content, features, and improvements to 
+          gameplay. The update includes new areas to explore, new quests to complete, new bosses to battle, and new 
+          equipment to acquire. The update also introduces improvements to the user interface, game performance, and 
+          overall player experience.`,
+          `I created this microsite from scratch using Vue and SCSS. There is no complicated logic, routing or a large 
+          number of asynchronous requests. But there is a responsive layout and interesting CSS solutions. Such as 
+          animated background or iridescent border animation.`,
+          `The micro-site offers various resources for 
+          players, such as screenshots, and a link to download the game client. There is also a section 
+          dedicated to the game's community, where players can connect with each other, share their experiences, and get
+           help with gameplay.`,
         ],
       },
       {
-        image: demandbase,
-        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
+        image: maplestory,
+        link: 'https://maplestory.nexon.net/landing',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `The landing page provides visitors with an overview of the game, including its features, gameplay, and 
+         community. It showcases the game's vibrant and colorful graphics, as well as its rich storyline and diverse characters.`,
+          `In addition to the game overview, the landing page also provides links to various resources for players, 
+            such as news and events, game updates, community forums, and social media channels. Players can also download 
+            the game client directly from the landing page.`,
+          `The landing page also features a section for newcomers, providing information on how to get started with 
+            the game, including creating a character, selecting a class, and exploring the game world. There are also 
+            links to various resources for beginners, such as tutorials, guides, and FAQs.`,
+          `Overall, this website serves as an informative and user-friendly gateway 
+          to the world of MapleStory, providing players with all the information they need to start playing, stay 
+          up-to-date on the latest game developments, and connect with the game's community. And I was responsible for 
+          supporting and updating content on website.`,
         ],
       }, {
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `Landing page development involves creating a web page that is specifically designed to convert visitors 
+          into customers or leads. A landing page typically has a clear and focused objective, such as promoting a 
+          product, generating leads, or encouraging visitors to sign up for a service.`,
+          `The development process typically involves several key steps, including: Planning - The first step in 
+          landing page development is to define the goals and objectives of the page, as well as the target audience. 
+          Design - The next step is to create a design that is visually appealing, easy to navigate, and consistent 
+          with the brand's overall aesthetic.vContent creation - Once the design is in place, the next step is to 
+          create the content for the landing page.  Testing and optimization - Once the landing page is live, it's 
+          important to test and optimize it to ensure it's achieving the desired results.`,
+          `Overall, landing page development is a crucial part of any digital marketing strategy, as it can help 
+          businesses to increase their conversion rates, generate more leads, and ultimately grow their bottom line.`,
         ],
       }],
   },
@@ -853,27 +883,24 @@ export const SERVICE_PAGES: { [property: string]: ServicePage } = {
     icons: [ReduxIcon, VueIcon, VueXIcon, TypeScriptIcon, ReactIcon],
     examples: [
       {
-        image: nexon,
-        link: 'https://www.nexon.com/main/en',
         text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
-        ],
-      },
-      {
-        image: demandbase,
-        link: 'https://www.g2.com/products/demandbase-abm-abx-cloud/interactive_demo',
-        text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
-        ],
-      }, {
-        text: [
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at ullamcorper habitant hendrerit ut bibendum augue. Eget aliquet vel in purus. Sem netus sed est et est neque. Risus ac, sed aliquet vestibulum',
-          'A nec, leo, sed dictum orci adipiscing mauris vestibulum in. Ornare mauris quisque nunc quam. Sed egestas ante aenean tristique non integer nisl est. Nec habitasse in a, bibendum vitae, enim ipsum. Urna sagittis aenean et, malesuada. Duis faucibus in orci nulla.',
-          'Senectus massa porttitor id odio id semper aenean ut at. Non est cras risus sed. Integer ornare lorem blandit tortor, hendrerit tortor quam lacus',
+          `Product consulting in software development is a process of providing guidance and expertise to businesses or 
+          individuals who are developing a software product. A product consultant helps the client to define, plan, and 
+          execute their product strategy and ensure that the product meets the needs of the target audience.`,
+          `Product consulting starts with understanding the client's business objectives and goals. The consultant works
+           closely with the client to identify the target market, customer needs, and product features. This information 
+           is used to develop a product strategy that will guide the development process.`,
+          `During the development process, the product consultant provides guidance on various aspects of product 
+          development, such as user experience design, technical architecture, development methodology, quality 
+          assurance, and product launch.`,
+          `The product consultant also ensures that the product is aligned with industry standards and best practices. 
+          This includes ensuring that the product is scalable, secure, and optimized for performance. The consultant 
+          may also provide guidance on pricing, licensing, and monetization strategies.`,
+          `Product consulting is an ongoing process, and the consultant works closely with the client throughout the 
+          product lifecycle. The consultant may conduct market research and gather feedback from customers to 
+          continuously improve the product.`,
+          `Overall, product consulting is an essential aspect of software development as it ensures that the product 
+          meets the needs of the target audience and achieves the client's business objectives.`,
         ],
       }],
   },

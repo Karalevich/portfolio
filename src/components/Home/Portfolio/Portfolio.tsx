@@ -43,7 +43,7 @@ export const Portfolio: PortfolioComponent = () => {
         ))}
       </Tabs>
       {PORTFOLIO.map((p, index) => (
-        <TabPanel projects={p.projects} activeTab={tabIndex} index={index}/>
+        <TabPanel key={index} projects={p.projects} activeTab={tabIndex} index={index}/>
       ))}
     </section>
   )
@@ -52,8 +52,8 @@ export const Portfolio: PortfolioComponent = () => {
 export default Portfolio
 
 const TabPanel: TabPanelComponent = ({ projects, activeTab, index, ...other }) => {
-  const projectList = projects.map(project => (
-    <li key={project.name} className={styles.project}>
+  const projectList = projects.map((project, index) => (
+    <li key={index} className={styles.project}>
       <Card sx={{ width: '100%', height: '100%', borderRadius: '2px', backgroundColor: 'var(--skeleton)' }} elevation={0}>
         <CardActionArea sx={{
           height: '100%',

@@ -47,7 +47,7 @@ const Service: ServiceComponent = ({ title, preview, description, icon, navigate
           <p className={styles.description}>{description}</p>
           <Button onClick={handleRedirect} className={styles.order} size="small"
                   endIcon={<OrderIcon className={styles.arrow}/>}>
-            Order now
+            Explore
           </Button>
         </main>
       </Card>

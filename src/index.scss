@@ -33,6 +33,12 @@ body {
   will-change: scroll-position;
 }
 
+body {
+  overflow-y: overlay;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
+
 #root {
   width: 100%;
 }
@@ -109,10 +115,10 @@ p {
 }
 
 @media only screen and (max-width: 767px) {
-  body {
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
+  //body {
+  //  overflow-x: hidden;
+  //  overflow-y: scroll;
+  //}
   html {
     font-size: 3.2vw;
   }
@@ -135,6 +141,9 @@ p {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
+  html {
+    font-size: 1.5625vw;
+  }
   body {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -163,11 +172,11 @@ p {
   }
 }
 
-@media only screen and (min-width: 1024px) {
-  body {
-    overflow-y: overlay;
-  }
-}
+//@media only screen and (min-width: 1024px) {
+//  body {
+//    overflow-y: overlay;
+//  }
+//}
 
 
 
