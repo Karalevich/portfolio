@@ -1,6 +1,8 @@
 import { FunctionComponent } from 'react'
 
-type BlogProps = {}
+type BlogProps = {
+  isFullVersion: boolean
+}
 export type BlogComponent = FunctionComponent<BlogProps>
 
 export type PostProps = {
@@ -10,6 +12,9 @@ export type PostProps = {
 }
 
 type PostsProps = {
-  isTabletOrMobile: boolean
+  isTabletOrMobile: boolean,
+  isFullVersion: boolean
 }
 export type PostsContent = FunctionComponent<PostsProps>
+
+export type PostComponent = FunctionComponent<PostProps>

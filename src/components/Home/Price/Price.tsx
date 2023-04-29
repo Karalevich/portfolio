@@ -6,6 +6,7 @@ import { Button, Card } from '@mui/material'
 import { PRICES } from 'src/constants/personalInfo'
 import { CheckIcon, CloseIcon } from '../../Custom/Icons'
 import CountUp from 'react-countup'
+import { useNavigate } from 'react-router-dom'
 
 
 export const Price: PriceComponent = () => {
@@ -27,10 +28,16 @@ export const Price: PriceComponent = () => {
 
 const PriceItem: PriceItemComponent = ({ title, description, price, isPopular, duties }) => {
   const [isCardHover, setIsCardHover] = useState(false)
+  const navigate = useNavigate()
 
   const toggleIsCardHover = (value: boolean) => () => {
     setIsCardHover(value)
   }
+
+  const handleRedirect = () => {
+    navigate('/contact')
+  }
+
   const dutiesList = duties.map(duty => {
     return (
       <li className={styles.duty} key={duty.name}>
@@ -48,7 +55,7 @@ const PriceItem: PriceItemComponent = ({ title, description, price, isPopular, d
         <div className={styles.charge}>
           <h2 className={styles.numbers}>
             <strong>
-              $<CountUp start={0} end={price} duration={3} scrollSpyDelay={300} enableScrollSpy scrollSpyOnce/>.00
+              $<CountUp end={price} duration={3} scrollSpyDelay={300} enableScrollSpy scrollSpyOnce/>.00
             </strong>
           </h2>
           <span className={styles.hour}>/Hour</span>
@@ -61,7 +68,8 @@ const PriceItem: PriceItemComponent = ({ title, description, price, isPopular, d
         </ul>
       </main>
       <footer className={styles.footer}>
-        <Button className={styles.order} variant="contained" color={isPopular ? 'primary' : 'secondary'}>
+        <Button className={styles.order} variant="contained" onClick={handleRedirect}
+                color={isPopular ? 'primary' : 'secondary'}>
           Order now
         </Button>
       </footer>

@@ -17,6 +17,7 @@ export const LIGHT = [
   { prop: 'service-page-color', value: 'hsl(188 100% 36% / 1)' },
   { prop: 'bcg-redirect-btn', value: 'rgba(240,240,246,0.3)' },
   { prop: 'bcg-service-idea', value: 'rgba(255, 180, 0, 0.2)' },
+  { prop: 'bcg-search-input', value: 'rgb(0, 0, 0, 0.1)' },
 ]
 
 export const DARK = [
@@ -37,6 +38,7 @@ export const DARK = [
   { prop: 'service-page-bcg', value: 'linear-gradient(90deg, rgba(24,39,103,1) 0%, rgba(24,92,159,1) 100%)' },
   { prop: 'service-page-color', value: 'lightpink' },
   { prop: 'bcg-redirect-btn', value: 'rgba(43,43,43,0.6)' },
-  { prop: 'bcg-service-idea', value: '#242526' }
+  { prop: 'bcg-service-idea', value: '#242526' },
+   { prop: 'bcg-search-input', value: 'rgba(255, 255, 255, 0.2)' },
 ]
 

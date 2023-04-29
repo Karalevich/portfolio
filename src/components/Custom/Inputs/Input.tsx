@@ -7,9 +7,9 @@ import styles from './Input.module.scss'
 const Input: InputComponent = ({ label, className, ...other }) => {
   return (
     <FormControl className={className} sx={{ display: 'block' }} fullWidth>
-      <LabelCustom shrink htmlFor={other.id} className={styles.label}>
+      {label && <LabelCustom shrink htmlFor={other.id} className={styles.label}>
         {label}
-      </LabelCustom>
+      </LabelCustom>}
       <InputCustom {...other}/>
     </FormControl>
   )

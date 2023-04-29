@@ -19,7 +19,7 @@ export const Home: HomeComponent = () => {
       <Recommendations/>
       <CV/>
       <Portfolio/>
-      <Blog/>
+      <Blog isFullVersion={false}/>
       <Contact/>
     </>
   )

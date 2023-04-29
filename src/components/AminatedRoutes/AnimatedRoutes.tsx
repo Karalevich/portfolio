@@ -8,6 +8,7 @@ import ServicePage from '../Home/Services/ServicePage/ServicePage'
 import CV from '../Home/CV/CV'
 import Portfolio from '../Home/Portfolio/Portfolio'
 import Contact from '../Home/Contact/Contact'
+import Blog from '../Home/Blog/Blog'
 
 
 export const AnimatedRoutes: AnimatedRoutesComponent = () => {
@@ -36,7 +37,7 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/services/:servicePage'} element={<ServicePage/>}/>
         <Route path={'/cv'} element={<CV/>}/>
         <Route path={'/portfolio'} element={<Portfolio/>}/>
-        <Route path={'/blog'} element={<Home/>}/>
+        <Route path={'/blog'} element={<Blog isFullVersion/>}/>
         <Route path={'/contact'} element={<Contact/>}/>
       </Routes>
     </div>
