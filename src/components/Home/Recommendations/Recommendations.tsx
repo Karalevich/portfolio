@@ -11,16 +11,8 @@ import { useMediaQuery } from '@mui/material'
 
 
 export const Recommendations: RecommendationsComponent = () => {
-  const [countOfSlide, setCountOfSlide] = useState(3)
   const isTabletOrMobile = useMediaQuery('(max-width:767px)')
-
-  useEffect(() => {
-    if (isTabletOrMobile) {
-      setCountOfSlide(1)
-    } else {
-      setCountOfSlide(3)
-    }
-  }, [isTabletOrMobile])
+  const countOfSlide = isTabletOrMobile ? 1 : 3
 
 
   return (

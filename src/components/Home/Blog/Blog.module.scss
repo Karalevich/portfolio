@@ -102,51 +102,11 @@
   }
 }
 
-.filter {
-  margin-top: -2rem;
-  margin-bottom: 1rem;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  width: 100%;
-  border-radius: 2px;
-  background-color: $background;
-  padding: 0.25rem;
-
-  &:before {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    height: 8px;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, .35), transparent);
-    z-index: 1;
-
-  }
-
-  .search {
-
-  }
-
-  .searchIconWrapper {
-    padding: 0 1rem;
-    height: calc(100% - 0.5rem);
-    position: absolute;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-    color: $element;
-  }
-}
-
 .fullMain {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  gap: 1.25rem;
+  gap: 1.25rem 2.075% ;
 
   .card {
     width: 31.95%;
@@ -231,6 +191,7 @@
     }
 
     .fullMain {
+       gap: 1.5rem 3%;
       .card {
         width: 48.5%;
 

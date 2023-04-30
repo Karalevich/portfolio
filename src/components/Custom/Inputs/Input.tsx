@@ -1,6 +1,5 @@
 import styled from '@mui/material/styles/styled'
-import { alpha, FormControl, InputBase, InputLabel } from '@mui/material'
-import React from 'react'
+import { FormControl, InputBase, InputLabel } from '@mui/material'
 import { InputComponent } from './types'
 import styles from './Input.module.scss'
 

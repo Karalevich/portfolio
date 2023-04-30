@@ -1,6 +1,6 @@
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import React, { useEffect, useRef, useState } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Nav from './components/Navbar/Navbar'
 import { mainTheme } from './styles/themes/mainTheme'
 import Info from './components/Info/Info'
@@ -10,6 +10,13 @@ import styles from './components/Home/Home.module.scss'
 import ScrollToTop from './components/Custom/ScrollToTop'
 import './index.scss'
 import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
+import Home from './components/Home/Home'
+import Services from './components/Home/Services/Services'
+import ServicePage from './components/Home/Services/ServicePage/ServicePage'
+import CV from './components/Home/CV/CV'
+import Portfolio from './components/Home/Portfolio/Portfolio'
+import Blog from './components/Home/Blog/Blog'
+import Contact from './components/Home/Contact/Contact'
 
 
 export const App: React.FC<unknown> = () => {
@@ -69,6 +76,9 @@ export const App: React.FC<unknown> = () => {
         <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo}/>
         <section className={styles.home} ref={homeRef}>
           <AnimatedRoutes/>
+          <Routes>
+            <Route path={'/blog'} element={<Blog isFullVersion/>}/>
+          </Routes>
         </section>
         <Nav toggleNav={toggleNav} isOpen={isOpenNav}/>
         <Copyright/>

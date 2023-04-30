@@ -1,5 +1,3 @@
-
-import React from 'react'
 import { DynamicCSSComponent } from './types'
 
 const DynamicCSS: DynamicCSSComponent = ({properties}) => {
