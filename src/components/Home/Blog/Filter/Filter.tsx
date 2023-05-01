@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, MouseEvent } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './Filter.module.scss'
 import { FilterComponent } from './types'
 import { alpha, styled } from '@mui/material/styles'
@@ -6,8 +6,7 @@ import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button, ButtonProps, ClickAwayListener, Grow } from '@mui/material'
 import { Tooltip } from '../../../Custom/Tooltip'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import classnames from 'classnames'
 
 const SELECT = ['By default', 'By title', 'By date', 'By likes']
@@ -19,6 +18,7 @@ export const Filter: FilterComponent = () => {
 
 
   useEffect(() => {
+    /* browser does not provides API to track when element with position sticky reach the fix position, for this used IntersectionObserver */
     const observer = new IntersectionObserver(
       ([e]) => {
         e.target.classList.toggle(styles.filterSticked, e.intersectionRatio < 1)
@@ -60,7 +60,7 @@ export const Filter: FilterComponent = () => {
           <Tooltip title={'Select display order'} placement='top'>
             <Button onClick={handleClick} className={styles.selectButton} disableRipple>
               <p>{selectedItem}</p>
-             <KeyboardArrowDownIcon className={classnames(styles.buttonArrow, {[styles.arrowUp]: isOpenSelect} )}/>
+              <KeyboardArrowDownIcon className={classnames(styles.buttonArrow, { [styles.arrowUp]: isOpenSelect })}/>
             </Button>
           </Tooltip>
           <Grow in={isOpenSelect}>
@@ -101,6 +101,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       '&:focus': {
         width: '20rem',
       },
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: '3rem',
     },
 
 

@@ -1,19 +1,18 @@
-import React, { useRef } from 'react'
 import styles from './ServicePage.module.scss'
-import { CustomSeparatorComponent, ServicePageComponent } from './types'
+import { ServicePageComponent } from './types'
 import Recommendations from '../../Recommendations/Recommendations'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { SERVICE_PAGES } from '../../../../constants/personalInfo'
-import { Breadcrumbs, Button, useMediaQuery } from '@mui/material'
+import { Button, useMediaQuery } from '@mui/material'
 import classnames from 'classnames'
 import MovingIcon from '@mui/icons-material/Moving'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import Breadcrumbs from 'src/components/Custom/Breadcrumbs/Breadcrumbs'
 
 
 export const ServicePage: ServicePageComponent = () => {
   const { servicePage } = useParams()
   const navigate = useNavigate()
-  const ref = useRef<HTMLHeadingElement | null>(null)
   const { serviceTitle, examples } = SERVICE_PAGES[servicePage as string]
   const [firstWord, secondWord] = serviceTitle.split(' ')
   const isTabletOrDesktop = useMediaQuery('(min-width:768px)')
@@ -41,13 +40,19 @@ export const ServicePage: ServicePageComponent = () => {
     </article>
   ))
 
+  const links = [
+    { name: 'Home', link: '/home' },
+    { name: 'Services', link: '/services' },
+    { name: `${servicePage as string}` },
+  ]
+
   return (
     <section className={styles.servicePage}>
       <header className={styles.header}>
         <h2 className={styles.serviceTitle}>{serviceTitle}</h2>
-        <CustomSeparator currentService={servicePage as string}/>
+        <Breadcrumbs links={links}/>
         <div className={styles.previewImg}>
-          <h1 className={styles.stack} ref={ref}>
+          <h1 className={styles.stack}>
             {isTabletOrDesktop && <>
               <span className={styles.first}>{firstWord} </span>
               <span className={styles.second}>{secondWord}</span>
@@ -72,28 +77,3 @@ export const ServicePage: ServicePageComponent = () => {
 }
 
 export default ServicePage
-
-const CustomSeparator: CustomSeparatorComponent = ({ currentService }) => {
-  const breadcrumbs = [
-    <Link to={'/home'} key="1">
-      <p className={styles.link}>Home</p>
-    </Link>,
-    <Link to={'/services'} key="2">
-      <p className={styles.link}>Services</p>
-    </Link>,
-    <p className={styles.currentService} key="3">
-      {currentService}
-    </p>,
-  ]
-
-  return (
-    <Breadcrumbs separator="›" className={styles.breadcrumbs} sx={{
-      '.MuiBreadcrumbs-separator': {
-        color: '#767676',
-      },
-    }}>
-      {breadcrumbs}
-    </Breadcrumbs>
-
-  )
-}

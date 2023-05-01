@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Avatar.module.scss'
 import { AvatarComponent } from './types'
 import { styled } from '@mui/material/styles'
@@ -49,10 +48,11 @@ const personalInfo = () => {
 const socialMediaIcons = () => {
   const icn = []
   for (const [key, value] of Object.entries(ICONS)) {
+    const [icon, link] = value
     const mediaIcon = <Tooltip title={key} placement='top' key={key} arrow>
-      <a href={value[1] as string} target="_blank" className={styles.link}>
+      <a href={link as string} target="_blank" className={styles.link}>
         <div className={styles.iconWrapper}>
-          {value[0]}
+          {icon}
         </div>
       </a>
     </Tooltip>

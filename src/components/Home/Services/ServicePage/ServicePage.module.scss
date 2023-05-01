@@ -12,18 +12,6 @@
       text-transform: capitalize;
     }
 
-    .breadcrumbs {
-      margin-bottom: 0.6rem;
-
-      .MuiBreadcrumbs-separator {
-        color: $paragraph;
-      }
-    }
-
-    .currentService {
-      text-transform: capitalize;
-    }
-
     .previewImg {
       width: 100%;
       height: 28.125rem;
@@ -74,12 +62,6 @@
 
     .iconWrapper {
       font-size: 3rem;
-    }
-
-    .link:hover {
-      text-decoration: underline;
-      text-underline-position: under;
-      text-decoration-color: $element;
     }
   }
 

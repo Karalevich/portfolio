@@ -7,7 +7,8 @@ import { Button, CardContent, CardMedia } from '@mui/material'
 import { POSTS } from '../../../constants/personalInfo'
 import classnames from 'classnames'
 import styles from './Blog.module.scss'
-import { PostComponent, PostsContent } from './types'
+import { PostCardComponent, PostsContent } from './types'
+import { useNavigate } from 'react-router-dom'
 
 
 const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
@@ -24,12 +25,12 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
   }, [])
 
 
-  const posts = POSTS.map(({ img, title, description }, index) => {
-    return (<Fragment key={title}>
+  const posts = POSTS.map((props, index) => {
+    return (<Fragment key={props.id}>
         {isFullVersion
-          ? <Post img={img} title={title} description={description}/>
+          ? <PostCard {...props}/>
           : <Slide index={index || 0} innerClassName={styles.innerSlide}>
-            <Post img={img} title={title} description={description}/>
+            <PostCard {...props}/>
           </Slide>}
       </Fragment>
     )
@@ -53,15 +54,26 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
 }
 export default Posts
 
-const Post: PostComponent = ({ img, title, description }) => {
+const PostCard: PostCardComponent = ({ img, title, description,id }) => {
+  const [isCardHover, setIsCardHover] = useState(false)
+  const redirect = useNavigate()
+
+  const handleRedirect = () => {
+    redirect(`/post/${id}`)
+  }
+
+  const toggleIsCardHover = (value: boolean) => () => {
+    setIsCardHover(value)
+  }
   return (
-    <Card className={styles.card} elevation={0}>
+    <Card className={styles.card} elevation={isCardHover ? 2 : 0} onMouseEnter={toggleIsCardHover(true)}
+          onMouseLeave={toggleIsCardHover(false)}>
       <CardMedia className={styles.media} component="img" image={img} alt={title}/>
       <CardContent className={styles.content}>
         <h4 className={styles.title}>{title}</h4>
         <p className={styles.description}>{description}</p>
       </CardContent>
-      <Button className={styles.button} endIcon={<OrderIcon className={styles.arrow}/>}>
+      <Button onClick={handleRedirect} className={styles.button} endIcon={<OrderIcon className={styles.arrow}/>}>
         Learn More
       </Button>
     </Card>

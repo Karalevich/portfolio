@@ -3,15 +3,17 @@
 .menu {
   display: none;
   height: 3.333rem;
-  background-color: $background;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   margin-bottom: 1.25rem;
   z-index: 10;
   justify-content: space-between;
-  padding: 0.667rem 3.083rem;
+  padding: 0.667rem 2rem;
+   backdrop-filter: blur(4px);
+  background-color: $bcg-filter;
+  box-shadow: 0 7px 8px -3px rgba(0, 0, 0, 0.2);
 
   .icon{
     color: $nav-bcg-btn;
@@ -21,7 +23,7 @@
 @media only screen and (max-width: 768px) {
   .menu {
     display: flex;
-     padding: 0.667rem 1.5rem;
+     padding: 0.667rem 0.5rem;
   }
 
 }

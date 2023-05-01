@@ -3,6 +3,7 @@
 .filter {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: -2rem;
   margin-bottom: 1rem;
   position: sticky;
@@ -10,13 +11,18 @@
   z-index: 11;
   width: 100%;
   border-radius: 0 0 2px 2px;
-  background-color: $bcg-filter;
   padding: 0.25rem;
   backdrop-filter: blur(4px);
+  background-color: $bcg-filter;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  .search {
+    position: relative;
+  }
 
   .searchIconWrapper {
     padding: 0 1rem;
-    height: calc(100% - 0.5rem);
+    height: 100%;
     position: absolute;
     pointer-events: none;
     display: flex;
@@ -55,6 +61,7 @@
   .selectButton {
     text-transform: none;
     background: none;
+    white-space: nowrap;
 
     p {
       color: $main-text;
@@ -113,12 +120,33 @@
 }
 
 @media only screen and (max-width: 767px) {
+  .filterSticked {
+    box-shadow: none;
+    background: none;
+    height: 3.333rem;
+    width: calc(100% - 3rem);
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0;
+  }
 
+  .selectButton {
+    p {
+      font-size: 1rem;
+    }
+
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .filter {
+  .filterSticked {
+    box-shadow: none;
+    background: none;
+    height: 3.333rem;
+    width: calc(100% - 4rem);
+    margin-right: auto;
+    margin-left: auto;
 
-    //top: 3.333rem;
   }
+
 }

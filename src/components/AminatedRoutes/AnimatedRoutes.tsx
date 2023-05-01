@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './AnimatedRoutes.scss'
-import { AnimatedRoutesComponent } from './types'
+import { AnimatedRoutesComponent, ROUTES_ANIMATIONS } from './types'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Home from '../Home/Home'
 import Services from '../Home/Services/Services'
@@ -9,26 +9,29 @@ import CV from '../Home/CV/CV'
 import Portfolio from '../Home/Portfolio/Portfolio'
 import Contact from '../Home/Contact/Contact'
 import Blog from '../Home/Blog/Blog'
+import PostPage from '../Home/Blog/PostPage/PostPage'
 
 
 export const AnimatedRoutes: AnimatedRoutesComponent = () => {
   const location = useLocation()
   const [displayLocation, setDisplayLocation] = useState(location)
-  const [transitionStage, setTransistionStage] = useState('fadeIn')
+  const [transitionStage, setTransistionStage] = useState<ROUTES_ANIMATIONS>(ROUTES_ANIMATIONS.FADE_IN)
 
   useEffect(() => {
-    if (location !== displayLocation) setTransistionStage('fadeOut')
+    if (location !== displayLocation) setTransistionStage(ROUTES_ANIMATIONS.FADE_OUT)
   }, [location, displayLocation])
+
+  const onHandleAnimation = () => {
+    if (transitionStage === ROUTES_ANIMATIONS.FADE_OUT) {
+      setTransistionStage(ROUTES_ANIMATIONS.FADE_IN)
+      setDisplayLocation(location)
+    }
+  }
 
   return (
     <div
       className={`${transitionStage}`}
-      onAnimationEnd={() => {
-        if (transitionStage === 'fadeOut') {
-          setTransistionStage('fadeIn')
-          setDisplayLocation(location)
-        }
-      }}
+      onAnimationEnd={onHandleAnimation}
     >
       <Routes location={displayLocation}>
         <Route path={'/'} element={<Navigate replace to='/home'/>}/>
@@ -37,7 +40,8 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/services/:servicePage'} element={<ServicePage/>}/>
         <Route path={'/cv'} element={<CV/>}/>
         <Route path={'/portfolio'} element={<Portfolio/>}/>
-        {/*<Route path={'/blog'} element={<Blog isFullVersion/>}/>*/}
+        <Route path={'/blog'} element={<Blog isFullVersion/>}/>
+        <Route path={'/post/:id'} element={<PostPage />}/>
         <Route path={'/contact'} element={<Contact/>}/>
       </Routes>
     </div>

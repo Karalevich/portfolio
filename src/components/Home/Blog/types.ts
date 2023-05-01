@@ -8,7 +8,21 @@ export type BlogComponent = FunctionComponent<BlogProps>
 export type PostProps = {
   img: string,
   title: string,
-  description: string
+  description: string,
+  author: AuthorT,
+  date: string,
+  comments?: Array<CommentT>,
+  id: string
+}
+
+type CommentT = {
+  author: AuthorT,
+  text: string,
+}
+
+type AuthorT = {
+  name: string,
+  img?: string
 }
 
 type PostsProps = {
@@ -17,4 +31,4 @@ type PostsProps = {
 }
 export type PostsContent = FunctionComponent<PostsProps>
 
-export type PostComponent = FunctionComponent<PostProps>
+export type PostCardComponent = FunctionComponent<PostProps>

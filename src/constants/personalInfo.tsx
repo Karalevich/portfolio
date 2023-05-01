@@ -31,6 +31,13 @@ import { ContactCardProps } from '../components/Home/Contact/types'
 import { PostProps } from '../components/Home/Blog/types'
 import { ServicePage } from '../components/Home/Services/ServicePage/types'
 
+export const SHARE = {
+  'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
+  'Vkontakte': [<VkIcon/>, 'https://vk.com/id134399064'],
+  'Facebook': [<FacebookIcon/>, 'https://vk.com/id134399064'],
+  'Twitter': [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
+}
+
 export const ICONS = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
   'Github': [<GitHubIcon/>, 'https://github.com/AndreyKorolevich'],
@@ -497,51 +504,181 @@ export const POSTS: Array<PostProps> = [
     title: 'How to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+    author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '1'
   },
   {
     title: 'How to creat animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '2'
   },
   {
     title: 'How to creae animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '3'
   },
   {
     title: 'How to ceate animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '4'
   },
   {
     title: 'How t create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '5'
   },
   {
     title: 'How o create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '6'
   },
   {
     title: 'Ho to create animated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '7'
   },
   {
     title: 'How to create animated sg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '8'
   },
   {
     title: 'How to create anmated svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '9'
   },
   {
     title: 'How to create animaed svg',
     description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
+        author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+    date: '04-30-2023',
+    comments: [{
+      author: {
+      name: 'Andrei Karalevich',
+      img: david
+    },
+      text: 'Interesting!',
+    }],
+    id: '10'
   },
 ]
 
