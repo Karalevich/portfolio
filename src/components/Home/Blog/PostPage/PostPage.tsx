@@ -3,11 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { POSTS, SHARE } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
 import { PostPageComponent } from './types'
-import { PostCardComponent, PostProps } from '../types'
 import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
-import { OrderIcon } from '../../../Custom/Icons'
-import { Card, CardActionArea, CardContent, CardMedia } from '@mui/material'
+import RecommendCard from './RecommendCard'
+import { PostProps } from '../types'
 
 
 export const PostPage: PostPageComponent = () => {
@@ -15,7 +14,7 @@ export const PostPage: PostPageComponent = () => {
   const navigate = useNavigate()
 
   const post = POSTS.find(post => post.id === id) as PostProps
-  const { title, date, description, author, comments, img } = post
+  const { title, date, author, comments, img } = post
   const links = [
     { name: 'Home', link: '/home' },
     { name: 'Blog', link: '/blog' },
@@ -26,7 +25,7 @@ export const PostPage: PostPageComponent = () => {
   return (
     <section className={styles.postPage}>
       <header>
-        <h2>{title}</h2>
+        <h2 className={styles.postTitle}>{title}</h2>
         <article className={styles.info}>
           <div className={styles.author}>
             <img className={styles.authorImg} src={author.img}/>
@@ -37,7 +36,7 @@ export const PostPage: PostPageComponent = () => {
           </div>
           <div className={styles.share}>
             <span>SHARE:</span>
-            <ul>
+            <ul className={styles.shareList}>
               {socialMediaIcons()}
             </ul>
           </div>
@@ -45,7 +44,7 @@ export const PostPage: PostPageComponent = () => {
         <Breadcrumbs links={links}/>
       </header>
       <main>
-        <article>
+        <article className={styles.postContent}>
           <img className={styles.mainImg} src={img}/>
           <p>A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting an event,
             sale
@@ -66,13 +65,25 @@ export const PostPage: PostPageComponent = () => {
         </article>
         <article className={styles.recommendations}>
           <h3 className={styles.youLike}>You may like this too</h3>
-          <div className={styles.list}>
-             {POSTS.slice(POSTS.length - 3).map(post => <RecommendCard key={post.id} {...post}/>)}
+          <div className={styles.recommendList}>
+            {POSTS.slice(POSTS.length - 3).map(post => <RecommendCard key={post.id} {...post}/>)}
           </div>
         </article>
       </main>
-      <footer className={styles.commentSection}>
-        <article></article>
+      <footer>
+        <section className={styles.commentSection}>
+          <header>
+            <h3>3 Comments</h3>
+            <div>
+              <div className={styles.review}>
+                <span className={styles.likes}>2</span>
+                <span><p>Share</p></span>
+              </div>
+              <div>Sort By Best</div>
+            </div>
+          </header>
+          <main></main>
+        </section>
       </footer>
     </section>
   )
@@ -96,30 +107,6 @@ const socialMediaIcons = () => {
   return icn
 }
 
-const RecommendCard: PostCardComponent = ({ img, title, description, id }) => {
-  const [isCardHover, setIsCardHover] = useState(false)
-  const redirect = useNavigate()
-
-  const handleRedirect = () => {
-    redirect(`/post/${id}`)
-  }
-
-  const toggleIsCardHover = (value: boolean) => () => {
-    setIsCardHover(value)
-  }
-  return (
-    <Card className={styles.card} elevation={isCardHover ? 2 : 0} onMouseEnter={toggleIsCardHover(true)}
-          onMouseLeave={toggleIsCardHover(false)}>
-      <CardActionArea onClick={handleRedirect}>
-        <CardMedia className={styles.media} component="img" image={img} alt={title}/>
-        <div className={styles.content}>
-          <h4 className={styles.title}>{title}</h4>
-          <p className={styles.description}>{description}</p>
-        </div>
-      </CardActionArea>
-    </Card>
-  )
-}
 
 
 

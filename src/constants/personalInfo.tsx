@@ -14,6 +14,7 @@ import React from 'react'
 import { ServiceT } from './types'
 import { PriceItemProps } from '../components/Home/Price/types'
 import david from '../assets/img/David.png'
+import me from '../assets/img/Me.webp'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import { ProjectT } from 'src/components/Home/Portfolio/types'
 import blog from '../assets/img/blog.avif'
@@ -506,13 +507,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
     author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -524,13 +525,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -542,13 +543,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -560,13 +561,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -578,13 +579,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -596,13 +597,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -614,13 +615,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -632,13 +633,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -650,13 +651,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
@@ -668,13 +669,13 @@ export const POSTS: Array<PostProps> = [
     img: blog,
         author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
     date: '04-30-2023',
     comments: [{
       author: {
       name: 'Andrei Karalevich',
-      img: david
+      img: me
     },
       text: 'Interesting!',
     }],
