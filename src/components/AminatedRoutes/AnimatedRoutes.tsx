@@ -41,7 +41,7 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/cv'} element={<CV/>}/>
         <Route path={'/portfolio'} element={<Portfolio/>}/>
         <Route path={'/blog'} element={<Blog isFullVersion/>}/>
-        <Route path={'/post/:id'} element={<PostPage />}/>
+        <Route path={'/blog/post/:id'} element={<PostPage />}/>
         <Route path={'/contact'} element={<Contact/>}/>
       </Routes>
     </div>

@@ -12,7 +12,7 @@ const RecommendCard: PostCardComponent = ({ img, title, id, date, author }) => {
   const redirect = useNavigate()
 
   const handleRedirect = () => {
-    redirect(`/post/${id}`)
+    redirect(`/blog/post/${id}`)
   }
 
   const toggleIsCardHover = (value: boolean) => () => {

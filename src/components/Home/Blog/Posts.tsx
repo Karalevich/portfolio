@@ -59,7 +59,7 @@ const PostCard: PostCardComponent = ({ img, title, description,id }) => {
   const redirect = useNavigate()
 
   const handleRedirect = () => {
-    redirect(`/post/${id}`)
+    redirect(`/blog/post/${id}`)
   }
 
   const toggleIsCardHover = (value: boolean) => () => {

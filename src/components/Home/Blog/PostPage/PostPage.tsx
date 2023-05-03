@@ -7,6 +7,7 @@ import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
 import { PostProps } from '../types'
+import Comments from '../Comments/Comments'
 
 
 export const PostPage: PostPageComponent = () => {
@@ -71,19 +72,7 @@ export const PostPage: PostPageComponent = () => {
         </article>
       </main>
       <footer>
-        <section className={styles.commentSection}>
-          <header>
-            <h3>3 Comments</h3>
-            <div>
-              <div className={styles.review}>
-                <span className={styles.likes}>2</span>
-                <span><p>Share</p></span>
-              </div>
-              <div>Sort By Best</div>
-            </div>
-          </header>
-          <main></main>
-        </section>
+        <Comments/>
       </footer>
     </section>
   )

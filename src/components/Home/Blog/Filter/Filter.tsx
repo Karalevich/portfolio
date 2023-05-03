@@ -1,21 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './Filter.module.scss'
 import { FilterComponent } from './types'
-import { alpha, styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
-import { Button, ButtonProps, ClickAwayListener, Grow } from '@mui/material'
-import { Tooltip } from '../../../Custom/Tooltip'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import classnames from 'classnames'
+import Dropdown from '../../../Custom/Dropdown/Dropdown'
 
 const SELECT = ['By default', 'By title', 'By date', 'By likes']
 
 export const Filter: FilterComponent = () => {
   const filterRef = useRef<HTMLHeadingElement | null>(null)
-  const [isOpenSelect, setIsOpenSelect] = useState(false)
-  const [selectedItem, setSelectedItem] = useState('By default')
-
 
   useEffect(() => {
     /* browser does not provides API to track when element with position sticky reach the fix position, for this used IntersectionObserver */
@@ -35,18 +29,7 @@ export const Filter: FilterComponent = () => {
     }
   }, [])
 
-  const handleClick = () => {
-    setIsOpenSelect((prev) => !prev)
-  }
 
-  const onClickAway = () => {
-    setIsOpenSelect(false)
-  }
-
-  const onChangeItem = (item: string) => () => {
-    setSelectedItem(item)
-    setIsOpenSelect(false)
-  }
   return (
     <article className={styles.filter} ref={filterRef}>
       <div className={styles.search}>
@@ -55,29 +38,7 @@ export const Filter: FilterComponent = () => {
         </div>
         <StyledInputBase placeholder="Search…"/>
       </div>
-      <ClickAwayListener onClickAway={onClickAway}>
-        <div className={styles.select}>
-          <Tooltip title={'Select display order'} placement='top'>
-            <Button onClick={handleClick} className={styles.selectButton} disableRipple>
-              <p>{selectedItem}</p>
-              <KeyboardArrowDownIcon className={classnames(styles.buttonArrow, { [styles.arrowUp]: isOpenSelect })}/>
-            </Button>
-          </Tooltip>
-          <Grow in={isOpenSelect}>
-            <div className={styles.menu}>
-              <ul className={styles.list}>
-                {SELECT.map(item => (
-                  <li key={item} className={styles.item}>
-                    <StyledButton className={styles.itemButton} onClick={onChangeItem(item)}>
-                      <p>{item}</p>
-                    </StyledButton>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Grow>
-        </div>
-      </ClickAwayListener>
+      <Dropdown selects={SELECT}/>
     </article>
   )
 }
@@ -105,15 +66,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '3rem',
     },
-
-
   },
 }))
 
-const StyledButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.primary.main, 0.15),
-  },
-}))
+
 
 
