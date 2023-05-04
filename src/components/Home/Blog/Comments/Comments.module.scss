@@ -71,42 +71,70 @@
       flex-direction: column;
       row-gap: 1rem;
     }
-
-    .comment {
-      display: flex;
-      list-style: none;
-      column-gap: 1.25rem;
-    }
-
-    .owner {
-      display: flex;
-      column-gap: 1.125rem;
-      align-items: flex-end;
-      margin-bottom: 0.5rem;
-    }
-
-    .ownerName {
-      color: $element;
-      font-weight: 500;
-      position: relative;
+  }
+}
 
 
-      &:after {
-        content: '';
-        position: absolute;
-        right: -0.7rem;
-        top: 50%;
-        height: 0.25rem;
-        width: 0.25rem;
-        border-radius: 50%;
-        background-color: $paragraph;
+@media only screen and (max-width: 767px) {
+  .commentSection {
+    .header {
+      margin-bottom: 1.5rem;
 
+      .actions {
+        padding-top: 0.5rem;
+      }
+
+      .review {
+        column-gap: 1.5rem
       }
     }
 
-    .commentMessage {
-
+    .likes {
+      font-size: 1.25rem;
+      align-items: end;
     }
 
+    .favoriteIcon, .shareIcon {
+      font-size: 1.75rem;
+    }
+
+    .main {
+      flex-direction: column;
+
+      .userImage {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .commentSection {
+    .header {
+      margin-bottom: 2rem;
+
+      .actions {
+        padding-top: 0.5rem;
+      }
+
+      .review {
+        column-gap: 1.5rem
+      }
+    }
+
+    .likes {
+      font-size: 1.25rem;
+      align-items: end;
+    }
+
+    .favoriteIcon, .shareIcon {
+      font-size: 1.75rem;
+    }
+
+    .main {
+      .comments {
+        gap: 2rem;
+      }
+    }
   }
 }

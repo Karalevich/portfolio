@@ -1,6 +1,6 @@
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
-import React, { useEffect, useRef, useState } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Nav from './components/Navbar/Navbar'
 import { mainTheme } from './styles/themes/mainTheme'
 import Info from './components/Info/Info'

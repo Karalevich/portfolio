@@ -1,7 +1,7 @@
 import styles from './ServicePage.module.scss'
 import { ServicePageComponent } from './types'
 import Recommendations from '../../Recommendations/Recommendations'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, Navigate } from 'react-router-dom'
 import { SERVICE_PAGES } from '../../../../constants/personalInfo'
 import { Button, useMediaQuery } from '@mui/material'
 import classnames from 'classnames'
@@ -13,9 +13,15 @@ import Breadcrumbs from 'src/components/Custom/Breadcrumbs/Breadcrumbs'
 export const ServicePage: ServicePageComponent = () => {
   const { servicePage } = useParams()
   const navigate = useNavigate()
+  const isTabletOrDesktop = useMediaQuery('(min-width:768px)')
+
+  if (servicePage && !(servicePage in SERVICE_PAGES)) {
+    return <div> 404 NOT FOUND</div>
+  }
+
   const { serviceTitle, examples } = SERVICE_PAGES[servicePage as string]
   const [firstWord, secondWord] = serviceTitle.split(' ')
-  const isTabletOrDesktop = useMediaQuery('(min-width:768px)')
+
 
   const handleRedirect = () => {
     navigate('/contact')

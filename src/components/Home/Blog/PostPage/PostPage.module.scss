@@ -160,3 +160,124 @@
     }
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .postPage {
+    .info {
+      .name {
+        font-size: 1.1rem;
+      }
+
+      .author {
+        padding-right: 0.3rem;
+        margin-right: 0.3rem;
+      }
+
+      .date {
+        font-size: 1rem;
+      }
+
+      .authorImg {
+        align-self: center;
+      }
+
+      .shareList {
+        margin-left: 0.5rem;
+        column-gap: 0.6rem;
+      }
+
+      .share {
+        font-size: 1.1rem;
+      }
+
+      .iconWrapper {
+        width: 2rem;
+        height: 2rem;
+
+        a {
+          height: 1.25rem;
+        }
+
+        svg {
+          font-size: 1.25rem;
+        }
+      }
+    }
+
+    .postContent {
+      .mainImg {
+        height: 25rem;
+      }
+    }
+
+    .youLike {
+      font-size: 2rem;
+    }
+
+    .recommendList {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.25rem;
+
+      .card {
+        height: 25rem;
+      }
+
+      .content {
+        padding: 1.3rem 2rem;
+      }
+
+      .title {
+        font-size: 2rem;
+      }
+
+      .type {
+        font-size: 1.25rem;
+        align-items: center;
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .postPage {
+    .info {
+      .name {
+        font-size: 1.5rem;
+      }
+
+      .date {
+        font-size: 1.25rem;
+      }
+
+      .authorImg {
+        width: 4.166rem;
+        height: 4.166rem;
+      }
+
+      .share {
+        font-size: 1.25rem;
+      }
+
+      .iconWrapper {
+        width: 2.333rem;
+        height: 2.333rem;
+
+        a {
+          height: 1.5rem;
+        }
+
+        svg {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .recommendList {
+      .type {
+        font-size: 0.833rem;
+      }
+    }
+  }
+}

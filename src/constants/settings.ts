@@ -15,7 +15,7 @@ export const LIGHT = [
   { prop: 'skeleton', value: 'rgba(0, 0, 0, 0.6)' },
   { prop: 'tooltip', value: 'rgba(12,20,28,0.9)' },
   { prop: 'service-page-bcg', value: 'linear-gradient(90deg, rgba(106,134,244,1) 0%, rgba(187,221,255,1) 100%)' },
-  { prop: 'service-page-color', value: ' ' },
+  { prop: 'service-page-color', value: 'hsl(188 100% 36% / 1)' },
   { prop: 'bcg-redirect-btn', value: 'rgba(240,240,246,0.3)' },
   { prop: 'bcg-service-idea', value: 'rgba(255, 180, 0, 0.2)' },
   { prop: 'bcg-search-input', value: 'rgb(231, 231, 231)' },

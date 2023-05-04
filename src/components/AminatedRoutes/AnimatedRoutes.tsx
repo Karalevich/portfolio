@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import './AnimatedRoutes.scss'
 import { AnimatedRoutesComponent, ROUTES_ANIMATIONS } from './types'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
@@ -43,6 +43,8 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/blog'} element={<Blog isFullVersion/>}/>
         <Route path={'/blog/post/:id'} element={<PostPage />}/>
         <Route path={'/contact'} element={<Contact/>}/>
+        <Route path={'/error'} element={<div> 404 NOT FOUND</div>}/>
+            <Route path={'*'} element={<div> 404 NOT FOUND</div>}/>
       </Routes>
     </div>
   )

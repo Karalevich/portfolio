@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { POSTS, SHARE } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'

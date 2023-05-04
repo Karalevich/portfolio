@@ -1,0 +1,115 @@
+@import './src/styles/variables.scss';
+
+.comment {
+  display: flex;
+  list-style: none;
+  column-gap: 1.25rem;
+
+  .userImage {
+    width: 5.7rem;
+    height: 5.7rem;
+    border-radius: 0.625rem;
+    background-color: $skeleton;
+  }
+
+  .likes {
+    display: flex;
+    align-items: center;
+    column-gap: 0.35rem;
+    position: relative;
+  }
+
+  .favoriteIcon, .shareIcon {
+    cursor: pointer;
+    color: $paragraph;
+  }
+
+  .owner {
+    display: flex;
+    column-gap: 1.125rem;
+    align-items: baseline;
+    margin-bottom: 0.5rem;
+  }
+
+  .ownerName {
+    color: $element;
+    font-weight: 500;
+    position: relative;
+
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: -0.7rem;
+      top: 50%;
+      height: 0.25rem;
+      width: 0.25rem;
+      border-radius: 50%;
+      background-color: $paragraph;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .comment {
+    flex-direction: column;
+    position: relative;
+
+    .likes {
+      font-size: 1.25rem;
+      align-items: end;
+    }
+
+    .favoriteIcon, .shareIcon {
+      font-size: 1.75rem;
+    }
+
+    .owner {
+      flex-direction: column;
+      position: absolute;
+      left: 5rem;
+      top: 0;
+    }
+
+    .ownerName {
+      font-size: 1.25rem;
+
+      &:after {
+        display: none;
+      }
+    }
+
+    .commentDate {
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .userImage {
+      width: 4.166rem;
+      height: 4.166rem;
+    }
+
+    .commentMessage {
+      text-align: justify;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .comment {
+    .likes {
+      font-size: 1.25rem;
+      align-items: end;
+    }
+
+    .commentDate {
+      font-size: 1rem;
+    }
+
+    .favoriteIcon, .shareIcon {
+      font-size: 1.75rem;
+    }
+  }
+}
+

@@ -20,7 +20,7 @@ type CommentT = {
   text: string,
 }
 
-type AuthorT = {
+export type AuthorT = {
   name: string,
   img?: string
 }
