@@ -4,6 +4,7 @@ import { BannerComponent } from './types'
 import styles from './Banner.module.scss'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useNavigate } from 'react-router-dom'
+import Canvas from '../../Canvas/Canvas'
 
 
 export const Banner: BannerComponent = () => {
@@ -14,6 +15,7 @@ export const Banner: BannerComponent = () => {
   }
   return (
     <article className={styles.banner}>
+      <Canvas/>
       <h1 className={styles.name}><span className={styles.pronoun}>I`m</span> Andrei Karalevich</h1>
       <h1 className={styles.occupation}>
         <strong className={styles.strong}>Front-End</strong> Engineer

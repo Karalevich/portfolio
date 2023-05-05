@@ -10,6 +10,7 @@ import Portfolio from '../Home/Portfolio/Portfolio'
 import Contact from '../Home/Contact/Contact'
 import Blog from '../Home/Blog/Blog'
 import PostPage from '../Home/Blog/PostPage/PostPage'
+import NotFound from '../NotFound/NotFound'
 
 
 export const AnimatedRoutes: AnimatedRoutesComponent = () => {
@@ -43,8 +44,8 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/blog'} element={<Blog isFullVersion/>}/>
         <Route path={'/blog/post/:id'} element={<PostPage />}/>
         <Route path={'/contact'} element={<Contact/>}/>
-        <Route path={'/error'} element={<div> 404 NOT FOUND</div>}/>
-            <Route path={'*'} element={<div> 404 NOT FOUND</div>}/>
+        <Route path={'/not-found  '} element={<NotFound/>}/>
+        <Route path={'*'} element={<NotFound/>}/>
       </Routes>
     </div>
   )

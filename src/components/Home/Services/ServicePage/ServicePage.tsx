@@ -1,13 +1,14 @@
 import styles from './ServicePage.module.scss'
 import { ServicePageComponent } from './types'
 import Recommendations from '../../Recommendations/Recommendations'
-import { useParams, useNavigate, Navigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { SERVICE_PAGES } from '../../../../constants/personalInfo'
 import { Button, useMediaQuery } from '@mui/material'
 import classnames from 'classnames'
 import MovingIcon from '@mui/icons-material/Moving'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import Breadcrumbs from 'src/components/Custom/Breadcrumbs/Breadcrumbs'
+import NotFound from '../../../NotFound/NotFound'
 
 
 export const ServicePage: ServicePageComponent = () => {
@@ -15,9 +16,9 @@ export const ServicePage: ServicePageComponent = () => {
   const navigate = useNavigate()
   const isTabletOrDesktop = useMediaQuery('(min-width:768px)')
 
-  if (servicePage && !(servicePage in SERVICE_PAGES)) {
-    return <div> 404 NOT FOUND</div>
-  }
+    if (servicePage && !(servicePage in SERVICE_PAGES)) {
+      return <NotFound/>
+    }
 
   const { serviceTitle, examples } = SERVICE_PAGES[servicePage as string]
   const [firstWord, secondWord] = serviceTitle.split(' ')
@@ -27,7 +28,7 @@ export const ServicePage: ServicePageComponent = () => {
     navigate('/contact')
   }
 
-  const articles = examples.map(({ image, link, text }, index) => (
+  const articles = examples?.map(({ image, link, text }, index) => (
     <article className={styles.article} key={index}>
       {image && <div className={classnames(styles.imageWrapper, { [styles.leftImage]: index % 2 !== 0 })}>
         <img className={styles.image} src={image}

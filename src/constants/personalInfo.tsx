@@ -30,7 +30,7 @@ import ignition from '../assets/img/services/ignition.avif'
 import maplestory from '../assets/img/services/maplestory.avif'
 import { ContactCardProps } from '../components/Home/Contact/types'
 import { PostProps } from '../components/Home/Blog/types'
-import { ServicePage } from '../components/Home/Services/ServicePage/types'
+import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 
 export const SHARE = {
   'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
@@ -746,7 +746,7 @@ export const CONTACT_INFO: Array<ContactCardProps> = [
   },
 ]
 
-export const SERVICE_PAGES: { [property: string]: ServicePage } = {
+export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
   [SERVICES_NAVIGATION.FRONTEND]: {
     serviceTitle: 'Frontend Development',
     icons: [VueIcon, ReduxIcon, VueXIcon, TypeScriptIcon, ReactIcon],

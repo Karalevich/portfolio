@@ -1,0 +1,61 @@
+@import './src/styles/variables.scss';
+
+.notFound {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 5rem;
+
+  .main {
+    background: url("../../assets/img/not-found.svg") no-repeat, url("../../assets/img/not-found-bcg.png") no-repeat;
+    background-size: contain;
+    height: 30.9375rem;
+    width: 43.3125rem;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.5rem;
+  }
+
+  .redirect {
+    height: 3.3125rem;
+    width: 14.625rem;
+    font-size: 1.125rem;
+  }
+
+  .title {
+    text-transform: uppercase;
+  }
+
+  .message {
+    text-transform: capitalize;
+    font-weight: 500;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .notFound {
+    row-gap: 5rem;
+
+
+    .main {
+      height: 14.75rem;
+      width: 20.666rem;
+    }
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .message {
+      color: $paragraph;
+      font-size: 1.25rem;
+      text-align: center;
+    }
+  }
+}

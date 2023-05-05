@@ -4,13 +4,13 @@ import { SvgIconProps } from '@mui/material'
 type ServicePageProps = {}
 export type ServicePageComponent = FunctionComponent<ServicePageProps>
 
-export type ServicePage = {
+export type ServicePageT = {
   serviceTitle: string,
   icons: Array<(props: SvgIconProps) => ReactElement>,
-  examples: Array<Article>
+  examples: Array<ArticleT>
 }
 
-type Article = {
+export type ArticleT = {
   image?: string,
   text: Array<string>,
   link?: string

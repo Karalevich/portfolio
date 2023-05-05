@@ -2210,6 +2210,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/intrinsic-scale@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/intrinsic-scale/-/intrinsic-scale-3.0.0.tgz#ffce90ba767079ced6660c578911df998106003a"
+  integrity sha512-TzfJhEtX0KMnaK/9U0EKrOFOXdpLVBt35xoljMiFt4WjCWudEkeVuf3ab2ZmWZjr9XVBd1mmstTlVSgEMXdSmg==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz#8467d4b3c087805d63580480890791277ce35c44"
@@ -5478,6 +5483,11 @@ internal-slot@^1.0.3, internal-slot@^1.0.4, internal-slot@^1.0.5:
     get-intrinsic "^1.2.0"
     has "^1.0.3"
     side-channel "^1.0.4"
+
+intrinsic-scale@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/intrinsic-scale/-/intrinsic-scale-3.0.4.tgz#8695951c70af983c1507eae26219c9737320c4e8"
+  integrity sha512-K9+8JfjKhu4cl3kLBHrHW/RnAQFlyyOBV+zoSyzUM+vXz11ypaN+adk5PtI1pvMAuQN1zKnQ+lu9g7kDs/3hHw==
 
 ipaddr.js@1.9.1:
   version "1.9.1"
