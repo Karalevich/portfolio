@@ -1,5 +1,7 @@
+import { range } from "src/utils/range"
+
 const COLORS = [[85, 71, 106], [174, 61, 99], [219, 56, 83], [244, 92, 68], [248, 182, 70]]
-const range = (a: number, b: number) => (b - a) * Math.random() + a
+
 const PI_2 = 2 * Math.PI
 
 const drawCircle = (x: number, y: number, r: number, style: string, context: CanvasRenderingContext2D) => {

@@ -7,13 +7,16 @@ import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
 import { PostProps } from '../types'
 import Comments from '../Comments/Comments'
+import NotFound from '../../../NotFound/NotFound'
 
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
-  const navigate = useNavigate()
 
   const post = POSTS.find(post => post.id === id) as PostProps
+  if (!post) {
+    return <NotFound/>
+  }
   const { title, date, author, comments, img } = post
   const links = [
     { name: 'Home', link: '/home' },

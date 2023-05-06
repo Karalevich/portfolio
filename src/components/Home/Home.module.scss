@@ -1,6 +1,8 @@
+@import './src/styles/variables';
+
 .home {
   width: 67.36%;
-  max-width: 1067px;
+  max-width: $max-home-width;
   margin-right: 9.375%;
   margin-left: 23.26%;
 }
@@ -19,5 +21,13 @@
     max-width: 1067px;
     margin-right: auto;
     margin-left: auto;
+  }
+}
+
+@media only screen and (min-width: 1601px) {
+  $empty-width: calc((100% - $max-home-width - $max-info-width - $max-nav-width) / 2);
+  .home {
+    margin-right: calc($empty-width + 108px);
+    margin-left: calc($empty-width + 338px);
   }
 }

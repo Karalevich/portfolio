@@ -28,7 +28,7 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
   const posts = POSTS.map((props, index) => {
     return (<Fragment key={props.id}>
         {isFullVersion
-          ? <PostCard {...props}/>
+          ? <PostCard {...props} isFullVersion={isFullVersion}/>
           : <Slide index={index || 0} innerClassName={styles.innerSlide}>
             <PostCard {...props}/>
           </Slide>}
@@ -54,7 +54,7 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
 }
 export default Posts
 
-const PostCard: PostCardComponent = ({ img, title, description,id }) => {
+const PostCard: PostCardComponent = ({ img, title, description,id, isFullVersion }) => {
   const [isCardHover, setIsCardHover] = useState(false)
   const redirect = useNavigate()
 
@@ -66,7 +66,7 @@ const PostCard: PostCardComponent = ({ img, title, description,id }) => {
     setIsCardHover(value)
   }
   return (
-    <Card className={styles.card} elevation={isCardHover ? 2 : 0} onMouseEnter={toggleIsCardHover(true)}
+    <Card className={styles.card} elevation={isCardHover && isFullVersion ? 2 : 0} onMouseEnter={toggleIsCardHover(true)}
           onMouseLeave={toggleIsCardHover(false)}>
       <CardMedia className={styles.media} component="img" image={img} alt={title}/>
       <CardContent className={styles.content}>

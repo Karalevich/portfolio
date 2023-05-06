@@ -12,7 +12,8 @@ export type PostProps = {
   author: AuthorT,
   date: string,
   comments?: Array<CommentT>,
-  id: string
+  id: string,
+  isFullVersion?: boolean
 }
 
 type CommentT = {

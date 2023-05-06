@@ -46,3 +46,13 @@ export const DARK = [
   { prop: 'bcg-filter', value: 'rgba(55,55,55, 0.9)' },
 ]
 
+export const COLORS = [
+  '#26ccff',
+  '#a25afd',
+  '#ff5e7e',
+  '#88ff5a',
+  '#fcff42',
+  '#ffb400',
+  '#ff36ff',
+]
+

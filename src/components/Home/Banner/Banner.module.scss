@@ -31,6 +31,10 @@
   margin: 2vh 0;
 }
 
+.name, .occupation, .message {
+  position: relative;
+}
+
 @media only screen and (max-width: 768px) {
   .banner {
     width: 100%;
