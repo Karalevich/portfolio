@@ -26,20 +26,6 @@ export const mainTheme = createTheme({
         },
       },
     },
-    MuiTab: {
-      styleOverrides: {
-        root: {
-          width: '40px',
-          borderRadius: '50% !important',
-          marginBottom: '4.7vh',
-          minHeight: '0',
-          minWidth: '0',
-          padding: '0',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        },
-      },
-    },
     MuiAvatar: {
       styleOverrides: {
         root: {

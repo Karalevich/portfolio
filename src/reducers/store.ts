@@ -1,10 +1,10 @@
 import { Action } from 'redux'
 import thunk, { ThunkAction } from 'redux-thunk'
 import { configureStore, combineReducers  } from '@reduxjs/toolkit'
-import authReducer from './authReducer'
+import userReducer from './user/userReducer'
 
 const reducers = combineReducers({
-  login: authReducer
+  user: userReducer
 })
 
 export const store = configureStore({
@@ -12,14 +12,11 @@ export const store = configureStore({
   middleware: [thunk]
 })
 
-type RootReducerType = typeof reducers
-export type RootStateType = ReturnType<RootReducerType>
+type RootReducerT = typeof reducers
+export type RootStateT = ReturnType<RootReducerT>
 
-type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never
-export type ActionTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesType<T>>
+type PropertiesT<T> = T extends { [key: string]: infer U } ? U : never
+export type ActionT<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<PropertiesT<T>>
 
-export type ThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, RootStateType, unknown, A>
+export type ThunkT<A extends Action, R = Promise<void>> = ThunkAction<R, RootStateT, unknown, A>
 export type AppDispatch = typeof store.dispatch
-
-
-export default reducers

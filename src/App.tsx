@@ -1,6 +1,6 @@
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
-import React, { Fragment, useEffect, useRef, useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import Nav from './components/Navbar/Navbar'
 import { mainTheme } from './styles/themes/mainTheme'
 import Info from './components/Info/Info'
@@ -10,6 +10,7 @@ import styles from './components/Home/Home.module.scss'
 import ScrollToTop from './components/Custom/ScrollToTop'
 import './index.scss'
 import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
+import Auth from './components/Auth/Auth'
 
 
 export const App: React.FC<unknown> = () => {
@@ -71,6 +72,7 @@ export const App: React.FC<unknown> = () => {
           <AnimatedRoutes/>
         </section>
         <Nav toggleNav={toggleNav} isOpen={isOpenNav}/>
+        <Auth/>
         <Copyright/>
       </ BrowserRouter>
     </ThemeProvider>

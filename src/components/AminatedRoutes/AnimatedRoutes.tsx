@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './AnimatedRoutes.scss'
 import { AnimatedRoutesComponent, ROUTES_ANIMATIONS } from './types'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'

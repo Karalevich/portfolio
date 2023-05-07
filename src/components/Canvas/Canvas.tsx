@@ -14,37 +14,31 @@ export const Canvas: CanvasComponent = () => {
   useEffect(() => {
     const canvas: CanvasType | null = canvasRef?.current
     const resizeWindow = () => {
-      if (canvas) {
-        w = window.innerWidth
-      }
+      w = window.innerWidth
     }
+    const handleMouseMove = (e: MouseEvent) => {
+      xpos = w ? e.pageX / w : xpos
+    }
+    resizeWindow()
     window.addEventListener('resize', resizeWindow, false)
-    window.addEventListener('mousemove', (e: MouseEvent) => {
-      xpos = e.pageX / w
-    })
+    window.addEventListener('mousemove', handleMouseMove)
 
     let animationFrameId: number
     if (canvas) {
       canvas.confetti = canvas.confetti || confetti.create(canvas, { resize: true })
 
-      window.onload = () => setTimeout(resizeWindow, 0)
-
       const render = () => {
         animationFrameId = window.requestAnimationFrame(render)
         animationConfetti(canvas, xpos)
-
       }
-      setTimeout(() => render(), 1000)
-
+      //setTimeout(() => render(), 1000) TODO
     }
+
     return () => {
       cancelAnimationFrame(animationFrameId)
       window.removeEventListener('resize', resizeWindow, false)
-      window.removeEventListener('mousemove', (e: MouseEvent) => {
-        xpos = e.pageX / w
-      })
+      window.removeEventListener('mousemove', handleMouseMove)
     }
-
   }, [])
 
 
