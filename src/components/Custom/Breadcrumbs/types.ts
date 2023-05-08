@@ -1,10 +1,9 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
 type BreadcrumbsProps = {
-   links: Array<{
-      name: string,
-      link?: string
-   }>
+  links: Array<{
+    name: string
+    link?: string
+  }>
 }
 export type BreadcrumbsComponent = FunctionComponent<BreadcrumbsProps>
-

@@ -5,5 +5,5 @@ export type WorkPreviewComponent = FunctionComponent<WorkPreviewProps>
 
 export enum DIRECTION {
   UP = 'UP',
-  DOWN = 'DOWN'
+  DOWN = 'DOWN',
 }

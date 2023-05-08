@@ -1,13 +1,23 @@
 import {
-  BackendIcon, ConsultingIcon, EcommerceIcon,
+  BackendIcon,
+  ConsultingIcon,
+  EcommerceIcon,
   FacebookIcon,
-  FrontedIcon, GameIcon, LandingIcon,
+  FrontedIcon,
+  GameIcon,
+  LandingIcon,
   LeetcodeIcon,
-  LinkedinIcon, LocationIcon,
+  LinkedinIcon,
+  LocationIcon,
   MailIcon,
-  MobileIcon, ReactIcon, ReduxIcon,
-  TwitterIcon, TypeScriptIcon,
-  VkIcon, VueIcon, VueXIcon,
+  MobileIcon,
+  ReactIcon,
+  ReduxIcon,
+  TwitterIcon,
+  TypeScriptIcon,
+  VkIcon,
+  VueIcon,
+  VueXIcon,
 } from '../components/Custom/Icons'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import React from 'react'
@@ -33,26 +43,26 @@ import { PostProps } from '../components/Home/Blog/types'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 
 export const SHARE = {
-  'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
-  'Vkontakte': [<VkIcon/>, 'https://vk.com/id134399064'],
-  'Facebook': [<FacebookIcon/>, 'https://vk.com/id134399064'],
-  'Twitter': [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
+  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
+  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon />, 'https://vk.com/id134399064'],
+  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
 }
 
 export const ICONS = {
-  'Linkedin': [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
-  'Github': [<GitHubIcon/>, 'https://github.com/AndreyKorolevich'],
-  'Vkontakte': [<VkIcon/>, 'https://vk.com/id134399064'],
-  'Facebook': [<FacebookIcon/>, 'https://vk.com/id134399064'],
-  'Twitter': [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
-  'Leetcode': [<LeetcodeIcon/>, 'https://leetcode.com/korolevich1994/'],
+  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
+  Github: [<GitHubIcon />, 'https://github.com/AndreyKorolevich'],
+  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon />, 'https://vk.com/id134399064'],
+  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
+  Leetcode: [<LeetcodeIcon />, 'https://leetcode.com/korolevich1994/'],
 }
 
 export const INFO = {
-  'Age': 28,
-  'Address': 'Los Angeles, CA',
-  'Status': 'Available',
-  'Authorization': 'Green Card',
+  Age: 28,
+  Address: 'Los Angeles, CA',
+  Status: 'Available',
+  Authorization: 'Green Card',
 }
 
 export const SKILLS = [
@@ -159,7 +169,8 @@ export const SERVICES: { [property: string]: ServiceT } = {
   'FrontEnd Development': {
     icon: FrontedIcon,
     preview: 'Client-side development.',
-    description: 'Including the use of all the best practices and the most modern tools such as JS, TS, React, Vue.',
+    description:
+      'Including the use of all the best practices and the most modern tools such as JS, TS, React, Vue.',
     navigatePath: SERVICES_NAVIGATION.FRONTEND,
   },
   'E-Commerce': {
@@ -171,19 +182,22 @@ export const SERVICES: { [property: string]: ServiceT } = {
   'BackEnd Development': {
     icon: BackendIcon,
     preview: 'Server-side development.',
-    description: 'Creation of moderate-complexity servers to support the client part using NodeJS, MongoDB, Python.',
+    description:
+      'Creation of moderate-complexity servers to support the client part using NodeJS, MongoDB, Python.',
     navigatePath: SERVICES_NAVIGATION.BACKEND,
   },
   'Web Game': {
     icon: GameIcon,
     preview: 'Design browser games.',
-    description: 'And production of game architecture and create fascinating characters for entertaining clients.',
+    description:
+      'And production of game architecture and create fascinating characters for entertaining clients.',
     navigatePath: SERVICES_NAVIGATION.WEBGAME,
   },
   'Landing Page': {
     icon: LandingIcon,
     preview: 'Creation layouts of any complexity.',
-    description: 'Including standalone pages for both B2B and B2C to collect user info, drive sales and more.',
+    description:
+      'Including standalone pages for both B2B and B2C to collect user info, drive sales and more.',
     navigatePath: SERVICES_NAVIGATION.LANDING,
   },
   'Product Consulting': {
@@ -200,10 +214,11 @@ export const PRICES: Array<PriceItemProps> = [
     description: 'Most businesses that want just a landing page',
     price: 35,
     isPopular: false,
-    duties: [{
-      name: 'HTML,CSS for static pages',
-      isRequired: true,
-    },
+    duties: [
+      {
+        name: 'HTML,CSS for static pages',
+        isRequired: true,
+      },
       {
         name: 'SEO Optimization',
         isRequired: true,
@@ -235,17 +250,19 @@ export const PRICES: Array<PriceItemProps> = [
       {
         name: 'Integration with aside API',
         isRequired: false,
-      }],
+      },
+    ],
   },
   {
     title: 'Gold',
     description: 'Most businesses that want Frontend services',
     price: 55,
     isPopular: true,
-    duties: [{
-      name: 'HTML,CSS for static pages',
-      isRequired: true,
-    },
+    duties: [
+      {
+        name: 'HTML,CSS for static pages',
+        isRequired: true,
+      },
       {
         name: 'SEO Optimization',
         isRequired: true,
@@ -277,17 +294,19 @@ export const PRICES: Array<PriceItemProps> = [
       {
         name: 'Integration with aside API',
         isRequired: false,
-      }],
+      },
+    ],
   },
   {
     title: 'Diamond',
     description: 'Most businesses that want Fullstack services',
     price: 75,
     isPopular: false,
-    duties: [{
-      name: 'HTML,CSS for static pages',
-      isRequired: true,
-    },
+    duties: [
+      {
+        name: 'HTML,CSS for static pages',
+        isRequired: true,
+      },
       {
         name: 'SEO Optimization',
         isRequired: true,
@@ -319,7 +338,8 @@ export const PRICES: Array<PriceItemProps> = [
       {
         name: 'Integration with aside API',
         isRequired: true,
-      }],
+      },
+    ],
   },
 ]
 
@@ -330,11 +350,12 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Responsible work!',
-    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+    description:
+      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -345,11 +366,12 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Great work!',
-    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+    description:
+      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -360,11 +382,12 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Awesome work!',
-    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+    description:
+      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -375,11 +398,12 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Amazing work!',
-    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+    description:
+      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -390,11 +414,12 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
     author: 'David Tanaka',
     occupation: 'Program Manager',
     title: 'Excellent work!',
-    description: 'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
+    description:
+      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -477,18 +502,39 @@ export const EDUCATION_HISTORY = [
   },
 ]
 
-export const PORTFOLIO: Array<{ tab: string, projects: Array<ProjectT> }> = [
+export const PORTFOLIO: Array<{ tab: string; projects: Array<ProjectT> }> = [
   {
     tab: 'All Categories',
-    projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }],
+    projects: [
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+    ],
   },
   {
     tab: 'Frontend',
-    projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }],
+    projects: [
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+    ],
   },
   {
     tab: 'Full Stack',
-    projects: [{ name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }, { name: 'Placeholder' }],
+    projects: [
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+      { name: 'Placeholder' },
+    ],
   },
   {
     tab: 'Games',
@@ -503,183 +549,213 @@ export const PORTFOLIO: Array<{ tab: string, projects: Array<ProjectT> }> = [
 export const POSTS: Array<PostProps> = [
   {
     title: 'How to create animated svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
     author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '1'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '1',
   },
   {
     title: 'How to creat animated svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '2'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '2',
   },
   {
     title: 'How to creae animated svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '3'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '3',
   },
   {
     title: 'How to ceate animated svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '4'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '4',
   },
   {
     title: 'How t create animated svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '5'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '5',
   },
   {
     title: 'How o create animated svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '6'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '6',
   },
   {
     title: 'Ho to create animated svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '7'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '7',
   },
   {
     title: 'How to create animated sg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '8'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '8',
   },
   {
     title: 'How to create anmated svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '9'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '9',
   },
   {
     title: 'How to create animaed svg',
-    description: 'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
+    description:
+      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
     img: blog,
-        author: {
+    author: {
       name: 'Andrei Karalevich',
-      img: me
+      img: me,
     },
     date: '04-30-2023',
-    comments: [{
-      author: {
-      name: 'Andrei Karalevich',
-      img: me
-    },
-      text: 'Interesting!',
-    }],
-    id: '10'
+    comments: [
+      {
+        author: {
+          name: 'Andrei Karalevich',
+          img: me,
+        },
+        text: 'Interesting!',
+      },
+    ],
+    id: '10',
   },
 ]
 
@@ -776,7 +852,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           And also gradually introduce a more reliable useHooks syntax as an alternative to the outdated version of React15, 
           and get rid of compatibility problems with modern libraries. Also I developed a new way to create customer preference tracking tags, which increased our customers' revenue.`,
         ],
-      }, {
+      },
+      {
         text: [
           `The main idea of frontend development is to create the user-facing part of a website or application, which is
            what users see and interact with. Frontend development involves creating the visual and interactive components 
@@ -788,7 +865,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           This requires a deep understanding of user behavior and design principles, as well as technical expertise 
           in web development technologies.`,
         ],
-      }],
+      },
+    ],
   },
   [SERVICES_NAVIGATION.ECOMMERCE]: {
     serviceTitle: 'E-Commerce Development',
@@ -823,7 +901,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           `I completely rebranded the company's affiliate website "Nexon Game Card" which increased gift card sales and
            generated additional annual revenue.`,
         ],
-      }, {
+      },
+      {
         text: [
           `E-commerce development is the process of creating an online platform that enables 
             businesses to sell their products or services over the internet. This can involve developing a custom 
@@ -837,7 +916,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           for both businesses and consumers to engage in online transactions, and e-commerce development is a crucial 
           part of building successful online businesses in today's digital landscape.`,
         ],
-      }],
+      },
+    ],
   },
   [SERVICES_NAVIGATION.BACKEND]: {
     serviceTitle: 'Backend Development',
@@ -884,7 +964,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           efficiently. I like to try new technologies and approaches in my work. You can see even more examples of 
           working with the backend using MERN stack in my personal projects on the portfolio tab.`,
         ],
-      }, {
+      },
+      {
         text: [
           `Backend development is a crucial part of building any web application, as it provides the foundation for the entire system. 
         Without a robust and well-designed backend, the frontend and user experience would not be possible.`,
@@ -893,7 +974,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
            user authentication and authorization, and the handling of requests and responses between the client-side
             and the server-side.`,
         ],
-      }],
+      },
+    ],
   },
   [SERVICES_NAVIGATION.WEBGAME]: {
     serviceTitle: 'Web Game',
@@ -942,7 +1024,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           `Please note that this is a seasonal event that runs several times a year and may not be available at the moment. 
           If you are interested in this project, you can find more information in my LinkedIn profile.`,
         ],
-      }, {
+      },
+      {
         text: [
           `Web game development is the process of creating games that can be played through web browsers. These games 
           can range from simple puzzle games to complex multiplayer games that involve real-time interaction between 
@@ -957,7 +1040,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           `Overall, web game development offers a unique and exciting opportunity for developers to create engaging and 
           accessible games that can be enjoyed by players all around the world.`,
         ],
-      }],
+      },
+    ],
   },
   [SERVICES_NAVIGATION.LANDING]: {
     serviceTitle: 'Landing page',
@@ -1000,7 +1084,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           up-to-date on the latest game developments, and connect with the game's community. And I was responsible for 
           supporting and updating content on website.`,
         ],
-      }, {
+      },
+      {
         text: [
           `Landing page development involves creating a web page that is specifically designed to convert visitors 
           into customers or leads. A landing page typically has a clear and focused objective, such as promoting a 
@@ -1014,7 +1099,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           `Overall, landing page development is a crucial part of any digital marketing strategy, as it can help 
           businesses to increase their conversion rates, generate more leads, and ultimately grow their bottom line.`,
         ],
-      }],
+      },
+    ],
   },
   [SERVICES_NAVIGATION.CONSULTING]: {
     serviceTitle: 'Product Consulting',
@@ -1040,6 +1126,7 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           `Overall, product consulting is an essential aspect of software development as it ensures that the product 
           meets the needs of the target audience and achieves the client's business objectives.`,
         ],
-      }],
+      },
+    ],
   },
 }

@@ -5,13 +5,13 @@ type ServicePageProps = {}
 export type ServicePageComponent = FunctionComponent<ServicePageProps>
 
 export type ServicePageT = {
-  serviceTitle: string,
-  icons: Array<(props: SvgIconProps) => ReactElement>,
+  serviceTitle: string
+  icons: Array<(props: SvgIconProps) => ReactElement>
   examples: Array<ArticleT>
 }
 
 export type ArticleT = {
-  image?: string,
-  text: Array<string>,
+  image?: string
+  text: Array<string>
   link?: string
 }

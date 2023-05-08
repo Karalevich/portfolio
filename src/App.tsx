@@ -12,7 +12,6 @@ import './index.scss'
 import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
 import Auth from './components/Auth/Auth'
 
-
 export const App: React.FC<unknown> = () => {
   const infoRef = useRef<null | HTMLElement>(null)
   const homeRef = useRef<null | HTMLElement>(null)
@@ -31,7 +30,6 @@ export const App: React.FC<unknown> = () => {
         const scrollNodeHeight = Math.floor(scrollNode.getBoundingClientRect().height)
         const scrollNodeTop = Math.abs(scrollNode.getBoundingClientRect().top)
         const viewportBottom = window.innerHeight
-
 
         if (scrollNodeHeight <= fixedNodeHeight) {
           setIsFixed(false)
@@ -61,22 +59,19 @@ export const App: React.FC<unknown> = () => {
     setIsOpenInfo(open)
   }
 
-
   return (
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>
-        <ScrollToTop/>
-        <Menu toggleNav={toggleNav} toggleInfo={toggleInfo}/>
-        <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo}/>
+        <ScrollToTop />
+        <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
+        <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
         <section className={styles.home} ref={homeRef}>
-          <AnimatedRoutes/>
+          <AnimatedRoutes />
         </section>
-        <Nav toggleNav={toggleNav} isOpen={isOpenNav}/>
-        <Auth/>
-        <Copyright/>
-      </ BrowserRouter>
+        <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
+        <Auth />
+        <Copyright />
+      </BrowserRouter>
     </ThemeProvider>
   )
 }
-
-

@@ -1,8 +1,8 @@
-import { styled } from "@mui/material/styles";
-import { Switch as MUISwitch, SwitchProps} from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { Switch as MUISwitch, SwitchProps } from '@mui/material'
 
 export const Switch = styled((props: SwitchProps) => (
-  <MUISwitch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
+  <MUISwitch focusVisibleClassName='.Mui-focusVisible' disableRipple {...props} />
 ))(({ theme }) => ({
   width: '2.625rem',
   height: '1.625rem',
@@ -28,10 +28,7 @@ export const Switch = styled((props: SwitchProps) => (
       border: '0.375rem solid #fff',
     },
     '&.Mui-disabled .MuiSwitch-thumb': {
-      color:
-        theme.palette.mode === 'light'
-          ? theme.palette.grey[100]
-          : theme.palette.grey[600],
+      color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
     },
     '&.Mui-disabled + .MuiSwitch-track': {
       opacity: theme.palette.mode === 'light' ? 0.7 : 0.3,
@@ -50,4 +47,4 @@ export const Switch = styled((props: SwitchProps) => (
       duration: 500,
     }),
   },
-}));
+}))

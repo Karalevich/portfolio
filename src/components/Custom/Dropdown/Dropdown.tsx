@@ -6,11 +6,10 @@ import { alpha, Button, ButtonProps, ClickAwayListener, Grow, styled } from '@mu
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import classnames from 'classnames'
 
-
-export const Dropdown: DropdownComponent = ({selects}) => {
+export const Dropdown: DropdownComponent = ({ selects }) => {
   const [isOpenSelect, setIsOpenSelect] = useState(false)
   const [selectedItem, setSelectedItem] = useState(selects[0])
-   const handleClick = () => {
+  const handleClick = () => {
     setIsOpenSelect((prev) => !prev)
   }
 
@@ -24,28 +23,30 @@ export const Dropdown: DropdownComponent = ({selects}) => {
   }
   return (
     <ClickAwayListener onClickAway={onClickAway}>
-        <div className={styles.select}>
-          <Tooltip title={'Select display order'} placement='top'>
-            <Button onClick={handleClick} className={styles.selectButton} disableRipple>
-              <p>{selectedItem}</p>
-              <KeyboardArrowDownIcon className={classnames(styles.buttonArrow, { [styles.arrowUp]: isOpenSelect })}/>
-            </Button>
-          </Tooltip>
-          <Grow in={isOpenSelect}>
-            <div className={styles.menu}>
-              <ul className={styles.list}>
-                {selects.map(item => (
-                  <li key={item} className={styles.item}>
-                    <StyledButton className={styles.itemButton} onClick={onChangeItem(item)}>
-                      <p>{item}</p>
-                    </StyledButton>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Grow>
-        </div>
-      </ClickAwayListener>
+      <div className={styles.select}>
+        <Tooltip title={'Select display order'} placement='top'>
+          <Button onClick={handleClick} className={styles.selectButton} disableRipple>
+            <p>{selectedItem}</p>
+            <KeyboardArrowDownIcon
+              className={classnames(styles.buttonArrow, { [styles.arrowUp]: isOpenSelect })}
+            />
+          </Button>
+        </Tooltip>
+        <Grow in={isOpenSelect}>
+          <div className={styles.menu}>
+            <ul className={styles.list}>
+              {selects.map((item) => (
+                <li key={item} className={styles.item}>
+                  <StyledButton className={styles.itemButton} onClick={onChangeItem(item)}>
+                    <p>{item}</p>
+                  </StyledButton>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Grow>
+      </div>
+    </ClickAwayListener>
   )
 }
 

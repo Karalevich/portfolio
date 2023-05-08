@@ -1,14 +1,14 @@
 import { useCallback, useState } from 'react'
 
 type UseScrollLockT = {
-  lockScroll: () => void,
-  unlockScroll: () => void,
+  lockScroll: () => void
+  unlockScroll: () => void
   isScrollLocked: boolean
 }
 export const useScrollLock = (): UseScrollLockT => {
   const [isScrollLocked, setIsScrollLock] = useState<boolean>(false)
   const lockScroll = useCallback(() => {
-    setIsScrollLock(prevIsScrollLocked => {
+    setIsScrollLock((prevIsScrollLocked) => {
       if (prevIsScrollLocked) {
         return prevIsScrollLocked
       }
@@ -18,7 +18,7 @@ export const useScrollLock = (): UseScrollLockT => {
   }, [])
 
   const unlockScroll = useCallback(() => {
-    setIsScrollLock(prevIsScrollLocked => {
+    setIsScrollLock((prevIsScrollLocked) => {
       if (!prevIsScrollLocked) {
         return prevIsScrollLocked
       }
@@ -27,11 +27,9 @@ export const useScrollLock = (): UseScrollLockT => {
     })
   }, [])
 
-
   return {
     lockScroll,
     unlockScroll,
     isScrollLocked,
   }
 }
-

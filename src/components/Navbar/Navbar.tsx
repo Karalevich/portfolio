@@ -7,7 +7,6 @@ import { CSSProp } from '../Custom/DynamicCSS/types'
 import { DARK, LIGHT } from 'src/constants/settings'
 import NavTabs from './NavTabs/NavTabs'
 
-
 export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
   const [theme, setTheme] = useState<Array<CSSProp>>(LIGHT)
   const [isLightTheme, setIsLightTheme] = useState(true)
@@ -21,18 +20,16 @@ export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
       setTheme(LIGHT)
     }
   }
-  const toggleDrawer = (open: boolean) =>
-    (event: KeyboardEvent | MouseEvent) => {
-      if (
-        event &&
-        event.type === 'keydown' &&
-        ((event as KeyboardEvent).key === 'Tab' ||
-          (event as KeyboardEvent).key === 'Shift')
-      ) {
-        return
-      }
-      toggleNav(open)
+  const toggleDrawer = (open: boolean) => (event: KeyboardEvent | MouseEvent) => {
+    if (
+      event &&
+      event.type === 'keydown' &&
+      ((event as KeyboardEvent).key === 'Tab' || (event as KeyboardEvent).key === 'Shift')
+    ) {
+      return
     }
+    toggleNav(open)
+  }
 
   const closeDrawer = () => {
     toggleNav(false)
@@ -40,22 +37,30 @@ export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
 
   return (
     <>
-      <DynamicCSS properties={theme}/>
-      {isTabletOrMobile
-        ? <SwipeableDrawer
+      <DynamicCSS properties={theme} />
+      {isTabletOrMobile ? (
+        <SwipeableDrawer
           open={isOpen}
           anchor={'right'}
           onClose={toggleDrawer(false)}
           onOpen={toggleDrawer(true)}
           className={styles.mobile}
         >
-          <NavTabs handleSwitchTheme={handleSwitchTheme} closeDrawer={closeDrawer} isLightTheme={isLightTheme}/>
+          <NavTabs
+            handleSwitchTheme={handleSwitchTheme}
+            closeDrawer={closeDrawer}
+            isLightTheme={isLightTheme}
+          />
         </SwipeableDrawer>
-        : <NavTabs handleSwitchTheme={handleSwitchTheme} className={styles.fullScreen} isLightTheme={isLightTheme}/>
-      }
+      ) : (
+        <NavTabs
+          handleSwitchTheme={handleSwitchTheme}
+          className={styles.fullScreen}
+          isLightTheme={isLightTheme}
+        />
+      )}
     </>
   )
 }
 
 export default Nav
-

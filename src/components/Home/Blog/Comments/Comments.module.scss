@@ -31,7 +31,6 @@
       align-items: center;
     }
 
-
     .share {
       display: flex;
       align-items: center;
@@ -46,7 +45,8 @@
     position: relative;
   }
 
-  .favoriteIcon, .shareIcon {
+  .favoriteIcon,
+  .shareIcon {
     cursor: pointer;
     color: $paragraph;
   }
@@ -74,7 +74,6 @@
   }
 }
 
-
 @media only screen and (max-width: 767px) {
   .commentSection {
     .header {
@@ -85,7 +84,7 @@
       }
 
       .review {
-        column-gap: 1.5rem
+        column-gap: 1.5rem;
       }
     }
 
@@ -94,7 +93,8 @@
       align-items: end;
     }
 
-    .favoriteIcon, .shareIcon {
+    .favoriteIcon,
+    .shareIcon {
       font-size: 1.75rem;
     }
 
@@ -118,7 +118,7 @@
       }
 
       .review {
-        column-gap: 1.5rem
+        column-gap: 1.5rem;
       }
     }
 
@@ -127,7 +127,8 @@
       align-items: end;
     }
 
-    .favoriteIcon, .shareIcon {
+    .favoriteIcon,
+    .shareIcon {
       font-size: 1.75rem;
     }
 

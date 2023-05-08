@@ -15,7 +15,7 @@
     .previewImg {
       width: 100%;
       height: 28.125rem;
-      background: url("../../../../assets/img/service-page.webp") no-repeat, $service-page-bcg;
+      background: url('../../../../assets/img/service-page.webp') no-repeat, $service-page-bcg;
       background-size: contain;
       padding: 10rem 10rem 0 0;
       display: flex;
@@ -106,7 +106,7 @@
 
     .redirect {
       opacity: 0;
-      transition: opacity .2s linear;
+      transition: opacity 0.2s linear;
       position: absolute;
       top: 0;
       left: 0;
@@ -124,7 +124,7 @@
       color: $main-text;
       font-weight: 600;
       margin-top: 10rem;
-      transition: margin-top .2s linear;
+      transition: margin-top 0.2s linear;
     }
 
     .leftImage {

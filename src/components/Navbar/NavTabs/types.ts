@@ -1,9 +1,9 @@
 import { FunctionComponent } from 'react'
 
 type NavTabsProps = {
-  className?: string,
+  className?: string
   closeDrawer?: () => void
-  handleSwitchTheme: () => void,
+  handleSwitchTheme: () => void
   isLightTheme: boolean
 }
 

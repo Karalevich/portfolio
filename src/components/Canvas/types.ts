@@ -1,7 +1,6 @@
 import { FunctionComponent } from 'react'
 
-type CanvasProps = {
-}
+type CanvasProps = {}
 
 export type CanvasComponent = FunctionComponent<CanvasProps>
 

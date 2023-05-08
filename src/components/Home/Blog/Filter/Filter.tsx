@@ -17,7 +17,7 @@ export const Filter: FilterComponent = () => {
       ([e]) => {
         e.target.classList.toggle(styles.filterSticked, e.intersectionRatio < 1)
       },
-      { threshold: [1] },
+      { threshold: [1] }
     )
 
     if (filterRef.current) {
@@ -29,16 +29,15 @@ export const Filter: FilterComponent = () => {
     }
   }, [])
 
-
   return (
     <article className={styles.filter} ref={filterRef}>
       <div className={styles.search}>
         <div className={styles.searchIconWrapper}>
-          <SearchIcon/>
+          <SearchIcon />
         </div>
-        <StyledInputBase placeholder="Search…"/>
+        <StyledInputBase placeholder='Search…' />
       </div>
-      <Dropdown selects={SELECT}/>
+      <Dropdown selects={SELECT} />
     </article>
   )
 }
@@ -68,7 +67,3 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }))
-
-
-
-

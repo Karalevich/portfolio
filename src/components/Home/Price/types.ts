@@ -4,12 +4,12 @@ type PriceProps = {}
 export type PriceComponent = FunctionComponent<PriceProps>
 
 export type PriceItemProps = {
-  title: string,
-  description: string,
-  price: number,
-  isPopular: boolean,
+  title: string
+  description: string
+  price: number
+  isPopular: boolean
   duties: Array<{
-    name: string,
+    name: string
     isRequired: boolean
   }>
 }

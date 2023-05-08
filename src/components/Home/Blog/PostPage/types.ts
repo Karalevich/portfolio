@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
 
-type PostPageProps = {
-}
+type PostPageProps = {}
 export type PostPageComponent = FunctionComponent<PostPageProps>

@@ -8,7 +8,7 @@ export const animationConfetti = (canvas: CanvasType, xpos: number) => {
   if (xpos >= 0.5) {
     leftX = Number((-0.6 * xpos + 0.3).toFixed(2))
   } else {
-    rightX = Number((rightX + (0.3 - (0.6 * xpos))).toFixed(2))
+    rightX = Number((rightX + (0.3 - 0.6 * xpos)).toFixed(2))
   }
 
   canvas.confetti({

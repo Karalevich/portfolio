@@ -1,6 +1,4 @@
 import { FunctionComponent } from 'react'
 
-type FilterProps = {
-
-}
+type FilterProps = {}
 export type FilterComponent = FunctionComponent<FilterProps>

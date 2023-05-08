@@ -9,7 +9,8 @@
   row-gap: 5rem;
 
   .main {
-    background: url("../../assets/img/not-found.svg") no-repeat, url("../../assets/img/not-found-bcg.png") no-repeat;
+    background: url('../../assets/img/not-found.svg') no-repeat,
+      url('../../assets/img/not-found-bcg.png') no-repeat;
     background-size: contain;
     height: 30.9375rem;
     width: 43.3125rem;
@@ -41,7 +42,6 @@
 @media only screen and (max-width: 768px) {
   .notFound {
     row-gap: 5rem;
-
 
     .main {
       height: 14.75rem;

@@ -1,7 +1,6 @@
 @import './src/styles/variables.scss';
 
 .portfolio {
-
   .tabs {
     width: 62.5%;
     margin-right: auto;
@@ -25,11 +24,10 @@
 
 @media only screen and (max-width: 768px) {
   .portfolio {
-
     .tabs {
       width: 100%;
 
-      button[class*="MuiTab-root"] {
+      button[class*='MuiTab-root'] {
         border-right: 1px solid $paragraph !important;
         border-radius: 0 !important;
         padding-right: 0.75rem;
@@ -49,10 +47,7 @@
 
     .tabPanel {
       .projectList {
-
-
         .project {
-
           width: 100%;
           height: 25rem;
         }

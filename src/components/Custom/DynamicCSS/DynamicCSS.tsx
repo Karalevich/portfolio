@@ -1,18 +1,14 @@
 import { DynamicCSSComponent } from './types'
 
-const DynamicCSS: DynamicCSSComponent = ({properties}) => {
+const DynamicCSS: DynamicCSSComponent = ({ properties }) => {
   let generateCss = ''
-  properties.forEach(({prop, value}) => {
+  properties.forEach(({ prop, value }) => {
     const property = `--${prop}: ${value};`
     generateCss += property
   })
-  const css = ':root {' +  generateCss + '}'
+  const css = ':root {' + generateCss + '}'
 
-  return (
-    <style>
-      {css}
-    </style>
-  )
+  return <style>{css}</style>
 }
 
 export default DynamicCSS

@@ -4,7 +4,6 @@ import { BreadcrumbsComponent } from './types'
 import { Link } from 'react-router-dom'
 import { Breadcrumbs as MUIBreadcrumbs } from '@mui/material'
 
-
 const Breadcrumbs: BreadcrumbsComponent = ({ links }) => {
   const breadcrumbs = links.map(({ name, link }, index) => {
     if (link) {
@@ -23,14 +22,17 @@ const Breadcrumbs: BreadcrumbsComponent = ({ links }) => {
   })
 
   return (
-    <MUIBreadcrumbs separator="›" className={styles.breadcrumbs} sx={{
-      '.MuiBreadcrumbs-separator': {
-        color: '#767676',
-      },
-    }}>
+    <MUIBreadcrumbs
+      separator='›'
+      className={styles.breadcrumbs}
+      sx={{
+        '.MuiBreadcrumbs-separator': {
+          color: '#767676',
+        },
+      }}
+    >
       {breadcrumbs}
     </MUIBreadcrumbs>
-
   )
 }
 

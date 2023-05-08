@@ -1,12 +1,12 @@
-import { Backdrop, Box, Button, Checkbox, Fade, Modal, styled, Tab, Tabs } from '@mui/material'
 import React, { useState } from 'react'
 import styles from './Auth.module.scss'
+import { Backdrop, Box, Fade, Modal, styled, Tab, Tabs } from '@mui/material'
 import { AuthComponent, TabPanelComponent } from './types'
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
 import { userActions } from '../../actions/userAction'
 import { getIsOpenModal } from 'src/selectors/userSelectors'
-import Input from '../Custom/Inputs/Input'
-
+import SignIn from './SignIn'
+import SignUp from './SignUp'
 
 export const Auth: AuthComponent = () => {
   const dispatch = useAppDispatch()
@@ -23,8 +23,8 @@ export const Auth: AuthComponent = () => {
 
   return (
     <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
+      aria-labelledby='transition-modal-title'
+      aria-describedby='transition-modal-description'
       open={open}
       onClose={handleClose}
       closeAfterTransition
@@ -38,64 +38,44 @@ export const Auth: AuthComponent = () => {
       <Fade in={open}>
         <Box className={styles.auth} sx={{ boxShadow: 24 }}>
           <StyledTabs value={tabId} onChange={handleChange}>
-            <Tab label="Sign In" disableRipple/>
-            <Tab label="Sign Up" disableRipple/>
+            <Tab className={styles.tab} label='Sign In' disableRipple />
+            <Tab className={styles.tab} label='Sign Up' disableRipple />
           </StyledTabs>
           <TabPanel id={tabId} index={0}>
-            <header>
-              <h3>Sign In</h3>
+            <header className={styles.tabHeader}>
+              <h2>Sign In</h2>
               <p>Enter your login information</p>
             </header>
-            <main>
-              <Input placeholder={'Username or Email'}/>
-              <Input placeholder={'Password'}/>
-              <div>
-                <Checkbox/>
-                <span>Forgot Password?</span>
-              </div>
-              <Button className={styles.button} variant="contained">
-                Sign In
-              </Button>
-            </main>
-
+            <SignIn />
           </TabPanel>
           <TabPanel id={tabId} index={1}>
-            <header>
-              <h3>Sign Up</h3>
+            <header className={styles.tabHeader}>
+              <h2>Sign Up</h2>
               <p>Enter your credential information</p>
             </header>
-            <main>
-              <Input placeholder={'Full Name'}/>
-              <Input placeholder={'Username or Email'}/>
-              <Input placeholder={'Password'}/>
-              <Input placeholder={'Confirm Password'}/>
-              <Button className={styles.button} variant="contained">
-                Sign Up
-              </Button>
-            </main>
+            <SignUp />
           </TabPanel>
         </Box>
       </Fade>
     </Modal>
   )
 }
+export default Auth
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   position: 'relative',
   width: 'fit-content',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
-  '.MuiTabs-flexContainer': {},
+  marginBottom: '1.5rem',
+  marginRight: 'auto',
+  marginLeft: 'auto',
+  '.MuiTabs-flexContainer': {
+    borderBottom: '2px solid var(--substrate2)',
+  },
 }))
 
-export default Auth
-
 const TabPanel: TabPanelComponent = ({ children, id, index, ...other }) => {
-
   return (
-    <div
-      hidden={id !== index}
-      {...other}
-    >
+    <div hidden={id !== index} {...other}>
       {id === index && children}
     </div>
   )

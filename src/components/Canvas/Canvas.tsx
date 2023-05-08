@@ -10,7 +10,6 @@ let xpos = 0.5
 export const Canvas: CanvasComponent = () => {
   const canvasRef = useRef<CanvasType>(null)
 
-
   useEffect(() => {
     const canvas: CanvasType | null = canvasRef?.current
     const resizeWindow = () => {
@@ -41,10 +40,9 @@ export const Canvas: CanvasComponent = () => {
     }
   }, [])
 
-
   return (
     <>
-      <canvas className={styles.canvas} ref={canvasRef} tabIndex={0}/>
+      <canvas className={styles.canvas} ref={canvasRef} tabIndex={0} />
     </>
   )
 }

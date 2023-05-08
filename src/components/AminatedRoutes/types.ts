@@ -5,5 +5,5 @@ export type AnimatedRoutesComponent = FunctionComponent<AnimatedRoutesProps>
 
 export enum ROUTES_ANIMATIONS {
   FADE_IN = 'fadeIn',
-  FADE_OUT = 'fadeOut'
+  FADE_OUT = 'fadeOut',
 }

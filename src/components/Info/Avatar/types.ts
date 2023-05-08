@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
-type AvatarProps = {  }
+type AvatarProps = {}
 export type AvatarComponent = FunctionComponent<AvatarProps>

@@ -4,20 +4,28 @@ import { styled } from '@mui/material/styles'
 import { WorkPreviewComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
 import {
-  Box, collapseClasses,
-  Step, stepClasses,
+  Box,
+  collapseClasses,
+  Step,
+  stepClasses,
   StepContent,
   stepContentClasses,
   StepIconProps,
-  StepLabel, stepLabelClasses,
+  StepLabel,
+  stepLabelClasses,
   Stepper,
 } from '@mui/material'
 import { WORK_HISTORY } from '../../../constants/personalInfo'
 import { InView } from 'react-intersection-observer'
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
-import { FreelanceIcon, LeverIcon, NexonIcon, SabbaticalIcon, WargamingIcon } from 'src/components/Custom/Icons/Motion'
+import {
+  FreelanceIcon,
+  LeverIcon,
+  NexonIcon,
+  SabbaticalIcon,
+  WargamingIcon,
+} from 'src/components/Custom/Icons/Motion'
 import { Switch } from 'src/components/Custom/Switch'
-
 
 export const WorkPreview: WorkPreviewComponent = () => {
   const [activeStep, setActiveStep] = useState<number>(-1)
@@ -32,38 +40,59 @@ export const WorkPreview: WorkPreviewComponent = () => {
     }
   }
 
-  const stepInViewHandler = (stepIndex: number) => (inView: boolean, entry: IntersectionObserverEntry) => {
-    if (inView && !isStepsExpended) {
-      if (stepIndex === WORK_HISTORY.length - 1) {
-        setIsStepsExpended(true)
-        setActiveStep(WORK_HISTORY.length)
-      } else {
-        setActiveStep(stepIndex)
+  const stepInViewHandler =
+    (stepIndex: number) => (inView: boolean, entry: IntersectionObserverEntry) => {
+      if (inView && !isStepsExpended) {
+        if (stepIndex === WORK_HISTORY.length - 1) {
+          setIsStepsExpended(true)
+          setActiveStep(WORK_HISTORY.length)
+        } else {
+          setActiveStep(stepIndex)
+        }
       }
     }
-  }
 
-  const spec = (occupation: string, date: string) => (<div className={styles.spec}>
-    <span className={styles.occupation}>{occupation}</span> <span className={styles.date}>{date}</span>
-  </div>)
+  const spec = (occupation: string, date: string) => (
+    <div className={styles.spec}>
+      <span className={styles.occupation}>{occupation}</span> <span className={styles.date}>{date}</span>
+    </div>
+  )
 
   return (
     <section className={styles.workPreview}>
-      <SectionHeader title={'Work History'} introduction={'I have a broad range of projects that I worked on: ' +
-      'huge B2B platform, E-commerce and game companies like Wargaming and Nexon America which have different target markets.'}/>
-      <Box sx={{
-        backgroundColor: 'var(--background)',
-        transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-        padding: '2.8rem 2.43vw',
-        borderRadius: '2px',
-      }}>
-        <Switch className={styles.switch} checked={isStepsExpended} onChange={handleSwitch}/>
-        <Stepper activeStep={activeStep} orientation="vertical" className={styles.stepper}
-                 connector={<ColorlibConnector/>}>
+      <SectionHeader
+        title={'Work History'}
+        introduction={
+          'I have a broad range of projects that I worked on: ' +
+          'huge B2B platform, E-commerce and game companies like Wargaming and Nexon America which have different target markets.'
+        }
+      />
+      <Box
+        sx={{
+          backgroundColor: 'var(--background)',
+          transition: 'background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+          padding: '2.8rem 2.43vw',
+          borderRadius: '2px',
+        }}
+      >
+        <Switch className={styles.switch} checked={isStepsExpended} onChange={handleSwitch} />
+        <Stepper
+          activeStep={activeStep}
+          orientation='vertical'
+          className={styles.stepper}
+          connector={<ColorlibConnector />}
+        >
           {WORK_HISTORY.map((step, index) => (
             <ColorlibStep expanded={isStepsExpended || index < activeStep} key={step.label}>
-              <InView as="div" rootMargin={`0px 0px -${60 - index * 2}% 0px`} onChange={stepInViewHandler(index)}>
-                <StepLabel StepIconComponent={ColorlibStepIcon} optional={spec(step.occupation, step.date)}>
+              <InView
+                as='div'
+                rootMargin={`0px 0px -${60 - index * 2}% 0px`}
+                onChange={stepInViewHandler(index)}
+              >
+                <StepLabel
+                  StepIconComponent={ColorlibStepIcon}
+                  optional={spec(step.occupation, step.date)}
+                >
                   <h4 className={styles.label}>{step.label}</h4>
                   <h6 className={styles.place}>{step.place}</h6>
                 </StepLabel>
@@ -85,7 +114,8 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
   [`&.${stepClasses.completed}`]: {
     [`& .${stepContentClasses.root}`]: {
       '&:before': {
-        background: 'linear-gradient(0deg, rgba(255,180,0,0.93) 0%, rgba(255,203,42,1) 50%, rgba(255,247,124,1) 100%)',
+        background:
+          'linear-gradient(0deg, rgba(255,180,0,0.93) 0%, rgba(255,203,42,1) 50%, rgba(255,247,124,1) 100%)',
       },
     },
     [`& .${stepLabelClasses.labelContainer}`]: {
@@ -128,7 +158,6 @@ const ColorlibStep = styled(Step)(({ theme }) => ({
         border: 'none',
       },
     },
-
   },
   [`& .${collapseClasses.root}`]: {
     width: '45vw',
@@ -169,14 +198,13 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`& .${stepConnectorClasses.line}`]: {
     width: 3,
     border: 0,
-    backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
     borderRadius: 1,
   },
 }))
 
 const ColorlibStepIconRoot = styled('div')<{
-  ownerState: { completed?: boolean; active?: boolean };
+  ownerState: { completed?: boolean; active?: boolean }
 }>(({ theme, ownerState }) => ({
   backgroundColor: '#ccc',
   zIndex: 1,
@@ -202,11 +230,11 @@ function ColorlibStepIcon(props: StepIconProps) {
   const { active, completed, className } = props
 
   const icons: { [index: string]: React.ReactElement } = {
-    1: active || completed ? <NexonIcon sx={{ fontSize: '2.5rem' }}/> : <div>I</div>,
-    2: active || completed ? <SabbaticalIcon sx={{ fontSize: '6rem' }}/> : <div>I</div>,
-    3: active || completed ? <WargamingIcon sx={{ fontSize: '4rem' }}/> : <div>I</div>,
-    4: active || completed ? <LeverIcon sx={{ fontSize: '5.5rem' }}/> : <div>I</div>,
-    5: active || completed ? <FreelanceIcon sx={{ fontSize: '20rem' }}/> : <div>I</div>,
+    1: active || completed ? <NexonIcon sx={{ fontSize: '2.5rem' }} /> : <div>I</div>,
+    2: active || completed ? <SabbaticalIcon sx={{ fontSize: '6rem' }} /> : <div>I</div>,
+    3: active || completed ? <WargamingIcon sx={{ fontSize: '4rem' }} /> : <div>I</div>,
+    4: active || completed ? <LeverIcon sx={{ fontSize: '5.5rem' }} /> : <div>I</div>,
+    5: active || completed ? <FreelanceIcon sx={{ fontSize: '20rem' }} /> : <div>I</div>,
   }
 
   return (
@@ -215,4 +243,3 @@ function ColorlibStepIcon(props: StepIconProps) {
     </ColorlibStepIconRoot>
   )
 }
-

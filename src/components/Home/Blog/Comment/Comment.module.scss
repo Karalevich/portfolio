@@ -19,7 +19,8 @@
     position: relative;
   }
 
-  .favoriteIcon, .shareIcon {
+  .favoriteIcon,
+  .shareIcon {
     cursor: pointer;
     color: $paragraph;
   }
@@ -35,7 +36,6 @@
     color: $element;
     font-weight: 500;
     position: relative;
-
 
     &:after {
       content: '';
@@ -60,7 +60,8 @@
       align-items: end;
     }
 
-    .favoriteIcon, .shareIcon {
+    .favoriteIcon,
+    .shareIcon {
       font-size: 1.75rem;
     }
 
@@ -107,9 +108,9 @@
       font-size: 1rem;
     }
 
-    .favoriteIcon, .shareIcon {
+    .favoriteIcon,
+    .shareIcon {
       font-size: 1.75rem;
     }
   }
 }
-

@@ -1,15 +1,15 @@
 import { Action } from 'redux'
 import thunk, { ThunkAction } from 'redux-thunk'
-import { configureStore, combineReducers  } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import userReducer from './user/userReducer'
 
 const reducers = combineReducers({
-  user: userReducer
+  user: userReducer,
 })
 
 export const store = configureStore({
   reducer: reducers,
-  middleware: [thunk]
+  middleware: [thunk],
 })
 
 type RootReducerT = typeof reducers

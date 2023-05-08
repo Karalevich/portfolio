@@ -9,18 +9,17 @@ import Contact from './Contact/Contact'
 import CV from './CV/CV'
 import Price from './Price/Price'
 
-
 export const Home: HomeComponent = () => {
   return (
     <>
-      <Banner/>
-      <Services/>
-      <Price/>
-      <Recommendations/>
-      <CV/>
-      <Portfolio/>
-      <Blog isFullVersion={false}/>
-      <Contact/>
+      <Banner />
+      <Services />
+      <Price />
+      <Recommendations />
+      <CV />
+      <Portfolio />
+      <Blog isFullVersion={false} />
+      <Contact />
     </>
   )
 }

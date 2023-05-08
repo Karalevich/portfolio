@@ -5,17 +5,17 @@ import SectionHeader from '../SectionHeader/SectionHeader'
 import { Box } from '@mui/material'
 import { EDUCATION_HISTORY } from 'src/constants/personalInfo'
 
-
 export const EducationPreview: EducationPreviewComponent = () => {
-  const educationList = EDUCATION_HISTORY.map(educ => <EducationItem key={educ.name} {...educ}/>)
+  const educationList = EDUCATION_HISTORY.map((educ) => <EducationItem key={educ.name} {...educ} />)
   return (
     <section className={styles.educationPreview}>
-      <SectionHeader title={'Education'} introduction={`I graduated from the Belarusian National  Technical University 
-      and got an engineering diploma with a bachelor's degree, which gave me a good base in Math and Computer Science.`}/>
+      <SectionHeader
+        title={'Education'}
+        introduction={`I graduated from the Belarusian National  Technical University 
+      and got an engineering diploma with a bachelor's degree, which gave me a good base in Math and Computer Science.`}
+      />
       <Box className={styles.wrapper}>
-        <ul className={styles.list}>
-          {educationList}
-        </ul>
+        <ul className={styles.list}>{educationList}</ul>
       </Box>
     </section>
   )

@@ -1,8 +1,6 @@
-import { CanvasType } from "src/components/Canvas/types"
-
+import { CanvasType } from 'src/components/Canvas/types'
 
 const resizeCanvasToDisplaySize = (canvas: CanvasType) => {
-
   const width = document.body.clientWidth
   const height = window.innerHeight
   if (canvas) {

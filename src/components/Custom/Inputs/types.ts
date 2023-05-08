@@ -1,7 +1,7 @@
 import { InputBaseProps } from '@mui/material'
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
 type InputProps = InputBaseProps & {
-  label?: string
+  label?: string | boolean
 }
 export type InputComponent = FunctionComponent<InputProps>

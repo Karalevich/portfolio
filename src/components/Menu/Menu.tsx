@@ -5,7 +5,6 @@ import MenuIcon from '@mui/icons-material/Menu'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { IconButton } from '@mui/material'
 
-
 export const Menu: MenuComponent = ({ toggleNav, toggleInfo }) => {
   const openNav = () => {
     toggleNav(true)
@@ -17,8 +16,12 @@ export const Menu: MenuComponent = ({ toggleNav, toggleInfo }) => {
 
   return (
     <header className={styles.menu}>
-      <IconButton onClick={openInfo} className={styles.icon}><MenuIcon/></IconButton>
-      <IconButton onClick={openNav} className={styles.icon}><MoreVertIcon/></IconButton>
+      <IconButton onClick={openInfo} className={styles.icon}>
+        <MenuIcon />
+      </IconButton>
+      <IconButton onClick={openNav} className={styles.icon}>
+        <MoreVertIcon />
+      </IconButton>
     </header>
   )
 }

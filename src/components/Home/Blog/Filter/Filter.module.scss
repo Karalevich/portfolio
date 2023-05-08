@@ -34,7 +34,8 @@
 }
 
 .filterSticked {
-  box-shadow: 0 7px 8px -3px rgba(0, 0, 0, 0.4), 0px 12px 17px 2px rgba(0, 0, 0, 0.14), 0px 5px 22px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 7px 8px -3px rgba(0, 0, 0, 0.4), 0px 12px 17px 2px rgba(0, 0, 0, 0.14),
+    0px 5px 22px 4px rgba(0, 0, 0, 0.12);
 }
 
 @media only screen and (max-width: 767px) {
@@ -52,7 +53,6 @@
     p {
       font-size: 1rem;
     }
-
   }
 }
 
@@ -65,5 +65,4 @@
     margin-right: auto;
     margin-left: auto;
   }
-
 }

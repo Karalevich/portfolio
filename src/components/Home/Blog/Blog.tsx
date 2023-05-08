@@ -26,7 +26,7 @@ export const Blog: BlogComponent = ({ isFullVersion }) => {
     const animationHandler = (event: AnimationEvent) => {
       if (event.animationName === ROUTES_ANIMATIONS.FADE_IN) {
         /* delete class that added animation in Blog pare after it finished. The problem that this class block styles for filter that has sticky position */
-        fadeIn?.classList.remove( ROUTES_ANIMATIONS.FADE_IN)
+        fadeIn?.classList.remove(ROUTES_ANIMATIONS.FADE_IN)
       }
     }
 
@@ -37,17 +37,19 @@ export const Blog: BlogComponent = ({ isFullVersion }) => {
     return () => fadeIn?.removeEventListener('animationend', animationHandler)
   }, [isFullVersion])
 
-
   return (
     <section className={styles.blog}>
-      <DynamicCSS properties={[{ value: POSTS.length, prop: 'posts-count' }]}/>
-      <SectionHeader title={'Blog'}
-                     introduction={`I like to share my experience and knowledge, that is why I decided to create my own small blog.`}/>
-      {isFullVersion && <Filter/>}
+      <DynamicCSS properties={[{ value: POSTS.length, prop: 'posts-count' }]} />
+      <SectionHeader
+        title={'Blog'}
+        introduction={`I like to share my experience and knowledge, that is why I decided to create my own small blog.`}
+      />
+      {isFullVersion && <Filter />}
       <main className={classnames(styles.main, { [styles.fullMain]: isFullVersion })}>
-        {isFullVersion
-          ? <Posts isTabletOrMobile={isTabletOrMobile} isFullVersion/>
-          : <CarouselProvider
+        {isFullVersion ? (
+          <Posts isTabletOrMobile={isTabletOrMobile} isFullVersion />
+        ) : (
+          <CarouselProvider
             isIntrinsicHeight
             visibleSlides={countOfSlide}
             totalSlides={POSTS.length}
@@ -56,20 +58,18 @@ export const Blog: BlogComponent = ({ isFullVersion }) => {
             naturalSlideHeight={440}
             currentSlide={0}
           >
-            <Posts isTabletOrMobile={isTabletOrMobile} isFullVersion={false}/>
+            <Posts isTabletOrMobile={isTabletOrMobile} isFullVersion={false} />
             <ButtonBack className={styles.buttonBack}>
-              <ArrowBackIosNewIcon color={'secondary'} fontSize={'inherit'}/>
+              <ArrowBackIosNewIcon color={'secondary'} fontSize={'inherit'} />
             </ButtonBack>
             <ButtonNext className={styles.buttonNext}>
-              <ArrowForwardIosIcon color={'secondary'} fontSize={'inherit'}/>
+              <ArrowForwardIosIcon color={'secondary'} fontSize={'inherit'} />
             </ButtonNext>
-          </CarouselProvider>}
-
+          </CarouselProvider>
+        )}
       </main>
     </section>
-
   )
 }
 
 export default Blog
-

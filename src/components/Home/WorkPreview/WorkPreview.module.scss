@@ -55,7 +55,8 @@
     .stepper {
       width: 100%;
 
-      .label, .place {
+      .label,
+      .place {
         text-align: right;
       }
 
@@ -77,15 +78,14 @@
       text-align: justify;
     }
 
-    span[class*="MuiStepLabel-labelContainer"] {
+    span[class*='MuiStepLabel-labelContainer'] {
       gap: inherit;
       justify-content: space-between;
     }
 
-    div[class*="MuiCollapse-root"] {
+    div[class*='MuiCollapse-root'] {
       width: 100%;
     }
-
   }
 }
 
@@ -111,10 +111,8 @@
       text-align: justify;
     }
 
-    div[class*="MuiCollapse-root"] {
+    div[class*='MuiCollapse-root'] {
       width: 90%;
     }
-
-
   }
 }

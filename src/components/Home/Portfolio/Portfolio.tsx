@@ -5,7 +5,6 @@ import SectionHeader from '../SectionHeader/SectionHeader'
 import { Card, CardActionArea, Tab, Tabs, tabsClasses } from '@mui/material'
 import { PORTFOLIO } from 'src/constants/personalInfo'
 
-
 export const Portfolio: PortfolioComponent = () => {
   const [tabIndex, setTab] = useState(0)
 
@@ -15,35 +14,47 @@ export const Portfolio: PortfolioComponent = () => {
 
   return (
     <section className={styles.portfolio}>
-      <SectionHeader title={'Portfolio'} introduction={`Web technologies are not only my job but also hobby to which I devote all my 
-       time and passion. You can look at my pet projects below.`}/>
-      <Tabs variant="scrollable"
-        scrollButtons={false} value={tabIndex} onChange={handleChange} className={styles.tabs} sx={{
-        minHeight: 0,
-        marginBottom: '2rem',
-        '.MuiTab-root': {
-          width: `auto`,
-          overflow: 'inherit',
-          color: 'var(--main-text)',
-          fontWeight: 400,
-          transition: 'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-          marginBottom: '5px',
-        },
-        '.Mui-selected': {
-          color: 'var(--main-text) !important',
-          fontWeight: 600
-        },
-        '.MuiTabs-indicator': {
-          borderRadius: '3px',
-          height: '2px',
-        },
-      }}>
-        {PORTFOLIO.map(p => (
-          <Tab key={p.tab} label={p.tab} disableRipple/>
+      <SectionHeader
+        title={'Portfolio'}
+        introduction={`Web technologies are not only my job but also hobby to which I devote all my 
+       time and passion. You can look at my pet projects below.`}
+      />
+      <Tabs
+        variant='scrollable'
+        scrollButtons={false}
+        value={tabIndex}
+        onChange={handleChange}
+        className={styles.tabs}
+        sx={{
+          minHeight: 0,
+          marginBottom: '2rem',
+          '.MuiTab-root': {
+            width: `auto`,
+            overflow: 'inherit',
+            color: 'var(--main-text)',
+            fontWeight: 400,
+            transition: 'color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+            marginBottom: '5px',
+            minHeight: '0',
+            minWidth: '0',
+            padding: '0',
+          },
+          '.Mui-selected': {
+            color: 'var(--main-text) !important',
+            fontWeight: 600,
+          },
+          '.MuiTabs-indicator': {
+            borderRadius: '3px',
+            height: '2px',
+          },
+        }}
+      >
+        {PORTFOLIO.map((p) => (
+          <Tab key={p.tab} label={p.tab} disableRipple />
         ))}
       </Tabs>
       {PORTFOLIO.map((p, index) => (
-        <TabPanel key={index} projects={p.projects} activeTab={tabIndex} index={index}/>
+        <TabPanel key={index} projects={p.projects} activeTab={tabIndex} index={index} />
       ))}
     </section>
   )
@@ -54,39 +65,50 @@ export default Portfolio
 const TabPanel: TabPanelComponent = ({ projects, activeTab, index, ...other }) => {
   const projectList = projects.map((project, index) => (
     <li key={index} className={styles.project}>
-      <Card sx={{ width: '100%', height: '100%', borderRadius: '2px', backgroundColor: 'var(--skeleton)' }} elevation={0}>
-        <CardActionArea sx={{
-          height: '100%',
-          '.MuiCardActionArea-focusHighlight': {
-            background: 'var(--skeleton)',
-          },
-
-          '&:hover': {
+      <Card
+        sx={{ width: '100%', height: '100%', borderRadius: '2px', backgroundColor: 'var(--skeleton)' }}
+        elevation={0}
+      >
+        <CardActionArea
+          sx={{
+            height: '100%',
             '.MuiCardActionArea-focusHighlight': {
-              background: 'rgba(255, 180, 0, 0.8)',
-              opacity: 1,
-              transitionProperty: 'opacity, background',
+              background: 'var(--skeleton)',
             },
-          },
-        }}>
+
+            '&:hover': {
+              '.MuiCardActionArea-focusHighlight': {
+                background: 'rgba(255, 180, 0, 0.8)',
+                opacity: 1,
+                transitionProperty: 'opacity, background',
+              },
+            },
+          }}
+        >
           {project.name}
         </CardActionArea>
       </Card>
-    </li>),
-  )
+    </li>
+  ))
 
   return (
-    <div
-      className={styles.tabPanel}
-      role="tabpanel"
-      hidden={activeTab !== index}
-      {...other}
-    >
-      {activeTab === index && (
-        <ul className={styles.projectList}>
-          {projectList}
-        </ul>
-      )}
+    <div className={styles.tabPanel} role='tabpanel' hidden={activeTab !== index} {...other}>
+      {activeTab === index && <ul className={styles.projectList}>{projectList}</ul>}
     </div>
   )
 }
+//
+//    MuiTab: {
+//   styleOverrides: {
+//     root: {
+//       width: '40px',
+//       borderRadius: '50% !important',
+//       marginBottom: '4.7vh',
+//       minHeight: '0',
+//       minWidth: '0',
+//       padding: '0',
+//       marginLeft: 'auto',
+//       marginRight: 'auto',
+//     },
+//   },
+// },

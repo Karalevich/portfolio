@@ -1,21 +1,21 @@
 @import './styles/variables';
 
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -25,8 +25,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, Inter, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
-  Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, Inter, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: $substrate;
   color: $main-text;
   transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -78,7 +78,12 @@ h6 {
   font-size: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $main-text;
 }
 
@@ -96,13 +101,12 @@ p {
 }
 
 ::-webkit-scrollbar-thumb {
-
   background: $scrollbar-thumb;
   background-clip: padding-box;
   border-radius: 3px;
   min-height: 28px;
   padding: 100px 0 0;
-  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07);
 
   &:hover {
     background: $scrollbar-thumb-hover;
@@ -177,14 +181,3 @@ p {
 //    overflow-y: overlay;
 //  }
 //}
-
-
-
-
-
-
-
-
-
-
-

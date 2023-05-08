@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
 
-type NotFoundProps = {
-}
+type NotFoundProps = {}
 export type NotFoundComponent = FunctionComponent<NotFoundProps>

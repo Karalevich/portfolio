@@ -31,7 +31,9 @@
   margin: 2vh 0;
 }
 
-.name, .occupation, .message {
+.name,
+.occupation,
+.message {
   position: relative;
 }
 
@@ -108,5 +110,4 @@
     width: 80%;
     text-align: center;
   }
-
 }

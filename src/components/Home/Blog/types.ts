@@ -6,28 +6,28 @@ type BlogProps = {
 export type BlogComponent = FunctionComponent<BlogProps>
 
 export type PostProps = {
-  img: string,
-  title: string,
-  description: string,
-  author: AuthorT,
-  date: string,
-  comments?: Array<CommentT>,
-  id: string,
+  img: string
+  title: string
+  description: string
+  author: AuthorT
+  date: string
+  comments?: Array<CommentT>
+  id: string
   isFullVersion?: boolean
 }
 
 type CommentT = {
-  author: AuthorT,
-  text: string,
+  author: AuthorT
+  text: string
 }
 
 export type AuthorT = {
-  name: string,
+  name: string
   img?: string
 }
 
 type PostsProps = {
-  isTabletOrMobile: boolean,
+  isTabletOrMobile: boolean
   isFullVersion: boolean
 }
 export type PostsContent = FunctionComponent<PostsProps>

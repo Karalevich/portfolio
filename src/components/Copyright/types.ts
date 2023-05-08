@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
-type CopyrightProps = {  }
+type CopyrightProps = {}
 export type CopyrightComponent = FunctionComponent<CopyrightProps>

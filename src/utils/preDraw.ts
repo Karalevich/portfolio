@@ -1,6 +1,5 @@
 import { CanvasType } from '../components/Canvas/types'
 
-
 export const preDraw = (context: CanvasRenderingContext2D, canvas: CanvasType) => {
   //context.save()
   const dimensions = getObjectFitSize(
@@ -8,7 +7,7 @@ export const preDraw = (context: CanvasRenderingContext2D, canvas: CanvasType) =
     canvas.clientWidth,
     canvas.clientHeight,
     canvas.width,
-    canvas.height,
+    canvas.height
   )
   const dpr = window.devicePixelRatio || 1
   canvas.width = dimensions.width * dpr
@@ -20,7 +19,7 @@ const getObjectFitSize = (
   containerWidth: number,
   containerHeight: number,
   width: number,
-  height: number,
+  height: number
 ) => {
   const doRatio = width / height
   const cRatio = containerWidth / containerHeight

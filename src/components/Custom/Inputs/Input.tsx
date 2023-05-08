@@ -6,10 +6,12 @@ import styles from './Input.module.scss'
 const Input: InputComponent = ({ label, className, ...other }) => {
   return (
     <FormControl className={className} sx={{ display: 'block' }} fullWidth>
-      {label && <LabelCustom shrink htmlFor={other.id} className={styles.label}>
-        {label}
-      </LabelCustom>}
-      <InputCustom {...other}/>
+      {label && (
+        <LabelCustom shrink htmlFor={other.id} className={styles.label} error={other.error}>
+          {label}
+        </LabelCustom>
+      )}
+      <InputCustom {...other} />
     </FormControl>
   )
 }
@@ -35,13 +37,14 @@ const InputCustom = styled(InputBase)(({ theme }) => ({
     color: 'var(--main-text)',
     fontSize: '1rem',
     padding: '10px 12px',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
+    transition: theme.transitions.create(['border-color', 'background-color', 'box-shadow']),
     '&:focus': {
       boxShadow: `#767676 0 0 0 0.1rem`,
+    },
+  },
+  '&.Mui-error': {
+    '& .MuiInputBase-input': {
+      boxShadow: `red 0 0 0 0.1rem`,
     },
   },
 }))

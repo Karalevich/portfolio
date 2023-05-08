@@ -12,7 +12,6 @@ import Blog from '../Home/Blog/Blog'
 import PostPage from '../Home/Blog/PostPage/PostPage'
 import NotFound from '../NotFound/NotFound'
 
-
 export const AnimatedRoutes: AnimatedRoutesComponent = () => {
   const location = useLocation()
   const [displayLocation, setDisplayLocation] = useState(location)
@@ -30,22 +29,19 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
   }
 
   return (
-    <div
-      className={`${transitionStage}`}
-      onAnimationEnd={onHandleAnimation}
-    >
+    <div className={`${transitionStage}`} onAnimationEnd={onHandleAnimation}>
       <Routes location={displayLocation}>
-        <Route path={'/'} element={<Navigate replace to='/home'/>}/>
-        <Route path={'/home'} element={<Home/>}/>
-        <Route path={'/services'} element={<Services/>}/>
-        <Route path={'/services/:servicePage'} element={<ServicePage/>}/>
-        <Route path={'/cv'} element={<CV/>}/>
-        <Route path={'/portfolio'} element={<Portfolio/>}/>
-        <Route path={'/blog'} element={<Blog isFullVersion/>}/>
-        <Route path={'/blog/post/:id'} element={<PostPage />}/>
-        <Route path={'/contact'} element={<Contact/>}/>
-        <Route path={'/not-found  '} element={<NotFound/>}/>
-        <Route path={'*'} element={<NotFound/>}/>
+        <Route path={'/'} element={<Navigate replace to='/home' />} />
+        <Route path={'/home'} element={<Home />} />
+        <Route path={'/services'} element={<Services />} />
+        <Route path={'/services/:servicePage'} element={<ServicePage />} />
+        <Route path={'/cv'} element={<CV />} />
+        <Route path={'/portfolio'} element={<Portfolio />} />
+        <Route path={'/blog'} element={<Blog isFullVersion />} />
+        <Route path={'/blog/post/:id'} element={<PostPage />} />
+        <Route path={'/contact'} element={<Contact />} />
+        <Route path={'/not-found  '} element={<NotFound />} />
+        <Route path={'*'} element={<NotFound />} />
       </Routes>
     </div>
   )

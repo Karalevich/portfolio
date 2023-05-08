@@ -5,7 +5,7 @@ type DynamicCSSProps = {
 }
 
 export type CSSProp = {
-    value: number | string,
-    prop: string,
-  }
+  value: number | string
+  prop: string
+}
 export type DynamicCSSComponent = FunctionComponent<DynamicCSSProps>

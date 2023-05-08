@@ -1,7 +1,7 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react'
 
 type ThemeSwitcherProps = {
-  handleSwitchTheme: () => void,
+  handleSwitchTheme: () => void
   isLightTheme: boolean
 }
 export type ThemeSwitcherComponent = FunctionComponent<ThemeSwitcherProps>

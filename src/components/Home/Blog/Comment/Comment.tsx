@@ -9,12 +9,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import { SpeedDial, SpeedDialAction, SpeedDialIcon, styled } from '@mui/material'
 
 const actions = [
-  { icon: <ShareIcon fontSize={'small'}/>, name: 'Share' },
-  { icon: <EditIcon fontSize={'small'}/>, name: 'Edit' },
-  { icon: <ReplyIcon fontSize={'small'}/>, name: 'Reply' },
-  { icon: <DeleteForeverIcon fontSize={'small'}/>, name: 'Delete' },
+  { icon: <ShareIcon fontSize={'small'} />, name: 'Share' },
+  { icon: <EditIcon fontSize={'small'} />, name: 'Edit' },
+  { icon: <ReplyIcon fontSize={'small'} />, name: 'Reply' },
+  { icon: <DeleteForeverIcon fontSize={'small'} />, name: 'Delete' },
 ]
-
 
 export const Comment: CommentComponent = ({ author, message, id, date }) => {
   const [openReactions, setOpenReactions] = useState(false)
@@ -23,23 +22,23 @@ export const Comment: CommentComponent = ({ author, message, id, date }) => {
   return (
     <li className={styles.comment}>
       <div>
-        <img className={styles.userImage} src={author.img} alt={author.name}/>
+        <img className={styles.userImage} src={author.img} alt={author.name} />
       </div>
       <article>
         <header className={styles.owner}>
           <h3 className={styles.ownerName}>{author.name}</h3>
-          <h4 className={styles.commentDate}><p>{date}</p></h4>
+          <h4 className={styles.commentDate}>
+            <p>{date}</p>
+          </h4>
         </header>
         <main className={styles.commentMessage}>
-          <p>
-            {message}
-          </p>
+          <p>{message}</p>
           <div className={styles.likes}>
-            <FavoriteIcon className={styles.favoriteIcon} fontSize={'small'}/>
+            <FavoriteIcon className={styles.favoriteIcon} fontSize={'small'} />
             <span>2</span>
             <StyledSpeedDial
-              ariaLabel="SpeedDial controlled open example"
-              icon={<SpeedDialIcon/>}
+              ariaLabel='SpeedDial controlled open example'
+              icon={<SpeedDialIcon />}
               onClose={handleCloseSpeedDial}
               onOpen={handleOpenSpeedDial}
               open={openReactions}
@@ -91,7 +90,7 @@ const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
         fontSize: '1.6rem',
       },
     },
-  }
+  },
 }))
 
 const StyledSpeedDialAction = styled(SpeedDialAction)(({ theme }) => ({

@@ -7,9 +7,7 @@ import ShareIcon from '@mui/icons-material/Share'
 import Dropdown from '../../../Custom/Dropdown/Dropdown'
 import Comment from '../Comment/Comment'
 
-const SELECT = [
-  'By default', 'By date', 'By best',
-]
+const SELECT = ['By default', 'By date', 'By best']
 const comments = [
   {
     author: {
@@ -25,7 +23,7 @@ const comments = [
             tristique sem congue.`,
     id: '123',
   },
-    {
+  {
     author: {
       name: 'Andrei Karalevich',
       img: me,
@@ -39,7 +37,6 @@ const comments = [
             tristique sem congue.`,
     id: '122',
   },
-
 ]
 
 export const Comments: CommentsComponent = () => {
@@ -47,39 +44,44 @@ export const Comments: CommentsComponent = () => {
     <section className={styles.commentSection}>
       <header className={styles.header}>
         <div className={styles.line}>
-          <h3 className={styles.count}>
-            3 Comments
-          </h3>
+          <h3 className={styles.count}>3 Comments</h3>
         </div>
         <div className={styles.actions}>
           <div className={styles.review}>
             <span className={styles.likes}>
-              <FavoriteIcon className={styles.favoriteIcon} fontSize={'small'}/>
-              2
+              <FavoriteIcon className={styles.favoriteIcon} fontSize={'small'} />2
             </span>
             <p className={styles.share}>
-              <ShareIcon className={styles.shareIcon} fontSize={'small'}/>
+              <ShareIcon className={styles.shareIcon} fontSize={'small'} />
               Share
             </p>
           </div>
           <div className={styles.filter}>
-            <Dropdown selects={SELECT}/>
+            <Dropdown selects={SELECT} />
           </div>
         </div>
       </header>
       <main className={styles.main}>
         <article className={styles.leaveComment}>
           <div className={styles.commentArea}>
-            <img className={styles.userImage} src={me} alt={'user avatar'}/>
-            <Input className={styles.textarea} fullWidth multiline rows={3} sx={{
-              '.MuiInputBase-inputMultiline': {
-                borderRadius: '0.625rem',
-                boxShadow: `#767676 0 0 0 0.1rem`,
-              },
-            }}/>
+            <img className={styles.userImage} src={me} alt={'user avatar'} />
+            <Input
+              className={styles.textarea}
+              fullWidth
+              multiline
+              rows={3}
+              sx={{
+                '.MuiInputBase-inputMultiline': {
+                  borderRadius: '0.625rem',
+                  boxShadow: `#767676 0 0 0 0.1rem`,
+                },
+              }}
+            />
           </div>
           <ul className={styles.comments}>
-            {comments.map(comment => <Comment key={comment.id} {...comment}/>)}
+            {comments.map((comment) => (
+              <Comment key={comment.id} {...comment} />
+            ))}
           </ul>
         </article>
       </main>
@@ -88,4 +90,3 @@ export const Comments: CommentsComponent = () => {
 }
 
 export default Comments
-

@@ -1,6 +1,7 @@
 @import './src/styles/variables';
 
-.infoFixed, .infoAbsolute {
+.infoFixed,
+.infoAbsolute {
   width: 21.18%;
   max-width: $max-info-width;
   background-color: $background;
@@ -43,12 +44,12 @@
   .fullScreen {
     display: none;
   }
-  .infoFixed, .infoAbsolute  {
+  .infoFixed,
+  .infoAbsolute {
     position: initial;
     width: 22rem;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-
 }
