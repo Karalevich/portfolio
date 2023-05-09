@@ -11,11 +11,11 @@ export type ServiceT = {
 }
 
 export enum PORTFOLIO_TOPIC {
-  ALL= 'All Categories',
+  ALL = 'All Categories',
   FRONTEND = 'Frontend',
   FULL_STACK = 'Full Stack',
   GAMES = 'Games',
-  LANDING = 'Landings'
+  LANDING = 'Landings',
 }
 
 export type PortfolioT = {

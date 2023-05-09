@@ -5,10 +5,10 @@ type PortfolioProps = {}
 export type PortfolioComponent = FunctionComponent<PortfolioProps>
 
 export type ProjectT = {
-  name: string,
-  topic: PORTFOLIO_TOPIC,
-  img: string,
-  linkDemo?: string,
+  name: string
+  topic: PORTFOLIO_TOPIC
+  img: string
+  linkDemo?: string
   linkRepo: string
 }
 

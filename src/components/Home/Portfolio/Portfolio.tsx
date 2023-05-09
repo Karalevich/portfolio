@@ -7,7 +7,6 @@ import MovingIcon from '@mui/icons-material/Moving'
 import { PORTFOLIO } from 'src/constants/personalInfo'
 import { PORTFOLIO_TOPIC } from '../../../constants/types'
 
-
 export const Portfolio: PortfolioComponent = () => {
   const [tabIndex, setTab] = useState(PORTFOLIO_TOPIC.ALL)
 
@@ -15,7 +14,9 @@ export const Portfolio: PortfolioComponent = () => {
     setTab(newValue)
   }
 
-  const activeProjects = PORTFOLIO.projects.filter(project => project.topic === tabIndex || tabIndex === PORTFOLIO_TOPIC.ALL)
+  const activeProjects = PORTFOLIO.projects.filter(
+    (project) => project.topic === tabIndex || tabIndex === PORTFOLIO_TOPIC.ALL
+  )
 
   return (
     <section className={styles.portfolio}>
@@ -57,10 +58,10 @@ export const Portfolio: PortfolioComponent = () => {
         }}
       >
         {PORTFOLIO.tabs.map((tab) => (
-          <Tab key={tab} label={tab} value={tab} disableRipple/>
+          <Tab key={tab} label={tab} value={tab} disableRipple />
         ))}
       </Tabs>
-      <TabPanel projects={activeProjects}/>
+      <TabPanel projects={activeProjects} />
     </section>
   )
 }
@@ -70,21 +71,20 @@ export default Portfolio
 const TabPanel: TabPanelComponent = ({ projects, ...other }) => {
   const projectList = projects.map(({ linkDemo, linkRepo, img }, index) => (
     <li key={index} className={styles.project}>
-      <Card
-        className={styles.card}
-        elevation={0}
-      >
+      <Card className={styles.card} elevation={0}>
         <div className={styles.imageWrapper}>
-          <img className={styles.previewImg} src={img} alt={'project image'}/>
+          <img className={styles.previewImg} src={img} alt={'project image'} />
           <div className={styles.redirect}>
             <div className={styles.buttonGroup}>
-              {linkDemo && <a className={styles.linkDemo} href={linkDemo} target='_blank'>
-                <Button className={styles.website} variant='outlined' endIcon={<MovingIcon/>}>
-                  Vie Demo
-                </Button>
-              </a>}
+              {linkDemo && (
+                <a className={styles.linkDemo} href={linkDemo} target='_blank'>
+                  <Button className={styles.website} variant='outlined' endIcon={<MovingIcon />}>
+                    Vie Demo
+                  </Button>
+                </a>
+              )}
               <a className={styles.linkRepo} href={linkRepo} target='_blank'>
-                <Button className={styles.website} variant='outlined' endIcon={<MovingIcon/>}>
+                <Button className={styles.website} variant='outlined' endIcon={<MovingIcon />}>
                   Vie Repo
                 </Button>
               </a>
@@ -96,7 +96,7 @@ const TabPanel: TabPanelComponent = ({ projects, ...other }) => {
   ))
 
   return (
-    <div className={styles.tabPanel} role='tabpanel'  {...other}>
+    <div className={styles.tabPanel} role='tabpanel' {...other}>
       <ul className={styles.projectList}>{projectList}</ul>
     </div>
   )
