@@ -2,15 +2,20 @@ import React, { useState } from 'react'
 import styles from './Portfolio.module.scss'
 import { PortfolioComponent, TabPanelComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import { Card, CardActionArea, Tab, Tabs, tabsClasses } from '@mui/material'
+import { Button, Card, Tab, Tabs } from '@mui/material'
+import MovingIcon from '@mui/icons-material/Moving'
 import { PORTFOLIO } from 'src/constants/personalInfo'
+import { PORTFOLIO_TOPIC } from '../../../constants/types'
+
 
 export const Portfolio: PortfolioComponent = () => {
-  const [tabIndex, setTab] = useState(0)
+  const [tabIndex, setTab] = useState(PORTFOLIO_TOPIC.ALL)
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: PORTFOLIO_TOPIC) => {
     setTab(newValue)
   }
+
+  const activeProjects = PORTFOLIO.projects.filter(project => project.topic === tabIndex || tabIndex === PORTFOLIO_TOPIC.ALL)
 
   return (
     <section className={styles.portfolio}>
@@ -38,6 +43,8 @@ export const Portfolio: PortfolioComponent = () => {
             minHeight: '0',
             minWidth: '0',
             padding: '0',
+            marginLeft: 'auto',
+            marginRight: 'auto',
           },
           '.Mui-selected': {
             color: 'var(--main-text) !important',
@@ -49,66 +56,48 @@ export const Portfolio: PortfolioComponent = () => {
           },
         }}
       >
-        {PORTFOLIO.map((p) => (
-          <Tab key={p.tab} label={p.tab} disableRipple />
+        {PORTFOLIO.tabs.map((tab) => (
+          <Tab key={tab} label={tab} value={tab} disableRipple/>
         ))}
       </Tabs>
-      {PORTFOLIO.map((p, index) => (
-        <TabPanel key={index} projects={p.projects} activeTab={tabIndex} index={index} />
-      ))}
+      <TabPanel projects={activeProjects}/>
     </section>
   )
 }
 
 export default Portfolio
 
-const TabPanel: TabPanelComponent = ({ projects, activeTab, index, ...other }) => {
-  const projectList = projects.map((project, index) => (
+const TabPanel: TabPanelComponent = ({ projects, ...other }) => {
+  const projectList = projects.map(({ linkDemo, linkRepo, img }, index) => (
     <li key={index} className={styles.project}>
       <Card
-        sx={{ width: '100%', height: '100%', borderRadius: '2px', backgroundColor: 'var(--skeleton)' }}
+        className={styles.card}
         elevation={0}
       >
-        <CardActionArea
-          sx={{
-            height: '100%',
-            '.MuiCardActionArea-focusHighlight': {
-              background: 'var(--skeleton)',
-            },
-
-            '&:hover': {
-              '.MuiCardActionArea-focusHighlight': {
-                background: 'rgba(255, 180, 0, 0.8)',
-                opacity: 1,
-                transitionProperty: 'opacity, background',
-              },
-            },
-          }}
-        >
-          {project.name}
-        </CardActionArea>
+        <div className={styles.imageWrapper}>
+          <img className={styles.previewImg} src={img} alt={'project image'}/>
+          <div className={styles.redirect}>
+            <div className={styles.buttonGroup}>
+              {linkDemo && <a className={styles.linkDemo} href={linkDemo} target='_blank'>
+                <Button className={styles.website} variant='outlined' endIcon={<MovingIcon/>}>
+                  Vie Demo
+                </Button>
+              </a>}
+              <a className={styles.linkRepo} href={linkRepo} target='_blank'>
+                <Button className={styles.website} variant='outlined' endIcon={<MovingIcon/>}>
+                  Vie Repo
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
       </Card>
     </li>
   ))
 
   return (
-    <div className={styles.tabPanel} role='tabpanel' hidden={activeTab !== index} {...other}>
-      {activeTab === index && <ul className={styles.projectList}>{projectList}</ul>}
+    <div className={styles.tabPanel} role='tabpanel'  {...other}>
+      <ul className={styles.projectList}>{projectList}</ul>
     </div>
   )
 }
-//
-//    MuiTab: {
-//   styleOverrides: {
-//     root: {
-//       width: '40px',
-//       borderRadius: '50% !important',
-//       marginBottom: '4.7vh',
-//       minHeight: '0',
-//       minWidth: '0',
-//       padding: '0',
-//       marginLeft: 'auto',
-//       marginRight: 'auto',
-//     },
-//   },
-// },

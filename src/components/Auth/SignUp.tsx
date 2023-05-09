@@ -70,7 +70,7 @@ export const SignUp: SignUpComponent = () => {
       <SignFormInput
         placeholder={'Confirm Password'}
         type='password'
-        id='password'
+        id='confirmPassword'
         name='confirmPassword'
         value={formikSignup.values.confirmPassword}
         onChange={formikSignup.handleChange}
