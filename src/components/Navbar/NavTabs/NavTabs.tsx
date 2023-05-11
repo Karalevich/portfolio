@@ -62,13 +62,7 @@ export const NavTabs: NavTabsComponent = ({
       <Button
         onClick={handleOpenLogin}
         variant='contained'
-        sx={{
-          boxShadow: 0,
-          marginTop: '1rem',
-          marginRight: 'auto',
-          marginLeft: 'auto',
-          display: 'block',
-        }}
+        className={styles.loginButton}
       >
         {user ? 'Log Out' : 'Sign In'}
       </Button>

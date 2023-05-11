@@ -38,7 +38,9 @@
       "react-app/jest"
     ]
   },
-  "pre-commit": ["format"],
+  "pre-commit": [
+    "format"
+  ],
   "plugins": [
     "react-hooks"
   ],

@@ -14,8 +14,8 @@ export enum PORTFOLIO_TOPIC {
   ALL = 'All Categories',
   FRONTEND = 'Frontend',
   FULL_STACK = 'Full Stack',
-  GAMES = 'Games',
   LANDING = 'Landings',
+  GAMES = 'Games',
 }
 
 export type PortfolioT = {

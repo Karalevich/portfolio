@@ -79,13 +79,13 @@ const TabPanel: TabPanelComponent = ({ projects, ...other }) => {
               {linkDemo && (
                 <a className={styles.linkDemo} href={linkDemo} target='_blank'>
                   <Button className={styles.website} variant='outlined' endIcon={<MovingIcon />}>
-                    Vie Demo
+                    View Demo
                   </Button>
                 </a>
               )}
               <a className={styles.linkRepo} href={linkRepo} target='_blank'>
                 <Button className={styles.website} variant='outlined' endIcon={<MovingIcon />}>
-                  Vie Repo
+                  View Repo
                 </Button>
               </a>
             </div>

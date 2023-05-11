@@ -30,6 +30,9 @@ import blog from '../assets/img/blog.avif'
 import easyGame from '../assets/img/portfolio/easy-game.avif'
 import friendlyDog from '../assets/img/portfolio/frendly-dog.avif'
 import spaceAdventure from '../assets/img/portfolio/spaceadventure.avif'
+import foodhub from '../assets/img/portfolio/foodhub.avif'
+import mogo from '../assets/img/portfolio/mogo.avif'
+import startup from '../assets/img/portfolio/startup.avif'
 import demandbase from '../assets/img/services/demandbase.avif'
 import nexon from '../assets/img/services/nexon.avif'
 import nexongc from '../assets/img/services/nexongc.avif'
@@ -45,19 +48,19 @@ import { PostProps } from '../components/Home/Blog/types'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 
 export const SHARE = {
-  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
-  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon />, 'https://vk.com/id134399064'],
-  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
+  Linkedin: [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
+  Vkontakte: [<VkIcon/>, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon/>, 'https://vk.com/id134399064'],
+  Twitter: [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
 }
 
 export const ICONS = {
-  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
-  Github: [<GitHubIcon />, 'https://github.com/AndreyKorolevich'],
-  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon />, 'https://vk.com/id134399064'],
-  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
-  Leetcode: [<LeetcodeIcon />, 'https://leetcode.com/korolevich1994/'],
+  Linkedin: [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
+  Github: [<GitHubIcon/>, 'https://github.com/AndreyKorolevich'],
+  Vkontakte: [<VkIcon/>, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon/>, 'https://vk.com/id134399064'],
+  Twitter: [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
+  Leetcode: [<LeetcodeIcon/>, 'https://leetcode.com/korolevich1994/'],
 }
 
 export const INFO = {
@@ -357,7 +360,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -373,7 +376,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -389,7 +392,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -405,7 +408,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -421,7 +424,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -533,28 +536,46 @@ export const PORTFOLIO: PortfolioT = {
     },
     {
       name: 'placeholder',
+      img: startup,
+      linkDemo: 'https://andreykorolevich.github.io/startup-layout/',
+      linkRepo: 'https://github.com/AndreyKorolevich/startup-layout',
+      topic: PORTFOLIO_TOPIC.LANDING,
+    },
+    {
+      name: 'placeholder',
+      img: mogo,
+      linkDemo: 'https://andreykorolevich.github.io/mogo-loyaout/',
+      linkRepo: 'https://github.com/AndreyKorolevich/mogo-loyaout/tree/gh-pages',
+      topic: PORTFOLIO_TOPIC.LANDING,
+    },
+    {
+      name: 'placeholder',
+      img: foodhub,
+      linkDemo: 'https://andreykorolevich.github.io/food-layout',
+      linkRepo: 'https://github.com/AndreyKorolevich/food-layout',
+      topic: PORTFOLIO_TOPIC.LANDING,
+    },
+    {
+      name: 'space adventures',
       img: spaceAdventure,
       linkDemo: 'https://spacedventures.netlify.app',
       linkRepo: 'https://github.com/AndreyKorolevich/space-adventure',
       topic: PORTFOLIO_TOPIC.GAMES,
     },
     {
-      name: 'placeholder',
+      name: 'friendly dog',
       img: friendlyDog,
       linkDemo: 'https://friendly-dog.netlify.app',
       linkRepo: 'https://github.com/AndreyKorolevich/friendly-dog',
       topic: PORTFOLIO_TOPIC.GAMES,
     },
     {
-      name: 'placeholder',
+      name: 'easy peasy game',
       img: easyGame,
       linkDemo: 'https://easy-peasy-game.netlify.app',
       linkRepo: 'https://github.com/AndreyKorolevich/canvas-game',
       topic: PORTFOLIO_TOPIC.GAMES,
     },
-    { name: 'placeholder', img: easyGame, linkDemo: '', linkRepo: '', topic: PORTFOLIO_TOPIC.LANDING },
-    { name: 'placeholder', img: easyGame, linkDemo: '', linkRepo: '', topic: PORTFOLIO_TOPIC.LANDING },
-    { name: 'placeholder', img: easyGame, linkDemo: '', linkRepo: '', topic: PORTFOLIO_TOPIC.LANDING },
   ],
 }
 

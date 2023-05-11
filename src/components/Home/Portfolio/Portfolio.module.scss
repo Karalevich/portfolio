@@ -84,7 +84,7 @@
       background-color: $bcg-redirect-btn;
       color: white;
       font-weight: 500;
-      width: 8rem;
+      width: 10rem;
     }
   }
 }
@@ -118,6 +118,12 @@
           width: 100%;
           height: 25rem;
         }
+      }
+    }
+
+    .card {
+      .website {
+        width: 11rem;
       }
     }
   }

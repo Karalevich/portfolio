@@ -9,6 +9,14 @@
   width: 7.5%;
   max-width: $max-nav-width;
   transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  .loginButton {
+    box-shadow: none !important;
+    margin-top: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+  }
 }
 
 .iconWrapper {
@@ -33,8 +41,16 @@
   .nav {
     position: initial;
     width: 5.0625rem;
+
+    .loginButton {
+      padding-left: 0;
+      padding-right: 0;
+      justify-content: center;
+      display: flex;
+    }
   }
 }
 
 @media only screen and (min-width: 1024px) {
+
 }
