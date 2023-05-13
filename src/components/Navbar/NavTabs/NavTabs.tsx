@@ -59,11 +59,7 @@ export const NavTabs: NavTabsComponent = ({
 
   return (
     <nav className={classnames(styles.nav, { [`${className}`]: className })}>
-      <Button
-        onClick={handleOpenLogin}
-        variant='contained'
-        className={styles.loginButton}
-      >
+      <Button onClick={handleOpenLogin} variant='contained' className={styles.loginButton}>
         {user ? 'Log Out' : 'Sign In'}
       </Button>
       <ThemeSwitcher handleSwitchTheme={handleSwitchTheme} isLightTheme={isLightTheme} />
