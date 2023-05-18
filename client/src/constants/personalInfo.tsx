@@ -24,6 +24,8 @@ import React from 'react'
 import { PortfolioT, PORTFOLIO_TOPIC, ServiceT } from './types'
 import { PriceItemProps } from '../components/Home/Price/types'
 import david from '../assets/img/David.png'
+import ulad from '../assets/img/ulad.avif'
+import vova from '../assets/img/vova.avif'
 import me from '../assets/img/Me.webp'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import blog from '../assets/img/blog.avif'
@@ -34,6 +36,7 @@ import foodhub from '../assets/img/portfolio/foodhub.avif'
 import mogo from '../assets/img/portfolio/mogo.avif'
 import flashback from '../assets/img/portfolio/flashback.avif'
 import shoeSore from '../assets/img/portfolio/shoe.avif'
+import capSore from '../assets/img/portfolio/cap-store.avif'
 import startup from '../assets/img/portfolio/startup.avif'
 import demandbase from '../assets/img/services/demandbase.avif'
 import nexon from '../assets/img/services/nexon.avif'
@@ -50,19 +53,19 @@ import { PostProps } from '../components/Home/Blog/types'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 
 export const SHARE = {
-  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
-  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon />, 'https://vk.com/id134399064'],
-  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
+  Linkedin: [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
+  Vkontakte: [<VkIcon/>, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon/>, 'https://www.facebook.com/profile.php?id=100087547390611'],
+  Twitter: [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
 }
 
 export const ICONS = {
-  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
-  Github: [<GitHubIcon />, 'https://github.com/AndreyKorolevich'],
-  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon />, 'https://vk.com/id134399064'],
-  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
-  Leetcode: [<LeetcodeIcon />, 'https://leetcode.com/korolevich1994/'],
+  Linkedin: [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
+  Github: [<GitHubIcon/>, 'https://github.com/AndreyKorolevich'],
+  Vkontakte: [<VkIcon/>, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon/>, 'https://www.facebook.com/profile.php?id=100087547390611'],
+  Twitter: [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
+  Leetcode: [<LeetcodeIcon/>, 'https://leetcode.com/korolevich1994/'],
 }
 
 export const INFO = {
@@ -106,7 +109,7 @@ export const SKILLS = [
     skillValue: 80,
   },
   {
-    skillName: 'Websockets',
+    skillName: 'WebSocket',
     skillValue: 90,
   },
   {
@@ -120,7 +123,7 @@ export const EXTRA_SKILLS = [
     skillName: 'GitHub, GitLab',
   },
   {
-    skillName: 'Babel, Eslint, Webpack',
+    skillName: 'Babel, ESLint, Webpack',
   },
   {
     skillName: 'Sass, Less, Material UI',
@@ -362,7 +365,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -370,52 +373,29 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
     image: david,
   },
   {
-    author: 'David Tanaka',
-    occupation: 'Program Manager',
+    author: 'Uladzimir Pryshchep',
+    occupation: 'Tem Leader',
     title: 'Great work!',
-    description:
-      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
-      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
-      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
-      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
-      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
-      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
-      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
-      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david,
+    description: `I have fond memories of working with Andrei, a time filled with victories. He made rapid progress, resolved intricate issues, and always showed an unwavering desire to enhance everything he worked on. We even put in late nights together to finish an important task, and I'm grateful for those moments. We both gained invaluable experience during those times.
+Andrei is a rare gem who can be entrusted with tasks of any complexity. I have no doubt that I will continue to witness Andrei's exceptional talents being applied to create outstanding products`,
+    image: vova,
   },
   {
-    author: 'David Tanaka',
-    occupation: 'Program Manager',
-    title: 'Awesome work!',
-    description:
-      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
-      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
-      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
-      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
-      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
-      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
-      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
-      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david,
-  },
-  {
-    author: 'David Tanaka',
-    occupation: 'Program Manager',
+    author: 'Uladzislau Ustsinovich',
+    occupation: 'Frontend Developer at LeverX',
     title: 'Amazing work!',
-    description:
-      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
-      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
-      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
-      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
-      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
-      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
-      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
-      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david,
+    description:`I am writing to express my strong recommendation for Andrei as a front-end developer with expertise in React stack. It has been an absolute pleasure working with him for almost a year, and I have been consistently impressed with his dedication, technical skills, and collaborative approach.
+
+Throughout our time together, Andrei consistently demonstrated a deep understanding of the Front-End and Web techs. His ability to design and implement complex user interfaces and state management solutions has been invaluable to our team's success. His contributions to our projects have been integral to ensuring that our software meets the high standards of quality and performance that we strive for.
+
+In addition to his technical skills, I have always been impressed by his positive attitude and willingness to collaborate with others. Andrei consistently showed a strong work ethic and a commitment to teamwork, and input during team meetings and code reviews has been insightful and helpful.
+
+Overall, I highly recommend Andrei as a front-end developer with expertise in Front-End. Andrei has been an invaluable member of our team, and I am confident that he will continue to excel in his future endeavors.
+
+Best wishes,
+
+Vladislav `,
+    image: ulad,
   },
   {
     author: 'David Tanaka',
@@ -426,12 +406,20 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
+      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
     image: david,
+  },
+    {
+    author: 'Uladzimir Pryshchep',
+    occupation: 'Tem Leader',
+    title: 'Awesome work!',
+    description: `I have fond memories of working with Andrei, a time filled with victories. He made rapid progress, resolved intricate issues, and always showed an unwavering desire to enhance everything he worked on. We even put in late nights together to finish an important task, and I'm grateful for those moments. We both gained invaluable experience during those times.
+Andrei is a rare gem who can be entrusted with tasks of any complexity. I have no doubt that I will continue to witness Andrei's exceptional talents being applied to create outstanding products`,
+    image: vova,
   },
 ]
 
@@ -457,7 +445,7 @@ export const WORK_HISTORY = [
     occupation: 'Web Engineer',
     date: 'May 2021 - Mar 2022',
     description: `Wargaming Group Limited is a global video game company headquartered in Nicosia, Cyprus. 
-    The group operates across more than 16 offices and development studios globally`,
+    The group operates across more than 16 offices and development studios globally.`,
   },
   {
     label: 'LeverX Group',
@@ -474,7 +462,7 @@ export const WORK_HISTORY = [
     occupation: 'FrontEnd Engineer',
     date: 'Oct 2019 - Nov 2020',
     description: `ClimateGuard is a technological startup developer of software and technical solutions 
-    in the field of climate monitoring`,
+    in the field of climate monitoring.`,
   },
 ]
 
@@ -512,8 +500,20 @@ export const EDUCATION_HISTORY = [
 export const PORTFOLIO: PortfolioT = {
   tabs: [...Object.values(PORTFOLIO_TOPIC)],
   projects: [
-    { name: 'shoe store', img: shoeSore, linkDemo: 'https://dashing-cactus-8548d9.netlify.app/', linkRepo: 'https://github.com/AndreyKorolevich/shoe-store', topic: PORTFOLIO_TOPIC.FRONTEND },
-    { name: 'placeholder', img: easyGame, linkDemo: '', linkRepo: '', topic: PORTFOLIO_TOPIC.FRONTEND },
+    {
+      name: 'shoe store',
+      img: shoeSore,
+      linkDemo: 'https://dashing-cactus-8548d9.netlify.app/',
+      linkRepo: 'https://github.com/AndreyKorolevich/shoe-store',
+      topic: PORTFOLIO_TOPIC.FRONTEND,
+    },
+    {
+      name: 'cap store',
+      img: capSore,
+      linkDemo: 'https://cap-store.netlify.app/',
+      linkRepo: 'https://github.com/AndreyKorolevich/cap-store',
+      topic: PORTFOLIO_TOPIC.FRONTEND,
+    },
     { name: 'placeholder', img: easyGame, linkDemo: '', linkRepo: '', topic: PORTFOLIO_TOPIC.FRONTEND },
     {
       name: 'flashback',
@@ -978,7 +978,7 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
       },
       {
         image: profileModal,
-        link: 'ttps://profile.worldofwarships.eu/statistics/595813816/pve',
+        link: 'https://profile.worldofwarships.eu/statistics/595813816/pve',
         text: [
           `Profile privacy settings in profile.worldofwarships.eu allow players to control who can view their 
               statistics and other information on the website.`,
@@ -1047,6 +1047,8 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
         image: dockyard,
         link: 'https://dockyard.worldofwarships.com',
         text: [
+             `PLEASE NOTE that this is a seasonal event that runs several times a year and may not be available at the moment. 
+          If you are interested in this project, you can find more information in my LinkedIn profile.`,
           `The Dockyard is a application that provides players of the popular online multiplayer game 
         World of Warships with access to the game's dockyard feature. The dockyard is a special seasonable feature that allows 
         players to build and customize their own ships, with each dockyard event featuring a different ship for players 
@@ -1056,8 +1058,6 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
           `I was responsible for developing the player interface, which allowed players to control the stages of building 
           a ship using the next, previous, stop, play buttons. The player can re-view the animation of the construction 
           of the ship as many times as he wishes. All this was done using React, Redux stack.`,
-          `Please note that this is a seasonal event that runs several times a year and may not be available at the moment. 
-          If you are interested in this project, you can find more information in my LinkedIn profile.`,
         ],
       },
       {

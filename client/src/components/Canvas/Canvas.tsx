@@ -30,7 +30,7 @@ export const Canvas: CanvasComponent = () => {
         animationFrameId = window.requestAnimationFrame(render)
         animationConfetti(canvas, xpos)
       }
-      //setTimeout(() => render(), 1000) TODO
+      setTimeout(() => render(), 1000) //TODO
     }
 
     return () => {

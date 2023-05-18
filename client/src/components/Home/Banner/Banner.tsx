@@ -22,7 +22,7 @@ export const Banner: BannerComponent = () => {
         <strong className={styles.strong}>Front-End</strong> Engineer
       </h1>
       <main className={styles.message}>
-        I have 3 years of experience in Software engineering and creating distinctive user interfaces for
+        I have 3 years of experience in Software Engineering and creating distinctive user interfaces for
         advanced digital companies.
       </main>
       <Button

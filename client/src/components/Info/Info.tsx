@@ -6,7 +6,7 @@ import Skills from './Skills/Skills'
 import { EXTRA_SKILLS, LANGUAGES, SKILLS } from '../../constants/personalInfo'
 import { Button, SwipeableDrawer, useMediaQuery } from '@mui/material'
 import { DownloadIcon } from '../Custom/Icons'
-import cv from '../../assets/cv.pdf'
+import cv from '../../assets/Andrei_Karalevich_CV.pdf'
 import { Tooltip } from '../Custom/Tooltip'
 import classnames from 'classnames'
 
@@ -56,7 +56,7 @@ export const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawe
     const fileURL = window.URL.createObjectURL(blob)
     let alink = document.createElement('a')
     alink.href = fileURL
-    alink.download = cv
+    alink.download = 'Andrei_Karalevich_CV.pdf'
     alink.click()
   }
   return (
