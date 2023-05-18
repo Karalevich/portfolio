@@ -53,19 +53,19 @@ import { PostProps } from '../components/Home/Blog/types'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 
 export const SHARE = {
-  Linkedin: [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
-  Vkontakte: [<VkIcon/>, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon/>, 'https://www.facebook.com/profile.php?id=100087547390611'],
-  Twitter: [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
+  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
+  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon />, 'https://www.facebook.com/profile.php?id=100087547390611'],
+  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
 }
 
 export const ICONS = {
-  Linkedin: [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
-  Github: [<GitHubIcon/>, 'https://github.com/AndreyKorolevich'],
-  Vkontakte: [<VkIcon/>, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon/>, 'https://www.facebook.com/profile.php?id=100087547390611'],
-  Twitter: [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
-  Leetcode: [<LeetcodeIcon/>, 'https://leetcode.com/korolevich1994/'],
+  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
+  Github: [<GitHubIcon />, 'https://github.com/AndreyKorolevich'],
+  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon />, 'https://www.facebook.com/profile.php?id=100087547390611'],
+  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
+  Leetcode: [<LeetcodeIcon />, 'https://leetcode.com/korolevich1994/'],
 }
 
 export const INFO = {
@@ -365,7 +365,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -384,7 +384,7 @@ Andrei is a rare gem who can be entrusted with tasks of any complexity. I have n
     author: 'Uladzislau Ustsinovich',
     occupation: 'Frontend Developer at LeverX',
     title: 'Amazing work!',
-    description:`I am writing to express my strong recommendation for Andrei as a front-end developer with expertise in React stack. It has been an absolute pleasure working with him for almost a year, and I have been consistently impressed with his dedication, technical skills, and collaborative approach.
+    description: `I am writing to express my strong recommendation for Andrei as a front-end developer with expertise in React stack. It has been an absolute pleasure working with him for almost a year, and I have been consistently impressed with his dedication, technical skills, and collaborative approach.
 
 Throughout our time together, Andrei consistently demonstrated a deep understanding of the Front-End and Web techs. His ability to design and implement complex user interfaces and state management solutions has been invaluable to our team's success. His contributions to our projects have been integral to ensuring that our software meets the high standards of quality and performance that we strive for.
 
@@ -406,14 +406,14 @@ Vladislav `,
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
     image: david,
   },
-    {
+  {
     author: 'Uladzimir Pryshchep',
     occupation: 'Tem Leader',
     title: 'Awesome work!',
@@ -1047,7 +1047,7 @@ export const SERVICE_PAGES: { [property: string]: ServicePageT } = {
         image: dockyard,
         link: 'https://dockyard.worldofwarships.com',
         text: [
-             `PLEASE NOTE that this is a seasonal event that runs several times a year and may not be available at the moment. 
+          `PLEASE NOTE that this is a seasonal event that runs several times a year and may not be available at the moment. 
           If you are interested in this project, you can find more information in my LinkedIn profile.`,
           `The Dockyard is a application that provides players of the popular online multiplayer game 
         World of Warships with access to the game's dockyard feature. The dockyard is a special seasonable feature that allows 
