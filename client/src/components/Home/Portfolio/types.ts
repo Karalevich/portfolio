@@ -9,7 +9,8 @@ export type ProjectT = {
   topic: PORTFOLIO_TOPIC
   img: string
   linkDemo?: string
-  linkRepo: string
+  linkRepo?: string
+  comingSoon?: boolean
 }
 
 type TabPanelProps = {

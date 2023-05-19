@@ -47,7 +47,7 @@ const SliderContent: SliderContentComponent = ({ isTabletOrMobile }) => {
             </div>
           </footer>
           <div className={styles.redirect}>
-            <a href={linkedInRecommendations} target='_blank'>
+            <a  onClick={() => window.open(linkedInRecommendations, '_system')} target='_blank'>
               <Button className={styles.linkedin} variant='outlined' endIcon={<MovingIcon />}>
                 Read on LinkedIn
               </Button>

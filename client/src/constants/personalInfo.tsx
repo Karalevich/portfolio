@@ -23,28 +23,27 @@ import GitHubIcon from '@mui/icons-material/GitHub'
 import React from 'react'
 import { PortfolioT, PORTFOLIO_TOPIC, ServiceT } from './types'
 import { PriceItemProps } from '../components/Home/Price/types'
-import david from '../assets/img/David.png'
-import ulad from '../assets/img/ulad.avif'
-import vova from '../assets/img/vova.avif'
 import me from '../assets/img/Me.webp'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import blog from '../assets/img/blog.avif'
-import easyGame from '../assets/img/portfolio/easy-game.avif'
+import easyGame from '../assets/img/portfolio/easy-game.webp'
 import friendlyDog from '../assets/img/portfolio/frendly-dog.avif'
-import spaceAdventure from '../assets/img/portfolio/spaceadventure.avif'
+import spaceAdventure from '../assets/img/portfolio/spaceadventure.webp'
 import foodhub from '../assets/img/portfolio/foodhub.avif'
 import mogo from '../assets/img/portfolio/mogo.avif'
-import flashback from '../assets/img/portfolio/flashback.avif'
-import shoeSore from '../assets/img/portfolio/shoe.avif'
-import capSore from '../assets/img/portfolio/cap-store.avif'
+import flashback from '../assets/img/portfolio/flashback.webp'
+import trainBooking from '../assets/img/portfolio/train_booking.webp'
+import shoeSore from '../assets/img/portfolio/shoe.webp'
+import portfolio from '../assets/img/portfolio/portfolio.webp'
+import capSore from '../assets/img/portfolio/cap-store.webp'
 import startup from '../assets/img/portfolio/startup.avif'
 import demandbase from '../assets/img/services/demandbase.avif'
 import nexon from '../assets/img/services/nexon.avif'
-import nexongc from '../assets/img/services/nexongc.avif'
-import armory from '../assets/img/services/armory.avif'
-import profile from '../assets/img/services/profile.avif'
-import profileModal from '../assets/img/services/profile-modal.avif'
-import clans from '../assets/img/services/clans.avif'
+import nexongc from '../assets/img/services/nexongc.webp'
+import armory from '../assets/img/services/armory.webp'
+import profile from '../assets/img/services/profile.webp'
+import profileModal from '../assets/img/services/profile-modal.webp'
+import clans from '../assets/img/services/clans.webp'
 import dockyard from '../assets/img/services/dockyard.avif'
 import ignition from '../assets/img/services/ignition.avif'
 import maplestory from '../assets/img/services/maplestory.avif'
@@ -353,7 +352,7 @@ export const PRICES: Array<PriceItemProps> = [
   },
 ]
 
-export const linkedInRecommendations = 'https://www.linkedin.com/in/a112k/details/recommendations/'
+export const linkedInRecommendations = 'https://www.linkedin.com/in/a112k/details/recommendations'
 
 export const RECOMMENDATIONS: Array<RecommendationProps> = [
   {
@@ -370,7 +369,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david,
+    image: 'https://media.licdn.com/dms/image/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_800_800/0/1660425592931?e=1689811200&v=beta&t=Hzo-UV0yJcEExhsgJvCcuPL-P67mENCbOagIdVtwMqI',
   },
   {
     author: 'Uladzimir Pryshchep',
@@ -378,7 +377,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
     title: 'Great work!',
     description: `I have fond memories of working with Andrei, a time filled with victories. He made rapid progress, resolved intricate issues, and always showed an unwavering desire to enhance everything he worked on. We even put in late nights together to finish an important task, and I'm grateful for those moments. We both gained invaluable experience during those times.
 Andrei is a rare gem who can be entrusted with tasks of any complexity. I have no doubt that I will continue to witness Andrei's exceptional talents being applied to create outstanding products`,
-    image: vova,
+    image: 'https://media.licdn.com/dms/image/C4E03AQFQ-4YKGF0QwA/profile-displayphoto-shrink_800_800/0/1624874271299?e=1689811200&v=beta&t=AZOigkcT5GikvEOM99xrUOviA8B8CqGgYIrlxCpuDjM',
   },
   {
     author: 'Uladzislau Ustsinovich',
@@ -395,7 +394,7 @@ Overall, I highly recommend Andrei as a front-end developer with expertise in Fr
 Best wishes,
 
 Vladislav `,
-    image: ulad,
+    image: 'https://media.licdn.com/dms/image/D4D03AQFQwUfvfZTDkw/profile-displayphoto-shrink_800_800/0/1668418630228?e=1689811200&v=beta&t=TcRoIrvpF_o_x0M7HvI9exTLxHRORJI9qllSMFw1Zb8',
   },
   {
     author: 'David Tanaka',
@@ -411,7 +410,7 @@ Vladislav `,
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: david,
+    image: 'https://media.licdn.com/dms/image/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_800_800/0/1660425592931?e=1689811200&v=beta&t=Hzo-UV0yJcEExhsgJvCcuPL-P67mENCbOagIdVtwMqI',
   },
   {
     author: 'Uladzimir Pryshchep',
@@ -419,7 +418,7 @@ Vladislav `,
     title: 'Awesome work!',
     description: `I have fond memories of working with Andrei, a time filled with victories. He made rapid progress, resolved intricate issues, and always showed an unwavering desire to enhance everything he worked on. We even put in late nights together to finish an important task, and I'm grateful for those moments. We both gained invaluable experience during those times.
 Andrei is a rare gem who can be entrusted with tasks of any complexity. I have no doubt that I will continue to witness Andrei's exceptional talents being applied to create outstanding products`,
-    image: vova,
+    image: 'https://media.licdn.com/dms/image/C4E03AQFQ-4YKGF0QwA/profile-displayphoto-shrink_800_800/0/1624874271299?e=1689811200&v=beta&t=AZOigkcT5GikvEOM99xrUOviA8B8CqGgYIrlxCpuDjM',
   },
 ]
 
@@ -523,35 +522,34 @@ export const PORTFOLIO: PortfolioT = {
       topic: PORTFOLIO_TOPIC.FULL_STACK,
     },
     {
-      name: 'placeholder',
-      img: easyGame,
-      linkDemo: '',
-      linkRepo: '',
+      name: 'train booking',
+      img: trainBooking,
+      comingSoon: true,
       topic: PORTFOLIO_TOPIC.FULL_STACK,
     },
     {
-      name: 'placeholder',
-      img: easyGame,
+      name: 'portfolio',
+      img: portfolio,
       linkDemo: '',
-      linkRepo: '',
+      linkRepo: 'https://github.com/AndreyKorolevich/portfolio',
       topic: PORTFOLIO_TOPIC.FULL_STACK,
     },
     {
-      name: 'placeholder',
+      name: 'startup',
       img: startup,
       linkDemo: 'https://andreykorolevich.github.io/startup-layout/',
       linkRepo: 'https://github.com/AndreyKorolevich/startup-layout',
       topic: PORTFOLIO_TOPIC.LANDING,
     },
     {
-      name: 'placeholder',
+      name: 'mogo',
       img: mogo,
       linkDemo: 'https://andreykorolevich.github.io/mogo-loyaout/',
       linkRepo: 'https://github.com/AndreyKorolevich/mogo-loyaout/tree/gh-pages',
       topic: PORTFOLIO_TOPIC.LANDING,
     },
     {
-      name: 'placeholder',
+      name: 'food hub',
       img: foodhub,
       linkDemo: 'https://andreykorolevich.github.io/food-layout',
       linkRepo: 'https://github.com/AndreyKorolevich/food-layout',
