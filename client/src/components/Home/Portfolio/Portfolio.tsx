@@ -23,7 +23,7 @@ export const Portfolio: PortfolioComponent = () => {
       <SectionHeader
         title={'Portfolio'}
         introduction={`Web technologies are not only my job but also hobby to which I devote all my 
-       time and passion. You can look at my pet projects below.`}
+       time and passion. You can see a demo of my projects or get acquainted with the technologies used in the projects below.`}
       />
       <Tabs
         variant='scrollable'

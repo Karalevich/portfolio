@@ -35,6 +35,7 @@ import flashback from '../assets/img/portfolio/flashback.webp'
 import trainBooking from '../assets/img/portfolio/train_booking.webp'
 import shoeSore from '../assets/img/portfolio/shoe.webp'
 import portfolio from '../assets/img/portfolio/portfolio.webp'
+import crypto from '../assets/img/portfolio/crypto.webp'
 import capSore from '../assets/img/portfolio/cap-store.webp'
 import startup from '../assets/img/portfolio/startup.avif'
 import demandbase from '../assets/img/services/demandbase.avif'
@@ -513,7 +514,7 @@ export const PORTFOLIO: PortfolioT = {
       linkRepo: 'https://github.com/AndreyKorolevich/cap-store',
       topic: PORTFOLIO_TOPIC.FRONTEND,
     },
-    { name: 'placeholder', img: easyGame, linkDemo: '', linkRepo: '', topic: PORTFOLIO_TOPIC.FRONTEND },
+    { name: 'crypto currency', img: crypto, linkDemo: 'https://cryptgraph.netlify.app/', linkRepo: 'https://github.com/AndreyKorolevich/crypto', topic: PORTFOLIO_TOPIC.FRONTEND },
     {
       name: 'flashback',
       img: flashback,
