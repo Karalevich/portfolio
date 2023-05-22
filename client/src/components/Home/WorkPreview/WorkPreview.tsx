@@ -86,7 +86,7 @@ export const WorkPreview: WorkPreviewComponent = () => {
             <ColorlibStep expanded={isStepsExpended || index < activeStep} key={step.label}>
               <InView
                 as='div'
-                rootMargin={`0px 0px -${60 - index * 2}% 0px`}
+                rootMargin={`0px 0px -${30 + index * 10}% 0px`}
                 onChange={stepInViewHandler(index)}
               >
                 <StepLabel
@@ -97,7 +97,7 @@ export const WorkPreview: WorkPreviewComponent = () => {
                   <h6 className={styles.place}>{step.place}</h6>
                 </StepLabel>
                 <StepContent>
-                  <p className={styles.description}>{step.description}</p>
+                  <div className={styles.description}>{step.description}</div>
                 </StepContent>
               </InView>
             </ColorlibStep>
