@@ -1,15 +1,22 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './Filter.module.scss'
 import { FilterComponent } from './types'
 import { styled } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
 import Dropdown from '../../../Custom/Dropdown/Dropdown'
+import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const SELECT = ['By default', 'By title', 'By date', 'By likes']
 
 export const Filter: FilterComponent = () => {
   const filterRef = useRef<HTMLHeadingElement | null>(null)
+  const redirect = useNavigate()
+
+  const handleRedirect = () => {
+    redirect(`/blog/addPost`)
+  }
 
   useEffect(() => {
     /* browser does not provides API to track when element with position sticky reach the fix position, for this used IntersectionObserver */
@@ -17,7 +24,7 @@ export const Filter: FilterComponent = () => {
       ([e]) => {
         e.target.classList.toggle(styles.filterSticked, e.intersectionRatio < 1)
       },
-      { threshold: [1] }
+      { threshold: [1] },
     )
 
     if (filterRef.current) {
@@ -33,11 +40,16 @@ export const Filter: FilterComponent = () => {
     <article className={styles.filter} ref={filterRef}>
       <div className={styles.search}>
         <div className={styles.searchIconWrapper}>
-          <SearchIcon />
+          <SearchIcon/>
         </div>
-        <StyledInputBase placeholder='Search…' />
+        <StyledInputBase placeholder='Search…'/>
       </div>
-      <Dropdown selects={SELECT} />
+      <div className={styles.rightSection}>
+        <Button className={styles.addPost} onClick={handleRedirect} sx={{ boxShadow: 0 }} variant='outlined'>
+          Add post
+        </Button>
+        <Dropdown selects={SELECT}/>
+      </div>
     </article>
   )
 }

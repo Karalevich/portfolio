@@ -11,6 +11,7 @@ import Contact from '../Home/Contact/Contact'
 import Blog from '../Home/Blog/Blog'
 import PostPage from '../Home/Blog/PostPage/PostPage'
 import NotFound from '../NotFound/NotFound'
+import AddPost from '../Home/Blog/AddPost/AddPost'
 
 export const AnimatedRoutes: AnimatedRoutesComponent = () => {
   const location = useLocation()
@@ -39,6 +40,7 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/portfolio'} element={<Portfolio />} />
         <Route path={'/blog'} element={<Blog isFullVersion />} />
         <Route path={'/blog/post/:id'} element={<PostPage />} />
+        <Route path={'/blog/addPost'} element={<AddPost />} />
         <Route path={'/contact'} element={<Contact />} />
         <Route path={'/not-found  '} element={<NotFound />} />
         <Route path={'*'} element={<NotFound />} />
