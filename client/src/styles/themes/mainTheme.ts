@@ -51,6 +51,14 @@ export const mainTheme = createTheme({
         },
       },
     },
+    MuiSkeleton: {
+        styleOverrides: {
+        root: {
+          backgroundColor: 'var(--skeleton)',
+          borderRadius: '2px'
+        },
+      },
+    }
   },
   typography: {
     fontFamily: [

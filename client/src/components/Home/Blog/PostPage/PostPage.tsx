@@ -1,18 +1,26 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { POSTS, SHARE } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
 import { PostPageComponent } from './types'
 import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
-import { PostProps } from '../types'
+import { PostT } from '../types'
 import Comments from '../Comments/Comments'
 import NotFound from '../../../NotFound/NotFound'
+import { useEffect } from 'react'
+import { useAppDispatch } from '../../../../hooks/hooks'
+import { getCertainPostThunk } from '../../../../actions/postsAction'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
+  const dispatch = useAppDispatch()
 
-  const post = POSTS.find((post) => post.id === id) as PostProps
+  useEffect(() => {
+    dispatch(getCertainPostThunk(id))
+  }, [id])
+
+  const post = POSTS.find((post) => post._id === id) as PostT
   if (!post) {
     return <NotFound />
   }
@@ -25,7 +33,7 @@ export const PostPage: PostPageComponent = () => {
         <h2 className={styles.postTitle}>{title}</h2>
         <article className={styles.info}>
           <div className={styles.author}>
-            <img className={styles.authorImg} src={author.img} />
+            <img className={styles.authorImg} src={author.img as string} />
             <div className={styles.authorData}>
               <span className={styles.name}>{author.name}</span>
               <span className={styles.date}>{date}</span>
@@ -40,7 +48,7 @@ export const PostPage: PostPageComponent = () => {
       </header>
       <main>
         <article className={styles.postContent}>
-          <img className={styles.mainImg} src={img} />
+          <img className={styles.mainImg} src={img as string} />
           <p>
             A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
             an event, sale or new product, a flyer can capture the most important information of your
@@ -70,7 +78,7 @@ export const PostPage: PostPageComponent = () => {
           <h3 className={styles.youLike}>You may like this too</h3>
           <div className={styles.recommendList}>
             {POSTS.slice(POSTS.length - 3).map((post) => (
-              <RecommendCard key={post.id} {...post} />
+              <RecommendCard key={post._id} {...post} />
             ))}
           </div>
         </article>

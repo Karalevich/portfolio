@@ -11,7 +11,7 @@ import { IndexToTabNameT, TabNameToIndexT } from '../types'
 import { styled } from '@mui/material/styles'
 import classnames from 'classnames'
 import { Button, SvgIconProps, Tab, Tabs } from '@mui/material'
-import { getUser } from '../../../selectors/userSelectors'
+import { getUserS } from '../../../selectors/userSelectors'
 
 const tabNameToIndex: TabNameToIndexT = {
   0: 'home',
@@ -41,7 +41,7 @@ export const NavTabs: NavTabsComponent = ({
   const navigate = useNavigate()
   const [value, setValue] = useState(indexToTabName[pathname.split('/')[1]] || 0)
   const dispatch = useAppDispatch()
-  const user = useAppSelector(getUser)
+  const user = useAppSelector(getUserS)
 
   useEffect(() => {
     setValue(indexToTabName[pathname.split('/')[1]] || 0)

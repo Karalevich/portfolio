@@ -49,7 +49,7 @@ import dockyard from '../assets/img/services/dockyard.avif'
 import ignition from '../assets/img/services/ignition.avif'
 import maplestory from '../assets/img/services/maplestory.avif'
 import { ContactCardProps } from '../components/Home/Contact/types'
-import { PostProps } from '../components/Home/Blog/types'
+import { PostT } from '../components/Home/Blog/types'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 
 export const SHARE = {
@@ -657,7 +657,7 @@ export const PORTFOLIO: PortfolioT = {
   ],
 }
 
-export const POSTS: Array<PostProps> = [
+export const POSTS = [
   {
     title: 'How to create animated svg',
     description:
@@ -677,7 +677,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '1',
+    _id: '1',
+    likes: []
   },
   {
     title: 'How to creat animated svg',
@@ -698,7 +699,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '2',
+    _id: '2',
+     likes: []
   },
   {
     title: 'How to creae animated svg',
@@ -719,7 +721,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '3',
+    _id: '3',
+     likes: []
   },
   {
     title: 'How to ceate animated svg',
@@ -740,7 +743,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '4',
+    _id: '4',
+     likes: []
   },
   {
     title: 'How t create animated svg',
@@ -761,7 +765,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '5',
+    _id: '5',
+     likes: []
   },
   {
     title: 'How o create animated svg',
@@ -782,7 +787,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '6',
+    _id: '6',
+     likes: []
   },
   {
     title: 'Ho to create animated svg',
@@ -803,7 +809,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '7',
+    _id: '7',
+     likes: []
   },
   {
     title: 'How to create animated sg',
@@ -824,7 +831,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '8',
+    _id: '8',
+     likes: []
   },
   {
     title: 'How to create anmated svg',
@@ -845,28 +853,8 @@ export const POSTS: Array<PostProps> = [
         text: 'Interesting!',
       },
     ],
-    id: '9',
-  },
-  {
-    title: 'How to create animaed svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    id: '10',
+    _id: '9',
+     likes: []
   },
 ]
 

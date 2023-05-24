@@ -44,7 +44,8 @@
     }
 
     .button {
-      padding-left: 16px;
+      padding-left: 0.2rem;
+      margin-left: 0.8rem;
 
       &:hover {
         background-color: transparent;
@@ -116,6 +117,10 @@
       height: 14.75rem;
     }
   }
+}
+
+.skeleton{
+  background: $skeleton;
 }
 
 @media only screen and (max-width: 767px) {

@@ -2,14 +2,17 @@ import { Action } from 'redux'
 import thunk, { ThunkAction } from 'redux-thunk'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import userReducer from './user/userReducer'
+import postsReducer from './posts/postsReducer'
 
 const reducers = combineReducers({
   user: userReducer,
+  posts: postsReducer,
 })
 
 export const store = configureStore({
   reducer: reducers,
-  middleware: [thunk],
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(thunk)
 })
 
 type RootReducerT = typeof reducers

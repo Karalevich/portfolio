@@ -6,12 +6,12 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Card, CardActionArea, CardMedia } from '@mui/material'
 import { PostCardComponent } from '../types'
 
-const RecommendCard: PostCardComponent = ({ img, title, id, date, author }) => {
+const RecommendCard: PostCardComponent = ({ img, title, _id, date, author }) => {
   const [isCardHover, setIsCardHover] = useState(false)
   const redirect = useNavigate()
 
   const handleRedirect = () => {
-    redirect(`/blog/post/${id}`)
+    redirect(`/blog/post/${_id}`)
   }
 
   const toggleIsCardHover = (value: boolean) => () => {
@@ -25,7 +25,7 @@ const RecommendCard: PostCardComponent = ({ img, title, id, date, author }) => {
       onMouseLeave={toggleIsCardHover(false)}
     >
       <CardActionArea className={styles.actionArea} onClick={handleRedirect}>
-        <CardMedia className={styles.media} component='img' image={img} alt={title} />
+        <CardMedia className={styles.media} component='img' image={img as string} alt={title} />
         <div className={styles.content}>
           <h3 className={styles.title}>{title}</h3>
           <div className={styles.data}>

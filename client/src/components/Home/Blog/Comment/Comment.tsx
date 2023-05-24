@@ -22,7 +22,7 @@ export const Comment: CommentComponent = ({ author, message, id, date }) => {
   return (
     <li className={styles.comment}>
       <div>
-        <img className={styles.userImage} src={author.img} alt={author.name} />
+        <img className={styles.userImage} src={author.img as string} alt={author.name} />
       </div>
       <article>
         <header className={styles.owner}>

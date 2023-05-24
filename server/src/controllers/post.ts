@@ -7,7 +7,7 @@ export const getPosts = async (req: Request, res: Response) => {
   const { page } = req.query
 
   try {
-    const startIndex = (Number(page) - 1) * LIMIT_CARDS_ON_PAGE
+    const startIndex = page ? (Number(page) - 1) * LIMIT_CARDS_ON_PAGE : 0
     const total = await Post.countDocuments({})
     const posts = await Post.find().sort({ _id: -1 }).limit(LIMIT_CARDS_ON_PAGE).skip(startIndex)
 

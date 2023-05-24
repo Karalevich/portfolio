@@ -23,15 +23,15 @@ export const setUserToLocalStorage = (user: UserT, token: string) => {
   localStorage.setItem('', JSON.stringify({ user, token: saveToken }))
 }
 
-export const signInThunk =
-  (formData: any, navigate: NavigateFunction): ThunkT<UserActionsT> =>
-  async (dispatch) => {
-    try {
-      const { data } = await api.signIn(formData)
-      setUserToLocalStorage(data.user, data.token)
-      dispatch(userActions.setUser(data.user, data.token))
-      navigate('/')
-    } catch (e) {
-      console.log(e)
-    }
-  }
+// export const signInThunk =
+//   (formData: any, navigate: NavigateFunction): ThunkT<UserActionsT> =>
+//   async (dispatch) => {
+//     try {
+//       const { data } = await api.signIn(formData)
+//       setUserToLocalStorage(data.user, data.token)
+//       dispatch(userActions.setUser(data.user, data.token))
+//       navigate('/')
+//     } catch (e) {
+//       console.log(e)
+//     }
+//   }

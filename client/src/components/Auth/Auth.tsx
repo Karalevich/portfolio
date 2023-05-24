@@ -4,13 +4,13 @@ import { Backdrop, Box, Fade, Modal, styled, Tab, Tabs } from '@mui/material'
 import { AuthComponent, TabPanelComponent } from './types'
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
 import { userActions } from '../../actions/userAction'
-import { getIsOpenModal } from 'src/selectors/userSelectors'
+import { getIsOpenModalS } from 'src/selectors/userSelectors'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 
 export const Auth: AuthComponent = () => {
   const dispatch = useAppDispatch()
-  const open = useAppSelector(getIsOpenModal)
+  const open = useAppSelector(getIsOpenModalS)
   const [tabId, setTabId] = useState(0)
 
   const handleClose = () => {
