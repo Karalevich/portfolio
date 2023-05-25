@@ -1,6 +1,7 @@
 import { ActionT } from '../store'
 import { actionsPosts } from '../../actions/postsAction'
 import { PostT } from '../../components/Home/Blog/PostCard/types'
+import { FileWithPath } from 'react-dropzone'
 
 export type PostsStateT = {
   posts: Array<PostT>
@@ -15,15 +16,4 @@ export type PostsStateT = {
 
 export type PostsActionT = ActionT<typeof actionsPosts>
 
-export type SelectedFileT = Array<string | ArrayBuffer> | string
-
-export interface PostFormDataI {
-  title: string
-  message: string
-  tags: string | Array<string>
-  selectedFile: SelectedFileT
-}
-
-export interface PostDataInterface extends PostFormDataI {
-  name: string | undefined
-}
+export type FileT = string | ArrayBuffer | FileWithPath

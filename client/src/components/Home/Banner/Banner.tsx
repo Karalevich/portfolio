@@ -14,7 +14,7 @@ export const Banner: BannerComponent = () => {
   }
   return (
     <article className={styles.banner}>
-      <div className={styles.bcgMe}/>
+      <div className={styles.bcgMe} />
       <Canvas />
       <h1 className={styles.name}>
         <span className={styles.pronoun}>I`m</span> Andrei Karalevich

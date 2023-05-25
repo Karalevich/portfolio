@@ -5,11 +5,10 @@ import { SliderContentComponent } from './types'
 import { StarIcon } from '../../Custom/Icons'
 import styles from './Recommendations.module.scss'
 import Card from '@mui/material/Card/Card'
-import { Avatar, Button, useMediaQuery } from '@mui/material'
+import { Avatar, Button } from '@mui/material'
 import { linkedInRecommendations, RECOMMENDATIONS } from '../../../constants/personalInfo'
 import MovingIcon from '@mui/icons-material/Moving'
 import classnames from 'classnames'
-import { MOBILE_SIZE } from '../../../constants/settings'
 
 const SliderContent: SliderContentComponent = ({ isTabletOrMobile }) => {
   const carouselContext = useContext(CarouselContext)
@@ -47,7 +46,7 @@ const SliderContent: SliderContentComponent = ({ isTabletOrMobile }) => {
             </div>
           </footer>
           <div className={styles.redirect}>
-            <a  onClick={() => window.open(linkedInRecommendations, '_system')} target='_blank'>
+            <a onClick={() => window.open(linkedInRecommendations, '_system')} target='_blank'>
               <Button className={styles.linkedin} variant='outlined' endIcon={<MovingIcon />}>
                 Read on LinkedIn
               </Button>

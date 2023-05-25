@@ -11,8 +11,7 @@ const reducers = combineReducers({
 
 export const store = configureStore({
   reducer: reducers,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(thunk)
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 })
 
 type RootReducerT = typeof reducers

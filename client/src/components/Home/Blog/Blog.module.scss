@@ -88,11 +88,10 @@
     .lastSlide {
       --offset-section: calc(100 / var(--posts-count));
       --offset: calc(
-              (var(--offset-section) * (var(--posts-count) - 2) + (var(--offset-section) * 0.7)) * 1% * -1
+        (var(--offset-section) * (var(--posts-count) - 2) + (var(--offset-section) * 0.7)) * 1% * -1
       );
       transform: translateX(var(--offset)) translateX(0px) !important;
     }
-
 
     .fullMain {
       width: auto;

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { PostT } from '../components/Home/Blog/PostCard/types'
+import { CreatePostT } from '../components/Home/Blog/AddPost/types'
 
 const API = axios.create({ baseURL: process.env.REACT_APP_API_URl })
 
@@ -17,7 +17,7 @@ const API = axios.create({ baseURL: process.env.REACT_APP_API_URl })
 export const fetchPosts = (page?: number) => API.get(`/posts${page ? '?page=' + page : ''}`)
 export const fetchCertainPost = (id: string) => API.get(`/posts/${id}`)
 export const fetchPostsByTags = (tags: string) => API.get(`/posts/tags?searchQuery=${tags}`)
-export const createPost = (newPost: PostT) => API.post('/posts', newPost)
+export const createPost = (newPost: CreatePostT) => API.post('/posts', newPost)
 // export const fetchPostsBySearch = (searchQuery: string, page: number) => API.get(`/posts/search?page=${page}&searchQuery=${searchQuery || 'none'}`)
 
 // export const updatePost = (id: string, updatePost: PostDataInterface) => API.patch(`/posts/${id}`, updatePost)

@@ -52,13 +52,13 @@ export const mainTheme = createTheme({
       },
     },
     MuiSkeleton: {
-        styleOverrides: {
+      styleOverrides: {
         root: {
           backgroundColor: 'var(--skeleton)',
-          borderRadius: '2px'
+          borderRadius: '2px',
         },
       },
-    }
+    },
   },
   typography: {
     fontFamily: [

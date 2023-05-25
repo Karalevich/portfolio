@@ -39,12 +39,12 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
     case SET_POST:
       return {
         ...state,
-        post: action.payload.post
+        post: action.payload.post,
       }
     case SET_RELATED_POST:
       return {
         ...state,
-        relatedPosts: action.payload.posts
+        relatedPosts: action.payload.posts,
       }
     // case CREATE:
     //   return {

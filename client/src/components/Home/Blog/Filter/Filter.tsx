@@ -24,7 +24,7 @@ export const Filter: FilterComponent = () => {
       ([e]) => {
         e.target.classList.toggle(styles.filterSticked, e.intersectionRatio < 1)
       },
-      { threshold: [1] },
+      { threshold: [1] }
     )
 
     if (filterRef.current) {
@@ -40,15 +40,20 @@ export const Filter: FilterComponent = () => {
     <article className={styles.filter} ref={filterRef}>
       <div className={styles.search}>
         <div className={styles.searchIconWrapper}>
-          <SearchIcon/>
+          <SearchIcon />
         </div>
-        <StyledInputBase placeholder='Search…'/>
+        <StyledInputBase placeholder='Search…' />
       </div>
       <div className={styles.rightSection}>
-        <Button className={styles.addPost} onClick={handleRedirect} sx={{ boxShadow: 0 }} variant='outlined'>
+        <Button
+          className={styles.addPost}
+          onClick={handleRedirect}
+          sx={{ boxShadow: 0 }}
+          variant='outlined'
+        >
           Add post
         </Button>
-        <Dropdown selects={SELECT}/>
+        <Dropdown selects={SELECT} />
       </div>
     </article>
   )

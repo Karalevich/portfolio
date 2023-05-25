@@ -28,23 +28,25 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
     return () => carouselContext?.unsubscribe(onChange)
   }, [])
 
-  const mappedPosts = (isFetchingPosts
-    ? Array(PLACEHOLDER_COUNT_POSTS).fill(PLACEHOLDER_POST).map((e, i) => ({ ...e, _id: `${i}` }))
-    : posts
-  )
-    .map((props, index) => {
-      return (
-        <Fragment key={props._id}>
-          {isFullVersion ? (
-            <PostCard {...props} isFullVersion={isFullVersion} isFetchingPosts={isFetchingPosts} />
-          ) : (
-            <Slide index={index || 0} innerClassName={styles.innerSlide}>
-              <PostCard {...props} isFetchingPosts={isFetchingPosts} />
-            </Slide>
-          )}
-        </Fragment>
-      )
-    })
+  const mappedPosts = (
+    isFetchingPosts
+      ? Array(PLACEHOLDER_COUNT_POSTS)
+          .fill(PLACEHOLDER_POST)
+          .map((e, i) => ({ ...e, _id: `${i}` }))
+      : posts
+  ).map((props, index) => {
+    return (
+      <Fragment key={props._id}>
+        {isFullVersion ? (
+          <PostCard {...props} isFullVersion={isFullVersion} isFetchingPosts={isFetchingPosts} />
+        ) : (
+          <Slide index={index || 0} innerClassName={styles.innerSlide}>
+            <PostCard {...props} isFetchingPosts={isFetchingPosts} />
+          </Slide>
+        )}
+      </Fragment>
+    )
+  })
 
   return (
     <>

@@ -42,7 +42,9 @@ export const Blog: BlogComponent = ({ isFullVersion }) => {
 
   return (
     <section className={styles.blog}>
-      <DynamicCSS properties={[{ value: posts.length ||  PLACEHOLDER_COUNT_POSTS, prop: 'posts-count' }]} />
+      <DynamicCSS
+        properties={[{ value: posts.length || PLACEHOLDER_COUNT_POSTS, prop: 'posts-count' }]}
+      />
       <SectionHeader
         title={'Blog'}
         introduction={`I like to share my experience and knowledge, that is why I decided to create my own small blog.`}

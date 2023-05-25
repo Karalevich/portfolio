@@ -25,7 +25,6 @@ import { PortfolioT, PORTFOLIO_TOPIC, ServiceT } from './types'
 import { PriceItemProps } from '../components/Home/Price/types'
 import me from '../assets/img/Me.webp'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
-import blog from '../assets/img/blog.avif'
 import easyGame from '../assets/img/portfolio/easy-game.webp'
 import friendlyDog from '../assets/img/portfolio/frendly-dog.avif'
 import spaceAdventure from '../assets/img/portfolio/spaceadventure.webp'
@@ -364,12 +363,13 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: 'https://media.licdn.com/dms/image/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_800_800/0/1660425592931?e=1689811200&v=beta&t=Hzo-UV0yJcEExhsgJvCcuPL-P67mENCbOagIdVtwMqI',
+    image:
+      'https://media.licdn.com/dms/image/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_800_800/0/1660425592931?e=1689811200&v=beta&t=Hzo-UV0yJcEExhsgJvCcuPL-P67mENCbOagIdVtwMqI',
   },
   {
     author: 'Uladzimir Pryshchep',
@@ -377,7 +377,8 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
     title: 'Great work!',
     description: `I have fond memories of working with Andrei, a time filled with victories. He made rapid progress, resolved intricate issues, and always showed an unwavering desire to enhance everything he worked on. We even put in late nights together to finish an important task, and I'm grateful for those moments. We both gained invaluable experience during those times.
 Andrei is a rare gem who can be entrusted with tasks of any complexity. I have no doubt that I will continue to witness Andrei's exceptional talents being applied to create outstanding products`,
-    image: 'https://media.licdn.com/dms/image/D4D03AQGqRKKdAG-cXA/profile-displayphoto-shrink_800_800/0/1684502868598?e=1690416000&v=beta&t=ycg-SLtVKjmfVbgfFJHO56SCx2tBx9GX-xHF7OiYBBc',
+    image:
+      'https://media.licdn.com/dms/image/D4D03AQGqRKKdAG-cXA/profile-displayphoto-shrink_800_800/0/1684502868598?e=1690416000&v=beta&t=ycg-SLtVKjmfVbgfFJHO56SCx2tBx9GX-xHF7OiYBBc',
   },
   {
     author: 'Uladzislau Ustsinovich',
@@ -394,7 +395,8 @@ Overall, I highly recommend Andrei as a front-end developer with expertise in Fr
 Best wishes,
 
 Vladislav `,
-    image: 'https://media.licdn.com/dms/image/D4D03AQFQwUfvfZTDkw/profile-displayphoto-shrink_800_800/0/1668418630228?e=1689811200&v=beta&t=TcRoIrvpF_o_x0M7HvI9exTLxHRORJI9qllSMFw1Zb8',
+    image:
+      'https://media.licdn.com/dms/image/D4D03AQFQwUfvfZTDkw/profile-displayphoto-shrink_800_800/0/1668418630228?e=1689811200&v=beta&t=TcRoIrvpF_o_x0M7HvI9exTLxHRORJI9qllSMFw1Zb8',
   },
   {
     author: 'David Tanaka',
@@ -405,12 +407,13 @@ Vladislav `,
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
-    image: 'https://media.licdn.com/dms/image/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_800_800/0/1660425592931?e=1689811200&v=beta&t=Hzo-UV0yJcEExhsgJvCcuPL-P67mENCbOagIdVtwMqI',
+    image:
+      'https://media.licdn.com/dms/image/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_800_800/0/1660425592931?e=1689811200&v=beta&t=Hzo-UV0yJcEExhsgJvCcuPL-P67mENCbOagIdVtwMqI',
   },
   {
     author: 'Uladzimir Pryshchep',
@@ -418,7 +421,8 @@ Vladislav `,
     title: 'Awesome work!',
     description: `I have fond memories of working with Andrei, a time filled with victories. He made rapid progress, resolved intricate issues, and always showed an unwavering desire to enhance everything he worked on. We even put in late nights together to finish an important task, and I'm grateful for those moments. We both gained invaluable experience during those times.
 Andrei is a rare gem who can be entrusted with tasks of any complexity. I have no doubt that I will continue to witness Andrei's exceptional talents being applied to create outstanding products`,
-    image: 'https://media.licdn.com/dms/image/D4D03AQGqRKKdAG-cXA/profile-displayphoto-shrink_800_800/0/1684502868598?e=1690416000&v=beta&t=ycg-SLtVKjmfVbgfFJHO56SCx2tBx9GX-xHF7OiYBBc',
+    image:
+      'https://media.licdn.com/dms/image/D4D03AQGqRKKdAG-cXA/profile-displayphoto-shrink_800_800/0/1684502868598?e=1690416000&v=beta&t=ycg-SLtVKjmfVbgfFJHO56SCx2tBx9GX-xHF7OiYBBc',
   },
 ]
 
@@ -428,111 +432,147 @@ export const WORK_HISTORY = [
     place: 'Los Angeles, CA',
     occupation: 'FrontEnd Engineer',
     date: 'Jul 2022 - Mar 2023',
-    description: <div>
-      <p>Nexon Co., Ltd. is a Japanese-South Korean video game publisher. It publishes titles including MapleStory,
-        Dungeon&Fighter, Sudden Attack, and KartRider.
-        Headquartered in Japan, the company has offices located in South Korea, the United States, Taiwan and
-        Thailand.</p>
-      <br />
-      <p>Nexon America has also collaborated with various developers and studios to bring their games to the North
-        American market. The company has established partnerships with renowned game developers, expanding its game
-        catalog and offering diverse gaming experiences to players</p>
-      <br />
-      <p>Nexon America strives to deliver high-quality, immersive, and enjoyable gaming experiences to players,
-        leveraging the free-to-play model and embracing new trends in the industry. The company continues to evolve and
-        adapt to the changing gaming landscape, aiming to bring innovative and exciting games to the North American
-        market.</p>
-    </div>,
+    description: (
+      <div>
+        <p>
+          Nexon Co., Ltd. is a Japanese-South Korean video game publisher. It publishes titles including
+          MapleStory, Dungeon&Fighter, Sudden Attack, and KartRider. Headquartered in Japan, the company
+          has offices located in South Korea, the United States, Taiwan and Thailand.
+        </p>
+        <br />
+        <p>
+          Nexon America has also collaborated with various developers and studios to bring their games to
+          the North American market. The company has established partnerships with renowned game
+          developers, expanding its game catalog and offering diverse gaming experiences to players
+        </p>
+        <br />
+        <p>
+          Nexon America strives to deliver high-quality, immersive, and enjoyable gaming experiences to
+          players, leveraging the free-to-play model and embracing new trends in the industry. The
+          company continues to evolve and adapt to the changing gaming landscape, aiming to bring
+          innovative and exciting games to the North American market.
+        </p>
+      </div>
+    ),
   },
   {
     label: 'Sabbatical',
     place: 'Grassau, Germany',
     occupation: 'Sabbatical',
     date: 'Apr 2022 - Jun 2023',
-    description: <div>
-      <p>During my professional journey, I embarked on an exciting sabbatical in Germany to prepare for an upcoming
-        international move. This period of extended leave allowed me to dedicate time and focus to ensure a smooth
-        transition to a new country and embrace the challenges and opportunities that awaited me.</p>
-      <br />
-      <p>Throughout my sabbatical, I took advantage of Germany's rich culture, vibrant cities, and renowned efficiency.
-        I immersed myself in the local community, engaging in language courses and cultural activities, which not only
-        enhanced my understanding of the German language but also provided me with a deeper appreciation for the
-        country's traditions and customs. This cultural integration was an essential part of my preparation for the
-        international move, as it fostered a sense of belonging and readiness to embrace the new environment.</p>
-    </div>,
+    description: (
+      <div>
+        <p>
+          During my professional journey, I embarked on an exciting sabbatical in Germany to prepare for
+          an upcoming international move. This period of extended leave allowed me to dedicate time and
+          focus to ensure a smooth transition to a new country and embrace the challenges and
+          opportunities that awaited me.
+        </p>
+        <br />
+        <p>
+          Throughout my sabbatical, I took advantage of Germany's rich culture, vibrant cities, and
+          renowned efficiency. I immersed myself in the local community, engaging in language courses and
+          cultural activities, which not only enhanced my understanding of the German language but also
+          provided me with a deeper appreciation for the country's traditions and customs. This cultural
+          integration was an essential part of my preparation for the international move, as it fostered
+          a sense of belonging and readiness to embrace the new environment.
+        </p>
+      </div>
+    ),
   },
   {
     label: 'Wargaming',
     place: 'Saint Petersburg, Russia',
     occupation: 'Web Engineer',
     date: 'May 2021 - Mar 2022',
-    description: <div>
-      <p>Wargaming is a global video game developer and publisher known for creating and publishing multiplayer online
-        games, particularly in the genre of vehicular combat. The company was founded in 1998 in Belarus and has since
-        grown to become one of the leading game development companies in the industry.</p>
-      <br />
-      <p>Wargaming is most recognized for its flagship title, "World of Tanks," a massively multiplayer online game
-        (MMOG) that focuses on armored warfare. In "World of Tanks," players control various tanks from different eras
-        and engage in team-based battles on realistic battlegrounds. The game has gained a massive player base and has
-        become an eSports phenomenon, with competitive tournaments and events held worldwide.</p>
-      <br />
-      <p>In addition to "World of Tanks," Wargaming has expanded its portfolio with other successful titles, such
-        as:</p>
+    description: (
+      <div>
+        <p>
+          Wargaming is a global video game developer and publisher known for creating and publishing
+          multiplayer online games, particularly in the genre of vehicular combat. The company was
+          founded in 1998 in Belarus and has since grown to become one of the leading game development
+          companies in the industry.
+        </p>
+        <br />
+        <p>
+          Wargaming is most recognized for its flagship title, "World of Tanks," a massively multiplayer
+          online game (MMOG) that focuses on armored warfare. In "World of Tanks," players control
+          various tanks from different eras and engage in team-based battles on realistic battlegrounds.
+          The game has gained a massive player base and has become an eSports phenomenon, with
+          competitive tournaments and events held worldwide.
+        </p>
+        <br />
+        <p>
+          In addition to "World of Tanks," Wargaming has expanded its portfolio with other successful
+          titles, such as:
+        </p>
 
-      <p>
-        1. "World of Warplanes": A flight combat MMOG that allows players to pilot warplanes from various historical
-        periods and engage in aerial battles.
-      </p>
-      <p>
-        2. "World of Warships": A naval warfare MMOG where players command historical warships from different nations
-        and
-        participate in large-scale naval battles.
-      </p>
-      <p>3. "World of Tanks Blitz": A mobile version of "World of Tanks" optimized for smartphones and tablets, offering
-        the tank combat experience on the go.
-      </p>
-    </div>,
+        <p>
+          1. "World of Warplanes": A flight combat MMOG that allows players to pilot warplanes from
+          various historical periods and engage in aerial battles.
+        </p>
+        <p>
+          2. "World of Warships": A naval warfare MMOG where players command historical warships from
+          different nations and participate in large-scale naval battles.
+        </p>
+        <p>
+          3. "World of Tanks Blitz": A mobile version of "World of Tanks" optimized for smartphones and
+          tablets, offering the tank combat experience on the go.
+        </p>
+      </div>
+    ),
   },
   {
     label: 'LeverX Group',
     place: 'Minsk, Belarus',
     occupation: 'FrontEnd Engineer',
     date: 'Nov 2020 - May 2021',
-    description: <div>
-      <p>
-        LeverX Group is a global technology consulting and software solutions provider that specializes in implementing
-        and supporting SAP (Systems, Applications, and Products) software solutions for businesses. Founded in 2003,
-        LeverX has grown to become a trusted partner for organizations seeking to optimize their operations and enhance
-        their digital capabilities.</p>
-      <br />
-      <p>LeverX combines their expertise in SAP software with industry-specific knowledge to deliver tailored solutions
-        across various sectors, including manufacturing, consumer goods, life sciences, automotive, and more. They
-        provide end-to-end services, including consulting, implementation, customization, integration, training, and
-        ongoing support.</p>
-      <br />
-      <p>
-        LeverX is committed to delivering high-quality services and solutions that drive digital transformation and help
-        organizations achieve operational excellence. Through their expertise in SAP software and their customer-centric
-        approach, LeverX Group continues to support businesses worldwide in their digital journey.
-      </p>
-    </div>,
+    description: (
+      <div>
+        <p>
+          LeverX Group is a global technology consulting and software solutions provider that specializes
+          in implementing and supporting SAP (Systems, Applications, and Products) software solutions for
+          businesses. Founded in 2003, LeverX has grown to become a trusted partner for organizations
+          seeking to optimize their operations and enhance their digital capabilities.
+        </p>
+        <br />
+        <p>
+          LeverX combines their expertise in SAP software with industry-specific knowledge to deliver
+          tailored solutions across various sectors, including manufacturing, consumer goods, life
+          sciences, automotive, and more. They provide end-to-end services, including consulting,
+          implementation, customization, integration, training, and ongoing support.
+        </p>
+        <br />
+        <p>
+          LeverX is committed to delivering high-quality services and solutions that drive digital
+          transformation and help organizations achieve operational excellence. Through their expertise
+          in SAP software and their customer-centric approach, LeverX Group continues to support
+          businesses worldwide in their digital journey.
+        </p>
+      </div>
+    ),
   },
   {
     label: 'Freelance',
     place: 'Belarus',
     occupation: 'FrontEnd Engineer',
     date: 'Oct 2019 - Nov 2020',
-    description: <div>
-      <p>
-        Work on a technological startup that focuses on developing software and technical solutions for climate
-        monitoring. The company's primary goal is to provide innovative tools and technologies that contribute to
-        understanding and managing climate-related challenges.</p>
-      <br />
-      <p>It develops software and technical solutions that enable accurate and real-time monitoring of various
-        climate parameters. This includes temperature, humidity, air quality, atmospheric pressure, and more. These
-        solutions can be applied across different sectors, including agriculture, environmental research, urban
-        planning, and infrastructure management.</p>
-    </div>,
+    description: (
+      <div>
+        <p>
+          Work on a technological startup that focuses on developing software and technical solutions for
+          climate monitoring. The company's primary goal is to provide innovative tools and technologies
+          that contribute to understanding and managing climate-related challenges.
+        </p>
+        <br />
+        <p>
+          It develops software and technical solutions that enable accurate and real-time monitoring of
+          various climate parameters. This includes temperature, humidity, air quality, atmospheric
+          pressure, and more. These solutions can be applied across different sectors, including
+          agriculture, environmental research, urban planning, and infrastructure management.
+        </p>
+      </div>
+    ),
   },
 ]
 

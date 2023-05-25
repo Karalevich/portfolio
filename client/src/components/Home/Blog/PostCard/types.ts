@@ -1,4 +1,4 @@
-import { SelectedFileT } from '../../../../reducers/posts/types'
+import { FileT } from '../../../../reducers/posts/types'
 import { FunctionComponent } from 'react'
 import { AuthorT } from '../types'
 
@@ -8,16 +8,17 @@ type CommentT = {
 }
 
 export type PostT = {
-  img: SelectedFileT
+  img: FileT
   title: string
   description: string
+  content: string
   author: AuthorT
   date: string
   comments?: Array<CommentT>
   _id: string
-  isFullVersion?: boolean,
+  isFullVersion?: boolean
   isFetchingPosts?: boolean
-  likes: Array<string>,
+  likes: Array<string>
   tags: Array<string>
 }
 
