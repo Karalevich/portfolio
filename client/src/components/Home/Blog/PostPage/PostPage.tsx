@@ -1,26 +1,30 @@
 import { useParams } from 'react-router-dom'
-import { POSTS, SHARE } from 'src/constants/personalInfo'
+import { SHARE } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
 import { PostPageComponent } from './types'
 import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
-import { PostT } from '../types'
 import Comments from '../Comments/Comments'
 import NotFound from '../../../NotFound/NotFound'
 import { useEffect } from 'react'
-import { useAppDispatch } from '../../../../hooks/hooks'
-import { getCertainPostThunk } from '../../../../actions/postsAction'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
+import { getCertainPostThunk, getPostsByTagsThunk } from '../../../../actions/postsAction'
+import { getCertainPostS, getRelatedPostsS } from '../../../../selectors/postsSelectors'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
   const dispatch = useAppDispatch()
+  const post = useAppSelector(getCertainPostS)
+  const relatedPosts = useAppSelector(getRelatedPostsS)
 
   useEffect(() => {
-    dispatch(getCertainPostThunk(id))
+    if (id) {
+      dispatch(getCertainPostThunk(id))
+      dispatch(getPostsByTagsThunk(id))
+    }
   }, [id])
 
-  const post = POSTS.find((post) => post._id === id) as PostT
   if (!post) {
     return <NotFound />
   }
@@ -77,7 +81,7 @@ export const PostPage: PostPageComponent = () => {
         <article className={styles.recommendations}>
           <h3 className={styles.youLike}>You may like this too</h3>
           <div className={styles.recommendList}>
-            {POSTS.slice(POSTS.length - 3).map((post) => (
+            {relatedPosts.map((post) => (
               <RecommendCard key={post._id} {...post} />
             ))}
           </div>

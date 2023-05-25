@@ -49,23 +49,22 @@ import dockyard from '../assets/img/services/dockyard.avif'
 import ignition from '../assets/img/services/ignition.avif'
 import maplestory from '../assets/img/services/maplestory.avif'
 import { ContactCardProps } from '../components/Home/Contact/types'
-import { PostT } from '../components/Home/Blog/types'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 
 export const SHARE = {
-  Linkedin: [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
-  Vkontakte: [<VkIcon/>, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon/>, 'https://www.facebook.com/profile.php?id=100087547390611'],
-  Twitter: [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
+  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
+  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon />, 'https://www.facebook.com/profile.php?id=100087547390611'],
+  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
 }
 
 export const ICONS = {
-  Linkedin: [<LinkedinIcon/>, 'https://www.linkedin.com/in/a112k/'],
-  Github: [<GitHubIcon/>, 'https://github.com/AndreyKorolevich'],
-  Vkontakte: [<VkIcon/>, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon/>, 'https://www.facebook.com/profile.php?id=100087547390611'],
-  Twitter: [<TwitterIcon/>, 'https://twitter.com/Korol1Andrei'],
-  Leetcode: [<LeetcodeIcon/>, 'https://leetcode.com/korolevich1994/'],
+  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
+  Github: [<GitHubIcon />, 'https://github.com/AndreyKorolevich'],
+  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
+  Facebook: [<FacebookIcon />, 'https://www.facebook.com/profile.php?id=100087547390611'],
+  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
+  Leetcode: [<LeetcodeIcon />, 'https://leetcode.com/korolevich1994/'],
 }
 
 export const INFO = {
@@ -434,11 +433,11 @@ export const WORK_HISTORY = [
         Dungeon&Fighter, Sudden Attack, and KartRider.
         Headquartered in Japan, the company has offices located in South Korea, the United States, Taiwan and
         Thailand.</p>
-      <br/>
+      <br />
       <p>Nexon America has also collaborated with various developers and studios to bring their games to the North
         American market. The company has established partnerships with renowned game developers, expanding its game
         catalog and offering diverse gaming experiences to players</p>
-      <br/>
+      <br />
       <p>Nexon America strives to deliver high-quality, immersive, and enjoyable gaming experiences to players,
         leveraging the free-to-play model and embracing new trends in the industry. The company continues to evolve and
         adapt to the changing gaming landscape, aiming to bring innovative and exciting games to the North American
@@ -454,7 +453,7 @@ export const WORK_HISTORY = [
       <p>During my professional journey, I embarked on an exciting sabbatical in Germany to prepare for an upcoming
         international move. This period of extended leave allowed me to dedicate time and focus to ensure a smooth
         transition to a new country and embrace the challenges and opportunities that awaited me.</p>
-      <br/>
+      <br />
       <p>Throughout my sabbatical, I took advantage of Germany's rich culture, vibrant cities, and renowned efficiency.
         I immersed myself in the local community, engaging in language courses and cultural activities, which not only
         enhanced my understanding of the German language but also provided me with a deeper appreciation for the
@@ -471,12 +470,12 @@ export const WORK_HISTORY = [
       <p>Wargaming is a global video game developer and publisher known for creating and publishing multiplayer online
         games, particularly in the genre of vehicular combat. The company was founded in 1998 in Belarus and has since
         grown to become one of the leading game development companies in the industry.</p>
-      <br/>
+      <br />
       <p>Wargaming is most recognized for its flagship title, "World of Tanks," a massively multiplayer online game
         (MMOG) that focuses on armored warfare. In "World of Tanks," players control various tanks from different eras
         and engage in team-based battles on realistic battlegrounds. The game has gained a massive player base and has
         become an eSports phenomenon, with competitive tournaments and events held worldwide.</p>
-      <br/>
+      <br />
       <p>In addition to "World of Tanks," Wargaming has expanded its portfolio with other successful titles, such
         as:</p>
 
@@ -505,12 +504,12 @@ export const WORK_HISTORY = [
         and supporting SAP (Systems, Applications, and Products) software solutions for businesses. Founded in 2003,
         LeverX has grown to become a trusted partner for organizations seeking to optimize their operations and enhance
         their digital capabilities.</p>
-      <br/>
+      <br />
       <p>LeverX combines their expertise in SAP software with industry-specific knowledge to deliver tailored solutions
         across various sectors, including manufacturing, consumer goods, life sciences, automotive, and more. They
         provide end-to-end services, including consulting, implementation, customization, integration, training, and
         ongoing support.</p>
-      <br/>
+      <br />
       <p>
         LeverX is committed to delivering high-quality services and solutions that drive digital transformation and help
         organizations achieve operational excellence. Through their expertise in SAP software and their customer-centric
@@ -528,7 +527,7 @@ export const WORK_HISTORY = [
         Work on a technological startup that focuses on developing software and technical solutions for climate
         monitoring. The company's primary goal is to provide innovative tools and technologies that contribute to
         understanding and managing climate-related challenges.</p>
-      <br/>
+      <br />
       <p>It develops software and technical solutions that enable accurate and real-time monitoring of various
         climate parameters. This includes temperature, humidity, air quality, atmospheric pressure, and more. These
         solutions can be applied across different sectors, including agriculture, environmental research, urban
@@ -657,206 +656,28 @@ export const PORTFOLIO: PortfolioT = {
   ],
 }
 
-export const POSTS = [
-  {
-    title: 'How to create animated svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    _id: '1',
-    likes: []
+export const PLACEHOLDER_POST = {
+  title: 'asdasd',
+  description: 'asdasdasd',
+  img: '',
+  author: {
+    name: '',
+    img: me,
   },
-  {
-    title: 'How to creat animated svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
+  date: '',
+  comments: [
+    {
+      author: {
+        name: '',
+        img: '',
       },
-    ],
-    _id: '2',
-     likes: []
-  },
-  {
-    title: 'How to creae animated svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
+      text: '!',
     },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    _id: '3',
-     likes: []
-  },
-  {
-    title: 'How to ceate animated svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    _id: '4',
-     likes: []
-  },
-  {
-    title: 'How t create animated svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    _id: '5',
-     likes: []
-  },
-  {
-    title: 'How o create animated svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    _id: '6',
-     likes: []
-  },
-  {
-    title: 'Ho to create animated svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    _id: '7',
-     likes: []
-  },
-  {
-    title: 'How to create animated sg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    _id: '8',
-     likes: []
-  },
-  {
-    title: 'How to create anmated svg',
-    description:
-      'As we all know that the best practice for icons it uses svg formats, but what if we also want to add some small animation, it can be trike to find a good approach for this.',
-    img: blog,
-    author: {
-      name: 'Andrei Karalevich',
-      img: me,
-    },
-    date: '04-30-2023',
-    comments: [
-      {
-        author: {
-          name: 'Andrei Karalevich',
-          img: me,
-        },
-        text: 'Interesting!',
-      },
-    ],
-    _id: '9',
-     likes: []
-  },
-]
+  ],
+  _id: '1',
+  likes: [],
+}
+export const PLACEHOLDER_COUNT_POSTS = 9
 
 export const CONTACT_INFO: Array<ContactCardProps> = [
   {

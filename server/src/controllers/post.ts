@@ -51,7 +51,7 @@ export const getPostsBySearch = async (req: Request, res: Response) => {
 
 export const createPosts = async (req: Request, res: Response) => {
   const post = req.body
-  const newPost = new Post({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
+  const newPost = new Post({ ...post, author: req.userId, createdAt: new Date().toISOString() })
   try {
     await newPost.save()
 

@@ -4,7 +4,6 @@ import '../../AminatedRoutes/AnimatedRoutes.scss'
 import { BlogComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
 import { ButtonBack, ButtonNext, CarouselProvider } from 'pure-react-carousel'
-import { POSTS } from 'src/constants/personalInfo'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import Posts from './Posts'
@@ -13,9 +12,13 @@ import { useMediaQuery } from '@mui/material'
 import classnames from 'classnames'
 import Filter from './Filter/Filter'
 import { ROUTES_ANIMATIONS } from '../../AminatedRoutes/types'
+import { useAppSelector } from '../../../hooks/hooks'
+import { getPostsS } from '../../../selectors/postsSelectors'
+import { PLACEHOLDER_COUNT_POSTS } from '../../../constants/personalInfo'
 
 export const Blog: BlogComponent = ({ isFullVersion }) => {
   const isTabletOrMobile = useMediaQuery('(max-width:767px)')
+  const posts = useAppSelector(getPostsS)
   const countOfSlide = isTabletOrMobile ? 1 : 3
   const step = isTabletOrMobile ? 1 : 2
 
@@ -39,7 +42,7 @@ export const Blog: BlogComponent = ({ isFullVersion }) => {
 
   return (
     <section className={styles.blog}>
-      <DynamicCSS properties={[{ value: POSTS.length, prop: 'posts-count' }]} />
+      <DynamicCSS properties={[{ value: posts.length ||  PLACEHOLDER_COUNT_POSTS, prop: 'posts-count' }]} />
       <SectionHeader
         title={'Blog'}
         introduction={`I like to share my experience and knowledge, that is why I decided to create my own small blog.`}
@@ -52,7 +55,7 @@ export const Blog: BlogComponent = ({ isFullVersion }) => {
           <CarouselProvider
             isIntrinsicHeight
             visibleSlides={countOfSlide}
-            totalSlides={POSTS.length}
+            totalSlides={posts.length || PLACEHOLDER_COUNT_POSTS}
             step={step}
             naturalSlideWidth={310}
             naturalSlideHeight={440}

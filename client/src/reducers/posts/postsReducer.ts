@@ -28,7 +28,7 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
     case FETCH_POSTS:
       return {
         ...state,
-        posts: action.payload.posts,
+        posts: [...state.posts, ...action.payload.posts],
         numberOfPages: action.payload.numberOfPages,
       }
     case SET_FETCHING_POSTS:
@@ -36,16 +36,16 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
         ...state,
         isFetchingPosts: action.flag,
       }
-    // case SET_POST:
-    //   return {
-    //     ...state,
-    //     post: action.payload.post
-    //   }
-    // case SET_RELATED_POST:
-    //   return {
-    //     ...state,
-    //     relatedPosts: action.payload.posts
-    //   }
+    case SET_POST:
+      return {
+        ...state,
+        post: action.payload.post
+      }
+    case SET_RELATED_POST:
+      return {
+        ...state,
+        relatedPosts: action.payload.posts
+      }
     // case CREATE:
     //   return {
     //     ...state,

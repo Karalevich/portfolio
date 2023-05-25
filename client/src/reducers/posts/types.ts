@@ -1,6 +1,6 @@
 import { ActionT } from '../store'
 import { actionsPosts } from '../../actions/postsAction'
-import { PostT } from '../../components/Home/Blog/types'
+import { PostT } from '../../components/Home/Blog/PostCard/types'
 
 export type PostsStateT = {
   posts: Array<PostT>

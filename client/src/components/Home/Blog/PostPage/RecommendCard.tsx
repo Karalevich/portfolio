@@ -4,7 +4,7 @@ import styles from './PostPage.module.scss'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Card, CardActionArea, CardMedia } from '@mui/material'
-import { PostCardComponent } from '../types'
+import { PostCardComponent } from '../PostCard/types'
 
 const RecommendCard: PostCardComponent = ({ img, title, _id, date, author }) => {
   const [isCardHover, setIsCardHover] = useState(false)

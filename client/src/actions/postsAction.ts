@@ -1,7 +1,7 @@
 import * as api from '../api'
 import { ActionT, ThunkT } from '../reducers/store'
 import { PostsActionT } from '../reducers/posts/types'
-import { PostT } from '../components/Home/Blog/types'
+import { PostT } from '../components/Home/Blog/PostCard/types'
 import {
   CHANGE_OPENED_POST_ID,
   COMMENTS,
@@ -15,6 +15,7 @@ import {
   SET_RELATED_POST,
   UPDATE,
 } from '../reducers/posts/postsReducer'
+import { updateTagsType } from '../utils/updateTagsType'
 
 
 export const actionsPosts = {
@@ -35,16 +36,24 @@ export const actionsPosts = {
       post
     }
   } as const),
-  // setRelatedPostsAC: (posts: Array<PostsResponseDataI>) => ({
-  //   type: SET_RELATED_POST,
-  //   payload: {
-  //     posts
-  //   }
-  // } as const),
-  // createPostAC: (payload: PostsResponseDataI) => ({
-  //   type: CREATE,
-  //   payload
-  // } as const),
+  setRelatedPostsAC: (posts: Array<PostT>) => ({
+    type: SET_RELATED_POST,
+    payload: {
+      posts
+    }
+  } as const),
+  setFetchingRelatedPostsAC: (flag: boolean) => ({
+    type: SET_FETCHING_RELATED_POSTS,
+    flag
+  } as const),
+  createPostAC: (payload: PostT) => ({
+    type: CREATE,
+    payload
+  } as const),
+  setFetchingFormAC: (flag: boolean) => ({
+    type: SET_FETCHING_FORM,
+    flag
+  } as const),
   // updatePostAC: (payload: PostsResponseDataI) => ({
   //   type: UPDATE,
   //   payload
@@ -61,14 +70,7 @@ export const actionsPosts = {
   //   type: CHANGE_OPENED_POST_ID,
   //   payload
   // } as const),
-  // setFetchingFormAC: (flag: boolean) => ({
-  //   type: SET_FETCHING_FORM,
-  //   flag
-  // } as const),
-  // setFetchingRelatedPostsAC: (flag: boolean) => ({
-  //   type: SET_FETCHING_RELATED_POSTS,
-  //   flag
-  // } as const)
+
 }
 
 export const getPostsThunk = (page?: number): ThunkT<PostsActionT> => async (dispatch) => {
@@ -83,7 +85,7 @@ export const getPostsThunk = (page?: number): ThunkT<PostsActionT> => async (dis
   }
 }
 
-export const getCertainPostThunk = (id?: string): ThunkT<PostsActionT> => async (dispatch) => {
+export const getCertainPostThunk = (id: string): ThunkT<PostsActionT> => async (dispatch) => {
   try {
     dispatch(actionsPosts.setFetchingPostsAC(true))
     const { data } = await api.fetchCertainPost(id)
@@ -92,6 +94,30 @@ export const getCertainPostThunk = (id?: string): ThunkT<PostsActionT> => async 
     console.log(e)
   } finally {
     dispatch(actionsPosts.setFetchingPostsAC(false))
+  }
+}
+
+export const getPostsByTagsThunk = (tags: string): ThunkT<PostsActionT> => async (dispatch) => {
+  try {
+    dispatch(actionsPosts.setFetchingRelatedPostsAC(true))
+    const { data } = await api.fetchPostsByTags(tags)
+    dispatch(actionsPosts.setRelatedPostsAC(data))
+  } catch (e) {
+    console.log(e)
+  } finally {
+    dispatch(actionsPosts.setFetchingRelatedPostsAC(false))
+  }
+}
+export const createPostThunk = (post: PostT): ThunkT<PostsActionT> => async (dispatch) => {
+  try {
+    dispatch(actionsPosts.setFetchingFormAC(true))
+    post.tags = updateTagsType(post.tags)
+    const { data } = await api.createPost(post)
+    dispatch(actionsPosts.createPostAC(data))
+  } catch (e) {
+    console.log(e)
+  } finally {
+    dispatch(actionsPosts.setFetchingFormAC(false))
   }
 }
 
@@ -106,32 +132,7 @@ export const getCertainPostThunk = (id?: string): ThunkT<PostsActionT> => async 
 //     dispatch(actionsPosts.setFetchingPosts(false))
 //   }
 // }
-//
-// export const getPostsByTagsThunk = (tags: string): ThunkType<PostsActionType> => async (dispatch) => {
-//   try {
-//     dispatch(actionsPosts.setFetchingRelatedPosts(true))
-//     const { data } = await api.fetchPostsByTags(tags)
-//     dispatch(actionsPosts.setRelatedPostsAC(data))
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     dispatch(actionsPosts.setFetchingRelatedPosts(false))
-//   }
-// }
-//
-// export const createPostThunk = (post: PostDataInterface): ThunkType<PostsActionType> => async (dispatch) => {
-//   try {
-//     dispatch(actionsPosts.setFetchingForm(true))
-//     post.tags = updateTagsType(post.tags)
-//     const { data } = await api.createPost(post)
-//     dispatch(actionsPosts.createPostAC(data))
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     dispatch(actionsPosts.setFetchingForm(false))
-//   }
-// }
-//
+
 // export const updatePostThunk = (id: string, post: PostDataInterface): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {
 //     dispatch(actionsPosts.setFetchingForm(true))
