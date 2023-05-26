@@ -1,12 +1,12 @@
 import { ActionT } from '../store'
 import { actionsPosts } from '../../actions/postsAction'
-import { PostT } from '../../components/Home/Blog/PostCard/types'
+import { CertainPostT, PostT, RecommendCardT } from '../../components/Home/Blog/PostCard/types'
 import { FileWithPath } from 'react-dropzone'
 
 export type PostsStateT = {
   posts: Array<PostT>
-  relatedPosts: Array<PostT>
-  post: PostT | null
+  relatedPosts: Array<RecommendCardT>
+  post: CertainPostT | null
   isFetchingPosts: boolean
   isFetchingForm: boolean
   isFetchingRelatedPosts: boolean

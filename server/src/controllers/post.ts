@@ -21,8 +21,11 @@ export const getCertainPost = async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const post = await Post.findById(id)
-
-    res.status(200).json(post)
+    if(!post){
+      return res.status(404).json({ message: 'Page not found!' })
+    }
+    // TODO using author find info about creator and add to response, now it hardcode
+    res.status(200).json({...post.toJSON(), authorName: 'Andrei Karlevich', authorImg: ''})
   } catch (e: any | unknown) {
     res.status(404).json({ message: e.message })
   }
@@ -51,7 +54,7 @@ export const getPostsBySearch = async (req: Request, res: Response) => {
 
 export const createPosts = async (req: Request, res: Response) => {
   const post = req.body
-  const newPost = new Post({ ...post, author: req.userId, createdAt: new Date().toISOString() })
+  const newPost = new Post({ ...post, author: req.userId, date: new Date().toISOString() })
   try {
     await newPost.save()
 

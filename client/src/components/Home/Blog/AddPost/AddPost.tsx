@@ -6,11 +6,12 @@ import 'react-quill/dist/quill.snow.css'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { actionsPosts, createPostThunk } from '../../../../actions/postsAction'
 import { FileT } from '../../../../reducers/posts/types'
-import { getOpenedPostIdS, getOpenedPostS } from '../../../../selectors/postsSelectors'
+import { getFetchingFormS, getOpenedPostIdS, getOpenedPostS } from '../../../../selectors/postsSelectors'
 import { Box, Button } from '@mui/material'
 import DropZone from '../../../Custom/DropZone/DropZone'
 import Input from '../../../Custom/Inputs/Input'
 import SectionHeader from '../../SectionHeader/SectionHeader'
+import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 
 const modules = {
   toolbar: [
@@ -25,7 +26,6 @@ const modules = {
 const initialState = {
   title: '',
   description: '',
-  content: '',
   tags: '',
   img: [],
 }
@@ -33,9 +33,11 @@ export const AddPost: AddPostComponent = () => {
   const dispatch = useAppDispatch()
 
   const [postData, setPostData] = useState<CreatePostWithArrayImgT>(initialState)
+  const [content, setContent] = useState<string>('')
   const [fileField, setFileField] = useState<boolean>(false)
   const openedPostId = useAppSelector(getOpenedPostIdS)
   const post = useAppSelector(getOpenedPostS)
+  const isFetchingForm = useAppSelector(getFetchingFormS)
 
   useEffect(() => {
     if (post) {
@@ -46,7 +48,9 @@ export const AddPost: AddPostComponent = () => {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (openedPostId === null) {
-      dispatch(createPostThunk({ ...postData, img: postData.img[0] }))
+      dispatch(createPostThunk({ ...postData, img: postData.img[0], content }))
+    } else {
+      // here will be dispath to update Post
     }
     clear()
   }
@@ -54,6 +58,7 @@ export const AddPost: AddPostComponent = () => {
   const clear = () => {
     dispatch(actionsPosts.changeOpenedPostIdAC(null))
     setPostData(initialState)
+    setContent('')
     setFileField(true)
   }
 
@@ -64,13 +69,17 @@ export const AddPost: AddPostComponent = () => {
   const removeFile = (post: CreatePostWithArrayImgT, files: Array<FileT>) => {
     setPostData({ ...post, img: files })
   }
-
+  const links = [{ name: 'Home', link: '/home' }, {
+    name: 'Blog',
+    link: '/blog',
+  }, { name: openedPostId ? 'Edit post' : 'Create post' }]
   return (
     <section className={styles.addPost}>
       <SectionHeader
         title={openedPostId ? 'Edit post' : 'Create post'}
         introduction={`Share your exciting story with other by using an editor presented below.`}
       />
+      <Breadcrumbs links={links} />
       <Box
         sx={{
           backgroundColor: 'var(--background)',
@@ -87,6 +96,7 @@ export const AddPost: AddPostComponent = () => {
             fullWidth
             size={'small'}
             onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+            disabled={isFetchingForm}
           />
           <Input
             value={postData.description}
@@ -97,6 +107,7 @@ export const AddPost: AddPostComponent = () => {
             multiline
             minRows={2}
             maxRows={2}
+            disabled={isFetchingForm}
             onChange={(e) => setPostData({ ...postData, description: e.target.value })}
           />
           <Input
@@ -105,6 +116,7 @@ export const AddPost: AddPostComponent = () => {
             label={'Tags'}
             fullWidth
             size={'small'}
+            disabled={isFetchingForm}
             onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
           />
           <DropZone
@@ -115,9 +127,9 @@ export const AddPost: AddPostComponent = () => {
             removeFileFromForm={removeFile}
           />
           <ReactQuill
-            value={postData.content}
+            value={content}
             theme={'snow'}
-            onChange={(content) => setPostData({ ...postData, content })}
+            onChange={(content) => setContent(content)}
             modules={modules}
             className={styles.quill}
           />
@@ -128,10 +140,11 @@ export const AddPost: AddPostComponent = () => {
               size={'large'}
               type={'submit'}
               fullWidth
+              disabled={isFetchingForm}
             >
               Submit
             </Button>
-            <Button variant='outlined' size={'large'} onClick={clear} fullWidth>
+            <Button variant='outlined' size={'large'} onClick={clear} fullWidth disabled={isFetchingForm}>
               Clear
             </Button>
           </div>

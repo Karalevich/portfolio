@@ -5,7 +5,7 @@ import { styled } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
 import Dropdown from '../../../Custom/Dropdown/Dropdown'
-import { Button } from '@mui/material'
+import { Button, useMediaQuery } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 const SELECT = ['By default', 'By title', 'By date', 'By likes']
@@ -13,6 +13,7 @@ const SELECT = ['By default', 'By title', 'By date', 'By likes']
 export const Filter: FilterComponent = () => {
   const filterRef = useRef<HTMLHeadingElement | null>(null)
   const redirect = useNavigate()
+  const isTabletOrMobile = useMediaQuery('(max-width:767px)')
 
   const handleRedirect = () => {
     redirect(`/blog/addPost`)
@@ -44,15 +45,17 @@ export const Filter: FilterComponent = () => {
         </div>
         <StyledInputBase placeholder='Search…' />
       </div>
+      <Button
+        className={styles.addPost}
+        onClick={handleRedirect}
+        sx={{ boxShadow: 0 }}
+        variant='outlined'
+        disableRipple={isTabletOrMobile}
+      >
+        {isTabletOrMobile ? '+' : 'Add post'}
+
+      </Button>
       <div className={styles.rightSection}>
-        <Button
-          className={styles.addPost}
-          onClick={handleRedirect}
-          sx={{ boxShadow: 0 }}
-          variant='outlined'
-        >
-          Add post
-        </Button>
         <Dropdown selects={SELECT} />
       </div>
     </article>

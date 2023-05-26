@@ -28,7 +28,7 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
     case FETCH_POSTS:
       return {
         ...state,
-        posts: [...state.posts, ...action.payload.posts],
+        posts: action.payload.posts,
         numberOfPages: action.payload.numberOfPages,
       }
     case SET_FETCHING_POSTS:
@@ -46,11 +46,21 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
         ...state,
         relatedPosts: action.payload.posts,
       }
-    // case CREATE:
-    //   return {
-    //     ...state,
-    //     posts: [...state.posts, action.payload]
-    //   }
+    case CHANGE_OPENED_POST_ID:
+      return {
+        ...state,
+        openedPostId: action.payload
+      }
+    case SET_FETCHING_FORM:
+      return {
+        ...state,
+        isFetchingForm: action.flag
+      }
+    case CREATE:
+      return {
+        ...state,
+        posts: [...state.posts, action.payload]
+      }
     // case COMMENTS:
     //   return {
     //     ...state,
@@ -72,16 +82,6 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
     //   return {
     //     ...state,
     //     posts: state.posts.filter((post) => post._id !== action.id)
-    //   }
-    // case CHANGE_OPENED_POST_ID:
-    //   return {
-    //     ...state,
-    //     openedPostId: action.payload
-    //   }
-    // case SET_FETCHING_FORM:
-    //   return {
-    //     ...state,
-    //     isFetchingForm: action.flag
     //   }
     // case SET_FETCHING_RELATED_POSTS:
     //   return {

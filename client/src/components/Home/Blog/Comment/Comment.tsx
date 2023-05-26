@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import ShareIcon from '@mui/icons-material/Share'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { SpeedDial, SpeedDialAction, SpeedDialIcon, styled } from '@mui/material'
+import me from '../../../../assets/img/Me.webp'
 
 const actions = [
   { icon: <ShareIcon fontSize={'small'} />, name: 'Share' },
@@ -15,18 +16,18 @@ const actions = [
   { icon: <DeleteForeverIcon fontSize={'small'} />, name: 'Delete' },
 ]
 
-export const Comment: CommentComponent = ({ author, message, id, date }) => {
+export const Comment: CommentComponent = ({ authorName, authorImg, message, id, date }) => {
   const [openReactions, setOpenReactions] = useState(false)
   const handleOpenSpeedDial = () => setOpenReactions(true)
   const handleCloseSpeedDial = () => setOpenReactions(false)
   return (
     <li className={styles.comment}>
       <div>
-        <img className={styles.userImage} src={author.img as string} alt={author.name} />
+        <img className={styles.userImage} src={authorImg} alt={authorName} />
       </div>
       <article>
         <header className={styles.owner}>
-          <h3 className={styles.ownerName}>{author.name}</h3>
+          <h3 className={styles.ownerName}>{authorName}</h3>
           <h4 className={styles.commentDate}>
             <p>{date}</p>
           </h4>

@@ -21,14 +21,15 @@ export const PostPage: PostPageComponent = () => {
   useEffect(() => {
     if (id) {
       dispatch(getCertainPostThunk(id))
-      dispatch(getPostsByTagsThunk(id))
+      //dispatch(getPostsByTagsThunk(id))
     }
   }, [id])
 
   if (!post) {
     return <NotFound />
   }
-  const { title, date, author, comments, img } = post
+
+  const { title, date, authorImg, authorName, content, img } = post
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
 
   return (
@@ -37,9 +38,11 @@ export const PostPage: PostPageComponent = () => {
         <h2 className={styles.postTitle}>{title}</h2>
         <article className={styles.info}>
           <div className={styles.author}>
-            <img className={styles.authorImg} src={author.img as string} />
+            {authorImg
+              ? <img className={styles.authorImg} src={authorImg} />
+              : authorName[0].toUpperCase()}
             <div className={styles.authorData}>
-              <span className={styles.name}>{author.name}</span>
+              <span className={styles.name}>{authorName}</span>
               <span className={styles.date}>{date}</span>
             </div>
           </div>
@@ -53,30 +56,7 @@ export const PostPage: PostPageComponent = () => {
       <main>
         <article className={styles.postContent}>
           <img className={styles.mainImg} src={img as string} />
-          <p>
-            A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
-            an event, sale or new product, a flyer can capture the most important information of your
-            promotion while driving interest with vibrant colors and interesting images. Follow the steps
-            below to learn how to make a flyer.
-          </p>
-          <p>
-            A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
-            an event, sale or new product, a flyer can capture the most important information of your
-            promotion while driving interest with vibrant colors and interesting images. Follow the steps
-            below to learn how to make a flyer.
-          </p>
-          <p>
-            A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
-            an event, sale or new product, a flyer can capture the most important information of your
-            promotion while driving interest with vibrant colors and interesting images. Follow the steps
-            below to learn how to make a flyer.
-          </p>
-          <p>
-            A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
-            an event, sale or new product, a flyer can capture the most important information of your
-            promotion while driving interest with vibrant colors and interesting images. Follow the steps
-            below to learn how to make a flyer.
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
         </article>
         <article className={styles.recommendations}>
           <h3 className={styles.youLike}>You may like this too</h3>

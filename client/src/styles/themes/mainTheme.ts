@@ -59,6 +59,15 @@ export const mainTheme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-disabled': {
+            backgroundColor: 'var(--substrate2)',
+          },
+        }
+      },
+    }
   },
   typography: {
     fontFamily: [

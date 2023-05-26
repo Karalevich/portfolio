@@ -70,9 +70,7 @@
     width: calc(var(--slide-width) * 1rem);
   }
   .fullCard {
-    .card {
-      width: 100%;
-    }
+    width: 100%;
 
     .media {
       height: 18.75rem;
@@ -96,12 +94,10 @@
   }
 
   .fullCard {
-    .card {
-      width: 48.5%;
+    width: 48.5%;
 
-      .media {
-        height: 18.75rem;
-      }
+    .media {
+      height: 18.75rem;
     }
   }
 }

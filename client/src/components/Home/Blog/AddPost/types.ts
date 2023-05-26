@@ -10,7 +10,7 @@ export type CreatePostT = {
 }
 
 export type CreatePostWithArrayImgT = {
-  [K in keyof CreatePostT]: K extends 'img' ? Array<FileT> : CreatePostT[K]
+  [K in keyof Omit<CreatePostT, 'content'>]: K extends 'img' ? Array<FileT> : CreatePostT[K]
 }
 type AddPostProps = {}
 

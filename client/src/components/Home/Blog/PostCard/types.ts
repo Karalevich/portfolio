@@ -1,9 +1,9 @@
 import { FileT } from '../../../../reducers/posts/types'
 import { FunctionComponent } from 'react'
-import { AuthorT } from '../types'
+import { AuthorIdT } from '../types'
 
 type CommentT = {
-  author: AuthorT
+  author: AuthorIdT
   text: string
 }
 
@@ -12,7 +12,7 @@ export type PostT = {
   title: string
   description: string
   content: string
-  author: AuthorT
+  author: AuthorIdT
   date: string
   comments?: Array<CommentT>
   _id: string
@@ -22,4 +22,13 @@ export type PostT = {
   tags: Array<string>
 }
 
+export type CertainPostT = PostT & {
+  authorName: string
+  authorImg: string
+}
+
 export type PostCardComponent = FunctionComponent<PostT>
+
+export type RecommendCardT = Pick<CertainPostT, 'img' | 'title' | '_id' | 'date' | 'authorName'>
+
+export type RecommendCardComponent = FunctionComponent<RecommendCardT>

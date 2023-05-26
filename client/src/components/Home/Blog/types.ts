@@ -5,10 +5,7 @@ type BlogProps = {
 }
 export type BlogComponent = FunctionComponent<BlogProps>
 
-export type AuthorT = {
-  name: string
-  img?: string
-}
+export type AuthorIdT = string
 
 type PostsProps = {
   isTabletOrMobile: boolean

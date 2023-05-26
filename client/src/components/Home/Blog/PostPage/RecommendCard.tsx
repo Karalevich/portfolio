@@ -4,9 +4,9 @@ import styles from './PostPage.module.scss'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Card, CardActionArea, CardMedia } from '@mui/material'
-import { PostCardComponent } from '../PostCard/types'
+import { RecommendCardComponent } from '../PostCard/types'
 
-const RecommendCard: PostCardComponent = ({ img, title, _id, date, author }) => {
+const RecommendCard: RecommendCardComponent = ({ img, title, _id, date, authorName }) => {
   const [isCardHover, setIsCardHover] = useState(false)
   const redirect = useNavigate()
 
@@ -35,7 +35,7 @@ const RecommendCard: PostCardComponent = ({ img, title, _id, date, author }) => 
             </span>
             <span className={styles.type}>
               <PersonOutlineIcon fontSize={'small'} />
-              <span>{author.name}</span>
+              <span>{authorName}</span>
             </span>
           </div>
         </div>
