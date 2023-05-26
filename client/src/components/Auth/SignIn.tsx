@@ -34,7 +34,7 @@ export const SignIn: SignInComponent = () => {
         onChange={formikSignin.handleChange}
         value={formikSignin.values.email}
         error={formikSignin.touched.email && Boolean(formikSignin.errors.email)}
-        label={formikSignin.touched.email && formikSignin.errors.email}
+        helperText={formikSignin.touched.email && formikSignin.errors.email}
       />
       <SignFormInput
         placeholder={'Password'}
@@ -44,7 +44,7 @@ export const SignIn: SignInComponent = () => {
         value={formikSignin.values.password}
         onChange={formikSignin.handleChange}
         error={formikSignin.touched.password && Boolean(formikSignin.errors.password)}
-        label={formikSignin.touched.password && formikSignin.errors.password}
+        helperText={formikSignin.touched.password && formikSignin.errors.password}
       />
       <div className={styles.checkboxWrapper}>
         <FormControlLabel

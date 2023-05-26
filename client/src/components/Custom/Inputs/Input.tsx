@@ -1,9 +1,9 @@
 import styled from '@mui/material/styles/styled'
-import { FormControl, InputBase, InputLabel } from '@mui/material'
+import { FormControl, FormHelperText, InputBase, InputLabel } from '@mui/material'
 import { InputComponent } from './types'
 import styles from './Input.module.scss'
 
-const Input: InputComponent = ({ label, className, ...other }) => {
+const Input: InputComponent = ({ label, helperText, className, ...other }) => {
   return (
     <FormControl className={className} sx={{ display: 'block' }} fullWidth>
       {label && (
@@ -12,9 +12,24 @@ const Input: InputComponent = ({ label, className, ...other }) => {
         </LabelCustom>
       )}
       <InputCustom {...other} />
+      {helperText && (
+        <HelperTextCustom error={other.error}>
+          {helperText}
+        </HelperTextCustom>
+      )}
     </FormControl>
   )
 }
+
+const HelperTextCustom = styled(FormHelperText)(({ theme }) => ({
+  marginLeft: 0,
+
+  '&.Mui-error': {
+    color: '#d32f2f !important',
+    fontSize: '0.75rem',
+  },
+
+}))
 
 const LabelCustom = styled(InputLabel)(({ theme }) => ({
   '&.MuiInputLabel-root': {
@@ -24,6 +39,9 @@ const LabelCustom = styled(InputLabel)(({ theme }) => ({
 
     '&.Mui-focused': {
       color: '#2B2B2B',
+    },
+    '&.Mui-error': {
+      color: '#d32f2f !important',
     },
   },
 }))

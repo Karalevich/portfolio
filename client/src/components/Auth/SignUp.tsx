@@ -46,7 +46,7 @@ export const SignUp: SignUpComponent = () => {
         value={formikSignup.values.name}
         onChange={formikSignup.handleChange}
         error={formikSignup.touched.name && Boolean(formikSignup.errors.name)}
-        label={formikSignup.touched.name && formikSignup.errors.name}
+        helperText={formikSignup.touched.name && formikSignup.errors.name}
       />
       <SignFormInput
         placeholder={'Username or Email'}
@@ -55,7 +55,7 @@ export const SignUp: SignUpComponent = () => {
         onChange={formikSignup.handleChange}
         value={formikSignup.values.email}
         error={formikSignup.touched.email && Boolean(formikSignup.errors.email)}
-        label={formikSignup.touched.email && formikSignup.errors.email}
+        helperText={formikSignup.touched.email && formikSignup.errors.email}
       />
       <SignFormInput
         placeholder={'Password'}
@@ -65,7 +65,7 @@ export const SignUp: SignUpComponent = () => {
         value={formikSignup.values.password}
         onChange={formikSignup.handleChange}
         error={formikSignup.touched.password && Boolean(formikSignup.errors.password)}
-        label={formikSignup.touched.password && formikSignup.errors.password}
+        helperText={formikSignup.touched.password && formikSignup.errors.password}
       />
       <SignFormInput
         placeholder={'Confirm Password'}
@@ -75,7 +75,7 @@ export const SignUp: SignUpComponent = () => {
         value={formikSignup.values.confirmPassword}
         onChange={formikSignup.handleChange}
         error={formikSignup.touched.confirmPassword && Boolean(formikSignup.errors.confirmPassword)}
-        label={formikSignup.touched.confirmPassword && formikSignup.errors.confirmPassword}
+        helperText={formikSignup.touched.confirmPassword && formikSignup.errors.confirmPassword}
       />
       <Button type={'submit'} className={styles.signButton} sx={{ boxShadow: 0 }} variant='contained'>
         Sign Up

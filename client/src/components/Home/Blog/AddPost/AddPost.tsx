@@ -1,17 +1,19 @@
-import React, { FormEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './AddPost.module.scss'
 import { AddPostComponent, CreatePostWithArrayImgT } from './types'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { actionsPosts, createPostThunk } from '../../../../actions/postsAction'
-import { FileT } from '../../../../reducers/posts/types'
 import { getFetchingFormS, getOpenedPostIdS, getOpenedPostS } from '../../../../selectors/postsSelectors'
 import { Box, Button } from '@mui/material'
 import DropZone from '../../../Custom/DropZone/DropZone'
 import Input from '../../../Custom/Inputs/Input'
 import SectionHeader from '../../SectionHeader/SectionHeader'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
+import * as yup from 'yup'
+import { FormikHelpers, useFormik } from 'formik'
+import { FileWithPath } from 'react-dropzone'
 
 const modules = {
   toolbar: [
@@ -29,6 +31,14 @@ const initialState = {
   tags: '',
   img: [],
 }
+
+const validationPostSchema = yup.object({
+  title: yup.string().required('Title is required').max(64, 'Title is too long'),
+  description: yup.string().required('Description is required').max(150, 'Description is too long'),
+  tags: yup.string().required('Tags is required'),
+  //content: yup.string().required('Content is required'),
+  img: yup.array().required('Image is required'),
+})
 export const AddPost: AddPostComponent = () => {
   const dispatch = useAppDispatch()
 
@@ -41,33 +51,38 @@ export const AddPost: AddPostComponent = () => {
 
   useEffect(() => {
     if (post) {
-      setPostData({ ...post, img: [post.img] })
+      setPostData({ ...post, img: [post.img as FileWithPath] })
     }
   }, [post])
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    if (openedPostId === null) {
-      dispatch(createPostThunk({ ...postData, img: postData.img[0], content }))
-    } else {
-      // here will be dispath to update Post
-    }
-    clear()
-  }
+  const formikSubmit = useFormik({
+    initialValues: initialState,
+    validationSchema: validationPostSchema,
+    onSubmit: (values: CreatePostWithArrayImgT, { resetForm }) => {
+      resetForm()
+      alert(JSON.stringify(values, null, 2))
+      // if (openedPostId === null) {
+      //   dispatch(createPostThunk({ ...postData, img: postData.img[0], content }))
+      // } else {
+      //   // here will be dispath to update Post
+      // }
+    },
+  })
 
   const clear = () => {
     dispatch(actionsPosts.changeOpenedPostIdAC(null))
-    setPostData(initialState)
+    formikSubmit.resetForm()
     setContent('')
     setFileField(true)
   }
 
-  const putSelectedFiles = (file: string, post: CreatePostWithArrayImgT) => {
-    setPostData({ ...post, img: [...post.img, file] })
+  const putSelectedFiles = (file: string) => {
+    formikSubmit.setFieldValue('img', [...formikSubmit.values.img, file])
   }
 
-  const removeFile = (post: CreatePostWithArrayImgT, files: Array<FileT>) => {
-    setPostData({ ...post, img: files })
+  const removeFile = (file: string) => {
+      const newFiles = formikSubmit.values.img.filter(e => e.path !== file)
+    formikSubmit.setFieldValue('img', newFiles)
   }
   const links = [{ name: 'Home', link: '/home' }, {
     name: 'Blog',
@@ -88,40 +103,49 @@ export const AddPost: AddPostComponent = () => {
           borderRadius: '2px',
         }}
       >
-        <form onSubmit={onSubmit} className={styles.form}>
+        <form onSubmit={formikSubmit.handleSubmit} className={styles.form}>
           <Input
-            value={postData.title}
-            name={'title'}
-            label={'Title'}
             fullWidth
+            value={formikSubmit.values.title}
+            label={'Title'}
+            name={'title'}
+            id={'title'}
             size={'small'}
-            onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+            onChange={formikSubmit.handleChange}
             disabled={isFetchingForm}
+            error={formikSubmit.touched.title && Boolean(formikSubmit.errors.title)}
+            helperText={formikSubmit.touched.title && formikSubmit.errors.title}
           />
           <Input
-            value={postData.description}
+            value={formikSubmit.values.description}
             name={'description'}
             label={'Description'}
+            id={'description'}
             size={'small'}
             fullWidth
             multiline
             minRows={2}
             maxRows={2}
             disabled={isFetchingForm}
-            onChange={(e) => setPostData({ ...postData, description: e.target.value })}
+            onChange={formikSubmit.handleChange}
+            error={formikSubmit.touched.description && Boolean(formikSubmit.errors.description)}
+            helperText={formikSubmit.touched.description && formikSubmit.errors.description}
           />
           <Input
-            value={postData.tags}
+            value={formikSubmit.values.tags}
             name={'tags'}
             label={'Tags'}
+            id={'tags'}
             fullWidth
             size={'small'}
             disabled={isFetchingForm}
-            onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+            onChange={formikSubmit.handleChange}
+            error={formikSubmit.touched.tags && Boolean(formikSubmit.errors.tags)}
+            helperText={formikSubmit.touched.tags && formikSubmit.errors.tags}
           />
           <DropZone
-            onChange={putSelectedFiles}
-            postData={postData}
+            myFiles={formikSubmit.values.img}
+            setMyFiles={putSelectedFiles}
             fileField={fileField}
             resetFileField={setFileField}
             removeFileFromForm={removeFile}

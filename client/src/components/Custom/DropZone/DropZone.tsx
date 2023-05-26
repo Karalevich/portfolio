@@ -3,37 +3,34 @@ import styles from './DropZone.module.scss'
 import { FileWithPath, useDropzone } from 'react-dropzone'
 import FileList from './FileList/FileList'
 import { DropZoneComponent } from './types'
-import { CreatePostWithArrayImgT } from '../../Home/Blog/AddPost/types'
+import { FileT } from '../../../reducers/posts/types'
 
 const DropZone: DropZoneComponent = ({
-  onChange,
-  postData,
-  fileField,
-  resetFileField,
-  removeFileFromForm,
-}) => {
-  const [myFiles, setMyFiles] = useState<FileWithPath[]>([])
+                                       fileField,
+                                       resetFileField,
+                                       removeFileFromForm,
+                                       myFiles,
+                                       setMyFiles,
+                                     }) => {
   const [isDragReject, setIsDragReject] = useState<boolean>(false)
   const { getRootProps, getInputProps, isFocused, isDragAccept } = useDropzone({
-    onDrop: (files) => onUploadFile(files, postData),
+    onDrop: (files) => onUploadFile(files),
     multiple: false,
   })
 
   useEffect(() => {
     if (fileField) {
-      removeAll()
+      setMyFiles('')
       resetFileField(false)
     }
   }, [fileField])
 
   const onUploadFile = useCallback(
-    (acceptedFiles: FileWithPath[], postData: CreatePostWithArrayImgT) => {
+    (acceptedFiles: FileWithPath[]) => {
       if (myFiles.length) {
         setIsDragReject(true)
         return
       }
-
-      setMyFiles([...myFiles, ...acceptedFiles])
 
       acceptedFiles.forEach((file: FileWithPath) => {
         const reader = new FileReader()
@@ -42,24 +39,13 @@ const DropZone: DropZoneComponent = ({
         reader.onerror = () => console.error('file reading has failed')
         reader.onload = () => {
           const binaryStr = reader.result as string
-          onChange(binaryStr, postData)
+          setMyFiles(binaryStr)
         }
         reader.readAsDataURL(file)
       })
     },
-    [myFiles]
+    [myFiles],
   )
-
-  const removeFile = (file: FileWithPath) => {
-    const newFiles = [...myFiles]
-    newFiles.splice(newFiles.indexOf(file), 1)
-    setMyFiles(newFiles)
-    removeFileFromForm(postData, newFiles)
-  }
-
-  const removeAll = () => {
-    setMyFiles([])
-  }
 
   const style = useMemo(
     () => ({
@@ -68,7 +54,7 @@ const DropZone: DropZoneComponent = ({
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject && isFocused ? rejectStyle : {}),
     }),
-    [isFocused, isDragAccept, isDragReject]
+    [isFocused, isDragAccept, isDragReject],
   )
 
   return (
@@ -80,7 +66,7 @@ const DropZone: DropZoneComponent = ({
           <em>(1 photo is the maximum)</em>
         </div>
       </div>
-      <FileList acceptedFiles={myFiles} removeFile={removeFile} />
+      <FileList acceptedFiles={myFiles} removeFile={removeFileFromForm} />
     </section>
   )
 }

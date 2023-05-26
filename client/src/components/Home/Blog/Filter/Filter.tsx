@@ -45,17 +45,18 @@ export const Filter: FilterComponent = () => {
         </div>
         <StyledInputBase placeholder='Search…' />
       </div>
-      <Button
-        className={styles.addPost}
-        onClick={handleRedirect}
-        sx={{ boxShadow: 0 }}
-        variant='outlined'
-        disableRipple={isTabletOrMobile}
-      >
-        {isTabletOrMobile ? '+' : 'Add post'}
 
-      </Button>
       <div className={styles.rightSection}>
+        <Button
+          className={styles.addPost}
+          onClick={handleRedirect}
+          sx={{ boxShadow: 0 }}
+          variant='outlined'
+          disableRipple={isTabletOrMobile}
+        >
+          {isTabletOrMobile ? '+' : 'Add post'}
+
+        </Button>
         <Dropdown selects={SELECT} />
       </div>
     </article>

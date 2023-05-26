@@ -5,11 +5,13 @@ import ImageIcon from '@mui/icons-material/Image'
 import { Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { FileListComponent } from './types'
+import { FileT } from '../../../../reducers/posts/types'
 
 const FileList: FileListComponent = ({ acceptedFiles, removeFile }) => {
-  const onClick = (file: FileWithPath) => {
-    removeFile(file)
+  const onClick = (filePath?: string) => () => {
+    removeFile(filePath || '')
   }
+  acceptedFiles.length &&  console.log(acceptedFiles)
 
   return (
     <aside className={styles.container}>
@@ -22,7 +24,7 @@ const FileList: FileListComponent = ({ acceptedFiles, removeFile }) => {
               </Avatar>
             </ListItemAvatar>
             <ListItemText className={styles.itemText} secondary={file.path} />
-            <IconButton aria-label={'delete'} size={'small'} onClick={() => onClick(file)}>
+            <IconButton aria-label={'delete'} size={'small'} onClick={onClick(file.path)}>
               <DeleteIcon fontSize={'inherit'} />
             </IconButton>
           </ListItem>
