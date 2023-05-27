@@ -11,7 +11,7 @@ export type PostsStateT = {
   isFetchingForm: boolean
   isFetchingRelatedPosts: boolean
   numberOfPages: number
-  openedPostId: null | string
+  openedPostId: string
 }
 
 export type PostsActionT = ActionT<typeof actionsPosts>

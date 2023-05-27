@@ -6,43 +6,57 @@ import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
 import Comments from '../Comments/Comments'
-import NotFound from '../../../NotFound/NotFound'
-import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { getCertainPostThunk } from '../../../../actions/postsAction'
-import { getCertainPostS, getRelatedPostsS } from '../../../../selectors/postsSelectors'
+import { actionsPosts, getCertainPostThunk } from '../../../../actions/postsAction'
+import {
+  getCertainPostS,
+  getRelatedPostsS,
+} from '../../../../selectors/postsSelectors'
+import { Button, Skeleton } from '@mui/material'
+import { RecommendCardT } from '../PostCard/types'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
   const dispatch = useAppDispatch()
   const post = useAppSelector(getCertainPostS)
   const relatedPosts = useAppSelector(getRelatedPostsS)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (id) {
-      dispatch(getCertainPostThunk(id))
+      dispatch(getCertainPostThunk(id, navigate))
       //dispatch(getPostsByTagsThunk(id))
     }
   }, [id])
 
-  if (!post) {
-    return <NotFound />
+  const { title, date, authorImg, authorName, content, img } = post || {}
+  const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
+
+  const onUpdatePost = () => {
+    dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
+    navigate('/blog/addPost')
   }
 
-  const { title, date, authorImg, authorName, content, img } = post
-  const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
+  const onDeletePost = () => {
+
+  }
 
   return (
     <section className={styles.postPage}>
       <header>
-        <h2 className={styles.postTitle}>{title}</h2>
+        {title
+          ? <h2 className={styles.postTitle}>{title}</h2>
+          : <Skeleton animation='wave' width={'80%'} />}
         <article className={styles.info}>
           <div className={styles.author}>
             {authorImg ? (
               <img className={styles.authorImg} src={authorImg} alt={'post author'} />
-            ) : (
-              authorName[0].toUpperCase()
-            )}
+            ) : authorName
+              ? <span className={styles.authorImg}>{authorName[0].toUpperCase()}</span>
+              : <Skeleton animation='wave' width={'80%'} />}
+
             <div className={styles.authorData}>
               <span className={styles.name}>{authorName}</span>
               <span className={styles.date}>{date}</span>
@@ -53,17 +67,45 @@ export const PostPage: PostPageComponent = () => {
             <ul className={styles.shareList}>{socialMediaIcons()}</ul>
           </div>
         </article>
-        <Breadcrumbs links={links} />
+        <div className={styles.actionGroup}>
+          <Breadcrumbs links={links} />
+          <div className={styles.buttonGroup}>
+            <Button
+              className={styles.buttonPostAction}
+              variant='contained'
+              size={'medium'}
+              onClick={onUpdatePost}
+              fullWidth
+              disableElevation
+            >
+              Update
+            </Button>
+            <Button
+              className={styles.buttonPostAction}
+              variant='outlined'
+              color={'error'}
+              size={'medium'}
+              onClick={onDeletePost}
+              fullWidth
+            >
+              Delete
+            </Button>
+          </div>
+        </div>
       </header>
       <main>
         <article className={styles.postContent}>
-          <img className={styles.mainImg} src={img as string} alt={'post preview'} />
-          <div dangerouslySetInnerHTML={{ __html: content }} />
+          {img
+            ? <img className={styles.mainImg} src={img as string} alt={'post preview'} />
+            : <Skeleton animation='wave' width={'80%'} />}
+          {content
+            ? <div dangerouslySetInnerHTML={{ __html: content }} />
+            : <Skeleton animation='wave' width={'80%'} />}
         </article>
         <article className={styles.recommendations}>
           <h3 className={styles.youLike}>You may like this too</h3>
           <div className={styles.recommendList}>
-            {relatedPosts.map((post) => (
+            {relatedPosts.map((post: JSX.IntrinsicAttributes & RecommendCardT) => (
               <RecommendCard key={post._id} {...post} />
             ))}
           </div>

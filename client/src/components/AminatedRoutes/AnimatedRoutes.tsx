@@ -42,7 +42,7 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/blog/post/:id'} element={<PostPage />} />
         <Route path={'/blog/addPost'} element={<AddPost />} />
         <Route path={'/contact'} element={<Contact />} />
-        <Route path={'/not-found  '} element={<NotFound />} />
+        <Route path={'/not-found'} element={<NotFound />} />
         <Route path={'*'} element={<NotFound />} />
       </Routes>
     </div>

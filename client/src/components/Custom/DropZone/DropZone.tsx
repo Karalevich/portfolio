@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import styles from './DropZone.module.scss'
 import { FileWithPath, useDropzone } from 'react-dropzone'
 import FileList from './FileList/FileList'
@@ -6,8 +6,6 @@ import { DropZoneComponent } from './types'
 import { FormHelperText } from '@mui/material'
 
 const DropZone: DropZoneComponent = ({
-  fileField,
-  resetFileField,
   removeFileFromForm,
   myFiles,
   setMyFiles,
@@ -17,13 +15,6 @@ const DropZone: DropZoneComponent = ({
     onDrop: (files) => onUploadFile(files),
     multiple: false,
   })
-
-  useEffect(() => {
-    if (fileField) {
-      setMyFiles([])
-      resetFileField(false)
-    }
-  }, [fileField])
 
   const onUploadFile = (acceptedFiles: Array<FileWithPath>) => {
     setMyFiles(acceptedFiles)
@@ -45,7 +36,6 @@ const DropZone: DropZoneComponent = ({
         <input {...getInputProps()} />
         <div className={styles.message}>
           <span>Drag photos here or click</span>
-          <em>(1 photo is the maximum)</em>
         </div>
       </div>
       {error && <FormHelperText error={Boolean(error)}>{error}</FormHelperText>}

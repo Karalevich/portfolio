@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './AddPost.module.scss'
 import { AddPostComponent, CreatePostWithArrayImgT } from './types'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { actionsPosts } from '../../../../actions/postsAction'
+import { actionsPosts, createPostThunk } from '../../../../actions/postsAction'
 import { getFetchingFormS, getOpenedPostIdS, getOpenedPostS } from '../../../../selectors/postsSelectors'
-import { Box, Button } from '@mui/material'
+import { Box, Button, FormHelperText } from '@mui/material'
 import DropZone from '../../../Custom/DropZone/DropZone'
 import Input from '../../../Custom/Inputs/Input'
 import SectionHeader from '../../SectionHeader/SectionHeader'
@@ -14,6 +14,7 @@ import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { FileWithPath } from 'react-dropzone'
+import classname from 'classnames'
 
 const modules = {
   toolbar: [
@@ -30,6 +31,7 @@ const initialState = {
   description: '',
   tags: '',
   img: [],
+  content: '',
 }
 
 const SUPPORTED_FORMATS = [
@@ -51,7 +53,7 @@ const validationPostSchema = yup.object({
     .max(150, 'Description is too long')
     .min(3, 'Description should be at least 3 symbols'),
   tags: yup.string().required('Tags is required').max(16, 'Title is too long'),
-  //content: yup.string().required('Content is required'),
+  content: yup.string().required('Content is required'),
   img: yup
     .array()
     .min(1, 'Image is required')
@@ -74,60 +76,31 @@ const validationPostSchema = yup.object({
 })
 export const AddPost: AddPostComponent = () => {
   const dispatch = useAppDispatch()
-
-  const [postData, setPostData] = useState<CreatePostWithArrayImgT>(initialState)
-  const [content, setContent] = useState<string>('')
-  const [fileField, setFileField] = useState<boolean>(false)
   const openedPostId = useAppSelector(getOpenedPostIdS)
   const post = useAppSelector(getOpenedPostS)
   const isFetchingForm = useAppSelector(getFetchingFormS)
 
-  useEffect(() => {
-    if (post) {
-      setPostData({ ...post, img: [post.img as FileWithPath] })
-    }
-  }, [post])
+  const initialValues = post ? { ...post, img: post.img ? [post.img as FileWithPath] : [] } : initialState
 
   const formikSubmit = useFormik({
-    initialValues: initialState,
+    initialValues,
     validationSchema: validationPostSchema,
     onSubmit: (values: CreatePostWithArrayImgT, { resetForm }) => {
+      if (openedPostId === null) {
+        dispatch(createPostThunk(values))
+      } else {
+        // here will be dispath to update Post
+      }
       resetForm()
-      alert(JSON.stringify(values, null, 2))
-      // if (openedPostId === null) {
-      //   dispatch(createPostThunk({ ...postData, img: postData.img[0], content }))
-      // } else {
-      //   // here will be dispath to update Post
-      // }
-      // if (myFiles.length) {
-      //   setIsDragReject(true)
-      //   return
-      // }
-      //
-      // acceptedFiles.forEach((file: FileWithPath) => {
-      //   const reader = new FileReader()
-      //
-      //   reader.onabort = () => console.log('file reading was aborted')
-      //   reader.onerror = () => console.error('file reading has failed')
-      //   reader.onload = () => {
-      //     const binaryStr = reader.result as string
-      //     setMyFiles(binaryStr)
-      //   }
-      //   reader.readAsDataURL(file)
-      // })
     },
   })
 
   const clear = () => {
-    dispatch(actionsPosts.changeOpenedPostIdAC(null))
+    dispatch(actionsPosts.changeOpenedPostIdAC(''))
     formikSubmit.resetForm()
-    setContent('')
-    setFileField(true)
   }
 
   const putSelectedFiles = (file: Array<FileWithPath>) => {
-    console.log(file)
-
     formikSubmit.setFieldValue('img', [...formikSubmit.values.img, ...file])
   }
 
@@ -203,18 +176,21 @@ export const AddPost: AddPostComponent = () => {
           <DropZone
             myFiles={formikSubmit.values.img}
             setMyFiles={putSelectedFiles}
-            fileField={fileField}
-            resetFileField={setFileField}
             removeFileFromForm={removeFile}
-            error={formikSubmit.errors.img as string}
+            error={formikSubmit.touched.img && formikSubmit.errors.img as string}
           />
-          <ReactQuill
-            value={content}
-            theme={'snow'}
-            onChange={(content) => setContent(content)}
-            modules={modules}
-            className={styles.quill}
-          />
+          <div>
+            <ReactQuill
+              value={formikSubmit.values.content}
+              id={'content'}
+              theme={'snow'}
+              onChange={(content) => formikSubmit.setFieldValue('content', content)}
+              modules={modules}
+              className={classname(styles.quill, { [styles.error]: formikSubmit.touched.content && formikSubmit.errors.content })}
+            />
+            {formikSubmit.touched.content && formikSubmit.errors.content &&
+              <FormHelperText error>{formikSubmit.errors.content}</FormHelperText>}
+          </div>
           <div className={styles.buttonGroup}>
             <Button
               className={styles.buttonSubmit}

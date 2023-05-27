@@ -19,7 +19,7 @@ const initialState = {
   isFetchingPosts: false,
   isFetchingForm: false,
   isFetchingRelatedPosts: true,
-  openedPostId: null,
+  openedPostId: '',
   numberOfPages: 3,
 }
 

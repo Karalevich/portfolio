@@ -16,7 +16,8 @@ import {
   UPDATE,
 } from '../reducers/posts/postsReducer'
 import { updateTagsType } from '../utils/updateTagsType'
-import { CreatePostT } from '../components/Home/Blog/AddPost/types'
+import { CreatePostWithArrayImgT } from '../components/Home/Blog/AddPost/types'
+import { NavigateFunction } from 'react-router-dom'
 
 export const actionsPosts = {
   setPostsAC: (posts: Array<PostT>, numberOfPages: number) =>
@@ -61,7 +62,7 @@ export const actionsPosts = {
       type: SET_FETCHING_FORM,
       flag,
     } as const),
-  changeOpenedPostIdAC: (payload: string | null) =>
+  changeOpenedPostIdAC: (payload: string) =>
     ({
       type: CHANGE_OPENED_POST_ID,
       payload,
@@ -82,59 +83,71 @@ export const actionsPosts = {
 
 export const getPostsThunk =
   (page?: number): ThunkT<PostsActionT> =>
-  async (dispatch) => {
-    try {
-      dispatch(actionsPosts.setFetchingPostsAC(true))
-      const { data } = await api.fetchPosts(page)
-      dispatch(actionsPosts.setPostsAC(data.posts, data.numberOfPages))
-    } catch (e) {
-      console.log(e)
-    } finally {
-      dispatch(actionsPosts.setFetchingPostsAC(false))
+    async (dispatch) => {
+      try {
+        dispatch(actionsPosts.setFetchingPostsAC(true))
+        const { data } = await api.fetchPosts(page)
+        dispatch(actionsPosts.setPostsAC(data.posts, data.numberOfPages))
+      } catch (e) {
+        console.log(e)
+      } finally {
+        dispatch(actionsPosts.setFetchingPostsAC(false))
+      }
     }
-  }
 
 export const getCertainPostThunk =
-  (id: string): ThunkT<PostsActionT> =>
-  async (dispatch) => {
-    try {
-      dispatch(actionsPosts.setFetchingPostsAC(true))
-      const { data } = await api.fetchCertainPost(id)
-      dispatch(actionsPosts.setCertainPostAC(data))
-    } catch (e) {
-      console.log(e)
-    } finally {
-      dispatch(actionsPosts.setFetchingPostsAC(false))
+  (id: string, navigate: NavigateFunction): ThunkT<PostsActionT> =>
+    async (dispatch) => {
+      try {
+        dispatch(actionsPosts.setFetchingPostsAC(true))
+        const { data } = await api.fetchCertainPost(id)
+        dispatch(actionsPosts.setCertainPostAC(data))
+      } catch (e) {
+        console.log(e)
+        navigate('/not-found')
+      } finally {
+        dispatch(actionsPosts.setFetchingPostsAC(false))
+      }
     }
-  }
 
 export const getPostsByTagsThunk =
   (tags: string): ThunkT<PostsActionT> =>
-  async (dispatch) => {
-    try {
-      dispatch(actionsPosts.setFetchingRelatedPostsAC(true))
-      const { data } = await api.fetchPostsByTags(tags)
-      dispatch(actionsPosts.setRelatedPostsAC(data))
-    } catch (e) {
-      console.log(e)
-    } finally {
-      dispatch(actionsPosts.setFetchingRelatedPostsAC(false))
+    async (dispatch) => {
+      try {
+        dispatch(actionsPosts.setFetchingRelatedPostsAC(true))
+        const { data } = await api.fetchPostsByTags(tags)
+        dispatch(actionsPosts.setRelatedPostsAC(data))
+      } catch (e) {
+        console.log(e)
+      } finally {
+        dispatch(actionsPosts.setFetchingRelatedPostsAC(false))
+      }
     }
-  }
 export const createPostThunk =
-  (post: CreatePostT): ThunkT<PostsActionT> =>
-  async (dispatch) => {
-    try {
-      dispatch(actionsPosts.setFetchingFormAC(true))
-      post.tags = updateTagsType(post.tags)
-      const { data } = await api.createPost(post)
-      dispatch(actionsPosts.createPostAC(data))
-    } catch (e) {
-      console.log(e)
-    } finally {
-      dispatch(actionsPosts.setFetchingFormAC(false))
+  (post: CreatePostWithArrayImgT): ThunkT<PostsActionT> =>
+    async (dispatch) => {
+      try {
+        dispatch(actionsPosts.setFetchingFormAC(true))
+        post.tags = updateTagsType(post.tags)
+
+        const reader = new FileReader()
+
+        reader.onabort = () => console.log('file reading was aborted')
+        reader.onerror = () => console.error('file reading has failed')
+        reader.onload = async () => {
+          const binaryStr = reader.result as string
+          const { data } = await api.createPost({ ...post, img: binaryStr })
+          dispatch(actionsPosts.createPostAC(data))
+          dispatch(actionsPosts.setFetchingFormAC(false))
+        }
+
+        reader.readAsDataURL(post.img[0])
+
+      } catch (e) {
+        console.log(e)
+        dispatch(actionsPosts.setFetchingFormAC(false))
+      }
     }
-  }
 
 // export const getPostsBySearchThunk = (searchQuery: string, page: number): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {
