@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-import { FileT } from '../../../../reducers/posts/types'
 import { FileWithPath } from 'react-dropzone'
 
 type FileListProps = {

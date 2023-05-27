@@ -9,7 +9,7 @@ import Comments from '../Comments/Comments'
 import NotFound from '../../../NotFound/NotFound'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { getCertainPostThunk, getPostsByTagsThunk } from '../../../../actions/postsAction'
+import { getCertainPostThunk } from '../../../../actions/postsAction'
 import { getCertainPostS, getRelatedPostsS } from '../../../../selectors/postsSelectors'
 
 export const PostPage: PostPageComponent = () => {
@@ -38,9 +38,11 @@ export const PostPage: PostPageComponent = () => {
         <h2 className={styles.postTitle}>{title}</h2>
         <article className={styles.info}>
           <div className={styles.author}>
-            {authorImg
-              ? <img className={styles.authorImg} src={authorImg} />
-              : authorName[0].toUpperCase()}
+            {authorImg ? (
+              <img className={styles.authorImg} src={authorImg} alt={'post author'} />
+            ) : (
+              authorName[0].toUpperCase()
+            )}
             <div className={styles.authorData}>
               <span className={styles.name}>{authorName}</span>
               <span className={styles.date}>{date}</span>
@@ -55,7 +57,7 @@ export const PostPage: PostPageComponent = () => {
       </header>
       <main>
         <article className={styles.postContent}>
-          <img className={styles.mainImg} src={img as string} />
+          <img className={styles.mainImg} src={img as string} alt={'post preview'} />
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </article>
         <article className={styles.recommendations}>

@@ -12,26 +12,12 @@ const Input: InputComponent = ({ label, helperText, className, ...other }) => {
         </LabelCustom>
       )}
       <InputCustom {...other} />
-      {helperText && (
-        <HelperTextCustom error={other.error}>
-          {helperText}
-        </HelperTextCustom>
-      )}
+      {helperText && <FormHelperText error={other.error}>{helperText}</FormHelperText>}
     </FormControl>
   )
 }
 
-const HelperTextCustom = styled(FormHelperText)(({ theme }) => ({
-  marginLeft: 0,
-
-  '&.Mui-error': {
-    color: '#d32f2f !important',
-    fontSize: '0.75rem',
-  },
-
-}))
-
-const LabelCustom = styled(InputLabel)(({ theme }) => ({
+const LabelCustom = styled(InputLabel)(() => ({
   '&.MuiInputLabel-root': {
     position: 'initial',
     marginBottom: '0.5rem',
@@ -41,7 +27,7 @@ const LabelCustom = styled(InputLabel)(({ theme }) => ({
       color: '#2B2B2B',
     },
     '&.Mui-error': {
-      color: '#d32f2f !important',
+      color: 'red !important',
     },
   },
 }))

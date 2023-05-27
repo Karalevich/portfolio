@@ -5,13 +5,11 @@ import ImageIcon from '@mui/icons-material/Image'
 import { Avatar, IconButton, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { FileListComponent } from './types'
-import { FileT } from '../../../../reducers/posts/types'
 
 const FileList: FileListComponent = ({ acceptedFiles, removeFile }) => {
   const onClick = (filePath?: string) => () => {
     removeFile(filePath || '')
   }
-  acceptedFiles.length &&  console.log(acceptedFiles)
 
   return (
     <aside className={styles.container}>

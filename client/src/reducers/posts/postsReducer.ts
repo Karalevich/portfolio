@@ -49,17 +49,17 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
     case CHANGE_OPENED_POST_ID:
       return {
         ...state,
-        openedPostId: action.payload
+        openedPostId: action.payload,
       }
     case SET_FETCHING_FORM:
       return {
         ...state,
-        isFetchingForm: action.flag
+        isFetchingForm: action.flag,
       }
     case CREATE:
       return {
         ...state,
-        posts: [...state.posts, action.payload]
+        posts: [...state.posts, action.payload],
       }
     // case COMMENTS:
     //   return {

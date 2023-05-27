@@ -4,7 +4,7 @@ import { AddPostComponent, CreatePostWithArrayImgT } from './types'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { actionsPosts, createPostThunk } from '../../../../actions/postsAction'
+import { actionsPosts } from '../../../../actions/postsAction'
 import { getFetchingFormS, getOpenedPostIdS, getOpenedPostS } from '../../../../selectors/postsSelectors'
 import { Box, Button } from '@mui/material'
 import DropZone from '../../../Custom/DropZone/DropZone'
@@ -12,7 +12,7 @@ import Input from '../../../Custom/Inputs/Input'
 import SectionHeader from '../../SectionHeader/SectionHeader'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import * as yup from 'yup'
-import { FormikHelpers, useFormik } from 'formik'
+import { useFormik } from 'formik'
 import { FileWithPath } from 'react-dropzone'
 
 const modules = {
@@ -32,12 +32,45 @@ const initialState = {
   img: [],
 }
 
+const SUPPORTED_FORMATS = [
+  'image/jpg',
+  'image/jpeg',
+  'image/webp',
+  'image/png',
+]
+
 const validationPostSchema = yup.object({
-  title: yup.string().required('Title is required').max(64, 'Title is too long'),
-  description: yup.string().required('Description is required').max(150, 'Description is too long'),
-  tags: yup.string().required('Tags is required'),
+  title: yup
+    .string()
+    .required('Title is required')
+    .max(64, 'Title is too long')
+    .min(3, 'Title should be at least 3 symbols'),
+  description: yup
+    .string()
+    .required('Description is required')
+    .max(150, 'Description is too long')
+    .min(3, 'Description should be at least 3 symbols'),
+  tags: yup.string().required('Tags is required').max(16, 'Title is too long'),
   //content: yup.string().required('Content is required'),
-  img: yup.array().required('Image is required'),
+  img: yup
+    .array()
+    .min(1, 'Image is required')
+    .max(1, 'You can load only one picture')
+    .test('fileSize', 'File exceeds 0.5MB', (img) => {
+      let valid = true
+      if (img) {
+        const size = img[0]?.size / 1024 / 1024
+        if (size > 0.5) {
+          valid = false
+        }
+      }
+      return valid
+    })
+    .test(
+      'fileFormat',
+      'Unsupported Format',
+      img => img && SUPPORTED_FORMATS.includes(img[0]?.type),
+    ),
 })
 export const AddPost: AddPostComponent = () => {
   const dispatch = useAppDispatch()
@@ -66,6 +99,22 @@ export const AddPost: AddPostComponent = () => {
       // } else {
       //   // here will be dispath to update Post
       // }
+      // if (myFiles.length) {
+      //   setIsDragReject(true)
+      //   return
+      // }
+      //
+      // acceptedFiles.forEach((file: FileWithPath) => {
+      //   const reader = new FileReader()
+      //
+      //   reader.onabort = () => console.log('file reading was aborted')
+      //   reader.onerror = () => console.error('file reading has failed')
+      //   reader.onload = () => {
+      //     const binaryStr = reader.result as string
+      //     setMyFiles(binaryStr)
+      //   }
+      //   reader.readAsDataURL(file)
+      // })
     },
   })
 
@@ -76,18 +125,26 @@ export const AddPost: AddPostComponent = () => {
     setFileField(true)
   }
 
-  const putSelectedFiles = (file: string) => {
-    formikSubmit.setFieldValue('img', [...formikSubmit.values.img, file])
+  const putSelectedFiles = (file: Array<FileWithPath>) => {
+    console.log(file)
+
+    formikSubmit.setFieldValue('img', [...formikSubmit.values.img, ...file])
   }
 
   const removeFile = (file: string) => {
-      const newFiles = formikSubmit.values.img.filter(e => e.path !== file)
+    const newFiles = formikSubmit.values.img.filter((e) => e.path !== file)
     formikSubmit.setFieldValue('img', newFiles)
   }
-  const links = [{ name: 'Home', link: '/home' }, {
-    name: 'Blog',
-    link: '/blog',
-  }, { name: openedPostId ? 'Edit post' : 'Create post' }]
+
+  const links = [
+    { name: 'Home', link: '/home' },
+    {
+      name: 'Blog',
+      link: '/blog',
+    },
+    { name: openedPostId ? 'Edit post' : 'Create post' },
+  ]
+
   return (
     <section className={styles.addPost}>
       <SectionHeader
@@ -149,6 +206,7 @@ export const AddPost: AddPostComponent = () => {
             fileField={fileField}
             resetFileField={setFileField}
             removeFileFromForm={removeFile}
+            error={formikSubmit.errors.img as string}
           />
           <ReactQuill
             value={content}
@@ -168,7 +226,13 @@ export const AddPost: AddPostComponent = () => {
             >
               Submit
             </Button>
-            <Button variant='outlined' size={'large'} onClick={clear} fullWidth disabled={isFetchingForm}>
+            <Button
+              variant='outlined'
+              size={'large'}
+              onClick={clear}
+              fullWidth
+              disabled={isFetchingForm}
+            >
               Clear
             </Button>
           </div>

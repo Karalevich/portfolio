@@ -65,8 +65,19 @@ export const mainTheme = createTheme({
           '&.Mui-disabled': {
             backgroundColor: 'var(--substrate2)',
           },
-        }
+        },
       },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          marginLeft: 0,
+          '&.Mui-error': {
+            color: 'red !important',
+            fontSize: '0.75rem',
+          },
+        }
+      }
     }
   },
   typography: {

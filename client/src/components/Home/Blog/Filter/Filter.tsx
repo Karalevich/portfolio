@@ -55,7 +55,6 @@ export const Filter: FilterComponent = () => {
           disableRipple={isTabletOrMobile}
         >
           {isTabletOrMobile ? '+' : 'Add post'}
-
         </Button>
         <Dropdown selects={SELECT} />
       </div>
