@@ -43,6 +43,7 @@
     padding: 0 1.25rem 0 1rem;
     text-transform: none;
     justify-content: flex-start;
+    margin-top: 1px;
 
     p {
       color: #fff;
@@ -51,7 +52,7 @@
 
   .item:first-child {
     .itemButton {
-      margin-top: 1px;
+      margin-top: 0;
     }
   }
 

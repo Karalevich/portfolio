@@ -15,15 +15,15 @@ const FileList: FileListComponent = ({ acceptedFiles, removeFile }) => {
     <aside className={styles.container}>
       <List className={styles.list}>
         {acceptedFiles.map((file: FileWithPath) => (
-          <ListItem key={file.path} className={styles.item}>
+          <ListItem key={file.name} className={styles.item}>
             <ListItemAvatar className={styles.itemAvatar}>
               <Avatar className={styles.avatar}>
                 <ImageIcon className={styles.icon} />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText className={styles.itemText} secondary={file.path} />
-            <IconButton aria-label={'delete'} size={'small'} onClick={onClick(file.path)}>
-              <DeleteIcon fontSize={'inherit'} />
+            <ListItemText className={styles.itemText} secondary={file.name} />
+            <IconButton className={styles.button} size={'small'} onClick={onClick(file.name)}>
+              <DeleteIcon fontSize={'inherit'} className={styles.delete}/>
             </IconButton>
           </ListItem>
         ))}

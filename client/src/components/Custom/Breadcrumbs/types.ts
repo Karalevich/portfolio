@@ -5,5 +5,6 @@ type BreadcrumbsProps = {
     name: string
     link?: string
   }>
+  className?: string
 }
 export type BreadcrumbsComponent = FunctionComponent<BreadcrumbsProps>

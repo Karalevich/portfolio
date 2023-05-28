@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './AddPost.module.scss'
-import { AddPostComponent, CreatePostWithArrayImgT } from './types'
+import { AddPostComponent, PostFromFormWithArrayImgT } from './types'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { actionsPosts, createPostThunk } from '../../../../actions/postsAction'
+import { actionsPosts, createPostThunk, updatePostThunk } from '../../../../actions/postsAction'
 import { getFetchingFormS, getOpenedPostIdS, getOpenedPostS } from '../../../../selectors/postsSelectors'
 import { Box, Button, FormHelperText } from '@mui/material'
 import DropZone from '../../../Custom/DropZone/DropZone'
@@ -51,8 +51,8 @@ const validationPostSchema = yup.object({
     .string()
     .required('Description is required')
     .max(150, 'Description is too long')
-    .min(3, 'Description should be at least 3 symbols'),
-  tags: yup.string().required('Tags is required').max(16, 'Title is too long'),
+    .min(90, 'Description should be at least 90 symbols'),
+  tags: yup.string().required('Tags is required').max(24, 'Title is too long'),
   content: yup.string().required('Content is required'),
   img: yup
     .array()
@@ -80,20 +80,25 @@ export const AddPost: AddPostComponent = () => {
   const post = useAppSelector(getOpenedPostS)
   const isFetchingForm = useAppSelector(getFetchingFormS)
 
-  const initialValues = post ? { ...post, img: post.img ? [post.img as FileWithPath] : [] } : initialState
-
   const formikSubmit = useFormik({
-    initialValues,
+    initialValues: initialState,
     validationSchema: validationPostSchema,
-    onSubmit: (values: CreatePostWithArrayImgT, { resetForm }) => {
-      if (openedPostId === null) {
-        dispatch(createPostThunk(values))
+    onSubmit: (values: PostFromFormWithArrayImgT) => {
+      if (openedPostId) {
+        dispatch(updatePostThunk(openedPostId, values))
       } else {
-        // here will be dispath to update Post
+        dispatch(createPostThunk(values))
       }
-      resetForm()
+      clear()
     },
   })
+
+  useEffect(() => {
+    if (post) {
+      formikSubmit.setValues({ ...formikSubmit.values, ...post })
+    }
+    return () => {dispatch(actionsPosts.changeOpenedPostIdAC(''))}
+  }, [post])
 
   const clear = () => {
     dispatch(actionsPosts.changeOpenedPostIdAC(''))
@@ -105,7 +110,7 @@ export const AddPost: AddPostComponent = () => {
   }
 
   const removeFile = (file: string) => {
-    const newFiles = formikSubmit.values.img.filter((e) => e.path !== file)
+    const newFiles = formikSubmit.values.img.filter((e) => e.name !== file)
     formikSubmit.setFieldValue('img', newFiles)
   }
 
@@ -121,10 +126,10 @@ export const AddPost: AddPostComponent = () => {
   return (
     <section className={styles.addPost}>
       <SectionHeader
-        title={openedPostId ? 'Edit post' : 'Create post'}
+        title={openedPostId ? 'Edit Post' : 'Create Post'}
         introduction={`Share your exciting story with other by using an editor presented below.`}
       />
-      <Breadcrumbs links={links} />
+      <Breadcrumbs links={links} className={styles.breadcrumbs} />
       <Box
         sx={{
           backgroundColor: 'var(--background)',
@@ -200,7 +205,7 @@ export const AddPost: AddPostComponent = () => {
               fullWidth
               disabled={isFetchingForm}
             >
-              Submit
+              {openedPostId ? 'Update' : 'Submit'}
             </Button>
             <Button
               variant='outlined'

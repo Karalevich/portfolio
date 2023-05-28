@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 import { FileT } from '../../../../reducers/posts/types'
 import { FileWithPath } from 'react-dropzone'
 
-export type CreatePostT = {
+export type PostFromFormT = {
   title: string
   description: string
   content: string
@@ -10,8 +10,8 @@ export type CreatePostT = {
   img: FileT
 }
 
-export type CreatePostWithArrayImgT = {
-  [K in keyof CreatePostT]: K extends 'img' ? Array<FileWithPath> : CreatePostT[K]
+export type PostFromFormWithArrayImgT = {
+  [K in keyof PostFromFormT]: K extends 'img' ? Array<FileWithPath> : PostFromFormT[K]
 }
 type AddPostProps = {}
 

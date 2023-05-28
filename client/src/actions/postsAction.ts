@@ -16,8 +16,9 @@ import {
   UPDATE,
 } from '../reducers/posts/postsReducer'
 import { updateTagsType } from '../utils/updateTagsType'
-import { CreatePostWithArrayImgT } from '../components/Home/Blog/AddPost/types'
+import { PostFromFormWithArrayImgT } from '../components/Home/Blog/AddPost/types'
 import { NavigateFunction } from 'react-router-dom'
+import { convertFileBeforeSendToServer } from '../utils/convertFileBeforeSendToServer'
 
 export const actionsPosts = {
   setPostsAC: (posts: Array<PostT>, numberOfPages: number) =>
@@ -67,10 +68,10 @@ export const actionsPosts = {
       type: CHANGE_OPENED_POST_ID,
       payload,
     } as const),
-  // updatePostAC: (payload: PostsResponseDataI) => ({
-  //   type: UPDATE,
-  //   payload
-  // } as const),
+  updatePostAC: (payload: PostT) => ({
+    type: UPDATE,
+    payload,
+  } as const),
   // updateCommentsAC: (payload: PostsResponseDataI) => ({
   //   type: COMMENTS,
   //   payload
@@ -124,30 +125,34 @@ export const getPostsByTagsThunk =
       }
     }
 export const createPostThunk =
-  (post: CreatePostWithArrayImgT): ThunkT<PostsActionT> =>
+  (post: PostFromFormWithArrayImgT): ThunkT<PostsActionT> =>
     async (dispatch) => {
       try {
         dispatch(actionsPosts.setFetchingFormAC(true))
         post.tags = updateTagsType(post.tags)
+        const readyImg = await convertFileBeforeSendToServer(post.img[0])
 
-        const reader = new FileReader()
-
-        reader.onabort = () => console.log('file reading was aborted')
-        reader.onerror = () => console.error('file reading has failed')
-        reader.onload = async () => {
-          const binaryStr = reader.result as string
-          const { data } = await api.createPost({ ...post, img: binaryStr })
-          dispatch(actionsPosts.createPostAC(data))
-          dispatch(actionsPosts.setFetchingFormAC(false))
-        }
-
-        reader.readAsDataURL(post.img[0])
-
+        const { data } = await api.createPost({ ...post, img: readyImg })
+        dispatch(actionsPosts.createPostAC(data))
       } catch (e) {
         console.log(e)
+      } finally {
         dispatch(actionsPosts.setFetchingFormAC(false))
       }
     }
+export const updatePostThunk = (id: string, post: PostFromFormWithArrayImgT): ThunkT<PostsActionT> => async (dispatch) => {
+  try {
+    dispatch(actionsPosts.setFetchingFormAC(true))
+    post.tags = updateTagsType(post.tags)
+    const readyImg = await convertFileBeforeSendToServer(post.img[0])
+    const { data } = await api.updatePost(id, { ...post, img: readyImg })
+    dispatch(actionsPosts.updatePostAC(data))
+  } catch (e) {
+    console.log(e)
+  } finally {
+    dispatch(actionsPosts.setFetchingFormAC(false))
+  }
+}
 
 // export const getPostsBySearchThunk = (searchQuery: string, page: number): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {
@@ -161,19 +166,7 @@ export const createPostThunk =
 //   }
 // }
 
-// export const updatePostThunk = (id: string, post: PostDataInterface): ThunkType<PostsActionType> => async (dispatch) => {
-//   try {
-//     dispatch(actionsPosts.setFetchingForm(true))
-//     post.tags = updateTagsType(post.tags)
-//     const { data } = await api.updatePost(id, post)
-//     dispatch(actionsPosts.updatePostAC(data))
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     dispatch(actionsPosts.setFetchingForm(false))
-//   }
-// }
-//
+
 // export const deletePostThunk = (id: string): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {
 //     //dispatch(actionsPosts.setFetchingForm(true))

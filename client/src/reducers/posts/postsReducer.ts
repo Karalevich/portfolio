@@ -61,6 +61,14 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
         ...state,
         posts: [...state.posts, action.payload],
       }
+    case UPDATE:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          if (post._id === action.payload._id) return action.payload
+          return post
+        })
+      }
     // case COMMENTS:
     //   return {
     //     ...state,
@@ -69,14 +77,6 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
     //       return post
     //     }),
     //     post: action.payload
-    //   }
-    // case UPDATE:
-    //   return {
-    //     ...state,
-    //     posts: state.posts.map((post) => {
-    //       if (post._id === action.payload._id) return action.payload
-    //       return post
-    //     })
     //   }
     // case DELETE:
     //   return {

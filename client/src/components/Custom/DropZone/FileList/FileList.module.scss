@@ -1,6 +1,12 @@
+@import './src/styles/variables.scss';
+
 .container {
   width: 100%;
   max-width: 360px;
+
+  .list {
+    padding-top: 0.2rem !important;
+  }
 
   .list,
   .item {
@@ -8,29 +14,41 @@
   }
 
   .item {
+    column-gap: 0.2rem;
+
     .itemText {
       p {
-        font-size: 0.75rem;
+        font-size: 1rem;
         width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: $paragraph;
       }
     }
   }
 
+  .button {
+    border-radius: 50% !important;
+  }
+
+  .delete {
+    color: $paragraph;
+
+  }
+
   .itemAvatar {
-    width: 20px;
-    height: 20px;
-    min-width: 25px;
+    width: 1.75rem;
+    height: 1.75rem;
+    min-width: 1.75rem;
 
     .avatar {
-      width: 20px;
-      height: 20px;
+      width: 1.75rem;
+      height: 1.75rem;
     }
 
     .icon {
-      font-size: 15px;
+      font-size: 1.2rem;
     }
   }
 }
