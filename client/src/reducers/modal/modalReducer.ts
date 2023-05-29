@@ -17,10 +17,10 @@ export default (state: ModalStateT = initialState, action: ModalActionT) => {
     case SET_MODAL:
       return {
         ...state,
-        ...action.payload,
-        isOpen: true
+        type: action.payload.type,
+        isOpen: true,
       }
-      case CLOSE_MODAL:
+    case CLOSE_MODAL:
       return {
         ...state,
         isOpen: false,

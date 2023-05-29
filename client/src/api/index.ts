@@ -20,9 +20,9 @@ export const fetchPostsByTags = (tags: string) => API.get(`/posts/tags?searchQue
 export const createPost = (newPost: PostFromFormT) => API.post('/posts', newPost)
 export const updatePost = (id: string, updatePost: PostFromFormT) =>
   API.patch(`/posts/${id}`, updatePost)
+export const deletePost = (id: string) => API.delete(`/posts/${id}`)
 // export const fetchPostsBySearch = (searchQuery: string, page: number) => API.get(`/posts/search?page=${page}&searchQuery=${searchQuery || 'none'}`)
 
-// export const deletePost = (id: string) => API.delete(`/posts/${id}`)
 // export const likePost = (id: string) => API.patch(`/posts/${id}/likePost`)
 // export const comment = (value: string, id: string | undefined) => API.post(`/posts/${id}/commentPost`, { value })
 //

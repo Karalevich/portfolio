@@ -1,28 +1,26 @@
 import React from 'react'
-import styles from './ConfirmModal.module.scss'
 import { ConfirmModalComponent } from './types'
 import { Button, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
-import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import {
-  getModalCancelTextS,
-  getModalConfirmTextS,
-  getModalDescriptionS,
-  getModalTitleS,
-} from '../../../../selectors/modalSelectors'
+import { useAppDispatch } from '../../../../hooks/hooks'
 import { actionsModal } from '../../../../actions/modalAction'
 
-export const ConfirmModal: ConfirmModalComponent = () => {
-  const title = useAppSelector(getModalTitleS)
-  const description = useAppSelector(getModalDescriptionS)
-  const confirmText = useAppSelector(getModalConfirmTextS)
-  const cancelText = useAppSelector(getModalCancelTextS)
+export const ConfirmModal: ConfirmModalComponent = ({
+  title,
+  description,
+  confirmText,
+  cancelText,
+  cancelActionFromParent,
+  confirmActionFromParent,
+}) => {
   const dispatch = useAppDispatch()
   const cancelAction = () => {
     dispatch(actionsModal.closesModalAC())
+    cancelActionFromParent && cancelActionFromParent()
   }
 
   const confirmAction = () => {
     dispatch(actionsModal.closesModalAC())
+    confirmActionFromParent && confirmActionFromParent()
   }
   return (
     <>
@@ -35,9 +33,16 @@ export const ConfirmModal: ConfirmModalComponent = () => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button variant='outlined' onClick={cancelAction}>{cancelText ? cancelText : 'Cancel'}</Button>
-        <Button variant='contained' onClick={confirmAction} autoFocus disableElevation
-                color={confirmText === 'delete' ? 'error' : 'primary'}>
+        <Button variant='outlined' onClick={cancelAction}>
+          {cancelText ? cancelText : 'Cancel'}
+        </Button>
+        <Button
+          variant='contained'
+          onClick={confirmAction}
+          autoFocus
+          disableElevation
+          color={confirmText === 'delete' ? 'error' : 'primary'}
+        >
           {confirmText ? confirmText : 'Confirm'}
         </Button>
       </DialogActions>

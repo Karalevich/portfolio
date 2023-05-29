@@ -26,6 +26,7 @@ export const PostPage: PostPageComponent = () => {
   useEffect(() => {
     if (id) {
       dispatch(getCertainPostThunk(id, navigate))
+      dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
       //dispatch(getPostsByTagsThunk(id))
     }
   }, [id])
@@ -34,16 +35,11 @@ export const PostPage: PostPageComponent = () => {
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
 
   const onUpdatePost = () => {
-    dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
     navigate('/blog/addPost')
   }
 
   const onDeletePost = () => {
-    dispatch(actionsModal.openModalAC({
-      type: MODAL_TYPE.CONFIRM_DELETE_POST,
-      confirmText: 'delete',
-      description: 'Are you sure you want to delete the post? This process cannot be undone.',
-    }))
+    dispatch(actionsModal.openModalAC(MODAL_TYPE.CONFIRM_DELETE_POST))
   }
 
   return (

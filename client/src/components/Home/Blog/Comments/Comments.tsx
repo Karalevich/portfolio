@@ -1,6 +1,6 @@
 import styles from './Comments.module.scss'
 import { CommentsComponent } from './types'
-import Input from '../../../Custom/Inputs/Input'
+import Input from '../../../Custom/Input/Input'
 import me from '../../../../assets/img/Me.webp'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ShareIcon from '@mui/icons-material/Share'

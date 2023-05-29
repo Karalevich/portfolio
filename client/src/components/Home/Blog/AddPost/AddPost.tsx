@@ -8,7 +8,7 @@ import { actionsPosts, createPostThunk, updatePostThunk } from '../../../../acti
 import { getFetchingFormS, getOpenedPostIdS, getOpenedPostS } from '../../../../selectors/postsSelectors'
 import { Box, Button, FormHelperText } from '@mui/material'
 import DropZone from '../../../Custom/DropZone/DropZone'
-import Input from '../../../Custom/Inputs/Input'
+import Input from '../../../Custom/Input/Input'
 import SectionHeader from '../../SectionHeader/SectionHeader'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import * as yup from 'yup'

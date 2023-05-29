@@ -73,13 +73,14 @@ export const actionsPosts = {
       type: UPDATE,
       payload,
     } as const),
+  deletePostAC: (id: string) =>
+    ({
+      type: DELETE,
+      id,
+    } as const),
   // updateCommentsAC: (payload: PostsResponseDataI) => ({
   //   type: COMMENTS,
   //   payload
-  // } as const),
-  // deletePostAC: (id: string) => ({
-  //   type: DELETE,
-  //   id
   // } as const),
 }
 
@@ -157,6 +158,21 @@ export const updatePostThunk =
     }
   }
 
+export const deletePostThunk =
+  (id: string, navigate: NavigateFunction): ThunkT<PostsActionT> =>
+  async (dispatch) => {
+    try {
+      //dispatch(actionsPosts.setFetchingForm(true))
+      await api.deletePost(id)
+      dispatch(actionsPosts.deletePostAC(id))
+      navigate('/blog')
+    } catch (e) {
+      console.log(e)
+    } finally {
+      //dispatch(actionsPosts.setFetchingForm(false))
+    }
+  }
+
 // export const getPostsBySearchThunk = (searchQuery: string, page: number): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {
 //     dispatch(actionsPosts.setFetchingPosts(true))
@@ -169,18 +185,6 @@ export const updatePostThunk =
 //   }
 // }
 
-// export const deletePostThunk = (id: string): ThunkType<PostsActionType> => async (dispatch) => {
-//   try {
-//     //dispatch(actionsPosts.setFetchingForm(true))
-//     await api.deletePost(id)
-//     dispatch(actionsPosts.deletePostAC(id))
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     //dispatch(actionsPosts.setFetchingForm(false))
-//   }
-// }
-//
 // export const likePostThunk = (id: string): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {
 //     //dispatch(actionsPosts.setFetchingForm(true))

@@ -87,7 +87,10 @@ export const mainTheme = createTheme({
             color: 'var(--main-text)',
             borderRadius: '2px',
             minHeight: '15rem',
-            maxWidth: '40%'
+            maxWidth: '40%',
+            '@media (max-width:768px)': {
+              maxWidth: '90%',
+            },
           },
         },
       },
@@ -97,7 +100,6 @@ export const mainTheme = createTheme({
         root: {
           display: 'flex',
           alignItems: 'center',
-
         },
       },
     },

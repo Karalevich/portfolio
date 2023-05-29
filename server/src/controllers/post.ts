@@ -82,7 +82,9 @@ export const updatePost = async (req: Request, res: Response) => {
 export const deletePost = async (req: Request, res: Response) => {
   const { id: _id } = req.params
   try {
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id')
+    if (!mongoose.Types.ObjectId.isValid(_id)){
+      return res.status(404).send('No post with that id')
+    }
 
     await Post.findByIdAndRemove(_id)
 
