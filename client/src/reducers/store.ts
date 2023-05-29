@@ -3,10 +3,12 @@ import thunk, { ThunkAction } from 'redux-thunk'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import userReducer from './user/userReducer'
 import postsReducer from './posts/postsReducer'
+import modalReducer from './modal/modalReducer'
 
 const reducers = combineReducers({
   user: userReducer,
   posts: postsReducer,
+  modal: modalReducer,
 })
 
 export const store = configureStore({

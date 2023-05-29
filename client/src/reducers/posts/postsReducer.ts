@@ -67,7 +67,7 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
         posts: state.posts.map((post) => {
           if (post._id === action.payload._id) return action.payload
           return post
-        })
+        }),
       }
     // case COMMENTS:
     //   return {

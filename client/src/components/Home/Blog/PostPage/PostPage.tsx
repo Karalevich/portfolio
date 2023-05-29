@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { SHARE } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
 import { PostPageComponent } from './types'
@@ -6,16 +6,15 @@ import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
 import Comments from '../Comments/Comments'
-import { useNavigate } from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { actionsPosts, getCertainPostThunk } from '../../../../actions/postsAction'
-import {
-  getCertainPostS,
-  getRelatedPostsS,
-} from '../../../../selectors/postsSelectors'
-import { Button, Skeleton } from '@mui/material'
+import { getCertainPostS, getRelatedPostsS } from '../../../../selectors/postsSelectors'
+import { Button } from '@mui/material'
 import { RecommendCardT } from '../PostCard/types'
+import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
+import { actionsModal } from '../../../../actions/modalAction'
+import { MODAL_TYPE } from '../../../../reducers/modal/types'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
@@ -31,7 +30,7 @@ export const PostPage: PostPageComponent = () => {
     }
   }, [id])
 
-  const { title, date, authorImg, authorName, content, img } = post || {}
+  const { title, date, authorImg, authorName = 'A', content, img } = post || {}
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
 
   const onUpdatePost = () => {
@@ -40,68 +39,71 @@ export const PostPage: PostPageComponent = () => {
   }
 
   const onDeletePost = () => {
-
+    dispatch(actionsModal.openModalAC({
+      type: MODAL_TYPE.CONFIRM_DELETE_POST,
+      confirmText: 'delete',
+      description: 'Are you sure you want to delete the post? This process cannot be undone.',
+    }))
   }
 
   return (
     <section className={styles.postPage}>
-      <header>
-        {title
-          ? <h2 className={styles.postTitle}>{title}</h2>
-          : <Skeleton animation='wave' width={'80%'} />}
-        <article className={styles.info}>
-          <div className={styles.author}>
-            {authorImg ? (
-              <img className={styles.authorImg} src={authorImg} alt={'post author'} />
-            ) : authorName
-              ? <span className={styles.authorImg}>{authorName[0].toUpperCase()}</span>
-              : <Skeleton animation='wave' width={'80%'} />}
-
-            <div className={styles.authorData}>
-              <span className={styles.name}>{authorName}</span>
-              <span className={styles.date}>{date}</span>
+      {post ? (
+        <header>
+          <h2 className={styles.postTitle}>{title}</h2>
+          <article className={styles.info}>
+            <div className={styles.author}>
+              {authorImg ? (
+                <img className={styles.authorImg} src={authorImg} alt={'post author'} />
+              ) : (
+                <span className={styles.authorImg}>{authorName[0].toUpperCase()}</span>
+              )}
+              <div className={styles.authorData}>
+                <span className={styles.name}>{authorName}</span>
+                <span className={styles.date}>{date}</span>
+              </div>
+            </div>
+            <div className={styles.share}>
+              <span>SHARE:</span>
+              <ul className={styles.shareList}>{socialMediaIcons()}</ul>
+            </div>
+          </article>
+          <div className={styles.actionGroup}>
+            <Breadcrumbs links={links} />
+            <div className={styles.buttonGroup}>
+              <Button
+                className={styles.buttonPostAction}
+                variant='contained'
+                size={'medium'}
+                onClick={onUpdatePost}
+                fullWidth
+                disableElevation
+              >
+                Edit
+              </Button>
+              <Button
+                className={styles.buttonPostAction}
+                variant='outlined'
+                color={'error'}
+                size={'medium'}
+                onClick={onDeletePost}
+                fullWidth
+              >
+                Delete
+              </Button>
             </div>
           </div>
-          <div className={styles.share}>
-            <span>SHARE:</span>
-            <ul className={styles.shareList}>{socialMediaIcons()}</ul>
-          </div>
-        </article>
-        <div className={styles.actionGroup}>
-          <Breadcrumbs links={links} />
-          <div className={styles.buttonGroup}>
-            <Button
-              className={styles.buttonPostAction}
-              variant='contained'
-              size={'medium'}
-              onClick={onUpdatePost}
-              fullWidth
-              disableElevation
-            >
-              Update
-            </Button>
-            <Button
-              className={styles.buttonPostAction}
-              variant='outlined'
-              color={'error'}
-              size={'medium'}
-              onClick={onDeletePost}
-              fullWidth
-            >
-              Delete
-            </Button>
-          </div>
-        </div>
-      </header>
+        </header>
+      ) : (
+        <SkeletonPostPage />
+      )}
       <main>
-        <article className={styles.postContent}>
-          {img
-            ? <img className={styles.mainImg} src={img as string} alt={'post preview'} />
-            : <Skeleton animation='wave' width={'80%'} />}
-          {content
-            ? <div dangerouslySetInnerHTML={{ __html: content }} />
-            : <Skeleton animation='wave' width={'80%'} />}
-        </article>
+        {post && (
+          <article className={styles.postContent}>
+            <img className={styles.mainImg} src={img as string} alt={'post preview'} />
+            <div dangerouslySetInnerHTML={{ __html: content as string }} />
+          </article>
+        )}
         <article className={styles.recommendations}>
           <h3 className={styles.youLike}>You may like this too</h3>
           <div className={styles.recommendList}>

@@ -25,7 +25,7 @@ const Breadcrumbs: BreadcrumbsComponent = ({ links, className }) => {
   return (
     <MUIBreadcrumbs
       separator='›'
-      className={classname(styles.breadcrumbs, {[`${className}`]: className})}
+      className={classname(styles.breadcrumbs, { [`${className}`]: className })}
       sx={{
         '.MuiBreadcrumbs-separator': {
           color: '#767676',

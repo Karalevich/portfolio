@@ -34,12 +34,7 @@ const initialState = {
   content: '',
 }
 
-const SUPPORTED_FORMATS = [
-  'image/jpg',
-  'image/jpeg',
-  'image/webp',
-  'image/png',
-]
+const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/webp', 'image/png']
 
 const validationPostSchema = yup.object({
   title: yup
@@ -68,11 +63,7 @@ const validationPostSchema = yup.object({
       }
       return valid
     })
-    .test(
-      'fileFormat',
-      'Unsupported Format',
-      img => img && SUPPORTED_FORMATS.includes(img[0]?.type),
-    ),
+    .test('fileFormat', 'Unsupported Format', (img) => img && SUPPORTED_FORMATS.includes(img[0]?.type)),
 })
 export const AddPost: AddPostComponent = () => {
   const dispatch = useAppDispatch()
@@ -83,7 +74,7 @@ export const AddPost: AddPostComponent = () => {
   const formikSubmit = useFormik({
     initialValues: initialState,
     validationSchema: validationPostSchema,
-    onSubmit: (values: PostFromFormWithArrayImgT) => {
+    onSubmit: (values: PostFromFormWithArrayImgT, {}) => {
       if (openedPostId) {
         dispatch(updatePostThunk(openedPostId, values))
       } else {
@@ -97,7 +88,9 @@ export const AddPost: AddPostComponent = () => {
     if (post) {
       formikSubmit.setValues({ ...formikSubmit.values, ...post })
     }
-    return () => {dispatch(actionsPosts.changeOpenedPostIdAC(''))}
+    return () => {
+      dispatch(actionsPosts.changeOpenedPostIdAC(''))
+    }
   }, [post])
 
   const clear = () => {
@@ -182,7 +175,7 @@ export const AddPost: AddPostComponent = () => {
             myFiles={formikSubmit.values.img}
             setMyFiles={putSelectedFiles}
             removeFileFromForm={removeFile}
-            error={formikSubmit.touched.img && formikSubmit.errors.img as string}
+            error={formikSubmit.touched.img && (formikSubmit.errors.img as string)}
           />
           <div>
             <ReactQuill
@@ -191,10 +184,13 @@ export const AddPost: AddPostComponent = () => {
               theme={'snow'}
               onChange={(content) => formikSubmit.setFieldValue('content', content)}
               modules={modules}
-              className={classname(styles.quill, { [styles.error]: formikSubmit.touched.content && formikSubmit.errors.content })}
+              className={classname(styles.quill, {
+                [styles.error]: formikSubmit.touched.content && formikSubmit.errors.content,
+              })}
             />
-            {formikSubmit.touched.content && formikSubmit.errors.content &&
-              <FormHelperText error>{formikSubmit.errors.content}</FormHelperText>}
+            {formikSubmit.touched.content && formikSubmit.errors.content && (
+              <FormHelperText error>{formikSubmit.errors.content}</FormHelperText>
+            )}
           </div>
           <div className={styles.buttonGroup}>
             <Button

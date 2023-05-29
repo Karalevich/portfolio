@@ -76,9 +76,38 @@ export const mainTheme = createTheme({
             color: 'red !important',
             fontSize: '0.75rem',
           },
-        }
-      }
-    }
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        root: {
+          '& .MuiDialog-paper': {
+            backgroundColor: 'var(--background)',
+            color: 'var(--main-text)',
+            borderRadius: '2px',
+            minHeight: '15rem',
+            maxWidth: '40%'
+          },
+        },
+      },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          alignItems: 'center',
+
+        },
+      },
+    },
+    MuiDialogContentText: {
+      styleOverrides: {
+        root: {
+          color: 'var(--paragraph)',
+        },
+      },
+    },
   },
   typography: {
     fontFamily: [

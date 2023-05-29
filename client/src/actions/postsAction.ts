@@ -68,10 +68,11 @@ export const actionsPosts = {
       type: CHANGE_OPENED_POST_ID,
       payload,
     } as const),
-  updatePostAC: (payload: PostT) => ({
-    type: UPDATE,
-    payload,
-  } as const),
+  updatePostAC: (payload: PostT) =>
+    ({
+      type: UPDATE,
+      payload,
+    } as const),
   // updateCommentsAC: (payload: PostsResponseDataI) => ({
   //   type: COMMENTS,
   //   payload
@@ -84,75 +85,77 @@ export const actionsPosts = {
 
 export const getPostsThunk =
   (page?: number): ThunkT<PostsActionT> =>
-    async (dispatch) => {
-      try {
-        dispatch(actionsPosts.setFetchingPostsAC(true))
-        const { data } = await api.fetchPosts(page)
-        dispatch(actionsPosts.setPostsAC(data.posts, data.numberOfPages))
-      } catch (e) {
-        console.log(e)
-      } finally {
-        dispatch(actionsPosts.setFetchingPostsAC(false))
-      }
+  async (dispatch) => {
+    try {
+      dispatch(actionsPosts.setFetchingPostsAC(true))
+      const { data } = await api.fetchPosts(page)
+      dispatch(actionsPosts.setPostsAC(data.posts, data.numberOfPages))
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(actionsPosts.setFetchingPostsAC(false))
     }
+  }
 
 export const getCertainPostThunk =
   (id: string, navigate: NavigateFunction): ThunkT<PostsActionT> =>
-    async (dispatch) => {
-      try {
-        dispatch(actionsPosts.setFetchingPostsAC(true))
-        const { data } = await api.fetchCertainPost(id)
-        dispatch(actionsPosts.setCertainPostAC(data))
-      } catch (e) {
-        console.log(e)
-        navigate('/not-found')
-      } finally {
-        dispatch(actionsPosts.setFetchingPostsAC(false))
-      }
+  async (dispatch) => {
+    try {
+      dispatch(actionsPosts.setFetchingPostsAC(true))
+      const { data } = await api.fetchCertainPost(id)
+      dispatch(actionsPosts.setCertainPostAC(data))
+    } catch (e) {
+      console.log(e)
+      navigate('/not-found')
+    } finally {
+      dispatch(actionsPosts.setFetchingPostsAC(false))
     }
+  }
 
 export const getPostsByTagsThunk =
   (tags: string): ThunkT<PostsActionT> =>
-    async (dispatch) => {
-      try {
-        dispatch(actionsPosts.setFetchingRelatedPostsAC(true))
-        const { data } = await api.fetchPostsByTags(tags)
-        dispatch(actionsPosts.setRelatedPostsAC(data))
-      } catch (e) {
-        console.log(e)
-      } finally {
-        dispatch(actionsPosts.setFetchingRelatedPostsAC(false))
-      }
+  async (dispatch) => {
+    try {
+      dispatch(actionsPosts.setFetchingRelatedPostsAC(true))
+      const { data } = await api.fetchPostsByTags(tags)
+      dispatch(actionsPosts.setRelatedPostsAC(data))
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(actionsPosts.setFetchingRelatedPostsAC(false))
     }
+  }
 export const createPostThunk =
   (post: PostFromFormWithArrayImgT): ThunkT<PostsActionT> =>
-    async (dispatch) => {
-      try {
-        dispatch(actionsPosts.setFetchingFormAC(true))
-        post.tags = updateTagsType(post.tags)
-        const readyImg = await convertFileBeforeSendToServer(post.img[0])
+  async (dispatch) => {
+    try {
+      dispatch(actionsPosts.setFetchingFormAC(true))
+      post.tags = updateTagsType(post.tags)
+      const readyImg = await convertFileBeforeSendToServer(post.img[0])
 
-        const { data } = await api.createPost({ ...post, img: readyImg })
-        dispatch(actionsPosts.createPostAC(data))
-      } catch (e) {
-        console.log(e)
-      } finally {
-        dispatch(actionsPosts.setFetchingFormAC(false))
-      }
+      const { data } = await api.createPost({ ...post, img: readyImg })
+      dispatch(actionsPosts.createPostAC(data))
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(actionsPosts.setFetchingFormAC(false))
     }
-export const updatePostThunk = (id: string, post: PostFromFormWithArrayImgT): ThunkT<PostsActionT> => async (dispatch) => {
-  try {
-    dispatch(actionsPosts.setFetchingFormAC(true))
-    post.tags = updateTagsType(post.tags)
-    const readyImg = await convertFileBeforeSendToServer(post.img[0])
-    const { data } = await api.updatePost(id, { ...post, img: readyImg })
-    dispatch(actionsPosts.updatePostAC(data))
-  } catch (e) {
-    console.log(e)
-  } finally {
-    dispatch(actionsPosts.setFetchingFormAC(false))
   }
-}
+export const updatePostThunk =
+  (id: string, post: PostFromFormWithArrayImgT): ThunkT<PostsActionT> =>
+  async (dispatch) => {
+    try {
+      dispatch(actionsPosts.setFetchingFormAC(true))
+      post.tags = updateTagsType(post.tags)
+      const readyImg = await convertFileBeforeSendToServer(post.img[0])
+      const { data } = await api.updatePost(id, { ...post, img: readyImg })
+      dispatch(actionsPosts.updatePostAC(data))
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(actionsPosts.setFetchingFormAC(false))
+    }
+  }
 
 // export const getPostsBySearchThunk = (searchQuery: string, page: number): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {
@@ -165,7 +168,6 @@ export const updatePostThunk = (id: string, post: PostFromFormWithArrayImgT): Th
 //     dispatch(actionsPosts.setFetchingPosts(false))
 //   }
 // }
-
 
 // export const deletePostThunk = (id: string): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {

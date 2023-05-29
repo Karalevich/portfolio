@@ -27,4 +27,3 @@ export const convertFileBeforeSendToServer = (file: FileWithPath): Promise<strin
     reader.readAsDataURL(file)
   })
 }
-

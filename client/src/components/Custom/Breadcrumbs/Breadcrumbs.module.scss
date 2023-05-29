@@ -4,6 +4,10 @@
   .MuiBreadcrumbs-separator {
     color: $paragraph;
   }
+
+  ol {
+    flex-wrap: nowrap;
+  }
 }
 
 .link:hover {
@@ -15,4 +19,11 @@
 .currentService {
   text-transform: capitalize;
   word-spacing: -0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }

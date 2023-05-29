@@ -23,7 +23,7 @@ const FileList: FileListComponent = ({ acceptedFiles, removeFile }) => {
             </ListItemAvatar>
             <ListItemText className={styles.itemText} secondary={file.name} />
             <IconButton className={styles.button} size={'small'} onClick={onClick(file.name)}>
-              <DeleteIcon fontSize={'inherit'} className={styles.delete}/>
+              <DeleteIcon fontSize={'inherit'} className={styles.delete} />
             </IconButton>
           </ListItem>
         ))}
