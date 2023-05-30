@@ -10,8 +10,8 @@ import styles from './components/Home/Home.module.scss'
 import ScrollToTop from './components/Custom/ScrollToTop'
 import './index.scss'
 import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
-import Auth from './components/Auth/Auth'
 import Modal from './components/Custom/Modal/Modal'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const App: React.FC<unknown> = () => {
   const infoRef = useRef<null | HTMLElement>(null)
@@ -61,6 +61,7 @@ export const App: React.FC<unknown> = () => {
   }
 
   return (
+    <GoogleOAuthProvider clientId={`${process.env.REACT_APP_CLIENT_ID}`}>
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>
         <ScrollToTop />
@@ -70,10 +71,10 @@ export const App: React.FC<unknown> = () => {
           <AnimatedRoutes />
         </section>
         <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
-        <Auth />
         <Copyright />
         <Modal />
       </BrowserRouter>
     </ThemeProvider>
+    </GoogleOAuthProvider>
   )
 }

@@ -12,6 +12,8 @@ import { styled } from '@mui/material/styles'
 import classnames from 'classnames'
 import { Button, SvgIconProps, Tab, Tabs } from '@mui/material'
 import { getUserS } from '../../../selectors/userSelectors'
+import { actionsModal } from '../../../actions/modalAction'
+import { MODAL_TYPE } from '../../../reducers/modal/types'
 
 const tabNameToIndex: TabNameToIndexT = {
   0: 'home',
@@ -54,7 +56,7 @@ export const NavTabs: NavTabsComponent = ({
   }
 
   const handleOpenLogin = () => {
-    dispatch(userActions.toggleModal(true))
+    dispatch(actionsModal.openModalAC(MODAL_TYPE.AUTH))
   }
 
   return (

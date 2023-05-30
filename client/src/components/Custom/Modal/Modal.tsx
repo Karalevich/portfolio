@@ -7,11 +7,13 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { getModalIsOpenS, getModalTypeS } from '../../../selectors/modalSelectors'
 import { actionsModal } from '../../../actions/modalAction'
 import ConfirmDeletePostModal from '../../Modals/ConfirmDeletePostModal/ConfirmDeletePostModal'
+import Auth from '../../Auth/Auth'
 
 const MODAL_COMPONENTS = {
   [MODAL_TYPE.INFO]: ConfirmModal,
   [MODAL_TYPE.CONFIRM_DELETE_POST]: ConfirmDeletePostModal,
   [MODAL_TYPE.ERROR]: ConfirmModal,
+  [MODAL_TYPE.AUTH]: Auth,
 }
 export const Modal: ModalComponent = () => {
   const isOpen = useAppSelector(getModalIsOpenS)

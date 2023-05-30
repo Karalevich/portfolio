@@ -5,6 +5,7 @@ export enum MODAL_TYPE {
   INFO = 'INFO',
   CONFIRM_DELETE_POST = 'CONFIRM_DELETE_POST',
   ERROR = 'ERROR',
+  AUTH = 'AUTH'
 }
 
 export type ModalStateT = {

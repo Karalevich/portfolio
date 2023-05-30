@@ -89,7 +89,7 @@ export const AddPost: AddPostComponent = () => {
       formikSubmit.setValues({ ...formikSubmit.values, ...post })
     }
     return () => {
-      dispatch(actionsPosts.changeOpenedPostIdAC(''))
+      clear()
     }
   }, [post])
 

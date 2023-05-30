@@ -1,63 +1,62 @@
 import React, { useState } from 'react'
 import styles from './Auth.module.scss'
-import { Backdrop, Box, Fade, Modal, styled, Tab, Tabs } from '@mui/material'
+import { Box, styled, Tab, Tabs } from '@mui/material'
 import { AuthComponent, TabPanelComponent } from './types'
-import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
-import { userActions } from '../../actions/userAction'
-import { getIsOpenModalS } from 'src/selectors/userSelectors'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
+import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
 
 export const Auth: AuthComponent = () => {
-  const dispatch = useAppDispatch()
-  const open = useAppSelector(getIsOpenModalS)
   const [tabId, setTabId] = useState(0)
-
-  const handleClose = () => {
-    dispatch(userActions.toggleModal(false))
-  }
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabId(newValue)
   }
 
+  const onSuccessGoogle = (credentialResponse: CredentialResponse) => {
+    console.log(credentialResponse)
+  }
+
+  const onErrorGoogle = () => {
+    console.log('Login Failed')
+  }
+
   return (
-    <Modal
-      aria-labelledby='transition-modal-title'
-      aria-describedby='transition-modal-description'
-      open={open}
-      onClose={handleClose}
-      closeAfterTransition
-      slots={{ backdrop: Backdrop }}
-      slotProps={{
-        backdrop: {
-          timeout: 500,
-        },
-      }}
-    >
-      <Fade in={open}>
-        <Box className={styles.auth} sx={{ boxShadow: 24 }}>
-          <StyledTabs value={tabId} onChange={handleChange}>
-            <Tab className={styles.tab} label='Sign In' disableRipple />
-            <Tab className={styles.tab} label='Sign Up' disableRipple />
-          </StyledTabs>
-          <TabPanel id={tabId} index={0}>
-            <header className={styles.tabHeader}>
-              <h2>Sign In</h2>
-              <p>Enter your login information</p>
-            </header>
-            <SignIn />
-          </TabPanel>
-          <TabPanel id={tabId} index={1}>
-            <header className={styles.tabHeader}>
-              <h2>Sign Up</h2>
-              <p>Enter your credential information</p>
-            </header>
-            <SignUp />
-          </TabPanel>
-        </Box>
-      </Fade>
-    </Modal>
+    <Box className={styles.auth}>
+      <StyledTabs value={tabId} onChange={handleChange}>
+        <Tab className={styles.tab} label='Sign In' disableRipple />
+        <Tab className={styles.tab} label='Sign Up' disableRipple />
+      </StyledTabs>
+      <TabPanel id={tabId} index={0}>
+        <header className={styles.tabHeader}>
+          <h2>Sign In</h2>
+          <GoogleLogin
+            onSuccess={onSuccessGoogle}
+            onError={onErrorGoogle}
+          />
+          <div>
+            <p className={styles.or}>or</p>
+            <p>Enter your login information</p>
+          </div>
+        </header>
+        <SignIn />
+      </TabPanel>
+      <TabPanel id={tabId} index={1}>
+        <header className={styles.tabHeader}>
+          <h2>Sign Up</h2>
+          <GoogleLogin
+            onSuccess={onSuccessGoogle}
+            onError={onErrorGoogle}
+            text='signup_with'
+          />
+          <div>
+            <p className={styles.or}>or</p>
+            <p>Enter your credential information</p>
+          </div>
+        </header>
+        <SignUp />
+      </TabPanel>
+    </Box>
   )
 }
 export default Auth
