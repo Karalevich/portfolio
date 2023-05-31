@@ -4,21 +4,13 @@ import { Box, styled, Tab, Tabs } from '@mui/material'
 import { AuthComponent, TabPanelComponent } from './types'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
-import { GoogleLogin, CredentialResponse } from '@react-oauth/google'
+import GoogleButton from '../Custom/GoogleButton/GoogleButton'
 
 export const Auth: AuthComponent = () => {
   const [tabId, setTabId] = useState(0)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabId(newValue)
-  }
-
-  const onSuccessGoogle = (credentialResponse: CredentialResponse) => {
-    console.log(credentialResponse)
-  }
-
-  const onErrorGoogle = () => {
-    console.log('Login Failed')
   }
 
   return (
@@ -30,10 +22,7 @@ export const Auth: AuthComponent = () => {
       <TabPanel id={tabId} index={0}>
         <header className={styles.tabHeader}>
           <h2>Sign In</h2>
-          <GoogleLogin
-            onSuccess={onSuccessGoogle}
-            onError={onErrorGoogle}
-          />
+          <GoogleButton />
           <div>
             <p className={styles.or}>or</p>
             <p>Enter your login information</p>
@@ -44,11 +33,7 @@ export const Auth: AuthComponent = () => {
       <TabPanel id={tabId} index={1}>
         <header className={styles.tabHeader}>
           <h2>Sign Up</h2>
-          <GoogleLogin
-            onSuccess={onSuccessGoogle}
-            onError={onErrorGoogle}
-            text='signup_with'
-          />
+          <GoogleButton text={'Sign Up with Google'} />
           <div>
             <p className={styles.or}>or</p>
             <p>Enter your credential information</p>
@@ -61,7 +46,7 @@ export const Auth: AuthComponent = () => {
 }
 export default Auth
 
-const StyledTabs = styled(Tabs)(({ theme }) => ({
+const StyledTabs = styled(Tabs)(({  }) => ({
   position: 'relative',
   width: 'fit-content',
   marginBottom: '1.5rem',

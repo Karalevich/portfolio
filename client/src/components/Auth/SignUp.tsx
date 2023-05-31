@@ -32,7 +32,7 @@ export const SignUp: SignUpComponent = () => {
       confirmPassword: '',
     },
     validationSchema: validationSignupSchema,
-    onSubmit: (values: SignupValuesT, { setSubmitting }: FormikHelpers<SignupValuesT>) => {
+    onSubmit: (values: SignupValuesT, {  }: FormikHelpers<SignupValuesT>) => {
       alert(JSON.stringify(values, null, 2))
     },
   })
@@ -77,7 +77,7 @@ export const SignUp: SignUpComponent = () => {
         error={formikSignup.touched.confirmPassword && Boolean(formikSignup.errors.confirmPassword)}
         helperText={formikSignup.touched.confirmPassword && formikSignup.errors.confirmPassword}
       />
-      <Button type={'submit'} className={styles.signButton} sx={{ boxShadow: 0 }} variant='contained'>
+      <Button type={'submit'} className={styles.signButton} disableElevation variant='contained'>
         Sign Up
       </Button>
     </form>

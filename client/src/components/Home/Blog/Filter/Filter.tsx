@@ -7,6 +7,8 @@ import SearchIcon from '@mui/icons-material/Search'
 import Dropdown from '../../../Custom/Dropdown/Dropdown'
 import { Button, useMediaQuery } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../../../../hooks/hooks'
+import { getUserS } from '../../../../selectors/userSelectors'
 
 const SELECT = ['By default', 'By title', 'By date', 'By likes']
 
@@ -14,7 +16,7 @@ export const Filter: FilterComponent = () => {
   const filterRef = useRef<HTMLHeadingElement | null>(null)
   const redirect = useNavigate()
   const isTabletOrMobile = useMediaQuery('(max-width:767px)')
-
+  const user = useAppSelector(getUserS)
   const handleRedirect = () => {
     redirect(`/blog/addPost`)
   }
@@ -47,7 +49,7 @@ export const Filter: FilterComponent = () => {
       </div>
 
       <div className={styles.rightSection}>
-        <Button
+        {user && <Button
           className={styles.addPost}
           onClick={handleRedirect}
           sx={{ boxShadow: 0 }}
@@ -55,7 +57,7 @@ export const Filter: FilterComponent = () => {
           disableRipple={isTabletOrMobile}
         >
           {isTabletOrMobile ? '+' : 'Add post'}
-        </Button>
+        </Button>}
         <Dropdown selects={SELECT} />
       </div>
     </article>

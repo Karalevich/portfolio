@@ -11,7 +11,9 @@ import ScrollToTop from './components/Custom/ScrollToTop'
 import './index.scss'
 import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
 import Modal from './components/Custom/Modal/Modal'
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useAppDispatch } from './hooks/hooks'
+import { USER } from './constants/user'
+import { userActions } from './actions/userAction'
 
 export const App: React.FC<unknown> = () => {
   const infoRef = useRef<null | HTMLElement>(null)
@@ -19,8 +21,12 @@ export const App: React.FC<unknown> = () => {
   const [isFixed, setIsFixed] = useState(false)
   const [isOpenNav, setIsOpenNav] = useState(false)
   const [isOpenInfo, setIsOpenInfo] = useState(false)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
+    const authData = JSON.parse(localStorage.getItem(USER) as string)
+    authData && dispatch(userActions.setAuthAC(authData.user, authData.token))
+
     function handleScroll() {
       const fixedNode = infoRef.current
       const scrollNode = homeRef.current
@@ -61,7 +67,6 @@ export const App: React.FC<unknown> = () => {
   }
 
   return (
-    <GoogleOAuthProvider clientId={`${process.env.REACT_APP_CLIENT_ID}`}>
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>
         <ScrollToTop />
@@ -75,6 +80,5 @@ export const App: React.FC<unknown> = () => {
         <Modal />
       </BrowserRouter>
     </ThemeProvider>
-    </GoogleOAuthProvider>
   )
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './NavTabs.module.scss'
 import { NavTabsComponent } from './types'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { userActions } from '../../../actions/userAction'
+import { removeUsedData } from '../../../actions/userAction'
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
 import { BlogIcon, ContactIcon, CvIcon, HomeIcon, PortfolioIcon, ServicesIcon } from '../../Custom/Icons'
 import { Tooltip } from '../../Custom/Tooltip'
@@ -56,7 +56,11 @@ export const NavTabs: NavTabsComponent = ({
   }
 
   const handleOpenLogin = () => {
-    dispatch(actionsModal.openModalAC(MODAL_TYPE.AUTH))
+    if(user){
+      dispatch(removeUsedData())
+    }else{
+      dispatch(actionsModal.openModalAC(MODAL_TYPE.AUTH))
+    }
   }
 
   return (
@@ -115,7 +119,7 @@ export const NavTabs: NavTabsComponent = ({
   )
 }
 
-const StyledTabs = styled(Tabs)(({ theme }) => ({
+const StyledTabs = styled(Tabs)(({  }) => ({
   '.Mui-selected': {
     color: 'var(--main-text) !important',
     'div[class*="iconWrapper"]': {

@@ -21,7 +21,7 @@ export const SignIn: SignInComponent = () => {
       password: '',
     },
     validationSchema: validationSigninSchema,
-    onSubmit: (values: SigninValuesT, { setSubmitting }: FormikHelpers<SigninValuesT>) => {
+    onSubmit: (values: SigninValuesT, {  }: FormikHelpers<SigninValuesT>) => {
       alert(JSON.stringify(values, null, 2))
     },
   })
@@ -63,7 +63,7 @@ export const SignIn: SignInComponent = () => {
         />
         <span className={styles.forgot}>Forgot Password?</span>
       </div>
-      <Button type={'submit'} className={styles.signButton} sx={{ boxShadow: 0 }} variant='contained'>
+      <Button type={'submit'} className={styles.signButton} disableElevation variant='contained'>
         Sign In
       </Button>
     </form>

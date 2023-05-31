@@ -15,12 +15,14 @@ import { RecommendCardT } from '../PostCard/types'
 import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
 import { actionsModal } from '../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../reducers/modal/types'
+import { getUserS } from '../../../../selectors/userSelectors'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
   const dispatch = useAppDispatch()
   const post = useAppSelector(getCertainPostS)
   const relatedPosts = useAppSelector(getRelatedPostsS)
+  const user = useAppSelector(getUserS)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export const PostPage: PostPageComponent = () => {
           </article>
           <div className={styles.actionGroup}>
             <Breadcrumbs links={links} />
-            <div className={styles.buttonGroup}>
+            {user && <div className={styles.buttonGroup}>
               <Button
                 className={styles.buttonPostAction}
                 variant='contained'
@@ -87,7 +89,7 @@ export const PostPage: PostPageComponent = () => {
               >
                 Delete
               </Button>
-            </div>
+            </div>}
           </div>
         </header>
       ) : (

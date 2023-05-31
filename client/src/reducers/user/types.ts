@@ -3,9 +3,14 @@ import { userActions } from '../../actions/userAction'
 
 export type UserT = {
   email: string
-  _id: string
+  id: string
   name?: string,
   imageUrl?: string
+}
+
+export type CreateUserT = UserT & {
+  password: string
+  confirmPassword?: string
 }
 
 export type GoogleUserT = {

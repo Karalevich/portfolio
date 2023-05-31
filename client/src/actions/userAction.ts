@@ -4,8 +4,10 @@ import { LOGOUT, SET_USER } from '../reducers/user/userReducer'
 import { NavigateFunction } from 'react-router-dom'
 import { GoogleUserT, UserActionsT, UserT } from 'src/reducers/user/types'
 import { USER } from '../constants/user'
-import { CredentialResponse } from '@react-oauth/google'
-import jwtDecode from 'jwt-decode'
+import { TokenResponse } from '@react-oauth/google'
+import { getGoogleUserData } from '../api'
+import { actionsModal } from './modalAction'
+import { ModalActionT } from '../reducers/modal/types'
 
 export const userActions = {
   setAuthAC: (user: UserT, token: string) =>
@@ -17,8 +19,8 @@ export const userActions = {
       },
     } as const),
   removeAuthAC: () => ({
-    type: LOGOUT
-  } as const)
+    type: LOGOUT,
+  } as const),
 }
 
 export const setUsedData = (user: UserT, token: string): ThunkT<UserActionsT> => async (dispatch) => { //TODO cheack if needs async
@@ -32,31 +34,31 @@ export const setUsedData = (user: UserT, token: string): ThunkT<UserActionsT> =>
 }
 
 
-export const googleSuccessThunk = (res: CredentialResponse): ThunkT<UserActionsT> => async (dispatch) => {
-  const token = res.credential
+export const googleSuccessThunk = (response: Omit<TokenResponse, 'error' | 'error_description' | 'error_uri'>): ThunkT<UserActionsT | ModalActionT> => async (dispatch) => {
   try {
-    const {name, picture, sub, email}: GoogleUserT = jwtDecode(`${token}`)
-    console.log(jwtDecode(`${token}`))
-    // const { data } = await api.googleSign({
-    //   name,
-    //   email,
-    //   imageUrl: picture,
-    //   _id: sub
-    // })
-    //dispatch(setUsedData(data.user, `${token}`))
+    const result = await getGoogleUserData(response.access_token)
+    const { name, picture, sub, email }: GoogleUserT = result.data
+    const { data } = await api.googleSign({
+      name,
+      email,
+      imageUrl: picture,
+      id: sub
+    })
+    dispatch(setUsedData(data.user, response.access_token))
+    dispatch(actionsModal.closesModalAC())
   } catch (e) {
     console.log(e)
   }
 }
 
-// export const removeUsedData = (): ThunkType<UserActionsT> => async (dispatch) => {
-//   try {
-//     localStorage.removeItem(USER)
-//     dispatch(userActions.removeAuthActionCreator())
-//   } catch (e) {
-//     console.log(e)
-//   }
-// }
+export const removeUsedData = (): ThunkT<UserActionsT> => async (dispatch) => {
+  try {
+    localStorage.removeItem(USER)
+    dispatch(userActions.removeAuthAC())
+  } catch (e) {
+    console.log(e)
+  }
+}
 
 // export const signInThunk = (formData: AuthFormStateType, navigate: NavigateFunction): ThunkType<UserActionsT> => async (dispatch) => {
 //   try {
