@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Auth.module.scss'
 import { SignUpComponent, SignupValuesT } from './types'
 import * as yup from 'yup'
 import { FormikHelpers, useFormik } from 'formik'
-import { Button } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { SignFormInput } from './SignFormInput'
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
+import { signUpThunk, userActions } from '../../actions/userAction'
+import { getErrSignUpMessage, getIsAuthLoading } from '../../selectors/userSelectors'
+import { FormHelperText } from '@mui/material'
 
 const validationSignupSchema = yup.object({
   name: yup
@@ -24,6 +28,10 @@ const validationSignupSchema = yup.object({
 })
 
 export const SignUp: SignUpComponent = () => {
+  const dispatch = useAppDispatch()
+  const isAuthLoading = useAppSelector(getIsAuthLoading)
+  const errSignUpMessage = useAppSelector(getErrSignUpMessage)
+
   const formikSignup = useFormik({
     initialValues: {
       name: '',
@@ -33,11 +41,20 @@ export const SignUp: SignUpComponent = () => {
     },
     validationSchema: validationSignupSchema,
     onSubmit: (values: SignupValuesT, {  }: FormikHelpers<SignupValuesT>) => {
-      alert(JSON.stringify(values, null, 2))
+      dispatch(signUpThunk(values))
     },
   })
+
+  useEffect(() => {
+    return () => {
+      dispatch(userActions.setErrSignUpMessageAC(''))
+      formikSignup.resetForm()
+    }
+  }, [])
+
   return (
     <form onSubmit={formikSignup.handleSubmit}>
+      {errSignUpMessage && <FormHelperText error>{errSignUpMessage}</FormHelperText>}
       <SignFormInput
         placeholder={'Full Name'}
         type='text'
@@ -47,6 +64,7 @@ export const SignUp: SignUpComponent = () => {
         onChange={formikSignup.handleChange}
         error={formikSignup.touched.name && Boolean(formikSignup.errors.name)}
         helperText={formikSignup.touched.name && formikSignup.errors.name}
+        disabled={isAuthLoading}
       />
       <SignFormInput
         placeholder={'Username or Email'}
@@ -56,6 +74,7 @@ export const SignUp: SignUpComponent = () => {
         value={formikSignup.values.email}
         error={formikSignup.touched.email && Boolean(formikSignup.errors.email)}
         helperText={formikSignup.touched.email && formikSignup.errors.email}
+        disabled={isAuthLoading}
       />
       <SignFormInput
         placeholder={'Password'}
@@ -66,6 +85,7 @@ export const SignUp: SignUpComponent = () => {
         onChange={formikSignup.handleChange}
         error={formikSignup.touched.password && Boolean(formikSignup.errors.password)}
         helperText={formikSignup.touched.password && formikSignup.errors.password}
+        disabled={isAuthLoading}
       />
       <SignFormInput
         placeholder={'Confirm Password'}
@@ -76,10 +96,17 @@ export const SignUp: SignUpComponent = () => {
         onChange={formikSignup.handleChange}
         error={formikSignup.touched.confirmPassword && Boolean(formikSignup.errors.confirmPassword)}
         helperText={formikSignup.touched.confirmPassword && formikSignup.errors.confirmPassword}
+        disabled={isAuthLoading}
       />
-      <Button type={'submit'} className={styles.signButton} disableElevation variant='contained'>
+      <LoadingButton type={'submit'}
+                     className={styles.signButton}
+                     disableElevation
+                     variant='contained'
+                     loading={isAuthLoading}
+                     loadingPosition='center'
+      >
         Sign Up
-      </Button>
+      </LoadingButton>
     </form>
   )
 }

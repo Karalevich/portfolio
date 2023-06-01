@@ -7,26 +7,24 @@ import { useAppDispatch } from '../../../hooks/hooks'
 import { googleSuccessThunk } from '../../../actions/userAction'
 import { GoogleIcon } from '../Icons'
 
-
-export const GoogleButton: GoogleButtonComponent = ({text}) => {
+export const GoogleButton: GoogleButtonComponent = ({ text, ...other }) => {
   const dispatch = useAppDispatch()
   // @ts-ignore
   const login: MouseEventHandler<HTMLButtonElement> = useGoogleLogin({
-    onSuccess:  respose =>  {
-        dispatch(googleSuccessThunk(respose))
-    }
+    onSuccess: (respose) => {
+      dispatch(googleSuccessThunk(respose))
+    },
   })
-
 
   return (
     <div className={styles.googleButton}>
       <Button
+        {...other}
         disableElevation
         disableFocusRipple
         disableRipple
         variant='outlined'
         onClick={login}
-
         sx={{
           textTransform: 'none',
           border: '1px solid #dadce0',

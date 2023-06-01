@@ -14,6 +14,7 @@ import Modal from './components/Custom/Modal/Modal'
 import { useAppDispatch } from './hooks/hooks'
 import { USER } from './constants/user'
 import { userActions } from './actions/userAction'
+import AxiosInterceptor from './components/AxiosIntercetor/AxiosIntercetor'
 
 export const App: React.FC<unknown> = () => {
   const infoRef = useRef<null | HTMLElement>(null)
@@ -69,15 +70,19 @@ export const App: React.FC<unknown> = () => {
   return (
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>
-        <ScrollToTop />
-        <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
-        <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
-        <section className={styles.home} ref={homeRef}>
-          <AnimatedRoutes />
-        </section>
-        <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
-        <Copyright />
-        <Modal />
+        <AxiosInterceptor>
+          <>
+            <ScrollToTop />
+            <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
+            <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
+            <section className={styles.home} ref={homeRef}>
+              <AnimatedRoutes />
+            </section>
+            <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
+            <Copyright />
+            <Modal />
+          </>
+        </AxiosInterceptor>
       </BrowserRouter>
     </ThemeProvider>
   )

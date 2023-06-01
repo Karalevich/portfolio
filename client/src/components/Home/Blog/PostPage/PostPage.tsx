@@ -27,7 +27,7 @@ export const PostPage: PostPageComponent = () => {
 
   useEffect(() => {
     if (id) {
-      dispatch(getCertainPostThunk(id, navigate))
+      dispatch(getCertainPostThunk(id))
       dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
       //dispatch(getPostsByTagsThunk(id))
     }
@@ -68,28 +68,30 @@ export const PostPage: PostPageComponent = () => {
           </article>
           <div className={styles.actionGroup}>
             <Breadcrumbs links={links} />
-            {user && <div className={styles.buttonGroup}>
-              <Button
-                className={styles.buttonPostAction}
-                variant='contained'
-                size={'medium'}
-                onClick={onUpdatePost}
-                fullWidth
-                disableElevation
-              >
-                Edit
-              </Button>
-              <Button
-                className={styles.buttonPostAction}
-                variant='outlined'
-                color={'error'}
-                size={'medium'}
-                onClick={onDeletePost}
-                fullWidth
-              >
-                Delete
-              </Button>
-            </div>}
+            {user && (
+              <div className={styles.buttonGroup}>
+                <Button
+                  className={styles.buttonPostAction}
+                  variant='contained'
+                  size={'medium'}
+                  onClick={onUpdatePost}
+                  fullWidth
+                  disableElevation
+                >
+                  Edit
+                </Button>
+                <Button
+                  className={styles.buttonPostAction}
+                  variant='outlined'
+                  color={'error'}
+                  size={'medium'}
+                  onClick={onDeletePost}
+                  fullWidth
+                >
+                  Delete
+                </Button>
+              </div>
+            )}
           </div>
         </header>
       ) : (

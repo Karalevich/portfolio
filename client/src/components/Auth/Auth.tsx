@@ -5,9 +5,12 @@ import { AuthComponent, TabPanelComponent } from './types'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import GoogleButton from '../Custom/GoogleButton/GoogleButton'
+import { useAppSelector } from '../../hooks/hooks'
+import { getIsAuthLoading } from '../../selectors/userSelectors'
 
 export const Auth: AuthComponent = () => {
   const [tabId, setTabId] = useState(0)
+  const isAuthLoading = useAppSelector(getIsAuthLoading)
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabId(newValue)
@@ -16,13 +19,13 @@ export const Auth: AuthComponent = () => {
   return (
     <Box className={styles.auth}>
       <StyledTabs value={tabId} onChange={handleChange}>
-        <Tab className={styles.tab} label='Sign In' disableRipple />
-        <Tab className={styles.tab} label='Sign Up' disableRipple />
+        <Tab className={styles.tab} label='Sign In' disableRipple disabled={isAuthLoading} />
+        <Tab className={styles.tab} label='Sign Up' disableRipple disabled={isAuthLoading} />
       </StyledTabs>
       <TabPanel id={tabId} index={0}>
         <header className={styles.tabHeader}>
           <h2>Sign In</h2>
-          <GoogleButton />
+          <GoogleButton disabled={isAuthLoading} />
           <div>
             <p className={styles.or}>or</p>
             <p>Enter your login information</p>
@@ -33,7 +36,7 @@ export const Auth: AuthComponent = () => {
       <TabPanel id={tabId} index={1}>
         <header className={styles.tabHeader}>
           <h2>Sign Up</h2>
-          <GoogleButton text={'Sign Up with Google'} />
+          <GoogleButton text={'Sign Up with Google'} disabled={isAuthLoading} />
           <div>
             <p className={styles.or}>or</p>
             <p>Enter your credential information</p>
@@ -46,7 +49,7 @@ export const Auth: AuthComponent = () => {
 }
 export default Auth
 
-const StyledTabs = styled(Tabs)(({  }) => ({
+const StyledTabs = styled(Tabs)(({}) => ({
   position: 'relative',
   width: 'fit-content',
   marginBottom: '1.5rem',

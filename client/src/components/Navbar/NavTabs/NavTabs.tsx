@@ -56,9 +56,9 @@ export const NavTabs: NavTabsComponent = ({
   }
 
   const handleOpenLogin = () => {
-    if(user){
+    if (user) {
       dispatch(removeUsedData())
-    }else{
+    } else {
       dispatch(actionsModal.openModalAC(MODAL_TYPE.AUTH))
     }
   }
@@ -119,7 +119,7 @@ export const NavTabs: NavTabsComponent = ({
   )
 }
 
-const StyledTabs = styled(Tabs)(({  }) => ({
+const StyledTabs = styled(Tabs)(({}) => ({
   '.Mui-selected': {
     color: 'var(--main-text) !important',
     'div[class*="iconWrapper"]': {

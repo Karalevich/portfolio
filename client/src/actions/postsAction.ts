@@ -98,8 +98,7 @@ export const getPostsThunk =
     }
   }
 
-export const getCertainPostThunk =
-  (id: string, navigate: NavigateFunction): ThunkT<PostsActionT> =>
+export const getCertainPostThunk = (id: string): ThunkT<PostsActionT> =>
   async (dispatch) => {
     try {
       dispatch(actionsPosts.setFetchingPostsAC(true))
@@ -107,7 +106,6 @@ export const getCertainPostThunk =
       dispatch(actionsPosts.setCertainPostAC(data))
     } catch (e) {
       console.log(e)
-      navigate('/not-found')
     } finally {
       dispatch(actionsPosts.setFetchingPostsAC(false))
     }

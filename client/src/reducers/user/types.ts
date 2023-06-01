@@ -4,22 +4,28 @@ import { userActions } from '../../actions/userAction'
 export type UserT = {
   email: string
   id: string
-  name?: string,
+  name: string
   imageUrl?: string
 }
 
-export type CreateUserT = UserT & {
+export type CreateUserT = Omit<UserT, 'id'> & {
   password: string
   confirmPassword?: string
 }
 
 export type GoogleUserT = {
-  name: string, picture: string, sub: string, email: string
+  name: string
+  picture: string
+  sub: string
+  email: string
 }
 
 export type UserStateT = {
   user: UserT | null
   token: string | null
+  isAuthLoading: boolean
+  errSignInMessage: string
+  errSignUpMessage: string
 }
 
 export type UserActionsT = ActionT<typeof userActions>

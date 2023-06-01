@@ -9,12 +9,12 @@ export const signin = async (req: Request, res: Response) => {
     const user = await User.findOne({ email })
 
     if (!user) {
-      return res.status(404).json({ message: 'User doesn`t exist.' })
+      return res.status(401).json({ message: 'Invalid email or password' })
     }
 
     const isPasswordCorrect = await bcrypt.compare(password, `${user.password}`)
     if (!isPasswordCorrect) {
-      return res.status(400).json({ message: 'Invalid credentials' })
+      return res.status(401).json({ message: 'Invalid email or password' })
     }
 
     const token = jwt.sign({ email: user.email, id: user._id }, process.env.SECRET as string, { expiresIn: '1h' })
