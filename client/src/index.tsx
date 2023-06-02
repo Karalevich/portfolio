@@ -16,5 +16,5 @@ root.render(
         <App />
       </Provider>
     </GoogleOAuthProvider>
-  </StrictMode>,
+  </StrictMode>
 )

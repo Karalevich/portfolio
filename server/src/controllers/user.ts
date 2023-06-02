@@ -18,7 +18,7 @@ export const signin = async (req: Request, res: Response) => {
     }
 
     const token = jwt.sign({ email: user.email, id: user._id }, process.env.SECRET as string, { expiresIn: '1h' })
-    res.status(200).json({ user, token })
+    res.status(200).json({ user: user.transform(), token })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
   }
@@ -45,7 +45,7 @@ export const signup = async (req: Request, res: Response) => {
     })
     const token = jwt.sign({ email: newUser.email, id: newUser._id }, process.env.SECRET as string, { expiresIn: '1h' })
 
-    res.status(200).json({ user: newUser, token })
+    res.status(200).json({ user: newUser.transform(), token })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
   }
@@ -63,7 +63,7 @@ export const googleSign = async (req: Request, res: Response) => {
         id
       })
     }
-    res.status(200).json({ user: newUser })
+    res.status(200).json({ user: newUser.transform() })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
   }

@@ -98,7 +98,8 @@ export const getPostsThunk =
     }
   }
 
-export const getCertainPostThunk = (id: string): ThunkT<PostsActionT> =>
+export const getCertainPostThunk =
+  (id: string): ThunkT<PostsActionT> =>
   async (dispatch) => {
     try {
       dispatch(actionsPosts.setFetchingPostsAC(true))

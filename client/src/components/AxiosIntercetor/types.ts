@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 
 type AxiosInterceptorProps = {
-  children?: any;
-};
+  children?: any
+}
 
 export type AxiosInterceptorComponent = FunctionComponent<AxiosInterceptorProps>

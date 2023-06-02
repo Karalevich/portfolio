@@ -65,13 +65,13 @@ export const createPosts = async (req: Request, res: Response) => {
 }
 
 export const updatePost = async (req: Request, res: Response) => {
-  const { id: _id } = req.params
+  const { id } = req.params
   const post = req.body
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id')
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id')
 
-    const updatePost = await Post.findByIdAndUpdate(_id, { ...post, _id }, { new: true })
+    const updatePost = await Post.findByIdAndUpdate(id, { ...post, id }, { new: true })
 
     res.status(201).json(updatePost)
   } catch (e: any | unknown) {
@@ -80,41 +80,52 @@ export const updatePost = async (req: Request, res: Response) => {
 }
 
 export const deletePost = async (req: Request, res: Response) => {
-  const { id: _id } = req.params
+  const { id } = req.params
+
+  if (!req.userId) {
+    return res.status(401).send('Unauthenticated')
+  }
+
   try {
-    if (!mongoose.Types.ObjectId.isValid(_id)){
+    if (!mongoose.Types.ObjectId.isValid(id)){
       return res.status(404).send('No post with that id')
+    }else{
+      const post = await Post.findById(id)
+
+      if(post?.author !== req.userId){
+        return res.status(403).send('Forbidden')
+      }
+
+      await Post.findByIdAndRemove(id)
+
+      res.json({ message: 'Post deleted successfully' })
     }
-
-    await Post.findByIdAndRemove(_id)
-
-    res.json({ message: 'Post deleted successfully' })
   } catch (e: any | unknown) {
     res.status(409).json({ message: e.message })
   }
 }
 
 export const likePost = async (req: Request, res: Response) => {
-  const { id: _id } = req.params
+  const { id } = req.params
 
   if (!req.userId) {
-    return res.json({ message: 'Unauthenticated' })
+    return res.status(401).send('Unauthenticated')
   }
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No post with that id')
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id')
 
-    const post = await Post.findById(_id)
+    const post = await Post.findById(id)
 
     if (post) {
-      const index = post.likes.findIndex((id) => id === String(req.userId))
+      const index = post.likes.findIndex(idx => idx === String(req.userId))
       if (!index || index === -1) {
         post.likes.push(String(req.userId))
       } else {
-        post.likes = post.likes.filter(id => id !== String(req.userId))
+        post.likes = post.likes.filter(idx => idx !== String(req.userId))
       }
 
-      const updatedPost = await Post.findByIdAndUpdate(_id, post, { new: true })
+      const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true })
 
       res.status(201).json(updatedPost)
     }

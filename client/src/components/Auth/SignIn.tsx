@@ -88,7 +88,8 @@ export const SignIn: SignInComponent = () => {
         type={'submit'}
         className={styles.signButton}
         disableElevation
-        variant='contained'>
+        variant='contained'
+      >
         Sign In
       </LoadingButton>
     </form>

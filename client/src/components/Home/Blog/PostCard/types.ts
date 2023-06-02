@@ -14,7 +14,6 @@ export type PostT = {
   content: string
   author: AuthorIdT
   date: string
-  comments?: Array<CommentT>
   _id: string
   isFullVersion?: boolean
   isFetchingPosts?: boolean
@@ -24,7 +23,8 @@ export type PostT = {
 
 export type CertainPostT = PostT & {
   authorName: string
-  authorImg: string
+  authorImg?: string
+  comments?: Array<CommentT>
 }
 
 export type PostCardComponent = FunctionComponent<PostT>

@@ -33,15 +33,25 @@ export const PostPage: PostPageComponent = () => {
     }
   }, [id])
 
-  const { title, date, authorImg, authorName = 'A', content, img } = post || {}
+  const {
+    likes,
+    author,
+    title,
+    date,
+    authorImg,
+    authorName = 'A',
+    content,
+    img
+  } = post || {}
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
+  const isCurrentUserCreator = user?.id === author
 
   const onUpdatePost = () => {
-    navigate('/blog/addPost')
+    isCurrentUserCreator && navigate('/blog/addPost')
   }
 
   const onDeletePost = () => {
-    dispatch(actionsModal.openModalAC(MODAL_TYPE.CONFIRM_DELETE_POST))
+    isCurrentUserCreator && dispatch(actionsModal.openModalAC(MODAL_TYPE.CONFIRM_DELETE_POST))
   }
 
   return (
@@ -68,7 +78,7 @@ export const PostPage: PostPageComponent = () => {
           </article>
           <div className={styles.actionGroup}>
             <Breadcrumbs links={links} />
-            {user && (
+            {isCurrentUserCreator && (
               <div className={styles.buttonGroup}>
                 <Button
                   className={styles.buttonPostAction}

@@ -6,7 +6,6 @@ import { useAppDispatch } from '../../hooks/hooks'
 import { userActions } from '../../actions/userAction'
 import { useNavigate } from 'react-router-dom'
 
-
 const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -35,15 +34,12 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
       return Promise.reject(error)
     }
 
-
     const interceptor = API.interceptors.response.use(resInterceptor, errInterceptor)
     setIsSet(true)
     return () => API.interceptors.response.eject(interceptor)
-
   }, [])
 
   return isSet && children
 }
-
 
 export default AxiosInterceptor

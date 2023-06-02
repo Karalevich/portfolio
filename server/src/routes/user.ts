@@ -5,8 +5,8 @@ const router = express.Router()
 
 router.post('/signin', signin)
 router.post('/signup', signup)
-// router.post('/update', update)
 router.post('/google', googleSign)
+// router.post('/update', update)
 // router.post('/image', updateUserImage)
 
 export default router

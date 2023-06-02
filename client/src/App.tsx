@@ -13,10 +13,12 @@ import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
 import Modal from './components/Custom/Modal/Modal'
 import { useAppDispatch } from './hooks/hooks'
 import { USER } from './constants/user'
-import { userActions } from './actions/userAction'
+import { removeUsedData, userActions } from './actions/userAction'
 import AxiosInterceptor from './components/AxiosIntercetor/AxiosIntercetor'
+import decode from 'jwt-decode'
+import { AppComponent, JwtTokenType } from './types'
 
-export const App: React.FC<unknown> = () => {
+export const App: AppComponent = () => {
   const infoRef = useRef<null | HTMLElement>(null)
   const homeRef = useRef<null | HTMLElement>(null)
   const [isFixed, setIsFixed] = useState(false)
@@ -26,7 +28,16 @@ export const App: React.FC<unknown> = () => {
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem(USER) as string)
-    authData && dispatch(userActions.setAuthAC(authData.user, authData.token))
+
+    if (authData) {
+      const decodeToken = decode<JwtTokenType>(authData.token)
+
+      if (decodeToken.exp * 1000 < new Date().getTime()) {
+        dispatch(removeUsedData())
+      } else {
+        dispatch(userActions.setAuthAC(authData.user, authData.token))
+      }
+    }
 
     function handleScroll() {
       const fixedNode = infoRef.current

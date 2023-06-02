@@ -40,7 +40,7 @@ export const SignUp: SignUpComponent = () => {
       confirmPassword: '',
     },
     validationSchema: validationSignupSchema,
-    onSubmit: (values: SignupValuesT, {  }: FormikHelpers<SignupValuesT>) => {
+    onSubmit: (values: SignupValuesT, {}: FormikHelpers<SignupValuesT>) => {
       dispatch(signUpThunk(values))
     },
   })
@@ -98,12 +98,13 @@ export const SignUp: SignUpComponent = () => {
         helperText={formikSignup.touched.confirmPassword && formikSignup.errors.confirmPassword}
         disabled={isAuthLoading}
       />
-      <LoadingButton type={'submit'}
-                     className={styles.signButton}
-                     disableElevation
-                     variant='contained'
-                     loading={isAuthLoading}
-                     loadingPosition='center'
+      <LoadingButton
+        type={'submit'}
+        className={styles.signButton}
+        disableElevation
+        variant='contained'
+        loading={isAuthLoading}
+        loadingPosition='center'
       >
         Sign Up
       </LoadingButton>
