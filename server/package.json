@@ -6,9 +6,9 @@
   "scripts": {
     "watch": "tsc -w",
     "dev": "nodemon --inspect dist/index.js",
-    "build": "tsc",
+    "build": "tsc --dist",
     "start": "node dist/index.js",
-    "prod": "npm run build && npm run start"
+    "postinstall": "tsc"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
