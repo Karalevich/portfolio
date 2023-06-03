@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "cd server && npm install && npm run prod"
+    "start": "cd server && npm install && npm run build && npm run start"
   }
 }
