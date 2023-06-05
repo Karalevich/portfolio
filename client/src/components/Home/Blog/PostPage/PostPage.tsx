@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { SHARE } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
+import './text.scss'
 import { PostPageComponent } from './types'
 import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
@@ -44,7 +45,7 @@ export const PostPage: PostPageComponent = () => {
     img
   } = post || {}
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
-  const isCurrentUserCreator = user?.id === author
+  const isCurrentUserCreator = user?.id === author && author && user
 
   const onUpdatePost = () => {
     isCurrentUserCreator && navigate('/blog/addPost')
@@ -111,7 +112,7 @@ export const PostPage: PostPageComponent = () => {
         {post && (
           <article className={styles.postContent}>
             <img className={styles.mainImg} src={img as string} alt={'post preview'} />
-            <div dangerouslySetInnerHTML={{ __html: content as string }} />
+            <div dangerouslySetInnerHTML={{ __html: content as string }} className={styles.text} />
           </article>
         )}
         <article className={styles.recommendations}>

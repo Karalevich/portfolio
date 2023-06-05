@@ -1,0 +1,29 @@
+@import './src/styles/variables.scss';
+
+.ql-syntax{
+  background-color: #242526;
+  color: #f8f8f2;
+  overflow: visible;
+
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+
+  border-radius: 3px;
+  font-size: 0.8125rem;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  tab-size: 4;
+  line-height: 1.42
+}
+
+code{
+  font-size: 85%;
+  padding: 2px 4px;
+  background-color: $nav-bcg-svg;
+  color: $main-text !important;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: text;
+}

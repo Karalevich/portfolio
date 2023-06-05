@@ -4,7 +4,7 @@ export const MOBILE_SIZE = 768
 export const LIGHT = [
   { prop: 'background', value: '#FFFFFF' },
   { prop: 'select-bcg', value: 'rgba(126,127,128,0.97)' },
-  { prop: 'text', value: '#FFFFFF' },
+  { prop: 'text', value: '#f8f8f2' },
   { prop: 'substrate', value: '#f0f0f6' },
   { prop: 'substrate2', value: '#f0f0f6' },
   { prop: 'main-text', value: '#2B2B2B' },
@@ -35,7 +35,7 @@ export const DARK = [
   { prop: 'substrate', value: '#18191A' },
   { prop: 'text', value: '#2B2B2B' },
   { prop: 'substrate2', value: '#3A3B3C' },
-  { prop: 'main-text', value: '#FAFAFA' },
+  { prop: 'main-text', value: '#f8f8f2' },
   {
     prop: 'scrollbar-thumb',
     value: 'radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(215, 215, 215, 0.32) 100%)',

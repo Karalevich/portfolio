@@ -83,7 +83,7 @@ export const googleSuccessThunk =
         imageUrl: picture,
         id: sub,
       })
-      dispatch(setUsedData(data.user, response.access_token))
+      dispatch(setUsedData(data.user, data.token))
       dispatch(actionsModal.closesModalAC())
     } catch (e) {
       console.log(e)

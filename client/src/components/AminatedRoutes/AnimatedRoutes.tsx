@@ -12,12 +12,14 @@ import Blog from '../Home/Blog/Blog'
 import PostPage from '../Home/Blog/PostPage/PostPage'
 import NotFound from '../NotFound/NotFound'
 import AddPost from '../Home/Blog/AddPost/AddPost'
+import { useAppSelector } from '../../hooks/hooks'
+import { getUserS } from '../../selectors/userSelectors'
 
 export const AnimatedRoutes: AnimatedRoutesComponent = () => {
   const location = useLocation()
   const [displayLocation, setDisplayLocation] = useState(location)
   const [transitionStage, setTransistionStage] = useState<ROUTES_ANIMATIONS>(ROUTES_ANIMATIONS.FADE_IN)
-
+  const user = useAppSelector(getUserS)
   useEffect(() => {
     if (location !== displayLocation) setTransistionStage(ROUTES_ANIMATIONS.FADE_OUT)
   }, [location, displayLocation])
@@ -40,7 +42,7 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/portfolio'} element={<Portfolio />} />
         <Route path={'/blog'} element={<Blog isFullVersion />} />
         <Route path={'/blog/post/:id'} element={<PostPage />} />
-        <Route path={'/blog/addPost'} element={<AddPost />} />
+        <Route path={'/blog/addPost'} element={user ? <AddPost /> : <NotFound />} />
         <Route path={'/contact'} element={<Contact />} />
         <Route path={'/not-found'} element={<NotFound />} />
         <Route path={'*'} element={<NotFound />} />

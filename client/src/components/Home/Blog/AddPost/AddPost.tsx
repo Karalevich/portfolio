@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styles from './AddPost.module.scss'
 import { AddPostComponent, PostFromFormWithArrayImgT } from './types'
+import hljs from 'highlight.js'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
@@ -16,14 +17,22 @@ import { useFormik } from 'formik'
 import { FileWithPath } from 'react-dropzone'
 import classname from 'classnames'
 
+hljs.configure({
+  languages: ['javascript', 'python', 'bash']
+});
+
 const modules = {
   toolbar: [
-    [{ header: [1, 2, false] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [{ header: [1, 2, 3, 4, false] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code'],
     [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+    [{ 'color': [] }, { 'background': [] }],
     ['link', 'image'],
     ['clean'],
   ],
+  syntax: {
+    highlight: (text: string) => hljs.highlightAuto(text).value,
+  },
 }
 
 const initialState = {
@@ -153,7 +162,7 @@ export const AddPost: AddPostComponent = () => {
             fullWidth
             multiline
             minRows={2}
-            maxRows={2}
+            maxRows={4}
             disabled={isFetchingForm}
             onChange={formikSubmit.handleChange}
             error={formikSubmit.touched.description && Boolean(formikSubmit.errors.description)}
