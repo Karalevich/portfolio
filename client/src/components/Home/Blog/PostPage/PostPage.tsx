@@ -7,7 +7,7 @@ import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
 import Comments from '../Comments/Comments'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { actionsPosts, getCertainPostThunk } from '../../../../actions/postsAction'
 import { getCertainPostS, getRelatedPostsS } from '../../../../selectors/postsSelectors'
@@ -25,6 +25,7 @@ export const PostPage: PostPageComponent = () => {
   const relatedPosts = useAppSelector(getRelatedPostsS)
   const user = useAppSelector(getUserS)
   const navigate = useNavigate()
+  const [isRemovePostFromState, setIsRemovePostFromState] = useState(true)
 
   useEffect(() => {
     if (id) {
@@ -32,7 +33,10 @@ export const PostPage: PostPageComponent = () => {
       dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
       //dispatch(getPostsByTagsThunk(id))
     }
-  }, [id])
+    return () => {
+      isRemovePostFromState && dispatch(actionsPosts.changeOpenedPostIdAC(''))
+    }
+  }, [id, isRemovePostFromState])
 
   const {
     likes,
@@ -48,6 +52,7 @@ export const PostPage: PostPageComponent = () => {
   const isCurrentUserCreator = user?.id === author && author && user
 
   const onUpdatePost = () => {
+    setIsRemovePostFromState(false)
     isCurrentUserCreator && navigate('/blog/addPost')
   }
 
@@ -112,7 +117,7 @@ export const PostPage: PostPageComponent = () => {
         {post && (
           <article className={styles.postContent}>
             <img className={styles.mainImg} src={img as string} alt={'post preview'} />
-            <div dangerouslySetInnerHTML={{ __html: content as string }} className={styles.text} />
+            <div dangerouslySetInnerHTML={{ __html: content as string }} className={'text'} />
           </article>
         )}
         <article className={styles.recommendations}>
