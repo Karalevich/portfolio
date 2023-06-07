@@ -13,7 +13,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
     next()
   } catch (e) {
     console.log(e)
-    return res.status(500).json({ message: 'Server error' })
+    return res.status(498).json({ message: 'Invalid token' })
   }
 }
 

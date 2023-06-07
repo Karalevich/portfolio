@@ -18,7 +18,7 @@ import { FileWithPath } from 'react-dropzone'
 import classname from 'classnames'
 
 hljs.configure({
-  languages: ['javascript', 'python', 'bash', 'css']
+  languages: ['javascript', 'python', 'bash', 'css', 'typescript']
 });
 
 const modules = {

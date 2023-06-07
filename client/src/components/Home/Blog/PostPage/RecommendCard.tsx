@@ -27,11 +27,11 @@ const RecommendCard: RecommendCardComponent = ({ img, title, _id, date, authorNa
       <CardActionArea className={styles.actionArea} onClick={handleRedirect}>
         <CardMedia className={styles.media} component='img' image={img as string} alt={title} />
         <div className={styles.content}>
-          <h3 className={styles.title}>{title}</h3>
+          <h4 className={styles.title}>{title}</h4>
           <div className={styles.data}>
             <span className={styles.type}>
               <AccessTimeIcon fontSize={'small'} />
-              <span>{date}</span>
+              <span>{new Date(date).toLocaleDateString()}</span>
             </span>
             <span className={styles.type}>
               <PersonOutlineIcon fontSize={'small'} />

@@ -74,6 +74,11 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
         ...state,
         posts: state.posts.filter((post) => post._id !== action.id),
       }
+    case SET_FETCHING_RELATED_POSTS:
+      return {
+        ...state,
+        isFetchingRelatedPosts: action.flag
+      }
     // case COMMENTS:
     //   return {
     //     ...state,
@@ -82,11 +87,6 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
     //       return post
     //     }),
     //     post: action.payload
-    //   }
-    // case SET_FETCHING_RELATED_POSTS:
-    //   return {
-    //     ...state,
-    //     isFetchingRelatedPosts: action.flag
     //   }
     default:
       return state

@@ -3,7 +3,7 @@ import { AxiosInterceptorComponent } from './types'
 import { API } from '../../api'
 import { AxiosError, AxiosResponse } from 'axios'
 import { useAppDispatch } from '../../hooks/hooks'
-import { userActions } from '../../actions/userAction'
+import { removeUsedData, userActions } from '../../actions/userAction'
 import { useNavigate } from 'react-router-dom'
 
 const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
@@ -26,6 +26,9 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
           break
         case 404:
           navigate('/not-found')
+          break
+        case 498:
+          dispatch(removeUsedData())
           break
         default:
           return Promise.reject(error)

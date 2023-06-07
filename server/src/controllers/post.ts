@@ -21,11 +21,11 @@ export const getCertainPost = async (req: Request, res: Response) => {
   const { id } = req.params
   try {
     const post = await Post.findById(id)
-    if(!post){
+    if (!post) {
       return res.status(404).json({ message: 'Page not found!' })
     }
     // TODO using author find info about creator and add to response, now it hardcode
-    res.status(200).json({...post.toJSON(), authorName: 'Andrei Karlevich', authorImg: ''})
+    res.status(200).json({ ...post.toJSON(), authorName: 'Andrei Karlevich', authorImg: '' })
   } catch (e: any | unknown) {
     res.status(404).json({ message: e.message })
   }
@@ -87,12 +87,12 @@ export const deletePost = async (req: Request, res: Response) => {
   }
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(id)){
+    if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(404).send('No post with that id')
-    }else{
+    } else {
       const post = await Post.findById(id)
 
-      if(post?.author !== req.userId){
+      if (post && !post.author.equals(new mongoose.Types.ObjectId(`${req.userId}`))) {
         return res.status(403).send('Forbidden')
       }
 
@@ -145,10 +145,61 @@ export const commentPost = async (req: Request, res: Response) => {
       const updatePost = await Post.findByIdAndUpdate(id, post, { new: true })
 
       res.status(201).json(updatePost)
-    }else{
+    } else {
       res.status(404).send('No post with that id')
     }
   } catch (e: any | unknown) {
     res.status(409).json({ message: e.message })
+  }
+}
+
+export const getPostsByTags = async (req: Request, res: Response) => {
+  const { searchQuery } = req.query
+
+  try {
+    let relatedPosts = await Post.find({ tags: { $in: `${searchQuery}`.split(',') } })
+      .limit(3)
+      .populate('author', 'name')
+      .select('date img title')
+      .lean();
+
+    relatedPosts = relatedPosts.map(post => ({
+      ...post,
+      // @ts-ignore
+      authorName: post.author.name,
+    }))
+
+    let additionalPosts = []
+
+    // If there are less than 3 related posts, fetch additional random posts
+    if (relatedPosts.length < 3) {
+      const randomPostsCount = 3 - relatedPosts.length
+      additionalPosts = await Post.aggregate([
+        { $match: { _id: { $nin: [...relatedPosts.map(post => post._id)] } } },
+        { $sample: { size: randomPostsCount } },
+        {
+          $lookup: {
+            from: 'users',
+            localField: 'author',
+            foreignField: '_id',
+            as: 'authorData',
+          },
+        },
+        {
+          $project: {
+            _id: 1,
+            date: 1,
+            img: 1,
+            title: 1,
+            authorName: { $arrayElemAt: ['$authorData.name', 0] },
+          },
+        },
+      ])
+    }
+
+    const posts = [...relatedPosts, ...additionalPosts]
+    res.status(200).json(posts)
+  } catch (e: any | unknown) {
+    res.status(404).send('Error fetching related posts')
   }
 }

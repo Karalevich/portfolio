@@ -124,14 +124,16 @@
 
   .recommendList {
     display: flex;
-    column-gap: 1.25rem;
+    //column-gap: 1.25rem;
     border-bottom: 1.5px solid $skeleton;
     padding-bottom: 3.125rem;
     margin-bottom: 3.125rem;
+    justify-content: space-between;
 
     .card {
       border-radius: 2px;
       height: 18.75rem;
+      width: 32%;
       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
       background-size: cover;
     }
@@ -254,6 +256,7 @@
 
       .card {
         height: 25rem;
+        width: 100%;
       }
 
       .content {

@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { SHARE } from 'src/constants/personalInfo'
+import { PLACEHOLDER_COUNT_RELATED_POSTS, PLACEHOLDER_POST, SHARE } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
-import './text.scss'
 import { PostPageComponent } from './types'
 import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
@@ -9,8 +8,8 @@ import RecommendCard from './RecommendCard'
 import Comments from '../Comments/Comments'
 import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { actionsPosts, getCertainPostThunk } from '../../../../actions/postsAction'
-import { getCertainPostS, getRelatedPostsS } from '../../../../selectors/postsSelectors'
+import { actionsPosts, getCertainPostThunk, getPostsByTagsThunk } from '../../../../actions/postsAction'
+import { getCertainPostS, getFetchingRelatedPostsS, getRelatedPostsS } from '../../../../selectors/postsSelectors'
 import { Button } from '@mui/material'
 import { RecommendCardT } from '../PostCard/types'
 import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
@@ -23,6 +22,7 @@ export const PostPage: PostPageComponent = () => {
   const dispatch = useAppDispatch()
   const post = useAppSelector(getCertainPostS)
   const relatedPosts = useAppSelector(getRelatedPostsS)
+  const isFetchingRelatedPosts = useAppSelector(getFetchingRelatedPostsS)
   const user = useAppSelector(getUserS)
   const navigate = useNavigate()
   const [isRemovePostFromState, setIsRemovePostFromState] = useState(true)
@@ -31,12 +31,15 @@ export const PostPage: PostPageComponent = () => {
     if (id) {
       dispatch(getCertainPostThunk(id))
       dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
-      //dispatch(getPostsByTagsThunk(id))
     }
     return () => {
       isRemovePostFromState && dispatch(actionsPosts.changeOpenedPostIdAC(''))
     }
   }, [id, isRemovePostFromState])
+
+  useEffect(() => {
+    post?.tags && dispatch(getPostsByTagsThunk(post.tags.join()))
+  }, [post?.tags])
 
   const {
     likes,
@@ -46,7 +49,7 @@ export const PostPage: PostPageComponent = () => {
     authorImg,
     authorName = 'A',
     content,
-    img
+    img,
   } = post || {}
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
   const isCurrentUserCreator = user?.id === author && author && user
@@ -117,14 +120,19 @@ export const PostPage: PostPageComponent = () => {
         {post && (
           <article className={styles.postContent}>
             <img className={styles.mainImg} src={img as string} alt={'post preview'} />
-            <div dangerouslySetInnerHTML={{ __html: content as string }} className={'text'} />
+            <div dangerouslySetInnerHTML={{ __html: content as string }} className={'ql-editor'} />
           </article>
         )}
         <article className={styles.recommendations}>
           <h3 className={styles.youLike}>You may like this too</h3>
           <div className={styles.recommendList}>
-            {relatedPosts.map((post: JSX.IntrinsicAttributes & RecommendCardT) => (
-              <RecommendCard key={post._id} {...post} />
+            {(isFetchingRelatedPosts
+                ? Array(PLACEHOLDER_COUNT_RELATED_POSTS)
+                  .fill(PLACEHOLDER_POST)
+                  .map((e, i) => ({ ...e, _id: `${i}` }))
+                : relatedPosts
+            ).map((post: JSX.IntrinsicAttributes & RecommendCardT) => (
+              <RecommendCard key={post._id} {...post} isFetchingPosts={isFetchingRelatedPosts}/>
             ))}
           </div>
         </article>

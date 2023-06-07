@@ -29,6 +29,6 @@ export type CertainPostT = PostT & {
 
 export type PostCardComponent = FunctionComponent<PostT>
 
-export type RecommendCardT = Pick<CertainPostT, 'img' | 'title' | '_id' | 'date' | 'authorName'>
+export type RecommendCardT = Pick<CertainPostT, 'img' | 'title' | '_id' | 'date' | 'authorName' | 'isFetchingPosts'>
 
 export type RecommendCardComponent = FunctionComponent<RecommendCardT>

@@ -697,8 +697,8 @@ export const PORTFOLIO: PortfolioT = {
 }
 
 export const PLACEHOLDER_POST = {
-  title: 'asdasd',
-  description: 'asdasdasd',
+  title: 'placeholder',
+  description: 'placeholder',
   img: '',
   author: {
     name: '',
@@ -718,6 +718,7 @@ export const PLACEHOLDER_POST = {
   likes: [],
 }
 export const PLACEHOLDER_COUNT_POSTS = 9
+export const PLACEHOLDER_COUNT_RELATED_POSTS = 3
 
 export const CONTACT_INFO: Array<ContactCardProps> = [
   {
