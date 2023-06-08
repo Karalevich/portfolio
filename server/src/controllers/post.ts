@@ -1,4 +1,4 @@
-import Post from '../models/post'
+import Post, { PostDocument } from '../models/post'
 import mongoose from 'mongoose'
 import { LIMIT_CARDS_ON_PAGE } from '../constants'
 import { Request, Response } from 'express'
@@ -26,12 +26,15 @@ export const getPosts = async (req: Request, res: Response) => {
 export const getCertainPost = async (req: Request, res: Response) => {
   const { id } = req.params
   try {
-    const post = await Post.findById(id)
+    const post = await Post
+      .findById(id)
+      .populate('author', 'name imageUrl')
+
     if (!post) {
       return res.status(404).json({ message: 'Page not found!' })
     }
-    // TODO using author find info about creator and add to response, now it hardcode
-    res.status(200).json({ ...post.toJSON(), authorName: 'Andrei Karlevich', authorImg: '' })
+
+    res.status(200).json(post)
   } catch (e: any | unknown) {
     res.status(404).json({ message: e.message })
   }
@@ -168,46 +171,22 @@ export const getPostsByTags = async (req: Request, res: Response) => {
       .limit(3)
       .populate('author', 'name')
       .select('date img title')
-      .lean();
+      .lean()
 
-    const transformRelatedPosts = relatedPosts.map(post => ({
-      _id: post._id,
-      date: post.date,
-      img: post.img,
-      title: post.title,
-      // @ts-ignore
-      authorName: post.author.name,
-    }))
-
-    let additionalPosts = []
+    let additionalPosts: Array<PostDocument> = []
 
     // If there are less than 3 related posts, fetch additional random posts
     if (relatedPosts.length < 3) {
       const randomPostsCount = 3 - relatedPosts.length
-      additionalPosts = await Post.aggregate([
-        { $match: { _id: { $nin: [...relatedPosts.map(post => post._id)] } } },
-        { $sample: { size: randomPostsCount } },
-        {
-          $lookup: {
-            from: 'users',
-            localField: 'author',
-            foreignField: '_id',
-            as: 'authorData',
-          },
-        },
-        {
-          $project: {
-            _id: 1,
-            date: 1,
-            img: 1,
-            title: 1,
-            authorName: { $arrayElemAt: ['$authorData.name', 0] },
-          },
-        },
-      ])
+      additionalPosts = await Post
+        .find({ _id: { $nin: relatedPosts.map(post => post._id) } })
+        .limit(randomPostsCount)
+        .populate('author', 'name')
+        .select('date img title author')
+        .lean()
     }
 
-    const posts = [...transformRelatedPosts, ...additionalPosts]
+    const posts = [...relatedPosts, ...additionalPosts]
     res.status(200).json(posts)
   } catch (e: any | unknown) {
     res.status(404).send('Error fetching related posts')

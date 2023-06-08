@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document, Model } from 'mongoose'
 
-interface PostDocument extends Document {
+export interface PostDocument extends Document {
   title: string
   description: string
   content: string
@@ -12,7 +12,7 @@ interface PostDocument extends Document {
   date: Date,
 }
 
-interface PostModel extends Model<PostDocument> {}
+export interface PostModel extends Model<PostDocument> {}
 
 
 const postSchema = new Schema<PostDocument, PostModel>({

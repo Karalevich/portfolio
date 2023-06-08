@@ -60,10 +60,9 @@ export const googleSign = async (req: Request, res: Response) => {
         name,
         imageUrl,
         email,
-        id
       })
     }
-    const token = jwt.sign({ email, id}, process.env.SECRET as string, { expiresIn: '1h' })
+    const token = jwt.sign({ email, id: newUser._id}, process.env.SECRET as string, { expiresIn: '1h' })
     res.status(200).json({ user: newUser.transform(), token })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })

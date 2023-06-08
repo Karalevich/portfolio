@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import styles from './PostPage.module.scss'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
-import { Card, CardActionArea, CardMedia } from '@mui/material'
+import { Card, CardActionArea, CardMedia, Skeleton } from '@mui/material'
 import { RecommendCardComponent } from '../PostCard/types'
 
-const RecommendCard: RecommendCardComponent = ({ img, title, _id, date, authorName }) => {
+const RecommendCard: RecommendCardComponent = ({ img, title, _id, date, author, isFetchingPosts }) => {
   const [isCardHover, setIsCardHover] = useState(false)
   const redirect = useNavigate()
 
@@ -25,18 +25,29 @@ const RecommendCard: RecommendCardComponent = ({ img, title, _id, date, authorNa
       onMouseLeave={toggleIsCardHover(false)}
     >
       <CardActionArea className={styles.actionArea} onClick={handleRedirect}>
-        <CardMedia className={styles.media} component='img' image={img as string} alt={title} />
+        {isFetchingPosts
+          ? <Skeleton animation='wave' width={'100%'} height={'100%'} sx={{ transform: 'none' }} />
+          : <CardMedia className={styles.media} component='img' image={img as string} alt={title} />}
         <div className={styles.content}>
-          <h4 className={styles.title}>{title}</h4>
+          {isFetchingPosts
+            ? <h3><Skeleton animation='wave' className={styles.title} width={'100%'} /></h3>
+            : <h4 className={styles.title}>{title}</h4>
+          }
           <div className={styles.data}>
-            <span className={styles.type}>
-              <AccessTimeIcon fontSize={'small'} />
-              <span>{new Date(date).toLocaleDateString()}</span>
+            {isFetchingPosts
+              ? <Skeleton animation='wave' className={styles.type} width={'40%'} />
+              : <span className={styles.type}>
+                  <AccessTimeIcon fontSize={'small'} />
+                  <span>{new Date(date).toLocaleDateString()}</span>
+                </span>
+            }
+            {isFetchingPosts
+              ? <Skeleton animation='wave' className={styles.type} width={'40%'} />
+              : <span className={styles.type}>
+                  <PersonOutlineIcon fontSize={'small'} />
+                  <span>{author?.name}</span>
             </span>
-            <span className={styles.type}>
-              <PersonOutlineIcon fontSize={'small'} />
-              <span>{authorName}</span>
-            </span>
+            }
           </div>
         </div>
       </CardActionArea>

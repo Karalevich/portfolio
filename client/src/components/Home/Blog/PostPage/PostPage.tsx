@@ -15,7 +15,7 @@ import {
   getFetchingRelatedPostsS,
   getRelatedPostsS,
 } from '../../../../selectors/postsSelectors'
-import { Button } from '@mui/material'
+import { Button, Skeleton } from '@mui/material'
 import { RecommendCardT } from '../PostCard/types'
 import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
 import { actionsModal } from '../../../../actions/modalAction'
@@ -50,9 +50,9 @@ export const PostPage: PostPageComponent = () => {
     return () => cleanUp()
   }, [isRemovePostFromState])
 
-  const { likes, author, title, date, authorImg, authorName = 'A', content, img } = post || {}
+  const { likes, author, title, date, content, img } = post || {}
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
-  const isCurrentUserCreator = user?.id === author && author && user
+  const isCurrentUserCreator = author && user && user.id === author._id
 
   const onUpdatePost = () => {
     isRemovePostFromState.current = false
@@ -72,14 +72,14 @@ export const PostPage: PostPageComponent = () => {
           <h2 className={styles.postTitle}>{title}</h2>
           <article className={styles.info}>
             <div className={styles.author}>
-              {authorImg ? (
-                <img className={styles.authorImg} src={authorImg} alt={'post author'} />
+              {author?.imageUrl ? (
+                <img className={styles.authorImg} src={author.imageUrl} alt={'post author'} />
               ) : (
-                <span className={styles.authorImg}>{authorName[0].toUpperCase()}</span>
+                <span className={styles.authorImg}>{author?.name[0].toUpperCase()}</span>
               )}
               <div className={styles.authorData}>
-                <span className={styles.name}>{authorName}</span>
-                <span className={styles.date}>{date}</span>
+                <span className={styles.name}>{author?.name}</span>
+                <span className={styles.date}>{new Date(`${date}`).toLocaleDateString()}</span>
               </div>
             </div>
             <div className={styles.share}>
@@ -124,13 +124,15 @@ export const PostPage: PostPageComponent = () => {
           </article>
         )}
         <article className={styles.recommendations}>
-          <h3 className={styles.youLike}>You may like this too</h3>
+          {isFetchingRelatedPosts
+            ? <h3><Skeleton animation='wave' width={'40%'} className={styles.youLike} /></h3>
+            : <h3 className={styles.youLike}>You may like this too</h3>}
           <div className={styles.recommendList}>
             {(isFetchingRelatedPosts
-              ? Array(PLACEHOLDER_COUNT_RELATED_POSTS)
+                ? Array(PLACEHOLDER_COUNT_RELATED_POSTS)
                   .fill(PLACEHOLDER_POST)
                   .map((e, i) => ({ ...e, _id: `${i}` }))
-              : relatedPosts
+                : relatedPosts
             ).map((post: JSX.IntrinsicAttributes & RecommendCardT) => (
               <RecommendCard key={post._id} {...post} isFetchingPosts={isFetchingRelatedPosts} />
             ))}
