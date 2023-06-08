@@ -8,9 +8,7 @@ interface UserDocument extends Document {
   transform: () => any;
 }
 
-interface UserModel extends Model<UserDocument> {
-  // Additional static methods can be added here
-}
+interface UserModel extends Model<UserDocument> {}
 
 const userSchema = new Schema<UserDocument, UserModel>({
   name: { type: String, required: true },

@@ -11,24 +11,27 @@ export type PostT = {
   img: FileT
   title: string
   description: string
-  content: string
-  author: AuthorIdT
   date: string
   _id: string
   isFullVersion?: boolean
   isFetchingPosts?: boolean
-  likes: Array<string>
-  tags: Array<string>
 }
 
 export type CertainPostT = PostT & {
   authorName: string
   authorImg?: string
   comments?: Array<CommentT>
+  likes: Array<string>
+  tags: Array<string>
+  content: string
+  author: AuthorIdT
 }
 
 export type PostCardComponent = FunctionComponent<PostT>
 
-export type RecommendCardT = Pick<CertainPostT, 'img' | 'title' | '_id' | 'date' | 'authorName' | 'isFetchingPosts'>
+export type RecommendCardT = Pick<
+  CertainPostT,
+  'img' | 'title' | '_id' | 'date' | 'authorName' | 'isFetchingPosts'
+>
 
 export type RecommendCardComponent = FunctionComponent<RecommendCardT>

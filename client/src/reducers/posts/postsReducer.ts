@@ -6,6 +6,7 @@ export const UPDATE = 'UPDATE'
 export const COMMENTS = 'COMMENTS'
 export const DELETE = 'DELETE'
 export const SET_POST = 'SET_POST'
+export const SET_FETCHING_CERTAIN_POST = 'SET_FETCHING_CERTAIN_POST'
 export const CHANGE_OPENED_POST_ID = 'CHANGE_OPENED_POST_ID'
 export const SET_FETCHING_POSTS = 'SET_FETCHING_POSTS'
 export const SET_RELATED_POST = 'SET_RELATED_POST'
@@ -19,6 +20,7 @@ const initialState = {
   isFetchingPosts: false,
   isFetchingForm: false,
   isFetchingRelatedPosts: true,
+  isFetchingCertainPost: true,
   openedPostId: '',
   numberOfPages: 3,
 }
@@ -61,6 +63,11 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
         ...state,
         posts: [...state.posts, action.payload],
       }
+    case SET_FETCHING_CERTAIN_POST:
+      return {
+        ...state,
+        isFetchingCertainPost: action.flag,
+      }
     case UPDATE:
       return {
         ...state,
@@ -77,7 +84,7 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
     case SET_FETCHING_RELATED_POSTS:
       return {
         ...state,
-        isFetchingRelatedPosts: action.flag
+        isFetchingRelatedPosts: action.flag,
       }
     // case COMMENTS:
     //   return {

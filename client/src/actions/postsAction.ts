@@ -14,6 +14,7 @@ import {
   SET_POST,
   SET_RELATED_POST,
   UPDATE,
+  SET_FETCHING_CERTAIN_POST,
 } from '../reducers/posts/postsReducer'
 import { updateTagsType } from '../utils/updateTagsType'
 import { PostFromFormWithArrayImgT } from '../components/Home/Blog/AddPost/types'
@@ -34,12 +35,17 @@ export const actionsPosts = {
       type: SET_FETCHING_POSTS,
       flag,
     } as const),
-  setCertainPostAC: (post: CertainPostT) =>
+  setCertainPostAC: (post: CertainPostT | null) =>
     ({
       type: SET_POST,
       payload: {
         post,
       },
+    } as const),
+  setFetchingCertainPostAC: (flag: boolean) =>
+    ({
+      type: SET_FETCHING_CERTAIN_POST,
+      flag,
     } as const),
   setRelatedPostsAC: (posts: Array<RecommendCardT>) =>
     ({
@@ -102,13 +108,14 @@ export const getCertainPostThunk =
   (id: string): ThunkT<PostsActionT> =>
   async (dispatch) => {
     try {
-      dispatch(actionsPosts.setFetchingPostsAC(true))
+      dispatch(actionsPosts.setFetchingCertainPostAC(true))
       const { data } = await api.fetchCertainPost(id)
+      await dispatch(getPostsByTagsThunk(data.tags.join()))
       dispatch(actionsPosts.setCertainPostAC(data))
     } catch (e) {
       console.log(e)
     } finally {
-      dispatch(actionsPosts.setFetchingPostsAC(false))
+      dispatch(actionsPosts.setFetchingCertainPostAC(false))
     }
   }
 
@@ -126,7 +133,7 @@ export const getPostsByTagsThunk =
     }
   }
 export const createPostThunk =
-  (post: PostFromFormWithArrayImgT): ThunkT<PostsActionT> =>
+  (post: PostFromFormWithArrayImgT, navigate: NavigateFunction): ThunkT<PostsActionT> =>
   async (dispatch) => {
     try {
       dispatch(actionsPosts.setFetchingFormAC(true))
@@ -135,6 +142,8 @@ export const createPostThunk =
 
       const { data } = await api.createPost({ ...post, img: readyImg })
       dispatch(actionsPosts.createPostAC(data))
+
+      navigate('/blog')
     } catch (e) {
       console.log(e)
     } finally {
@@ -142,14 +151,20 @@ export const createPostThunk =
     }
   }
 export const updatePostThunk =
-  (id: string, post: PostFromFormWithArrayImgT): ThunkT<PostsActionT> =>
+  (id: string, post: PostFromFormWithArrayImgT, navigate: NavigateFunction): ThunkT<PostsActionT> =>
   async (dispatch) => {
     try {
       dispatch(actionsPosts.setFetchingFormAC(true))
       post.tags = updateTagsType(post.tags)
       const readyImg = await convertFileBeforeSendToServer(post.img[0])
+
       const { data } = await api.updatePost(id, { ...post, img: readyImg })
+
       dispatch(actionsPosts.updatePostAC(data))
+      dispatch(actionsPosts.changeOpenedPostIdAC(''))
+      dispatch(actionsPosts.setCertainPostAC(null))
+
+      navigate('/blog')
     } catch (e) {
       console.log(e)
     } finally {

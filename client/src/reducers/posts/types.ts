@@ -10,6 +10,7 @@ export type PostsStateT = {
   isFetchingPosts: boolean
   isFetchingForm: boolean
   isFetchingRelatedPosts: boolean
+  isFetchingCertainPost: boolean
   numberOfPages: number
   openedPostId: string
 }

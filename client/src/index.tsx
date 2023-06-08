@@ -1,7 +1,7 @@
 import React, { StrictMode } from 'react'
 import './index.scss'
-import 'react-quill/dist/quill.snow.css';
-import './styles/editorRewrite.scss';
+import 'react-quill/dist/quill.snow.css'
+import './styles/editorRewrite.scss'
 import { createRoot } from 'react-dom/client'
 import { App } from './App'
 import { Provider } from 'react-redux'

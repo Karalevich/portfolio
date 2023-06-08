@@ -6,10 +6,15 @@ import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
 import Comments from '../Comments/Comments'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { actionsPosts, getCertainPostThunk, getPostsByTagsThunk } from '../../../../actions/postsAction'
-import { getCertainPostS, getFetchingRelatedPostsS, getRelatedPostsS } from '../../../../selectors/postsSelectors'
+import { actionsPosts, getCertainPostThunk } from '../../../../actions/postsAction'
+import {
+  getCertainPostS,
+  getFetchingCertainPostS,
+  getFetchingRelatedPostsS,
+  getRelatedPostsS,
+} from '../../../../selectors/postsSelectors'
 import { Button } from '@mui/material'
 import { RecommendCardT } from '../PostCard/types'
 import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
@@ -23,39 +28,34 @@ export const PostPage: PostPageComponent = () => {
   const post = useAppSelector(getCertainPostS)
   const relatedPosts = useAppSelector(getRelatedPostsS)
   const isFetchingRelatedPosts = useAppSelector(getFetchingRelatedPostsS)
+  const isFetchingCertainPost = useAppSelector(getFetchingCertainPostS)
   const user = useAppSelector(getUserS)
   const navigate = useNavigate()
-  const [isRemovePostFromState, setIsRemovePostFromState] = useState(true)
+  const isRemovePostFromState = useRef(true)
 
   useEffect(() => {
     if (id) {
       dispatch(getCertainPostThunk(id))
       dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
     }
-    return () => {
-      isRemovePostFromState && dispatch(actionsPosts.changeOpenedPostIdAC(''))
-    }
-  }, [id, isRemovePostFromState])
+  }, [id])
 
   useEffect(() => {
-    post?.tags && dispatch(getPostsByTagsThunk(post.tags.join()))
-  }, [post?.tags])
+    const cleanUp = () => {
+      if (isRemovePostFromState.current) {
+        dispatch(actionsPosts.changeOpenedPostIdAC(''))
+        dispatch(actionsPosts.setCertainPostAC(null))
+      }
+    }
+    return () => cleanUp()
+  }, [isRemovePostFromState])
 
-  const {
-    likes,
-    author,
-    title,
-    date,
-    authorImg,
-    authorName = 'A',
-    content,
-    img,
-  } = post || {}
+  const { likes, author, title, date, authorImg, authorName = 'A', content, img } = post || {}
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
   const isCurrentUserCreator = user?.id === author && author && user
 
   const onUpdatePost = () => {
-    setIsRemovePostFromState(false)
+    isRemovePostFromState.current = false
     isCurrentUserCreator && navigate('/blog/addPost')
   }
 
@@ -65,7 +65,9 @@ export const PostPage: PostPageComponent = () => {
 
   return (
     <section className={styles.postPage}>
-      {post ? (
+      {isFetchingCertainPost ? (
+        <SkeletonPostPage />
+      ) : (
         <header>
           <h2 className={styles.postTitle}>{title}</h2>
           <article className={styles.info}>
@@ -113,11 +115,9 @@ export const PostPage: PostPageComponent = () => {
             )}
           </div>
         </header>
-      ) : (
-        <SkeletonPostPage />
       )}
       <main>
-        {post && (
+        {!isFetchingCertainPost && (
           <article className={styles.postContent}>
             <img className={styles.mainImg} src={img as string} alt={'post preview'} />
             <div dangerouslySetInnerHTML={{ __html: content as string }} className={'ql-editor'} />
@@ -127,12 +127,12 @@ export const PostPage: PostPageComponent = () => {
           <h3 className={styles.youLike}>You may like this too</h3>
           <div className={styles.recommendList}>
             {(isFetchingRelatedPosts
-                ? Array(PLACEHOLDER_COUNT_RELATED_POSTS)
+              ? Array(PLACEHOLDER_COUNT_RELATED_POSTS)
                   .fill(PLACEHOLDER_POST)
                   .map((e, i) => ({ ...e, _id: `${i}` }))
-                : relatedPosts
+              : relatedPosts
             ).map((post: JSX.IntrinsicAttributes & RecommendCardT) => (
-              <RecommendCard key={post._id} {...post} isFetchingPosts={isFetchingRelatedPosts}/>
+              <RecommendCard key={post._id} {...post} isFetchingPosts={isFetchingRelatedPosts} />
             ))}
           </div>
         </article>

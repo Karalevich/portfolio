@@ -1,6 +1,21 @@
-import mongoose, {Schema} from 'mongoose'
+import mongoose, { Schema, Document, Model } from 'mongoose'
 
-const postSchema = new Schema({
+interface PostDocument extends Document {
+  title: string
+  description: string
+  content: string
+  author: Schema.Types.ObjectId,
+  tags: Array<string>
+  img: string,
+  likes: Array<string>,
+  comments: Array<string>,
+  date: Date,
+}
+
+interface PostModel extends Model<PostDocument> {}
+
+
+const postSchema = new Schema<PostDocument, PostModel>({
   title: String,
   description: String,
   content: String,
@@ -21,6 +36,6 @@ const postSchema = new Schema({
   },
 })
 
-const Post = mongoose.model('Post', postSchema)
+const Post = mongoose.model<PostDocument, PostModel>('Post', postSchema)
 
 export default Post

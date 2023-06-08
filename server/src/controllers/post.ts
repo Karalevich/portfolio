@@ -9,7 +9,13 @@ export const getPosts = async (req: Request, res: Response) => {
   try {
     const startIndex = page ? (Number(page) - 1) * LIMIT_CARDS_ON_PAGE : 0
     const total = await Post.countDocuments({})
-    const posts = await Post.find().sort({ _id: -1 }).limit(LIMIT_CARDS_ON_PAGE).skip(startIndex)
+    const posts = await Post
+      .find()
+      .sort({ _id: -1 })
+      .limit(LIMIT_CARDS_ON_PAGE)
+      .select('img title description')
+      .skip(startIndex)
+      .lean()
 
     res.status(200).json({ posts, numberOfPages: Math.ceil(total / LIMIT_CARDS_ON_PAGE) })
   } catch (e: any | unknown) {
@@ -92,7 +98,7 @@ export const deletePost = async (req: Request, res: Response) => {
     } else {
       const post = await Post.findById(id)
 
-      if (post && !post.author.equals(new mongoose.Types.ObjectId(`${req.userId}`))) {
+      if (post && post.author.toString() !== req.userId) {
         return res.status(403).send('Forbidden')
       }
 
@@ -157,14 +163,18 @@ export const getPostsByTags = async (req: Request, res: Response) => {
   const { searchQuery } = req.query
 
   try {
-    let relatedPosts = await Post.find({ tags: { $in: `${searchQuery}`.split(',') } })
+    const relatedPosts = await Post
+      .find({ tags: { $in: `${searchQuery}`.split(',') } })
       .limit(3)
       .populate('author', 'name')
       .select('date img title')
       .lean();
 
-    relatedPosts = relatedPosts.map(post => ({
-      ...post,
+    const transformRelatedPosts = relatedPosts.map(post => ({
+      _id: post._id,
+      date: post.date,
+      img: post.img,
+      title: post.title,
       // @ts-ignore
       authorName: post.author.name,
     }))
@@ -197,7 +207,7 @@ export const getPostsByTags = async (req: Request, res: Response) => {
       ])
     }
 
-    const posts = [...relatedPosts, ...additionalPosts]
+    const posts = [...transformRelatedPosts, ...additionalPosts]
     res.status(200).json(posts)
   } catch (e: any | unknown) {
     res.status(404).send('Error fetching related posts')

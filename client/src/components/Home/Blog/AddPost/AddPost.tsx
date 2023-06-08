@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styles from './AddPost.module.scss'
 import { AddPostComponent, PostFromFormWithArrayImgT } from './types'
 import hljs from 'highlight.js'
@@ -18,15 +19,15 @@ import { FileWithPath } from 'react-dropzone'
 import classname from 'classnames'
 
 hljs.configure({
-  languages: ['javascript', 'python', 'bash', 'css', 'typescript']
-});
+  languages: ['javascript', 'python', 'bash', 'css', 'typescript'],
+})
 
 const modules = {
   toolbar: [
     [{ header: [1, 2, 3, 4, false] }],
     ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code'],
     [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
-    [{ 'color': [] }, { 'background': [] }],
+    [{ color: [] }, { background: [] }],
     ['link', 'image'],
     ['clean'],
   ],
@@ -76,34 +77,32 @@ const validationPostSchema = yup.object({
 })
 export const AddPost: AddPostComponent = () => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const openedPostId = useAppSelector(getOpenedPostIdS)
   const post = useAppSelector(getOpenedPostS)
   const isFetchingForm = useAppSelector(getFetchingFormS)
 
   const formikSubmit = useFormik({
-    initialValues: initialState,
+    initialValues: post ? post : initialState,
     validationSchema: validationPostSchema,
     onSubmit: (values: PostFromFormWithArrayImgT, {}) => {
       if (openedPostId) {
-        dispatch(updatePostThunk(openedPostId, values))
+        dispatch(updatePostThunk(openedPostId, values, navigate))
       } else {
-        dispatch(createPostThunk(values))
+        dispatch(createPostThunk(values, navigate))
       }
-      clear()
     },
   })
 
   useEffect(() => {
-    if (post) {
-      formikSubmit.setValues({ ...formikSubmit.values, ...post })
-    }
     return () => {
       clear()
     }
-  }, [post])
+  }, [])
 
   const clear = () => {
     dispatch(actionsPosts.changeOpenedPostIdAC(''))
+    dispatch(actionsPosts.setCertainPostAC(null))
     formikSubmit.resetForm()
   }
 

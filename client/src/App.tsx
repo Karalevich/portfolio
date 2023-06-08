@@ -29,7 +29,6 @@ export const App: AppComponent = () => {
     const authData = JSON.parse(localStorage.getItem(USER) as string)
     authData && dispatch(userActions.setAuthAC(authData.user, authData.token))
 
-
     function handleScroll() {
       const fixedNode = infoRef.current
       const scrollNode = homeRef.current
