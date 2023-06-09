@@ -12,6 +12,7 @@ export const SET_FETCHING_POSTS = 'SET_FETCHING_POSTS'
 export const SET_RELATED_POST = 'SET_RELATED_POST'
 export const SET_FETCHING_FORM = 'SET_FETCHING_FORM'
 export const SET_FETCHING_RELATED_POSTS = 'SET_FETCHING_RELATED_POSTS'
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 
 const initialState = {
   posts: [],
@@ -22,7 +23,8 @@ const initialState = {
   isFetchingRelatedPosts: true,
   isFetchingCertainPost: true,
   openedPostId: '',
-  numberOfPages: 3,
+  allPages: 1,
+  currentPage: 1,
 }
 
 export default (state: PostsStateT = initialState, action: PostsActionT) => {
@@ -31,7 +33,7 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
       return {
         ...state,
         posts: action.payload.posts,
-        numberOfPages: action.payload.numberOfPages,
+        allPages: action.payload.allPages,
       }
     case SET_FETCHING_POSTS:
       return {
@@ -85,6 +87,11 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
       return {
         ...state,
         isFetchingRelatedPosts: action.flag,
+      }
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: action.page,
       }
     // case COMMENTS:
     //   return {

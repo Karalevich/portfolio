@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState } from 'react'
 import styles from './Filter.module.scss'
 import { FilterComponent } from './types'
 import { styled } from '@mui/material/styles'
@@ -7,19 +7,23 @@ import SearchIcon from '@mui/icons-material/Search'
 import Dropdown from '../../../Custom/Dropdown/Dropdown'
 import { Button, useMediaQuery } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../../../../hooks/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { getUserS } from '../../../../selectors/userSelectors'
+import { debounce } from '../../../../utils/debounce'
+import { actionsPosts, getPostsBySearchThunk, getPostsThunk } from '../../../../actions/postsAction'
+import { getCurrentPageS } from '../../../../selectors/postsSelectors'
 
 const SELECT = ['By default', 'By title', 'By date', 'By likes']
 
 export const Filter: FilterComponent = () => {
+  const dispatch = useAppDispatch()
   const filterRef = useRef<HTMLHeadingElement | null>(null)
   const redirect = useNavigate()
   const isTabletOrMobile = useMediaQuery('(max-width:767px)')
   const user = useAppSelector(getUserS)
-  const handleRedirect = () => {
-    redirect(`/blog/addPost`)
-  }
+  const currentPage = useAppSelector(getCurrentPageS)
+  const [searchValue, setSearchValue] = useState('')
+  const [sortValue, setSortValue] = useState(SELECT[0])
 
   useEffect(() => {
     /* browser does not provides API to track when element with position sticky reach the fix position, for this used IntersectionObserver */
@@ -39,14 +43,53 @@ export const Filter: FilterComponent = () => {
     }
   }, [])
 
+  const handleRedirect = () => {
+    redirect(`/blog/addPost`)
+  }
+
+  const debouncedSetSearchValue = useCallback(
+    debounce(
+      (searchQuery: string, sortQuery: number) =>
+        dispatch(getPostsBySearchThunk(searchQuery, sortQuery, currentPage)),
+      400
+    ),
+    [currentPage]
+  )
+
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
+    dispatch(actionsPosts.setCurrentPageAC(1))
+
+    const sortQuery = SELECT.indexOf(sortValue)
+    debouncedSetSearchValue(searchValue.trim(), sortQuery)
+  }
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const searchQuery = searchValue.trim()
+    const sortQuery = SELECT.indexOf(sortValue)
+    if (!searchQuery && !sortQuery) {
+      dispatch(getPostsThunk())
+    } else {
+      dispatch(getPostsBySearchThunk(searchQuery, sortQuery, currentPage))
+    }
+  }
+
+  const onSortPosts = (item: string) => {
+    const sortQuery = SELECT.indexOf(item)
+    const searchQuery = searchValue.trim()
+    dispatch(getPostsBySearchThunk(searchQuery, sortQuery, currentPage))
+    setSortValue(item)
+  }
+
   return (
     <article className={styles.filter} ref={filterRef}>
-      <div className={styles.search}>
+      <form className={styles.search} onSubmit={onSubmit}>
         <div className={styles.searchIconWrapper}>
           <SearchIcon />
         </div>
-        <StyledInputBase placeholder='Search…' />
-      </div>
+        <StyledInputBase value={searchValue} onChange={onSearchChange} placeholder='Search…' />
+      </form>
 
       <div className={styles.rightSection}>
         {user && (
@@ -60,7 +103,7 @@ export const Filter: FilterComponent = () => {
             {isTabletOrMobile ? '+' : 'Add post'}
           </Button>
         )}
-        <Dropdown selects={SELECT} />
+        <Dropdown selects={SELECT} onSelect={onSortPosts} />
       </div>
     </article>
   )

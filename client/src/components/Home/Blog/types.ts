@@ -6,8 +6,8 @@ type BlogProps = {
 export type BlogComponent = FunctionComponent<BlogProps>
 
 export type AuthorIdT = {
-  _id: string,
-  name: string,
+  _id: string
+  name: string
   imageUrl: string
 }
 

@@ -124,15 +124,19 @@ export const PostPage: PostPageComponent = () => {
           </article>
         )}
         <article className={styles.recommendations}>
-          {isFetchingRelatedPosts
-            ? <h3><Skeleton animation='wave' width={'40%'} className={styles.youLike} /></h3>
-            : <h3 className={styles.youLike}>You may like this too</h3>}
+          {isFetchingRelatedPosts ? (
+            <h3>
+              <Skeleton animation='wave' width={'40%'} className={styles.youLike} />
+            </h3>
+          ) : (
+            <h3 className={styles.youLike}>You may like this too</h3>
+          )}
           <div className={styles.recommendList}>
             {(isFetchingRelatedPosts
-                ? Array(PLACEHOLDER_COUNT_RELATED_POSTS)
+              ? Array(PLACEHOLDER_COUNT_RELATED_POSTS)
                   .fill(PLACEHOLDER_POST)
                   .map((e, i) => ({ ...e, _id: `${i}` }))
-                : relatedPosts
+              : relatedPosts
             ).map((post: JSX.IntrinsicAttributes & RecommendCardT) => (
               <RecommendCard key={post._id} {...post} isFetchingPosts={isFetchingRelatedPosts} />
             ))}

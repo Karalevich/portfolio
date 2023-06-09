@@ -86,10 +86,15 @@ export const AddPost: AddPostComponent = () => {
     initialValues: post ? post : initialState,
     validationSchema: validationPostSchema,
     onSubmit: (values: PostFromFormWithArrayImgT, {}) => {
+      const trimmedValue = {
+        ...values,
+        title: values.title.trim(),
+        description: values.description.trim(),
+      }
       if (openedPostId) {
-        dispatch(updatePostThunk(openedPostId, values, navigate))
+        dispatch(updatePostThunk(openedPostId, trimmedValue, navigate))
       } else {
-        dispatch(createPostThunk(values, navigate))
+        dispatch(createPostThunk(trimmedValue, navigate))
       }
     },
   })

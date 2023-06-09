@@ -15,6 +15,7 @@ import {
   SET_RELATED_POST,
   UPDATE,
   SET_FETCHING_CERTAIN_POST,
+  SET_CURRENT_PAGE,
 } from '../reducers/posts/postsReducer'
 import { updateTagsType } from '../utils/updateTagsType'
 import { PostFromFormWithArrayImgT } from '../components/Home/Blog/AddPost/types'
@@ -22,12 +23,12 @@ import { NavigateFunction } from 'react-router-dom'
 import { convertFileBeforeSendToServer } from '../utils/convertFileBeforeSendToServer'
 
 export const actionsPosts = {
-  setPostsAC: (posts: Array<PostT>, numberOfPages: number) =>
+  setPostsAC: (posts: Array<PostT>, allPages: number) =>
     ({
       type: FETCH_POSTS,
       payload: {
         posts,
-        numberOfPages,
+        allPages,
       },
     } as const),
   setFetchingPostsAC: (flag: boolean) =>
@@ -84,6 +85,11 @@ export const actionsPosts = {
       type: DELETE,
       id,
     } as const),
+  setCurrentPageAC: (page: number) =>
+    ({
+      type: SET_CURRENT_PAGE,
+      page,
+    } as const),
   // updateCommentsAC: (payload: PostsResponseDataI) => ({
   //   type: COMMENTS,
   //   payload
@@ -96,7 +102,7 @@ export const getPostsThunk =
     try {
       dispatch(actionsPosts.setFetchingPostsAC(true))
       const { data } = await api.fetchPosts(page)
-      dispatch(actionsPosts.setPostsAC(data.posts, data.numberOfPages))
+      dispatch(actionsPosts.setPostsAC(data.posts, data.allPages))
     } catch (e) {
       console.log(e)
     } finally {
@@ -187,17 +193,19 @@ export const deletePostThunk =
     }
   }
 
-// export const getPostsBySearchThunk = (searchQuery: string, page: number): ThunkType<PostsActionType> => async (dispatch) => {
-//   try {
-//     dispatch(actionsPosts.setFetchingPosts(true))
-//     const { data } = await api.fetchPostsBySearch(searchQuery, page)
-//     dispatch(actionsPosts.setPostsAC(data.posts, data.numberOfPages))
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     dispatch(actionsPosts.setFetchingPosts(false))
-//   }
-// }
+export const getPostsBySearchThunk =
+  (searchQuery: string, sortQuery: number, page: number): ThunkT<PostsActionT> =>
+  async (dispatch) => {
+    try {
+      dispatch(actionsPosts.setFetchingPostsAC(true))
+      const { data } = await api.fetchPostsBySearch(searchQuery, sortQuery, page)
+      dispatch(actionsPosts.setPostsAC(data.posts, data.allPages))
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(actionsPosts.setFetchingPostsAC(false))
+    }
+  }
 
 // export const likePostThunk = (id: string): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {

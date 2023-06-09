@@ -17,7 +17,7 @@ export const getPosts = async (req: Request, res: Response) => {
       .skip(startIndex)
       .lean()
 
-    res.status(200).json({ posts, numberOfPages: Math.ceil(total / LIMIT_CARDS_ON_PAGE) })
+    res.status(200).json({ posts, allPages: Math.ceil(total / LIMIT_CARDS_ON_PAGE) })
   } catch (e: any | unknown) {
     res.status(404).json({ message: e.message })
   }
@@ -41,21 +41,28 @@ export const getCertainPost = async (req: Request, res: Response) => {
 }
 
 export const getPostsBySearch = async (req: Request, res: Response) => {
-  const { searchQuery, page } = req.query
+  const { searchQuery, page,sortQuery } = req.query
 
   try {
     const search = new RegExp(searchQuery as string, 'i')
     const startIndex = (Number(page) - 1) * LIMIT_CARDS_ON_PAGE
+    const sortOptions: { [key: number]: any } = {
+      0: { _id: -1 },
+      1: { title: 1 },
+      2: { date: 1 },
+      3: { likesCount: -1 },
+    }
 
-    const total = await Post.countDocuments().or([{ title: search }, { tags: search }, { message: search }])
-    const posts = await Post
-      .find()
-      .or([{ title: search }, { tags: search }, { message: search }])
-      .sort({ _id: -1 })
-      .limit(LIMIT_CARDS_ON_PAGE)
-      .skip(startIndex)
+    const total = await Post.countDocuments().or([{ title: search }, { tags: search }, { description: search }])
+    const posts = await Post.aggregate([
+      { $addFields: { likesCount: { $size: '$likes' } } },
+      { $match: {$or: [{ title: search }, { tags: search }, { description: search }] }},
+      { $sort: sortOptions[Number(sortQuery)] },
+      { $limit: LIMIT_CARDS_ON_PAGE },
+      { $skip: startIndex },
+    ])
 
-    res.status(200).json({ posts, numberOfPages: Math.ceil(total / LIMIT_CARDS_ON_PAGE) })
+    res.status(200).json({ posts, allPages: Math.ceil(total / LIMIT_CARDS_ON_PAGE) })
   } catch (e: any | unknown) {
     res.status(404).json({ message: e.message })
   }

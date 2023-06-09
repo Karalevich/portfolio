@@ -1,5 +1,15 @@
 import express from 'express'
-import { getPosts, commentPost, getCertainPost, getPostsBySearch, createPosts, updatePost, deletePost, likePost, getPostsByTags } from '../controllers/post'
+import {
+  getPosts,
+  commentPost,
+  getCertainPost,
+  getPostsBySearch,
+  createPosts,
+  updatePost,
+  deletePost,
+  likePost,
+  getPostsByTags,
+} from '../controllers/post'
 import auth from '../middleware/auth'
 
 

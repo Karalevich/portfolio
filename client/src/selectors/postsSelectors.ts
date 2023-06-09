@@ -7,7 +7,8 @@ export const getCertainPostS = (state: RootStateT) => state.posts.post
 export const getRelatedPostsS = (state: RootStateT) => state.posts.relatedPosts
 export const getFetchingRelatedPostsS = (state: RootStateT) => state.posts.isFetchingRelatedPosts
 export const getFetchingCertainPostS = (state: RootStateT) => state.posts.isFetchingCertainPost
-export const getNumberOfPagesS = (state: RootStateT) => state.posts.numberOfPages
+export const getAllPagesS = (state: RootStateT) => state.posts.allPages
+export const getCurrentPageS = (state: RootStateT) => state.posts.currentPage
 export const getFetchingPostsS = (state: RootStateT) => state.posts.isFetchingPosts
 export const getFetchingFormS = (state: RootStateT) => state.posts.isFetchingForm
 export const getOpenedPostIdS = (state: RootStateT) => state.posts.openedPostId
