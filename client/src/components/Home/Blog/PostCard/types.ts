@@ -1,5 +1,5 @@
 import { FileT } from '../../../../reducers/posts/types'
-import { FunctionComponent } from 'react'
+import { ForwardedRef, FunctionComponent } from 'react'
 import { AuthorIdT } from '../types'
 
 type CommentT = {
@@ -14,6 +14,7 @@ export type PostT = {
   _id: string
   isFullVersion?: boolean
   isFetchingPosts?: boolean
+  ref?: ForwardedRef<HTMLDivElement | null>
 }
 
 export type CertainPostT = PostT & {

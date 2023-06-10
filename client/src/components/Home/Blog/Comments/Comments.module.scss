@@ -12,10 +12,12 @@
 
     .count {
       width: max-content;
-      padding-bottom: 0.5625rem;
+      padding-bottom: 0.5rem;
       border-bottom: 2px solid $element;
-      margin-bottom: -2px;
+      margin-bottom: -1px;
       position: relative;
+      z-index: 1;
+      background-color: $substrate;
     }
 
     .actions {
@@ -41,14 +43,32 @@
   .likes {
     display: flex;
     align-items: center;
-    column-gap: 0.35rem;
+    column-gap: 0.1rem;
     position: relative;
   }
 
+  .number {
+    font-size: 110%;
+  }
+
   .favoriteIcon,
-  .shareIcon {
+  .shareIcon,
+  .liked {
     cursor: pointer;
     color: $paragraph;
+
+    &:hover {
+      color: #b9b7b7;
+    }
+  }
+
+  .liked {
+    color: $element;
+
+    &:hover {
+      color: $element;
+      opacity: 0.8;
+    }
   }
 
   .main {
@@ -94,7 +114,8 @@
     }
 
     .favoriteIcon,
-    .shareIcon {
+    .shareIcon,
+    .liked {
       font-size: 1.75rem;
     }
 
@@ -128,7 +149,8 @@
     }
 
     .favoriteIcon,
-    .shareIcon {
+    .shareIcon,
+    .liked {
       font-size: 1.75rem;
     }
 

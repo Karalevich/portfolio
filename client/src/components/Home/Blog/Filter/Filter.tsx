@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useCallback, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useCallback, useEffect, useRef } from 'react'
 import styles from './Filter.module.scss'
 import { FilterComponent } from './types'
 import { styled } from '@mui/material/styles'
@@ -10,10 +10,9 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { getUserS } from '../../../../selectors/userSelectors'
 import { debounce } from '../../../../utils/debounce'
-import { actionsPosts, getPostsBySearchThunk, getPostsThunk } from '../../../../actions/postsAction'
-import { getCurrentPageS } from '../../../../selectors/postsSelectors'
-
-const SELECT = ['By default', 'By title', 'By date', 'By likes']
+import { actionsPosts, getPostsThunk } from '../../../../actions/postsAction'
+import { SELECT } from 'src/constants/posts'
+import { getSearchValueS, getSortValueS } from '../../../../selectors/postsSelectors'
 
 export const Filter: FilterComponent = () => {
   const dispatch = useAppDispatch()
@@ -21,12 +20,11 @@ export const Filter: FilterComponent = () => {
   const redirect = useNavigate()
   const isTabletOrMobile = useMediaQuery('(max-width:767px)')
   const user = useAppSelector(getUserS)
-  const currentPage = useAppSelector(getCurrentPageS)
-  const [searchValue, setSearchValue] = useState('')
-  const [sortValue, setSortValue] = useState(SELECT[0])
+  const searchValue = useAppSelector(getSearchValueS)
+  const sortValue = useAppSelector(getSortValueS)
 
   useEffect(() => {
-    /* browser does not provides API to track when element with position sticky reach the fix position, for this used IntersectionObserver */
+    /* browser does not provide API to track when element with position sticky reach the fix position, for this used IntersectionObserver */
     const observer = new IntersectionObserver(
       ([e]) => {
         e.target.classList.toggle(styles.filterSticked, e.intersectionRatio < 1)
@@ -40,6 +38,8 @@ export const Filter: FilterComponent = () => {
 
     return () => {
       observer.disconnect()
+      dispatch(actionsPosts.setSortValueAC(0))
+      dispatch(actionsPosts.setSearchValueAC(''))
     }
   }, [])
 
@@ -49,37 +49,33 @@ export const Filter: FilterComponent = () => {
 
   const debouncedSetSearchValue = useCallback(
     debounce(
-      (searchQuery: string, sortQuery: number) =>
-        dispatch(getPostsBySearchThunk(searchQuery, sortQuery, currentPage)),
+      (searchQuery: string, sortQuery: number) => dispatch(getPostsThunk(searchQuery, sortQuery, 1)),
       400
     ),
-    [currentPage]
+    []
   )
 
   const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value)
+    dispatch(actionsPosts.setSearchValueAC(e.target.value))
     dispatch(actionsPosts.setCurrentPageAC(1))
 
-    const sortQuery = SELECT.indexOf(sortValue)
-    debouncedSetSearchValue(searchValue.trim(), sortQuery)
+    debouncedSetSearchValue(searchValue.trim(), sortValue)
   }
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const searchQuery = searchValue.trim()
-    const sortQuery = SELECT.indexOf(sortValue)
-    if (!searchQuery && !sortQuery) {
-      dispatch(getPostsThunk())
-    } else {
-      dispatch(getPostsBySearchThunk(searchQuery, sortQuery, currentPage))
-    }
+
+    dispatch(actionsPosts.setCurrentPageAC(1))
+    dispatch(getPostsThunk(searchQuery, sortValue, 1))
   }
 
   const onSortPosts = (item: string) => {
-    const sortQuery = SELECT.indexOf(item)
+    const sortQuery = SELECT.includes(item) ? SELECT.indexOf(item) : 0
     const searchQuery = searchValue.trim()
-    dispatch(getPostsBySearchThunk(searchQuery, sortQuery, currentPage))
-    setSortValue(item)
+    dispatch(actionsPosts.setCurrentPageAC(1))
+    dispatch(getPostsThunk(searchQuery, sortQuery, 1))
+    dispatch(actionsPosts.setSortValueAC(sortQuery))
   }
 
   return (

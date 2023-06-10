@@ -28,7 +28,8 @@ code {
   cursor: text;
 }
 
-.ql-editor ul > li {
+.ql-editor ul > li,
+.ql-editor ol > li {
   color: $paragraph;
   font-size: 0.9375rem;
   font-style: normal;

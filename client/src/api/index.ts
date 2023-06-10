@@ -16,18 +16,17 @@ API.interceptors.request.use((req) => {
   return req
 })
 
-export const fetchPosts = (page?: number) => API.get(`/posts${page ? '?page=' + page : ''}`)
 export const fetchCertainPost = (id: string) => API.get(`/posts/${id}`)
 export const fetchPostsByTags = (tags: string) => API.get(`/posts/tags?searchQuery=${tags}`)
 export const createPost = (newPost: PostFromFormT) => API.post('/posts', newPost)
 export const updatePost = (id: string, updatePost: PostFromFormT) =>
   API.patch(`/posts/${id}`, updatePost)
 export const deletePost = (id: string) => API.delete(`/posts/${id}`)
-export const fetchPostsBySearch = (searchQuery: string, sortQuery: number, page: number) =>
-  API.get(`/posts/search?page=${page}&searchQuery=${searchQuery}&sortQuery=${sortQuery}`)
-// export const likePost = (id: string) => API.patch(`/posts/${id}/likePost`)
+export const fetchPosts = (searchQuery: string, sortQuery: number, page: number) =>
+  API.get(`/posts?page=${page}&searchQuery=${searchQuery}&sortQuery=${sortQuery}`)
+export const likePost = (id: string) => API.patch(`/posts/${id}/likePost`)
 // export const comment = (value: string, id: string | undefined) => API.post(`/posts/${id}/commentPost`, { value })
-//
+
 export const googleSign = (formData: UserT) => API.post('/user/google', formData)
 export const getGoogleUserData = (token: string) =>
   axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {

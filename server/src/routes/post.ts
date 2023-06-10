@@ -3,7 +3,6 @@ import {
   getPosts,
   commentPost,
   getCertainPost,
-  getPostsBySearch,
   createPosts,
   updatePost,
   deletePost,
@@ -15,7 +14,6 @@ import auth from '../middleware/auth'
 
 const router = express.Router()
 
-router.get('/search', getPostsBySearch)
 router.get('/tags', getPostsByTags)
 router.get('/', getPosts)
 router.get('/:id', getCertainPost)

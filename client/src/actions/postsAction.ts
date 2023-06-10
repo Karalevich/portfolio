@@ -16,6 +16,10 @@ import {
   UPDATE,
   SET_FETCHING_CERTAIN_POST,
   SET_CURRENT_PAGE,
+  SET_SORT_VALUE,
+  SET_SEARCH_VALUE,
+  SET_FETCHING_PAGINATED_POSTS,
+  ADD_POSTS,
 } from '../reducers/posts/postsReducer'
 import { updateTagsType } from '../utils/updateTagsType'
 import { PostFromFormWithArrayImgT } from '../components/Home/Blog/AddPost/types'
@@ -90,25 +94,34 @@ export const actionsPosts = {
       type: SET_CURRENT_PAGE,
       page,
     } as const),
+  setSortValueAC: (sortValue: number) =>
+    ({
+      type: SET_SORT_VALUE,
+      sortValue,
+    } as const),
+  setSearchValueAC: (searchValue: string) =>
+    ({
+      type: SET_SEARCH_VALUE,
+      searchValue,
+    } as const),
+  setFetchingPaginatedPostsAC: (flag: boolean) =>
+    ({
+      type: SET_FETCHING_PAGINATED_POSTS,
+      flag,
+    } as const),
+  addPostsAC: (posts: Array<PostT>, allPages: number) =>
+    ({
+      type: ADD_POSTS,
+      payload: {
+        posts,
+        allPages,
+      },
+    } as const),
   // updateCommentsAC: (payload: PostsResponseDataI) => ({
   //   type: COMMENTS,
   //   payload
   // } as const),
 }
-
-export const getPostsThunk =
-  (page?: number): ThunkT<PostsActionT> =>
-  async (dispatch) => {
-    try {
-      dispatch(actionsPosts.setFetchingPostsAC(true))
-      const { data } = await api.fetchPosts(page)
-      dispatch(actionsPosts.setPostsAC(data.posts, data.allPages))
-    } catch (e) {
-      console.log(e)
-    } finally {
-      dispatch(actionsPosts.setFetchingPostsAC(false))
-    }
-  }
 
 export const getCertainPostThunk =
   (id: string): ThunkT<PostsActionT> =>
@@ -164,9 +177,8 @@ export const updatePostThunk =
       post.tags = updateTagsType(post.tags)
       const readyImg = await convertFileBeforeSendToServer(post.img[0])
 
-      const { data } = await api.updatePost(id, { ...post, img: readyImg })
+      await api.updatePost(id, { ...post, img: readyImg })
 
-      dispatch(actionsPosts.updatePostAC(data))
       dispatch(actionsPosts.changeOpenedPostIdAC(''))
       dispatch(actionsPosts.setCertainPostAC(null))
 
@@ -193,12 +205,12 @@ export const deletePostThunk =
     }
   }
 
-export const getPostsBySearchThunk =
+export const getPostsThunk =
   (searchQuery: string, sortQuery: number, page: number): ThunkT<PostsActionT> =>
   async (dispatch) => {
     try {
       dispatch(actionsPosts.setFetchingPostsAC(true))
-      const { data } = await api.fetchPostsBySearch(searchQuery, sortQuery, page)
+      const { data } = await api.fetchPosts(searchQuery, sortQuery, page)
       dispatch(actionsPosts.setPostsAC(data.posts, data.allPages))
     } catch (e) {
       console.log(e)
@@ -207,18 +219,32 @@ export const getPostsBySearchThunk =
     }
   }
 
-// export const likePostThunk = (id: string): ThunkType<PostsActionType> => async (dispatch) => {
-//   try {
-//     //dispatch(actionsPosts.setFetchingForm(true))
-//     const { data } = await api.likePost(id)
-//     dispatch(actionsPosts.updatePostAC(data))
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     //dispatch(actionsPosts.setFetchingForm(false))
-//   }
-// }
-//
+export const getPaginatedPostsThunk =
+  (searchQuery: string, sortQuery: number, page: number): ThunkT<PostsActionT> =>
+  async (dispatch) => {
+    try {
+      dispatch(actionsPosts.setFetchingPaginatedPostsAC(true))
+      const { data } = await api.fetchPosts(searchQuery, sortQuery, page)
+      dispatch(actionsPosts.addPostsAC(data.posts, data.allPages))
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(actionsPosts.setFetchingPaginatedPostsAC(false))
+    }
+  }
+
+export const likePostThunk =
+  (id: string): ThunkT<PostsActionT> =>
+  async (dispatch) => {
+    try {
+      const { data } = await api.likePost(id)
+      dispatch(actionsPosts.setCertainPostAC(data))
+    } catch (e) {
+      console.log(e)
+    } finally {
+    }
+  }
+
 // export const commentPostThunk = (value: string, id: string | undefined): ThunkType<PostsActionType> => async (dispatch) => {
 //   try {
 //     //dispatch(actionsPosts.setFetchingForm(true))

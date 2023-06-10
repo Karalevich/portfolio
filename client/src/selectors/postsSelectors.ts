@@ -2,6 +2,9 @@ import { RootStateT } from '../reducers/store'
 import { PostFromFormWithArrayImgT } from '../components/Home/Blog/AddPost/types'
 import { dataURLtoFileWithPath } from '../utils/dataUPLtoFileWithPath'
 
+export const getSearchValueS = (state: RootStateT) => state.posts.searchValue
+export const getSortValueS = (state: RootStateT) => state.posts.sortValue
+export const getFetchingPaginatedPostsS = (state: RootStateT) => state.posts.isFetchingPaginatedPosts
 export const getPostsS = (state: RootStateT) => state.posts.posts
 export const getCertainPostS = (state: RootStateT) => state.posts.post
 export const getRelatedPostsS = (state: RootStateT) => state.posts.relatedPosts

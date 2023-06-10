@@ -7,7 +7,7 @@ export interface PostDocument extends Document {
   author: Schema.Types.ObjectId,
   tags: Array<string>
   img: string,
-  likes: Array<string>,
+  likes: Array<Schema.Types.ObjectId>,
   comments: Array<string>,
   date: Date,
 }
@@ -23,7 +23,7 @@ const postSchema = new Schema<PostDocument, PostModel>({
   tags: [String],
   img: String,
   likes: {
-    type: [String],
+    type: [{type: Schema.Types.ObjectId, ref: 'User', required: true }],
     default: [],
   },
   comments: {

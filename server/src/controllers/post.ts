@@ -1,27 +1,7 @@
 import Post, { PostDocument } from '../models/post'
-import mongoose from 'mongoose'
+import mongoose, { ObjectId } from 'mongoose'
 import { LIMIT_CARDS_ON_PAGE } from '../constants'
 import { Request, Response } from 'express'
-
-export const getPosts = async (req: Request, res: Response) => {
-  const { page } = req.query
-
-  try {
-    const startIndex = page ? (Number(page) - 1) * LIMIT_CARDS_ON_PAGE : 0
-    const total = await Post.countDocuments({})
-    const posts = await Post
-      .find()
-      .sort({ _id: -1 })
-      .limit(LIMIT_CARDS_ON_PAGE)
-      .select('img title description')
-      .skip(startIndex)
-      .lean()
-
-    res.status(200).json({ posts, allPages: Math.ceil(total / LIMIT_CARDS_ON_PAGE) })
-  } catch (e: any | unknown) {
-    res.status(404).json({ message: e.message })
-  }
-}
 
 export const getCertainPost = async (req: Request, res: Response) => {
   const { id } = req.params
@@ -40,8 +20,8 @@ export const getCertainPost = async (req: Request, res: Response) => {
   }
 }
 
-export const getPostsBySearch = async (req: Request, res: Response) => {
-  const { searchQuery, page,sortQuery } = req.query
+export const getPosts = async (req: Request, res: Response) => {
+  const { searchQuery, page, sortQuery } = req.query
 
   try {
     const search = new RegExp(searchQuery as string, 'i')
@@ -56,10 +36,18 @@ export const getPostsBySearch = async (req: Request, res: Response) => {
     const total = await Post.countDocuments().or([{ title: search }, { tags: search }, { description: search }])
     const posts = await Post.aggregate([
       { $addFields: { likesCount: { $size: '$likes' } } },
-      { $match: {$or: [{ title: search }, { tags: search }, { description: search }] }},
+      { $match: { $or: [{ title: search }, { tags: search }, { description: search }] } },
       { $sort: sortOptions[Number(sortQuery)] },
-      { $limit: LIMIT_CARDS_ON_PAGE },
       { $skip: startIndex },
+      { $limit: LIMIT_CARDS_ON_PAGE },
+      {
+        $project: {
+          img: 1,
+          title: 1,
+          description: 1,
+          likesCount: 1,
+        },
+      }
     ])
 
     res.status(200).json({ posts, allPages: Math.ceil(total / LIMIT_CARDS_ON_PAGE) })
@@ -87,9 +75,9 @@ export const updatePost = async (req: Request, res: Response) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id')
 
-    const updatePost = await Post.findByIdAndUpdate(id, { ...post, id }, { new: true })
+    await Post.findByIdAndUpdate(id, { ...post, id }, { new: true })
 
-    res.status(201).json(updatePost)
+    res.status(201).json({ message: 'Post is successfully updated' })
   } catch (e: any | unknown) {
     res.status(409).json({ message: e.message })
   }
@@ -134,14 +122,16 @@ export const likePost = async (req: Request, res: Response) => {
     const post = await Post.findById(id)
 
     if (post) {
-      const index = post.likes.findIndex(idx => idx === String(req.userId))
-      if (!index || index === -1) {
-        post.likes.push(String(req.userId))
+      const index = post.likes.findIndex(idx => idx.toString() === String(req.userId))
+      if (index === -1) {
+        post.likes.push(req.userId as unknown as ObjectId)
       } else {
-        post.likes = post.likes.filter(idx => idx !== String(req.userId))
+        post.likes = post.likes.filter(idx => idx.toString() !== String(req.userId))
       }
 
-      const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true })
+      const updatedPost = await Post
+        .findByIdAndUpdate(id, post, { new: true })
+        .populate('author', 'name imageUrl')
 
       res.status(201).json(updatedPost)
     }

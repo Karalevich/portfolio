@@ -50,7 +50,7 @@ export const PostPage: PostPageComponent = () => {
     return () => cleanUp()
   }, [isRemovePostFromState])
 
-  const { likes, author, title, date, content, img } = post || {}
+  const { author, title, date, content, img } = post || {}
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
   const isCurrentUserCreator = author && user && user.id === author._id
 
