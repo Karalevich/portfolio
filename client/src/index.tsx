@@ -1,17 +1,22 @@
 import React, { StrictMode } from 'react'
 import './index.scss'
+import 'react-quill/dist/quill.snow.css'
+import './styles/editorRewrite.scss'
 import { createRoot } from 'react-dom/client'
 import { App } from './App'
 import { Provider } from 'react-redux'
 import { store } from './reducers/store'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 const container = document.getElementById('root')
 const root = createRoot(container!)
 
 root.render(
   <StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <GoogleOAuthProvider clientId={`${process.env.REACT_APP_CLIENT_ID}`}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </GoogleOAuthProvider>
   </StrictMode>
 )

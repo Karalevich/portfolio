@@ -1,11 +1,21 @@
-import { ActionT, ThunkT } from '../reducers/store'
+import { ThunkT } from '../reducers/store'
 import * as api from '../api'
-import { TOGGLE_MODAL, SET_USER } from '../reducers/user/userReducer'
-import { NavigateFunction } from 'react-router-dom'
-import { UserT } from 'src/reducers/user/types'
+import {
+  LOGOUT,
+  SET_ERROR_SIGNIN_MESSAGE,
+  SET_ERROR_SIGNUP_MESSAGE,
+  SET_USER,
+  TOGGLE_IS_AUTH_LOADING,
+} from '../reducers/user/userReducer'
+import { CreateUserT, GoogleUserT, UserActionsT, UserT } from 'src/reducers/user/types'
+import { USER } from '../constants/user'
+import { TokenResponse } from '@react-oauth/google'
+import { getGoogleUserData } from '../api'
+import { actionsModal } from './modalAction'
+import { ModalActionT } from '../reducers/modal/types'
 
 export const userActions = {
-  setUser: (user: UserT, token: string) =>
+  setAuthAC: (user: UserT, token: string) =>
     ({
       type: SET_USER,
       payload: {
@@ -13,25 +23,122 @@ export const userActions = {
         token,
       },
     } as const),
-  toggleModal: (isOpenModal: boolean) => ({ type: TOGGLE_MODAL, payload: { isOpenModal } } as const),
+  removeAuthAC: () =>
+    ({
+      type: LOGOUT,
+    } as const),
+  toggleIsAuthAC: () =>
+    ({
+      type: TOGGLE_IS_AUTH_LOADING,
+    } as const),
+  setErrSignInMessageAC: (errMessage: string) =>
+    ({
+      type: SET_ERROR_SIGNIN_MESSAGE,
+      payload: {
+        errMessage,
+      },
+    } as const),
+  setErrSignUpMessageAC: (errMessage: string) =>
+    ({
+      type: SET_ERROR_SIGNUP_MESSAGE,
+      payload: {
+        errMessage,
+      },
+    } as const),
 }
 
-export type UserActionsT = ActionT<typeof userActions>
-
-export const setUserToLocalStorage = (user: UserT, token: string) => {
-  const saveToken = token ? token : JSON.parse(localStorage.getItem('') as string).token
-  localStorage.setItem('', JSON.stringify({ user, token: saveToken }))
-}
-
-export const signInThunk =
-  (formData: any, navigate: NavigateFunction): ThunkT<UserActionsT> =>
+export const setUsedData =
+  (user: UserT, token: string): ThunkT<UserActionsT> =>
   async (dispatch) => {
+    const saveToken = token ? token : JSON.parse(localStorage.getItem(USER) as string).token
     try {
-      const { data } = await api.signIn(formData)
-      setUserToLocalStorage(data.user, data.token)
-      dispatch(userActions.setUser(data.user, data.token))
-      navigate('/')
+      localStorage.setItem(USER, JSON.stringify({ user, token: saveToken }))
+      dispatch(userActions.setAuthAC(user, saveToken))
     } catch (e) {
       console.log(e)
     }
   }
+
+export const removeUsedData = (): ThunkT<UserActionsT> => async (dispatch) => {
+  try {
+    localStorage.removeItem(USER)
+    dispatch(userActions.removeAuthAC())
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const googleSuccessThunk =
+  (
+    response: Omit<TokenResponse, 'error' | 'error_description' | 'error_uri'>
+  ): ThunkT<UserActionsT | ModalActionT> =>
+  async (dispatch) => {
+    try {
+      dispatch(userActions.toggleIsAuthAC())
+      const result = await getGoogleUserData(response.access_token)
+      const { name, picture, sub, email }: GoogleUserT = result.data
+      const { data } = await api.googleSign({
+        name,
+        email,
+        imageUrl: picture,
+        id: sub,
+      })
+      dispatch(setUsedData(data.user, data.token))
+      dispatch(actionsModal.closesModalAC())
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(userActions.toggleIsAuthAC())
+    }
+  }
+
+export const signUpThunk =
+  (formData: CreateUserT): ThunkT<UserActionsT | ModalActionT> =>
+  async (dispatch) => {
+    try {
+      dispatch(userActions.toggleIsAuthAC())
+      const { data } = await api.signUn(formData)
+      dispatch(setUsedData(data.user, data.token))
+      dispatch(actionsModal.closesModalAC())
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(userActions.toggleIsAuthAC())
+    }
+  }
+
+export const signInThunk =
+  (formData: Omit<CreateUserT, 'confirmPassword' | 'name'>): ThunkT<UserActionsT | ModalActionT> =>
+  async (dispatch) => {
+    try {
+      dispatch(userActions.toggleIsAuthAC())
+      const { data } = await api.signIn(formData)
+      dispatch(setUsedData(data.user, data.token))
+      dispatch(actionsModal.closesModalAC())
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(userActions.toggleIsAuthAC())
+    }
+  }
+
+// export const updateUserDataThunk = (formData: UserType): ThunkType<UserActionsT> => async (dispatch) => {
+//   try {
+//     const { data } = await api.updateUserData({
+//       ...formData,
+//       name: `${formData.firstName} ${formData.lastName}`
+//     })
+//     dispatch(setUsedData(data.user, data.token))
+//   } catch (e) {
+//     console.log(e)
+//   }
+// }
+//
+// export const setUserImageThunk = (newUserImage: string, email?: string): ThunkType<UserActionsT> => async (dispatch) => {
+//   try {
+//     const { data } = await api.updateUserImage({ newUserImage, email })
+//     dispatch(setUsedData(data.user, data.token))
+//   } catch (e) {
+//     console.log(e)
+//   }
+// }

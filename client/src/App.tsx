@@ -10,16 +10,25 @@ import styles from './components/Home/Home.module.scss'
 import ScrollToTop from './components/Custom/ScrollToTop'
 import './index.scss'
 import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
-import Auth from './components/Auth/Auth'
+import Modal from './components/Custom/Modal/Modal'
+import { useAppDispatch } from './hooks/hooks'
+import { USER } from './constants/user'
+import { userActions } from './actions/userAction'
+import AxiosInterceptor from './components/AxiosIntercetor/AxiosIntercetor'
+import { AppComponent } from './types'
 
-export const App: React.FC<unknown> = () => {
+export const App: AppComponent = () => {
   const infoRef = useRef<null | HTMLElement>(null)
   const homeRef = useRef<null | HTMLElement>(null)
   const [isFixed, setIsFixed] = useState(false)
   const [isOpenNav, setIsOpenNav] = useState(false)
   const [isOpenInfo, setIsOpenInfo] = useState(false)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
+    const authData = JSON.parse(localStorage.getItem(USER) as string)
+    authData && dispatch(userActions.setAuthAC(authData.user, authData.token))
+
     function handleScroll() {
       const fixedNode = infoRef.current
       const scrollNode = homeRef.current
@@ -62,15 +71,19 @@ export const App: React.FC<unknown> = () => {
   return (
     <ThemeProvider theme={mainTheme}>
       <BrowserRouter>
-        <ScrollToTop />
-        <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
-        <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
-        <section className={styles.home} ref={homeRef}>
-          <AnimatedRoutes />
-        </section>
-        <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
-        <Auth />
-        <Copyright />
+        <AxiosInterceptor>
+          <>
+            <ScrollToTop />
+            <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
+            <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
+            <section className={styles.home} ref={homeRef}>
+              <AnimatedRoutes />
+            </section>
+            <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
+            <Copyright />
+            <Modal />
+          </>
+        </AxiosInterceptor>
       </BrowserRouter>
     </ThemeProvider>
   )

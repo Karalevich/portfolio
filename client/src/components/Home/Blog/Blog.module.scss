@@ -5,58 +5,6 @@
     padding-right: 1rem;
   }
 
-  .card {
-    border-radius: 2px;
-    padding-bottom: 0.5rem;
-    background-color: $background;
-    transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
-
-    .media {
-      height: 18.75rem;
-      background-color: $skeleton;
-    }
-
-    .title {
-      font-weight: 500;
-      text-transform: capitalize;
-      margin-bottom: 0.5rem;
-
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 1; /* number of lines to show */
-      line-clamp: 1;
-      -webkit-box-orient: vertical;
-      word-break: break-all;
-    }
-
-    .content {
-      padding-bottom: 0;
-    }
-
-    .description {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3; /* number of lines to show */
-      line-clamp: 3;
-      -webkit-box-orient: vertical;
-    }
-
-    .button {
-      padding-left: 16px;
-
-      &:hover {
-        background-color: transparent;
-      }
-
-      .arrow {
-        height: 0.5rem;
-        margin-left: -10px;
-      }
-    }
-  }
-
   .main {
     position: relative;
 
@@ -108,14 +56,6 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 1.25rem 2.075%;
-
-  .card {
-    width: 31.95%;
-
-    .media {
-      height: 14.75rem;
-    }
-  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -153,41 +93,15 @@
       transform: translateX(var(--offset)) translateX(0px) !important;
     }
 
-    .card {
-      width: calc(var(--slide-width) * 1rem);
-    }
-
     .fullMain {
       width: auto;
       margin-left: 0;
-
-      .card {
-        width: 100%;
-      }
-
-      .media {
-        height: 18.75rem;
-      }
     }
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .blog {
-    .card {
-      .media {
-        height: 16.667rem;
-      }
-
-      .button {
-        font-size: 1.1rem;
-
-        .arrow {
-          height: 0.8rem;
-        }
-      }
-    }
-
     .buttonBack,
     .buttonNext {
       top: 11.666rem;
@@ -195,13 +109,6 @@
 
     .fullMain {
       gap: 1.5rem 3%;
-      .card {
-        width: 48.5%;
-
-        .media {
-          height: 18.75rem;
-        }
-      }
     }
   }
 }

@@ -2,7 +2,7 @@ import { Button, Card } from '@mui/material'
 import React from 'react'
 import styles from './Contact.module.scss'
 import { ContactCardComponent, ContactComponent } from './types'
-import Input from 'src/components/Custom/Inputs/Input'
+import Input from 'src/components/Custom/Input/Input'
 import { CONTACT_INFO } from 'src/constants/personalInfo'
 import Map from '../Map/Map'
 

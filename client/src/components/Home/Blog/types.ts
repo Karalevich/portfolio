@@ -5,25 +5,10 @@ type BlogProps = {
 }
 export type BlogComponent = FunctionComponent<BlogProps>
 
-export type PostProps = {
-  img: string
-  title: string
-  description: string
-  author: AuthorT
-  date: string
-  comments?: Array<CommentT>
-  id: string
-  isFullVersion?: boolean
-}
-
-type CommentT = {
-  author: AuthorT
-  text: string
-}
-
-export type AuthorT = {
+export type AuthorIdT = {
+  _id: string
   name: string
-  img?: string
+  imageUrl: string
 }
 
 type PostsProps = {
@@ -31,5 +16,3 @@ type PostsProps = {
   isFullVersion: boolean
 }
 export type PostsContent = FunctionComponent<PostsProps>
-
-export type PostCardComponent = FunctionComponent<PostProps>

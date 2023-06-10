@@ -1,76 +1,144 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { POSTS, SHARE } from 'src/constants/personalInfo'
+import { PLACEHOLDER_COUNT_RELATED_POSTS, PLACEHOLDER_POST, SHARE } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
 import { PostPageComponent } from './types'
 import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
-import { PostProps } from '../types'
 import Comments from '../Comments/Comments'
-import NotFound from '../../../NotFound/NotFound'
+import React, { useEffect, useRef } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
+import { actionsPosts, getCertainPostThunk } from '../../../../actions/postsAction'
+import {
+  getCertainPostS,
+  getFetchingCertainPostS,
+  getFetchingRelatedPostsS,
+  getRelatedPostsS,
+} from '../../../../selectors/postsSelectors'
+import { Button, Skeleton } from '@mui/material'
+import { RecommendCardT } from '../PostCard/types'
+import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
+import { actionsModal } from '../../../../actions/modalAction'
+import { MODAL_TYPE } from '../../../../reducers/modal/types'
+import { getUserS } from '../../../../selectors/userSelectors'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
+  const dispatch = useAppDispatch()
+  const post = useAppSelector(getCertainPostS)
+  const relatedPosts = useAppSelector(getRelatedPostsS)
+  const isFetchingRelatedPosts = useAppSelector(getFetchingRelatedPostsS)
+  const isFetchingCertainPost = useAppSelector(getFetchingCertainPostS)
+  const user = useAppSelector(getUserS)
+  const navigate = useNavigate()
+  const isRemovePostFromState = useRef(true)
 
-  const post = POSTS.find((post) => post.id === id) as PostProps
-  if (!post) {
-    return <NotFound />
-  }
-  const { title, date, author, comments, img } = post
+  useEffect(() => {
+    if (id) {
+      dispatch(getCertainPostThunk(id))
+      dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
+    }
+  }, [id])
+
+  useEffect(() => {
+    const cleanUp = () => {
+      if (isRemovePostFromState.current) {
+        dispatch(actionsPosts.changeOpenedPostIdAC(''))
+        dispatch(actionsPosts.setCertainPostAC(null))
+      }
+    }
+    return () => cleanUp()
+  }, [isRemovePostFromState])
+
+  const { author, title, date, content, img } = post || {}
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
+  const isCurrentUserCreator = author && user && user.id === author._id
+
+  const onUpdatePost = () => {
+    isRemovePostFromState.current = false
+    isCurrentUserCreator && navigate('/blog/addPost')
+  }
+
+  const onDeletePost = () => {
+    isCurrentUserCreator && dispatch(actionsModal.openModalAC(MODAL_TYPE.CONFIRM_DELETE_POST))
+  }
 
   return (
     <section className={styles.postPage}>
-      <header>
-        <h2 className={styles.postTitle}>{title}</h2>
-        <article className={styles.info}>
-          <div className={styles.author}>
-            <img className={styles.authorImg} src={author.img} />
-            <div className={styles.authorData}>
-              <span className={styles.name}>{author.name}</span>
-              <span className={styles.date}>{date}</span>
+      {isFetchingCertainPost ? (
+        <SkeletonPostPage />
+      ) : (
+        <header>
+          <h2 className={styles.postTitle}>{title}</h2>
+          <article className={styles.info}>
+            <div className={styles.author}>
+              {author?.imageUrl ? (
+                <img className={styles.authorImg} src={author.imageUrl} alt={'post author'} />
+              ) : (
+                <span className={styles.authorImg}>{author?.name[0].toUpperCase()}</span>
+              )}
+              <div className={styles.authorData}>
+                <span className={styles.name}>{author?.name}</span>
+                <span className={styles.date}>{new Date(`${date}`).toLocaleDateString()}</span>
+              </div>
             </div>
+            <div className={styles.share}>
+              <span>SHARE:</span>
+              <ul className={styles.shareList}>{socialMediaIcons()}</ul>
+            </div>
+          </article>
+          <div className={styles.actionGroup}>
+            <Breadcrumbs links={links} />
+            {isCurrentUserCreator && (
+              <div className={styles.buttonGroup}>
+                <Button
+                  className={styles.buttonPostAction}
+                  variant='contained'
+                  size={'medium'}
+                  onClick={onUpdatePost}
+                  fullWidth
+                  disableElevation
+                >
+                  Edit
+                </Button>
+                <Button
+                  className={styles.buttonPostAction}
+                  variant='outlined'
+                  color={'error'}
+                  size={'medium'}
+                  onClick={onDeletePost}
+                  fullWidth
+                >
+                  Delete
+                </Button>
+              </div>
+            )}
           </div>
-          <div className={styles.share}>
-            <span>SHARE:</span>
-            <ul className={styles.shareList}>{socialMediaIcons()}</ul>
-          </div>
-        </article>
-        <Breadcrumbs links={links} />
-      </header>
+        </header>
+      )}
       <main>
-        <article className={styles.postContent}>
-          <img className={styles.mainImg} src={img} />
-          <p>
-            A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
-            an event, sale or new product, a flyer can capture the most important information of your
-            promotion while driving interest with vibrant colors and interesting images. Follow the steps
-            below to learn how to make a flyer.
-          </p>
-          <p>
-            A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
-            an event, sale or new product, a flyer can capture the most important information of your
-            promotion while driving interest with vibrant colors and interesting images. Follow the steps
-            below to learn how to make a flyer.
-          </p>
-          <p>
-            A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
-            an event, sale or new product, a flyer can capture the most important information of your
-            promotion while driving interest with vibrant colors and interesting images. Follow the steps
-            below to learn how to make a flyer.
-          </p>
-          <p>
-            A flyer is one of the most basic marketing materials for businesses. Whether you’re promoting
-            an event, sale or new product, a flyer can capture the most important information of your
-            promotion while driving interest with vibrant colors and interesting images. Follow the steps
-            below to learn how to make a flyer.
-          </p>
-        </article>
+        {!isFetchingCertainPost && (
+          <article className={styles.postContent}>
+            <img className={styles.mainImg} src={img as string} alt={'post preview'} />
+            <div dangerouslySetInnerHTML={{ __html: content as string }} className={'ql-editor'} />
+          </article>
+        )}
         <article className={styles.recommendations}>
-          <h3 className={styles.youLike}>You may like this too</h3>
+          {isFetchingRelatedPosts ? (
+            <h3>
+              <Skeleton animation='wave' width={'40%'} className={styles.youLike} />
+            </h3>
+          ) : (
+            <h3 className={styles.youLike}>You may like this too</h3>
+          )}
           <div className={styles.recommendList}>
-            {POSTS.slice(POSTS.length - 3).map((post) => (
-              <RecommendCard key={post.id} {...post} />
+            {(isFetchingRelatedPosts
+              ? Array(PLACEHOLDER_COUNT_RELATED_POSTS)
+                  .fill(PLACEHOLDER_POST)
+                  .map((e, i) => ({ ...e, _id: `${i}` }))
+              : relatedPosts
+            ).map((post: JSX.IntrinsicAttributes & RecommendCardT) => (
+              <RecommendCard key={post._id} {...post} isFetchingPosts={isFetchingRelatedPosts} />
             ))}
           </div>
         </article>

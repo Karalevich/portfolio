@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './Auth.module.scss'
 import { SignInComponent, SigninValuesT } from './types'
 import * as yup from 'yup'
 import { FormikHelpers, useFormik } from 'formik'
-import { Button, Checkbox, FormControlLabel } from '@mui/material'
+import { Checkbox, FormControlLabel, FormHelperText } from '@mui/material'
 import { SignFormInput } from './SignFormInput'
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
+import { signInThunk, userActions } from '../../actions/userAction'
+import { getErrSignInMessage, getIsAuthLoading } from '../../selectors/userSelectors'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const validationSigninSchema = yup.object({
   email: yup.string().email('Enter a valid email').required('Email is required'),
@@ -15,18 +19,30 @@ const validationSigninSchema = yup.object({
 })
 
 export const SignIn: SignInComponent = () => {
+  const dispatch = useAppDispatch()
+  const isAuthLoading = useAppSelector(getIsAuthLoading)
+  const errSignInMessage = useAppSelector(getErrSignInMessage)
+
+  useEffect(() => {
+    return () => {
+      dispatch(userActions.setErrSignInMessageAC(''))
+    }
+  }, [])
+
   const formikSignin = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     validationSchema: validationSigninSchema,
-    onSubmit: (values: SigninValuesT, { setSubmitting }: FormikHelpers<SigninValuesT>) => {
-      alert(JSON.stringify(values, null, 2))
+    onSubmit: (values: SigninValuesT, {}: FormikHelpers<SigninValuesT>) => {
+      dispatch(signInThunk(values))
     },
   })
+
   return (
     <form onSubmit={formikSignin.handleSubmit}>
+      {errSignInMessage && <FormHelperText error>{errSignInMessage}</FormHelperText>}
       <SignFormInput
         placeholder={'Username or Email'}
         id='email'
@@ -34,7 +50,8 @@ export const SignIn: SignInComponent = () => {
         onChange={formikSignin.handleChange}
         value={formikSignin.values.email}
         error={formikSignin.touched.email && Boolean(formikSignin.errors.email)}
-        label={formikSignin.touched.email && formikSignin.errors.email}
+        helperText={formikSignin.touched.email && formikSignin.errors.email}
+        disabled={isAuthLoading}
       />
       <SignFormInput
         placeholder={'Password'}
@@ -44,12 +61,14 @@ export const SignIn: SignInComponent = () => {
         value={formikSignin.values.password}
         onChange={formikSignin.handleChange}
         error={formikSignin.touched.password && Boolean(formikSignin.errors.password)}
-        label={formikSignin.touched.password && formikSignin.errors.password}
+        helperText={formikSignin.touched.password && formikSignin.errors.password}
+        disabled={isAuthLoading}
       />
       <div className={styles.checkboxWrapper}>
         <FormControlLabel
           control={
             <Checkbox
+              disabled={isAuthLoading}
               sx={{
                 '.MuiSvgIcon-root': { color: 'var(--main-text)' },
                 '&.Mui-checked': {
@@ -63,9 +82,16 @@ export const SignIn: SignInComponent = () => {
         />
         <span className={styles.forgot}>Forgot Password?</span>
       </div>
-      <Button type={'submit'} className={styles.signButton} sx={{ boxShadow: 0 }} variant='contained'>
+      <LoadingButton
+        loading={isAuthLoading}
+        loadingPosition='center'
+        type={'submit'}
+        className={styles.signButton}
+        disableElevation
+        variant='contained'
+      >
         Sign In
-      </Button>
+      </LoadingButton>
     </form>
   )
 }

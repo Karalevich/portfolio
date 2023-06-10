@@ -1,32 +1,49 @@
-import { UserActionsT } from 'src/actions/userAction'
-import { UserStateT } from './types'
+import { UserActionsT, UserStateT } from './types'
 
 export const SET_USER = 'SET_USER'
-export const TOGGLE_MODAL = 'TOGGLE_MODAL'
+export const LOGOUT = 'LOGOUT'
+export const TOGGLE_IS_AUTH_LOADING = 'TOGGLE_IS_AUTH_LOADING'
+export const SET_ERROR_SIGNIN_MESSAGE = 'SET_ERROR_SIGNIN_MESSAGE'
+export const SET_ERROR_SIGNUP_MESSAGE = 'SET_ERROR_SIGNUP_MESSAGE'
 
 const initialState = {
   user: null,
   token: null,
-  isOpenModal: false,
+  isAuthLoading: false,
+  errSignInMessage: '',
+  errSignUpMessage: '',
 }
 
 export default (state: UserStateT = initialState, action: UserActionsT) => {
-  if (action.type === SET_USER) {
-    const { user, token } = action.payload
-    return {
-      ...state,
-      user,
-      token,
-    }
+  switch (action.type) {
+    case SET_USER:
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+      }
+    case LOGOUT:
+      return {
+        ...state,
+        user: null,
+        token: null,
+      }
+    case TOGGLE_IS_AUTH_LOADING:
+      return {
+        ...state,
+        isAuthLoading: !state.isAuthLoading,
+      }
+    case SET_ERROR_SIGNIN_MESSAGE:
+      return {
+        ...state,
+        errSignInMessage: action.payload.errMessage,
+      }
+    case SET_ERROR_SIGNUP_MESSAGE:
+      return {
+        ...state,
+        errSignUpMessage: action.payload.errMessage,
+      }
+    default:
+      return state
   }
-
-  if (action.type === TOGGLE_MODAL) {
-    const { isOpenModal } = action.payload
-    return {
-      ...state,
-      isOpenModal,
-    }
-  }
-
-  return state
 }

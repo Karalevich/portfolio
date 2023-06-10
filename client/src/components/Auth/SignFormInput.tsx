@@ -1,17 +1,9 @@
 import styled from '@emotion/styled'
-import Input from '../Custom/Inputs/Input'
+import Input from '../Custom/Input/Input'
 
 export const SignFormInput = styled(Input)(({ theme }) => ({
-  '.MuiInputLabel-root': {
-    fontSize: '0.75rem',
-    color: 'red !important',
-  },
+  marginBottom: '0.5rem',
   '.MuiInputBase-root': {
     width: '100%',
-    marginBottom: '0.5rem',
-  },
-
-  '&:error': {
-    borderColor: 'red',
   },
 }))

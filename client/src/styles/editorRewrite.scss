@@ -1,0 +1,52 @@
+@import './src/styles/variables.scss';
+
+.ql-syntax {
+  background-color: #242526;
+  color: #f8f8f2;
+  overflow: visible;
+
+  margin-bottom: 5px !important;
+  margin-top: 5px !important;
+  padding: 5px 10px !important;
+
+  border-radius: 3px;
+  font-size: 0.8125rem;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  tab-size: 4;
+  line-height: 1.42;
+}
+
+code {
+  font-size: 85%;
+  padding: 2px 4px;
+  background-color: $nav-bcg-svg;
+  color: $main-text !important;
+  border-radius: 3px;
+  box-sizing: border-box;
+  cursor: text;
+}
+
+.ql-editor ul > li,
+.ql-editor ol > li {
+  color: $paragraph;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .ql-editor ul > li {
+    font-size: 1.25rem;
+    line-height: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .ql-editor ul > li {
+    font-size: 1.25rem;
+    line-height: 1.8rem;
+  }
+}

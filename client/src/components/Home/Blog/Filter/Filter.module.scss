@@ -20,6 +20,12 @@
     position: relative;
   }
 
+  .rightSection {
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+  }
+
   .searchIconWrapper {
     padding: 0 1rem;
     height: 100%;
@@ -53,6 +59,13 @@
     p {
       font-size: 1rem;
     }
+  }
+
+  .addPost {
+    border: none !important;
+    min-width: 0 !important;
+    font-size: 2rem !important;
+    padding: 0 !important;
   }
 }
 

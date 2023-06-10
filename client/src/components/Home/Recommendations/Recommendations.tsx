@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './Recommendations.module.scss'
 import { RecommendationsComponent } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'

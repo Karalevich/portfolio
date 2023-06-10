@@ -6,7 +6,7 @@ import { alpha, Button, ButtonProps, ClickAwayListener, Grow, styled } from '@mu
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import classnames from 'classnames'
 
-export const Dropdown: DropdownComponent = ({ selects }) => {
+export const Dropdown: DropdownComponent = ({ selects, onSelect }) => {
   const [isOpenSelect, setIsOpenSelect] = useState(false)
   const [selectedItem, setSelectedItem] = useState(selects[0])
   const handleClick = () => {
@@ -19,6 +19,7 @@ export const Dropdown: DropdownComponent = ({ selects }) => {
 
   const onChangeItem = (item: string) => () => {
     setSelectedItem(item)
+    onSelect && onSelect(item)
     setIsOpenSelect(false)
   }
   return (

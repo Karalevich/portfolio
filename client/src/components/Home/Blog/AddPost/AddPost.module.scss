@@ -1,0 +1,29 @@
+@import './src/styles/variables.scss';
+
+.addPost {
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 50%;
+  }
+
+  .breadcrumbs {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.quill {
+  div[class*='ql-containe'] {
+    height: 25.5rem;
+  }
+}
+
+.error {
+  box-shadow: red 0 0 0 0.1rem;
+}

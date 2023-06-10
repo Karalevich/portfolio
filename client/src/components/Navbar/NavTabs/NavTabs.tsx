@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './NavTabs.module.scss'
 import { NavTabsComponent } from './types'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { userActions } from '../../../actions/userAction'
+import { removeUsedData } from '../../../actions/userAction'
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
 import { BlogIcon, ContactIcon, CvIcon, HomeIcon, PortfolioIcon, ServicesIcon } from '../../Custom/Icons'
 import { Tooltip } from '../../Custom/Tooltip'
@@ -11,7 +11,9 @@ import { IndexToTabNameT, TabNameToIndexT } from '../types'
 import { styled } from '@mui/material/styles'
 import classnames from 'classnames'
 import { Button, SvgIconProps, Tab, Tabs } from '@mui/material'
-import { getUser } from '../../../selectors/userSelectors'
+import { getUserS } from '../../../selectors/userSelectors'
+import { actionsModal } from '../../../actions/modalAction'
+import { MODAL_TYPE } from '../../../reducers/modal/types'
 
 const tabNameToIndex: TabNameToIndexT = {
   0: 'home',
@@ -41,7 +43,7 @@ export const NavTabs: NavTabsComponent = ({
   const navigate = useNavigate()
   const [value, setValue] = useState(indexToTabName[pathname.split('/')[1]] || 0)
   const dispatch = useAppDispatch()
-  const user = useAppSelector(getUser)
+  const user = useAppSelector(getUserS)
 
   useEffect(() => {
     setValue(indexToTabName[pathname.split('/')[1]] || 0)
@@ -54,7 +56,11 @@ export const NavTabs: NavTabsComponent = ({
   }
 
   const handleOpenLogin = () => {
-    dispatch(userActions.toggleModal(true))
+    if (user) {
+      dispatch(removeUsedData())
+    } else {
+      dispatch(actionsModal.openModalAC(MODAL_TYPE.AUTH))
+    }
   }
 
   return (
@@ -113,7 +119,7 @@ export const NavTabs: NavTabsComponent = ({
   )
 }
 
-const StyledTabs = styled(Tabs)(({ theme }) => ({
+const StyledTabs = styled(Tabs)(({}) => ({
   '.Mui-selected': {
     color: 'var(--main-text) !important',
     'div[class*="iconWrapper"]': {

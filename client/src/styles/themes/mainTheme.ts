@@ -51,6 +51,65 @@ export const mainTheme = createTheme({
         },
       },
     },
+    MuiSkeleton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'var(--skeleton)',
+          borderRadius: '2px',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-disabled': {
+            backgroundColor: 'var(--substrate2)',
+          },
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          marginLeft: 0,
+          '&.Mui-error': {
+            color: 'red !important',
+            fontSize: '0.75rem',
+          },
+        },
+      },
+    },
+    MuiDialog: {
+      styleOverrides: {
+        root: {
+          '& .MuiDialog-paper': {
+            backgroundColor: 'var(--background)',
+            color: 'var(--main-text)',
+            borderRadius: '2px',
+            minHeight: '15rem',
+            maxWidth: '40%',
+            '@media (max-width:768px)': {
+              maxWidth: '90%',
+            },
+          },
+        },
+      },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          alignItems: 'center',
+        },
+      },
+    },
+    MuiDialogContentText: {
+      styleOverrides: {
+        root: {
+          color: 'var(--paragraph)',
+        },
+      },
+    },
   },
   typography: {
     fontFamily: [

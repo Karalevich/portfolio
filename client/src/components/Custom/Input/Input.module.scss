@@ -1,3 +1,10 @@
+@import './src/styles/variables.scss';
+
+.label {
+  font-weight: 500;
+  color: $paragraph !important;
+}
+
 @media only screen and (max-width: 767px) {
   .label {
     font-size: 1.25rem !important;

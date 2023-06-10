@@ -110,7 +110,7 @@ export const WorkPreview: WorkPreviewComponent = () => {
 
 export default WorkPreview
 
-const ColorlibStep = styled(Step)(({ theme }) => ({
+const ColorlibStep = styled(Step)(() => ({
   [`&.${stepClasses.completed}`]: {
     [`& .${stepContentClasses.root}`]: {
       '&:before': {

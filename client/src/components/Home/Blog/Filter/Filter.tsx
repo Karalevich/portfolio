@@ -1,18 +1,30 @@
-import { useEffect, useRef } from 'react'
+import React, { ChangeEvent, FormEvent, useCallback, useEffect, useRef } from 'react'
 import styles from './Filter.module.scss'
 import { FilterComponent } from './types'
 import { styled } from '@mui/material/styles'
 import InputBase from '@mui/material/InputBase'
 import SearchIcon from '@mui/icons-material/Search'
 import Dropdown from '../../../Custom/Dropdown/Dropdown'
-
-const SELECT = ['By default', 'By title', 'By date', 'By likes']
+import { Button, useMediaQuery } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
+import { getUserS } from '../../../../selectors/userSelectors'
+import { debounce } from '../../../../utils/debounce'
+import { actionsPosts, getPostsThunk } from '../../../../actions/postsAction'
+import { SELECT } from 'src/constants/posts'
+import { getSearchValueS, getSortValueS } from '../../../../selectors/postsSelectors'
 
 export const Filter: FilterComponent = () => {
+  const dispatch = useAppDispatch()
   const filterRef = useRef<HTMLHeadingElement | null>(null)
+  const redirect = useNavigate()
+  const isTabletOrMobile = useMediaQuery('(max-width:767px)')
+  const user = useAppSelector(getUserS)
+  const searchValue = useAppSelector(getSearchValueS)
+  const sortValue = useAppSelector(getSortValueS)
 
   useEffect(() => {
-    /* browser does not provides API to track when element with position sticky reach the fix position, for this used IntersectionObserver */
+    /* browser does not provide API to track when element with position sticky reach the fix position, for this used IntersectionObserver */
     const observer = new IntersectionObserver(
       ([e]) => {
         e.target.classList.toggle(styles.filterSticked, e.intersectionRatio < 1)
@@ -26,18 +38,69 @@ export const Filter: FilterComponent = () => {
 
     return () => {
       observer.disconnect()
+      dispatch(actionsPosts.setSortValueAC(0))
+      dispatch(actionsPosts.setSearchValueAC(''))
     }
   }, [])
 
+  const handleRedirect = () => {
+    redirect(`/blog/addPost`)
+  }
+
+  const debouncedSetSearchValue = useCallback(
+    debounce(
+      (searchQuery: string, sortQuery: number) => dispatch(getPostsThunk(searchQuery, sortQuery, 1)),
+      400
+    ),
+    []
+  )
+
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(actionsPosts.setSearchValueAC(e.target.value))
+    dispatch(actionsPosts.setCurrentPageAC(1))
+
+    debouncedSetSearchValue(searchValue.trim(), sortValue)
+  }
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const searchQuery = searchValue.trim()
+
+    dispatch(actionsPosts.setCurrentPageAC(1))
+    dispatch(getPostsThunk(searchQuery, sortValue, 1))
+  }
+
+  const onSortPosts = (item: string) => {
+    const sortQuery = SELECT.includes(item) ? SELECT.indexOf(item) : 0
+    const searchQuery = searchValue.trim()
+    dispatch(actionsPosts.setCurrentPageAC(1))
+    dispatch(getPostsThunk(searchQuery, sortQuery, 1))
+    dispatch(actionsPosts.setSortValueAC(sortQuery))
+  }
+
   return (
     <article className={styles.filter} ref={filterRef}>
-      <div className={styles.search}>
+      <form className={styles.search} onSubmit={onSubmit}>
         <div className={styles.searchIconWrapper}>
           <SearchIcon />
         </div>
-        <StyledInputBase placeholder='Search…' />
+        <StyledInputBase value={searchValue} onChange={onSearchChange} placeholder='Search…' />
+      </form>
+
+      <div className={styles.rightSection}>
+        {user && (
+          <Button
+            className={styles.addPost}
+            onClick={handleRedirect}
+            sx={{ boxShadow: 0 }}
+            variant='outlined'
+            disableRipple={isTabletOrMobile}
+          >
+            {isTabletOrMobile ? '+' : 'Add post'}
+          </Button>
+        )}
+        <Dropdown selects={SELECT} onSelect={onSortPosts} />
       </div>
-      <Dropdown selects={SELECT} />
     </article>
   )
 }

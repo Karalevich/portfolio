@@ -1,36 +1,88 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react'
-
+import React, { Fragment, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { CarouselContext, Slide, Slider } from 'pure-react-carousel'
-import { OrderIcon } from '../../Custom/Icons'
-import Card from '@mui/material/Card/Card'
-import { Button, CardContent, CardMedia } from '@mui/material'
-import { POSTS } from '../../../constants/personalInfo'
+import { PLACEHOLDER_COUNT_POSTS, PLACEHOLDER_POST } from '../../../constants/personalInfo'
 import classnames from 'classnames'
 import styles from './Blog.module.scss'
-import { PostCardComponent, PostsContent } from './types'
-import { useNavigate } from 'react-router-dom'
+import { PostsContent } from './types'
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
+import { actionsPosts, getPaginatedPostsThunk, getPostsThunk } from '../../../actions/postsAction'
+import {
+  getAllPagesS,
+  getCurrentPageS,
+  getFetchingPaginatedPostsS,
+  getFetchingPostsS,
+  getPostsS,
+  getSearchValueS,
+  getSortValueS,
+} from '../../../selectors/postsSelectors'
+import PostCard from './PostCard/PostCard'
+import { PostT } from './PostCard/types'
 
 const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
   const carouselContext = useContext(CarouselContext)
   const [currentSlide, setCurrentSlide] = useState(carouselContext?.state?.currentSlide)
+  const dispatch = useAppDispatch()
+  const isFetchingPosts = useAppSelector(getFetchingPostsS)
+  const posts = useAppSelector(getPostsS)
+  const isFetchingPaginatedPosts = useAppSelector(getFetchingPaginatedPostsS)
+  const currentPage = useAppSelector(getCurrentPageS)
+  const allPages = useAppSelector(getAllPagesS)
+  const searchValue = useAppSelector(getSearchValueS)
+  const sortValue = useAppSelector(getSortValueS)
+  const observer = useRef<null | IntersectionObserver>(null)
+
+  const isReachedLimit = currentPage === allPages
 
   useEffect(() => {
     function onChange() {
       setCurrentSlide(carouselContext.state.currentSlide)
     }
 
+    dispatch(getPostsThunk('', 0, 1))
+
     carouselContext?.subscribe(onChange)
-    return () => carouselContext?.unsubscribe(onChange)
+    return () => {
+      carouselContext?.unsubscribe(onChange)
+      dispatch(actionsPosts.setCurrentPageAC(1))
+    }
   }, [])
 
-  const posts = POSTS.map((props, index) => {
+  const lastPostCardRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (isFetchingPaginatedPosts) return
+      if (observer.current) observer.current.disconnect()
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !isReachedLimit) {
+          dispatch(actionsPosts.setCurrentPageAC(currentPage + 1))
+          dispatch(getPaginatedPostsThunk(searchValue, sortValue, currentPage + 1))
+        }
+      })
+
+      if (node) observer.current?.observe(node)
+    },
+    [isFetchingPaginatedPosts, isReachedLimit, searchValue, sortValue]
+  )
+
+  const mappedPosts = (
+    isFetchingPosts
+      ? Array(PLACEHOLDER_COUNT_POSTS)
+          .fill(PLACEHOLDER_POST)
+          .map((e, i) => ({ ...e, _id: `${i}` }))
+      : posts
+  ).map((props: PostT, index: number, self) => {
     return (
-      <Fragment key={props.id}>
+      <Fragment key={props._id}>
         {isFullVersion ? (
-          <PostCard {...props} isFullVersion={isFullVersion} />
+          <PostCard
+            {...props}
+            isFullVersion={isFullVersion}
+            isFetchingPosts={isFetchingPosts}
+            ref={index === self.length - 1 ? lastPostCardRef : null}
+          />
         ) : (
           <Slide index={index || 0} innerClassName={styles.innerSlide}>
-            <PostCard {...props} />
+            <PostCard {...props} isFetchingPosts={isFetchingPosts} />
           </Slide>
         )}
       </Fragment>
@@ -40,52 +92,21 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
   return (
     <>
       {isFullVersion ? (
-        posts
+        <>
+          {mappedPosts}
+          {isFetchingPaginatedPosts && <div>...Loading</div>}
+        </>
       ) : (
         <Slider
           classNameAnimation={classnames({
-            [styles.lastSlide]: currentSlide === POSTS.length - 1,
+            [styles.lastSlide]: currentSlide === mappedPosts.length - 1,
             [styles.sliderTray]: isTabletOrMobile,
           })}
         >
-          {posts}
+          {mappedPosts}
         </Slider>
       )}
     </>
   )
 }
 export default Posts
-
-const PostCard: PostCardComponent = ({ img, title, description, id, isFullVersion }) => {
-  const [isCardHover, setIsCardHover] = useState(false)
-  const redirect = useNavigate()
-
-  const handleRedirect = () => {
-    redirect(`/blog/post/${id}`)
-  }
-
-  const toggleIsCardHover = (value: boolean) => () => {
-    setIsCardHover(value)
-  }
-  return (
-    <Card
-      className={styles.card}
-      elevation={isCardHover && isFullVersion ? 2 : 0}
-      onMouseEnter={toggleIsCardHover(true)}
-      onMouseLeave={toggleIsCardHover(false)}
-    >
-      <CardMedia className={styles.media} component='img' image={img} alt={title} />
-      <CardContent className={styles.content}>
-        <h4 className={styles.title}>{title}</h4>
-        <p className={styles.description}>{description}</p>
-      </CardContent>
-      <Button
-        onClick={handleRedirect}
-        className={styles.button}
-        endIcon={<OrderIcon className={styles.arrow} />}
-      >
-        Learn More
-      </Button>
-    </Card>
-  )
-}

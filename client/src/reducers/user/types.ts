@@ -1,7 +1,31 @@
-export type UserT = {}
+import { ActionT } from '../store'
+import { userActions } from '../../actions/userAction'
+
+export type UserT = {
+  email: string
+  id: string
+  name: string
+  imageUrl?: string
+}
+
+export type CreateUserT = Omit<UserT, 'id'> & {
+  password: string
+  confirmPassword?: string
+}
+
+export type GoogleUserT = {
+  name: string
+  picture: string
+  sub: string
+  email: string
+}
 
 export type UserStateT = {
   user: UserT | null
   token: string | null
-  isOpenModal: boolean
+  isAuthLoading: boolean
+  errSignInMessage: string
+  errSignUpMessage: string
 }
+
+export type UserActionsT = ActionT<typeof userActions>
