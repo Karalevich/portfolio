@@ -17,6 +17,7 @@ import {
 } from '../../../selectors/postsSelectors'
 import PostCard from './PostCard/PostCard'
 import { PostT } from './PostCard/types'
+import { CircularProgress } from '@mui/material'
 
 const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
   const carouselContext = useContext(CarouselContext)
@@ -31,7 +32,7 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
   const sortValue = useAppSelector(getSortValueS)
   const observer = useRef<null | IntersectionObserver>(null)
 
-  const isReachedLimit = currentPage === allPages
+  const isReachedLimit = currentPage >= allPages
 
   useEffect(() => {
     function onChange() {
@@ -94,7 +95,7 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
       {isFullVersion ? (
         <>
           {mappedPosts}
-          {isFetchingPaginatedPosts && <div>...Loading</div>}
+          {isFetchingPaginatedPosts && <CircularProgress className={styles.paginatedLoader} size={'2rem'}/>}
         </>
       ) : (
         <Slider

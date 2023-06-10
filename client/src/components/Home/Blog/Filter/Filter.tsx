@@ -49,7 +49,11 @@ export const Filter: FilterComponent = () => {
 
   const debouncedSetSearchValue = useCallback(
     debounce(
-      (searchQuery: string, sortQuery: number) => dispatch(getPostsThunk(searchQuery, sortQuery, 1)),
+      (searchQuery: string, sortQuery: number) => {
+        window.scrollTo({ top: 0 })
+        dispatch(actionsPosts.setCurrentPageAC(1))
+        dispatch(getPostsThunk(searchQuery, sortQuery, 1))
+      },
       400
     ),
     []
@@ -57,13 +61,12 @@ export const Filter: FilterComponent = () => {
 
   const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(actionsPosts.setSearchValueAC(e.target.value))
-    dispatch(actionsPosts.setCurrentPageAC(1))
-
     debouncedSetSearchValue(searchValue.trim(), sortValue)
   }
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    window.scrollTo({ top: 0})
     const searchQuery = searchValue.trim()
 
     dispatch(actionsPosts.setCurrentPageAC(1))
@@ -71,6 +74,7 @@ export const Filter: FilterComponent = () => {
   }
 
   const onSortPosts = (item: string) => {
+    window.scrollTo({ top: 0})
     const sortQuery = SELECT.includes(item) ? SELECT.indexOf(item) : 0
     const searchQuery = searchValue.trim()
     dispatch(actionsPosts.setCurrentPageAC(1))

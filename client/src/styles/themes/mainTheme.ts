@@ -15,7 +15,7 @@ export const mainTheme = createTheme({
       main: '#FFB400',
     },
     secondary: {
-      main: '#ffffff',
+      main: '#f8f8f2',
     },
   },
   components: {
