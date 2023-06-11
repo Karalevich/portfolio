@@ -8,11 +8,13 @@ import { getModalIsOpenS, getModalTypeS } from '../../../selectors/modalSelector
 import { actionsModal } from '../../../actions/modalAction'
 import ConfirmDeletePostModal from '../../Modals/ConfirmDeletePostModal/ConfirmDeletePostModal'
 import Auth from '../../Auth/Auth'
+import ErrorModal from './ErrorModal/ErrorModal'
 
 const MODAL_COMPONENTS = {
   [MODAL_TYPE.INFO]: ConfirmModal,
+  [MODAL_TYPE.CONFIRM]: ConfirmModal,
+  [MODAL_TYPE.ERROR]: ErrorModal,
   [MODAL_TYPE.CONFIRM_DELETE_POST]: ConfirmDeletePostModal,
-  [MODAL_TYPE.ERROR]: ConfirmModal,
   [MODAL_TYPE.AUTH]: Auth,
 }
 export const Modal: ModalComponent = () => {

@@ -6,6 +6,7 @@ export type UserT = {
   id: string
   name: string
   imageUrl?: string
+  isActivated?: boolean
 }
 
 export type CreateUserT = Omit<UserT, 'id'> & {

@@ -1,14 +1,15 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import express from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
 import cors from 'cors'
+import cookieParser from 'cookie-parser'
 import user from './routes/user'
 import post from './routes/post'
 
-
 const app = express()
-dotenv.config()
+app.use(cookieParser())
 app.use(cors())
 
 const PORT = process.env.PORT || 5000

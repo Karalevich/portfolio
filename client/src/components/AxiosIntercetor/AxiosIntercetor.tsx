@@ -5,6 +5,8 @@ import { AxiosError, AxiosResponse } from 'axios'
 import { useAppDispatch } from '../../hooks/hooks'
 import { removeUsedData, userActions } from '../../actions/userAction'
 import { useNavigate } from 'react-router-dom'
+import { actionsModal } from '../../actions/modalAction'
+import { MODAL_TYPE } from '../../reducers/modal/types'
 
 const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
   const dispatch = useAppDispatch()
@@ -17,22 +19,41 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
     }
 
     const errInterceptor = (error: AxiosError) => {
-      switch (error?.response?.status) {
-        case 401:
-          dispatch(userActions.setErrSignInMessageAC(error?.response?.data?.message))
-          break
-        case 400:
-          dispatch(userActions.setErrSignUpMessageAC(error?.response?.data?.message))
-          break
-        case 404:
-          navigate('/not-found')
-          break
-        case 498:
-          dispatch(removeUsedData())
-          break
-        default:
-          return Promise.reject(error)
+      if (error?.response?.data?.code) {    // check if there is provided specific error code
+        switch (error.response.data.code) {
+          case 4011:
+          case 4012:
+          case 5001:
+            dispatch(userActions.setErrSignInMessageAC(error.response.data.message))
+            break
+          case 4001:
+          case 4002:
+          case 5002:
+            dispatch(userActions.setErrSignUpMessageAC(error.response.data.message))
+            break
+          case 5003:
+            dispatch(userActions.setErrSignInMessageAC(error.response.data.message))
+            dispatch(userActions.setErrSignUpMessageAC(error.response.data.message))
+            break
+          default:
+            return Promise.reject(error)
+        }
+      } else {
+        switch (error?.response?.status) { //  if there is not provided specific error code look what error status
+          case 404:
+            navigate('/not-found')
+            break
+          case 498:
+            dispatch(removeUsedData())
+            break
+          case 500:
+            dispatch(actionsModal.openModalAC(MODAL_TYPE.ERROR))
+            break
+          default:
+            return Promise.reject(error)
+        }
       }
+
 
       return Promise.reject(error)
     }

@@ -51,7 +51,7 @@ const PostCard: PostCardComponent = forwardRef(
         ) : (
           <Button
             onClick={handleRedirect}
-            className={styles.button}
+            className={styles.expand}
             endIcon={<OrderIcon className={styles.arrow} />}
           >
             Learn More

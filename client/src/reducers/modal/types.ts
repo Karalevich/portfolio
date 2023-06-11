@@ -3,8 +3,9 @@ import { actionsModal } from '../../actions/modalAction'
 
 export enum MODAL_TYPE {
   INFO = 'INFO',
-  CONFIRM_DELETE_POST = 'CONFIRM_DELETE_POST',
+  CONFIRM = 'CONFIRM',
   ERROR = 'ERROR',
+  CONFIRM_DELETE_POST = 'CONFIRM_DELETE_POST',
   AUTH = 'AUTH',
 }
 

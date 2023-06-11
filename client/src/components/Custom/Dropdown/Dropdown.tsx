@@ -39,7 +39,7 @@ export const Dropdown: DropdownComponent = ({ selects, onSelect }) => {
               {selects.map((item) => (
                 <li key={item} className={styles.item}>
                   <StyledButton className={styles.itemButton} onClick={onChangeItem(item)}>
-                    <p>{item}</p>
+                    <p className={styles.text}>{item}</p>
                   </StyledButton>
                 </li>
               ))}
