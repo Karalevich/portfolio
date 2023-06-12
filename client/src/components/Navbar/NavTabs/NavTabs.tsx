@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './NavTabs.module.scss'
 import { NavTabsComponent } from './types'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { removeUsedData } from '../../../actions/userAction'
+import { logOutThunk } from '../../../actions/userAction'
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher'
 import { BlogIcon, ContactIcon, CvIcon, HomeIcon, PortfolioIcon, ServicesIcon } from '../../Custom/Icons'
 import { Tooltip } from '../../Custom/Tooltip'
@@ -10,10 +10,11 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { IndexToTabNameT, TabNameToIndexT } from '../types'
 import { styled } from '@mui/material/styles'
 import classnames from 'classnames'
-import { Button, SvgIconProps, Tab, Tabs } from '@mui/material'
-import { getUserS } from '../../../selectors/userSelectors'
-import { actionsModal } from '../../../actions/modalAction'
+import {  SvgIconProps, Tab, Tabs } from '@mui/material'
+import { getIsFetchingLogoutS, getUserS } from '../../../selectors/userSelectors'
+import { modalActions } from '../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../reducers/modal/types'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 const tabNameToIndex: TabNameToIndexT = {
   0: 'home',
@@ -44,6 +45,7 @@ export const NavTabs: NavTabsComponent = ({
   const [value, setValue] = useState(indexToTabName[pathname.split('/')[1]] || 0)
   const dispatch = useAppDispatch()
   const user = useAppSelector(getUserS)
+  const isFetchingLogout = useAppSelector(getIsFetchingLogoutS)
 
   useEffect(() => {
     setValue(indexToTabName[pathname.split('/')[1]] || 0)
@@ -57,21 +59,28 @@ export const NavTabs: NavTabsComponent = ({
 
   const handleOpenLogin = () => {
     if (user) {
-      dispatch(removeUsedData())
+      dispatch(logOutThunk())
     } else {
-      dispatch(actionsModal.openModalAC(MODAL_TYPE.AUTH))
+      dispatch(modalActions.openModalAC(MODAL_TYPE.AUTH))
     }
   }
 
   return (
     <nav className={classnames(styles.nav, { [`${className}`]: className })}>
-      <Button onClick={handleOpenLogin} variant='contained' className={styles.loginButton}>
+      <LoadingButton
+        className={styles.loginButton}
+        disableElevation
+        variant='contained'
+        loading={isFetchingLogout}
+        loadingPosition='center'
+        onClick={handleOpenLogin}
+      >
         {user ? 'Log Out' : 'Sign In'}
-      </Button>
+      </LoadingButton>
       <ThemeSwitcher handleSwitchTheme={handleSwitchTheme} isLightTheme={isLightTheme} />
       {/*<LanguageSwitcher/>*/}
 
-      <StyledTabs value={value} onChange={handleChange} orientation='vertical' centered>
+      <StyledTabs className={styles.tabs} value={value} onChange={handleChange} orientation='vertical' centered>
         <Tab
           icon={
             <IconWrapper name={'Home'}>

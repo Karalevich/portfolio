@@ -7,19 +7,20 @@ type PayloadT = {
   isActivated: boolean
 }
 
+export type TokensT = {
+  accessToken: string,
+  refreshToken: string
+}
+
 class TokenService {
-  async generateTokens(payload: PayloadT): Promise<{
-    accessToken: string,
-    refreshToken: string
-  }> {
-    const accessToken = jwt.sign(payload, process.env.SECRET as string, { expiresIn: '1h' })
-    const refreshToken = jwt.sign(payload, process.env.SECRET_REFRESH as string, { expiresIn: '30d' })
+  async generateTokens(payload: PayloadT): Promise<TokensT> {
+    const accessToken = jwt.sign(payload, process.env.SECRET as string, { expiresIn: '30min' })
+    const refreshToken = jwt.sign(payload, process.env.SECRET_REFRESH as string, { expiresIn: '3d' })
 
     return {
       accessToken,
       refreshToken,
     }
-
   }
 
   async saveToken(userId: string, refreshToken: string) {
@@ -29,7 +30,32 @@ class TokenService {
       return token.save()
     }
 
-    return  await Token.create({ user: userId, refreshToken })
+    return await Token.create({ user: userId, refreshToken })
+  }
+
+  async removeToken(refreshToken: string) {
+    return Token.deleteOne({ refreshToken })
+  }
+
+  validateRefreshToken(token: string): PayloadT | null {
+    try {
+      return jwt.verify(token, process.env.SECRET_REFRESH as string) as PayloadT
+    } catch (e) {
+      return null
+    }
+  }
+
+  validateAccessToken(token: string): PayloadT | null {
+    try {
+      return jwt.verify(token, process.env.SECRET as string) as PayloadT
+    } catch (e) {
+      return null
+    }
+  }
+
+
+  async findToken(refreshToken: string) {
+    return Token.findOne({ refreshToken })
   }
 }
 

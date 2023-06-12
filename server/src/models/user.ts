@@ -1,6 +1,6 @@
 import mongoose, { Document, Schema, Model } from 'mongoose';
 
-interface UserDocument extends Document {
+export interface UserDocumentI extends Document {
   name: string
   email: string
   password: string
@@ -10,9 +10,9 @@ interface UserDocument extends Document {
   transform: () => any
 }
 
-interface UserModel extends Model<UserDocument> {}
+export interface UserModelI extends Model<UserDocumentI> {}
 
-const userSchema = new Schema<UserDocument, UserModel>({
+const userSchema = new Schema<UserDocumentI, UserModelI>({
   name: { type: String, required: true },
   email: { type: String, unique: true, required: true },
   password: { type: String },
@@ -32,6 +32,6 @@ userSchema.methods.transform = function () {
   return user
 };
 
-const User = mongoose.model<UserDocument, UserModel>('User', userSchema)
+const User = mongoose.model<UserDocumentI, UserModelI>('User', userSchema)
 
 export default User

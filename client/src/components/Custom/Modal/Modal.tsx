@@ -5,7 +5,7 @@ import { MODAL_TYPE } from '../../../reducers/modal/types'
 import ConfirmModal from './ConfirmModal/ConfirmModal'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { getModalIsOpenS, getModalTypeS } from '../../../selectors/modalSelectors'
-import { actionsModal } from '../../../actions/modalAction'
+import { modalActions } from '../../../actions/modalAction'
 import ConfirmDeletePostModal from '../../Modals/ConfirmDeletePostModal/ConfirmDeletePostModal'
 import Auth from '../../Auth/Auth'
 import ErrorModal from './ErrorModal/ErrorModal'
@@ -24,7 +24,7 @@ export const Modal: ModalComponent = () => {
 
   const ModalComponent = MODAL_COMPONENTS[type]
   const handleClose = () => {
-    dispatch(actionsModal.closesModalAC())
+    dispatch(modalActions.closesModalAC())
   }
 
   return (

@@ -18,7 +18,7 @@ import {
 import { Button, Skeleton } from '@mui/material'
 import { RecommendCardT } from '../PostCard/types'
 import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
-import { actionsModal } from '../../../../actions/modalAction'
+import { modalActions } from '../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../reducers/modal/types'
 import { getUserS } from '../../../../selectors/userSelectors'
 
@@ -60,7 +60,7 @@ export const PostPage: PostPageComponent = () => {
   }
 
   const onDeletePost = () => {
-    isCurrentUserCreator && dispatch(actionsModal.openModalAC(MODAL_TYPE.CONFIRM_DELETE_POST))
+    isCurrentUserCreator && dispatch(modalActions.openModalAC(MODAL_TYPE.CONFIRM_DELETE_POST))
   }
 
   return (

@@ -10,7 +10,10 @@ import post from './routes/post'
 
 const app = express()
 app.use(cookieParser())
-app.use(cors())
+app.use(cors({
+  credentials: true,
+  origin: process.env.CLIENT_URL
+}))
 
 const PORT = process.env.PORT || 5000
 

@@ -25,6 +25,7 @@ export type UserStateT = {
   user: UserT | null
   token: string | null
   isAuthLoading: boolean
+  isFetchingLogout: boolean
   errSignInMessage: string
   errSignUpMessage: string
 }

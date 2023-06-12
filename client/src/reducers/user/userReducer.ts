@@ -5,11 +5,13 @@ export const LOGOUT = 'LOGOUT'
 export const TOGGLE_IS_AUTH_LOADING = 'TOGGLE_IS_AUTH_LOADING'
 export const SET_ERROR_SIGNIN_MESSAGE = 'SET_ERROR_SIGNIN_MESSAGE'
 export const SET_ERROR_SIGNUP_MESSAGE = 'SET_ERROR_SIGNUP_MESSAGE'
+export const SET_FETCHING_LOGOUT = 'SET_FETCHING_LOGOUT'
 
 const initialState = {
   user: null,
   token: null,
   isAuthLoading: false,
+  isFetchingLogout: false,
   errSignInMessage: '',
   errSignUpMessage: '',
 }
@@ -42,6 +44,11 @@ export default (state: UserStateT = initialState, action: UserActionsT) => {
       return {
         ...state,
         errSignUpMessage: action.payload.errMessage,
+      }
+    case SET_FETCHING_LOGOUT:
+      return {
+        ...state,
+        isFetchingLogout: action.flag,
       }
     default:
       return state

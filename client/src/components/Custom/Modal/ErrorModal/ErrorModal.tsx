@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
 import { useAppDispatch } from '../../../../hooks/hooks'
-import { actionsModal } from '../../../../actions/modalAction'
+import { modalActions } from '../../../../actions/modalAction'
 import { ErrorModalComponent } from './types'
 import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 
@@ -14,7 +14,7 @@ export const ErrorModal: ErrorModalComponent = ({
   const dispatch = useAppDispatch()
 
   const confirmAction = () => {
-    dispatch(actionsModal.closesModalAC())
+    dispatch(modalActions.closesModalAC())
     confirmActionFromParent && confirmActionFromParent()
   }
   return (

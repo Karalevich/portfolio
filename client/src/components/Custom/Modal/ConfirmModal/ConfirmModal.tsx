@@ -2,7 +2,7 @@ import React from 'react'
 import { ConfirmModalComponent } from './types'
 import { Button, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material'
 import { useAppDispatch } from '../../../../hooks/hooks'
-import { actionsModal } from '../../../../actions/modalAction'
+import { modalActions } from '../../../../actions/modalAction'
 
 export const ConfirmModal: ConfirmModalComponent = ({
   title,
@@ -14,12 +14,12 @@ export const ConfirmModal: ConfirmModalComponent = ({
 }) => {
   const dispatch = useAppDispatch()
   const cancelAction = () => {
-    dispatch(actionsModal.closesModalAC())
+    dispatch(modalActions.closesModalAC())
     cancelActionFromParent && cancelActionFromParent()
   }
 
   const confirmAction = () => {
-    dispatch(actionsModal.closesModalAC())
+    dispatch(modalActions.closesModalAC())
     confirmActionFromParent && confirmActionFromParent()
   }
   return (

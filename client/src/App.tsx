@@ -13,7 +13,7 @@ import AnimatedRoutes from './components/AminatedRoutes/AnimatedRoutes'
 import Modal from './components/Custom/Modal/Modal'
 import { useAppDispatch } from './hooks/hooks'
 import { USER } from './constants/user'
-import { userActions } from './actions/userAction'
+import { checkAuth } from './actions/userAction'
 import AxiosInterceptor from './components/AxiosIntercetor/AxiosIntercetor'
 import { AppComponent } from './types'
 
@@ -27,7 +27,7 @@ export const App: AppComponent = () => {
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem(USER) as string)
-    authData && dispatch(userActions.setAuthAC(authData.user, authData.token))
+    authData && dispatch(checkAuth())
 
     function handleScroll() {
       const fixedNode = infoRef.current

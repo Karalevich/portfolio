@@ -1,5 +1,5 @@
 import { ActionT } from '../store'
-import { actionsModal } from '../../actions/modalAction'
+import { modalActions } from '../../actions/modalAction'
 
 export enum MODAL_TYPE {
   INFO = 'INFO',
@@ -18,4 +18,4 @@ export type ModalStateT = {
   cancelText: string
 }
 
-export type ModalActionT = ActionT<typeof actionsModal>
+export type ModalActionT = ActionT<typeof modalActions>

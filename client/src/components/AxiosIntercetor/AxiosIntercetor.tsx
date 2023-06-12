@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { AxiosInterceptorComponent } from './types'
 import { API } from '../../api'
-import { AxiosError, AxiosResponse } from 'axios'
+import * as api from '../../api'
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { useAppDispatch } from '../../hooks/hooks'
-import { removeUsedData, userActions } from '../../actions/userAction'
+import { setUsedData, userActions } from '../../actions/userAction'
 import { useNavigate } from 'react-router-dom'
-import { actionsModal } from '../../actions/modalAction'
+import { modalActions } from '../../actions/modalAction'
 import { MODAL_TYPE } from '../../reducers/modal/types'
 
 const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
@@ -18,7 +19,7 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
       return response
     }
 
-    const errInterceptor = (error: AxiosError) => {
+    const errInterceptor = async (error: AxiosError) => {
       if (error?.response?.data?.code) {    // check if there is provided specific error code
         switch (error.response.data.code) {
           case 4011:
@@ -44,17 +45,27 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
             navigate('/not-found')
             break
           case 498:
-            dispatch(removeUsedData())
+            const originateRequest = error.config as AxiosRequestConfig & { _isRetry?: boolean }
+            if (originateRequest && !originateRequest._isRetry) {
+              originateRequest._isRetry = true
+              try {
+                const { data } = await api.refresh()
+                await dispatch(setUsedData(data.user, data.token))
+
+                return API.request(originateRequest)
+              } catch (e: any | unknown) {
+                console.log(e?.data?.message)
+                dispatch(modalActions.openModalAC(MODAL_TYPE.ERROR))
+              }
+            }
             break
           case 500:
-            dispatch(actionsModal.openModalAC(MODAL_TYPE.ERROR))
+            dispatch(modalActions.openModalAC(MODAL_TYPE.ERROR))
             break
           default:
             return Promise.reject(error)
         }
       }
-
-
       return Promise.reject(error)
     }
 
