@@ -22,7 +22,12 @@ export const signin = async (req: Request, res: Response) => {
     const tokens = await tokenService.generateTokens({ email, id: user._id, isActivated: user.isActivated })
     await tokenService.saveToken(user._id, tokens.refreshToken)
 
-    res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+    res.cookie('refreshToken', tokens.refreshToken, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    })
     res.status(200).json({ user: user.transform(), token: tokens.accessToken })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong during sign in', code: 5001 })
@@ -56,7 +61,12 @@ export const signup = async (req: Request, res: Response) => {
     const tokens = await tokenService.generateTokens({ email, id: newUser._id, isActivated: newUser.isActivated })
     await tokenService.saveToken(newUser._id, tokens.refreshToken)
 
-    res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+    res.cookie('refreshToken', tokens.refreshToken, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    })
     res.status(200).json({ user: newUser.transform(), token: tokens.accessToken })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong during sign up', code: 5002 })
@@ -79,7 +89,12 @@ export const googleSign = async (req: Request, res: Response) => {
     const tokens = await tokenService.generateTokens({ email, id: newUser._id, isActivated: newUser.isActivated })
     await tokenService.saveToken(newUser._id, tokens.refreshToken)
 
-    res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+    res.cookie('refreshToken', tokens.refreshToken, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    })
     res.status(200).json({ user: newUser.transform(), token: tokens.accessToken })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong during google auth', code: 5003 })
@@ -133,7 +148,12 @@ export const refresh = async (req: Request, res: Response) => {
     const tokens = await tokenService.generateTokens({ email: user.email, id: user._id, isActivated: user.isActivated })
     await tokenService.saveToken(user._id, tokens.refreshToken)
 
-    res.cookie('refreshToken', tokens.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+    res.cookie('refreshToken', tokens.refreshToken, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    })
     res.status(200).json({ user: user.transform(), token: tokens.accessToken })
   } catch (e) {
 
