@@ -13,6 +13,7 @@ import { USER } from '../constants/user'
 import { TokenResponse } from '@react-oauth/google'
 import { modalActions } from './modalAction'
 import { ModalActionT } from '../reducers/modal/types'
+import { PostsActionT } from '../reducers/posts/types'
 
 export const userActions = {
   setAuthAC: (user: UserT, token: string) =>
@@ -151,6 +152,17 @@ export const signInThunk =
       }
     }
 
+export const resentActivationLinkThunk =
+  (email: string): ThunkT<PostsActionT> =>
+    async (dispatch) => {
+      try {
+        await api.resentActivationLink(email)
+      } catch (e) {
+        console.log(e)
+      } finally {
+      }
+    }
+
 // export const updateUserDataThunk = (formData: UserType): ThunkType<UserActionsT> => async (dispatch) => {
 //   try {
 //     const { data } = await api.updateUserData({
@@ -171,3 +183,12 @@ export const signInThunk =
 //     console.log(e)
 //   }
 // }
+
+//   user: {
+//   name: "Test fo delete",
+//     "email": "ajboffstark666@betmelli20.com",
+//     "imageUrl": "",
+//     "isActivated": false,
+//     "id": "6487deee0a91a48c1b7088a7"
+// },
+//   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFqYm9mZnN0YXJrNjY2QGJldG1lbGxpMjAuY29tIiwiaWQiOiI2NDg3ZGVlZTBhOTFhNDhjMWI3MDg4YTciLCJpc0FjdGl2YXRlZCI6dHJ1ZSwiaWF0IjoxNjg2NjMyMzQ3LCJleHAiOjE2ODY2MzQxNDd9.YisXtC1nMJRLAC8ZMy0li_z1v299KcmFzKgNyKkI16Y"

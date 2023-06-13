@@ -2,6 +2,7 @@ import Post, { PostDocument } from '../models/post'
 import mongoose, { ObjectId } from 'mongoose'
 import { LIMIT_CARDS_ON_PAGE } from '../constants'
 import { Request, Response } from 'express'
+import User from '../models/user'
 
 export const getCertainPost = async (req: Request, res: Response) => {
   const { id } = req.params
@@ -58,8 +59,16 @@ export const getPosts = async (req: Request, res: Response) => {
 
 export const createPosts = async (req: Request, res: Response) => {
   const post = req.body
-  const newPost = new Post({ ...post, author: req.userId, date: new Date().toISOString() })
   try {
+    let user = await User.findOne({ _id: req.userId })
+    if(!user){
+      return res.status(401).json({ message: 'User does not exist in database', code: 4013 })
+    }
+
+    if(!user.isActivated){
+      return res.status(403).json({ message: 'Please ensure that your account is activated', code: 4031 })
+    }
+    const newPost = new Post({ ...post, author: req.userId, date: new Date().toISOString() })
     await newPost.save()
 
     res.status(201).json(newPost)

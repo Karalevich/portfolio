@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AxiosInterceptorComponent } from './types'
-import { API } from '../../api'
 import * as api from '../../api'
+import { API } from '../../api'
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { useAppDispatch } from '../../hooks/hooks'
 import { setUsedData, userActions } from '../../actions/userAction'
@@ -35,6 +35,12 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
           case 5003:
             dispatch(userActions.setErrSignInMessageAC(error.response.data.message))
             dispatch(userActions.setErrSignUpMessageAC(error.response.data.message))
+            break
+          case 4041:
+          case 4042:
+          case 4013:
+          case 4031:
+            dispatch(modalActions.openModalAC(MODAL_TYPE.ERROR, error.response.data.message))
             break
           default:
             return Promise.reject(error)

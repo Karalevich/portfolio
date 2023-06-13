@@ -88,6 +88,7 @@ export const mainTheme = createTheme({
             borderRadius: '2px',
             minHeight: '15rem',
             maxWidth: '40%',
+            minWidth: '25rem',
             '@media (max-width:768px)': {
               maxWidth: '90%',
             },

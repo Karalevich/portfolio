@@ -1,11 +1,11 @@
 import React from 'react'
 import { ConfirmDeletePostModalComponent } from './types'
 
-import ConfirmModal from '../../Custom/Modal/ConfirmModal/ConfirmModal'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { deletePostThunk } from '../../../actions/postsAction'
 import { getOpenedPostIdS } from '../../../selectors/postsSelectors'
 import { useNavigate } from 'react-router-dom'
+import ConfirmModal from '../../Custom/Modal/ConfirmModal/ConfirmModal'
 
 export const ConfirmDeletePostModal: ConfirmDeletePostModalComponent = () => {
   const dispatch = useAppDispatch()

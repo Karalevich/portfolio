@@ -241,7 +241,6 @@ export const likePostThunk =
       dispatch(actionsPosts.setCertainPostAC(data))
     } catch (e) {
       console.log(e)
-    } finally {
     }
   }
 

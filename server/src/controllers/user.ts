@@ -117,11 +117,26 @@ export const activate = async (req: Request, res: Response) => {
     const { link } = req.params
     let user = await User.findOne({ activationLink: link })
     if (!user) {
-      return res.status(404).json({ message: 'Invalid the activation link', code: 4041 })
+      return res.status(404).json({ message: 'User with this activation link not found', code: 4041 })
     }
     user.isActivated = true
     await user.save()
     return res.redirect(process.env.CLIENT_URL as string)
+  } catch (e) {
+    res.status(500).json({ message: 'Something went wrong' })
+  }
+}
+
+export const resentActivateLink = async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body
+    let user = await User.findOne({ email })
+    if (!user) {
+      return res.status(404).json({ message: 'User with this email not found', code: 4042 })
+    }
+
+    await mailService.sendActivationMail(email, `${process.env.API_URL}/user/activate/${user.activationLink}`)
+    return res.status(200).json({message: 'Link sent'})
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
   }

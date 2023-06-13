@@ -13,6 +13,8 @@ import { debounce } from '../../../../utils/debounce'
 import { actionsPosts, getPostsThunk } from '../../../../actions/postsAction'
 import { SELECT } from 'src/constants/posts'
 import { getSearchValueS, getSortValueS } from '../../../../selectors/postsSelectors'
+import { modalActions } from '../../../../actions/modalAction'
+import { MODAL_TYPE } from '../../../../reducers/modal/types'
 
 export const Filter: FilterComponent = () => {
   const dispatch = useAppDispatch()
@@ -44,7 +46,12 @@ export const Filter: FilterComponent = () => {
   }, [])
 
   const handleRedirect = () => {
-    redirect(`/blog/addPost`)
+    if(!user?.isActivated){
+        dispatch(modalActions.openModalAC(MODAL_TYPE.ACTIVATE_ACCOUNT_INFO))
+    }else if(user && user.isActivated){
+      redirect(`/blog/addPost`)
+    }
+
   }
 
   const debouncedSetSearchValue = useCallback(

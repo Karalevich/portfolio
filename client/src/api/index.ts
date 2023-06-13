@@ -40,6 +40,7 @@ export const signUn = (formData: CreateUserT) => API.post('/user/signup', formDa
 export const signIn = (formData: Omit<CreateUserT, 'confirmPassword' | 'name'>) =>
   API.post('/user/signin', formData)
 export const logOut = () => API.post('/user/logout')
+export const resentActivationLink = (email: string) => API.put(`/user/resentActivationLink`, {email})
 // export const updateUserData = (formData: UserType) => API.post('/user/update', formData)
 // export const updateUserImage = (data: { newUserImage: string, email?: string }) => API.post('/user/image', data)
 
