@@ -20,7 +20,8 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
     }
 
     const errInterceptor = async (error: AxiosError) => {
-      if (error?.response?.data?.code) {    // check if there is provided specific error code
+      if (error?.response?.data?.code) {
+        // check if there is provided specific error code
         switch (error.response.data.code) {
           case 4011:
           case 4012:
@@ -38,6 +39,7 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
             break
           case 4041:
           case 4042:
+          case 4043:
           case 4013:
           case 4031:
             dispatch(modalActions.openModalAC(MODAL_TYPE.ERROR, error.response.data.message))
@@ -46,7 +48,9 @@ const AxiosInterceptor: AxiosInterceptorComponent = ({ children }) => {
             return Promise.reject(error)
         }
       } else {
-        switch (error?.response?.status) { //  if there is not provided specific error code look what error status
+        switch (
+          error?.response?.status //  if there is not provided specific error code look what error status
+        ) {
           case 404:
             navigate('/not-found')
             break

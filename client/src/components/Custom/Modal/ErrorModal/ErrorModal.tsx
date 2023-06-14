@@ -6,11 +6,11 @@ import { ErrorModalComponent } from './types'
 import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred'
 
 export const ErrorModal: ErrorModalComponent = ({
-                                                  title,
-                                                  description,
-                                                  confirmText,
-                                                  confirmActionFromParent,
-                                                }) => {
+  title,
+  description,
+  confirmText,
+  confirmActionFromParent,
+}) => {
   const dispatch = useAppDispatch()
 
   const confirmAction = () => {
@@ -19,8 +19,10 @@ export const ErrorModal: ErrorModalComponent = ({
   }
   return (
     <>
-      <DialogTitle id='alert-dialog-title'
-                   sx={{ backgroundColor: '#d32f2f', color: '#f8f8f2', display: 'flex', alignItems: 'center' }}>
+      <DialogTitle
+        id='alert-dialog-title'
+        sx={{ backgroundColor: '#d32f2f', color: '#f8f8f2', display: 'flex', alignItems: 'center' }}
+      >
         <ReportGmailerrorredIcon />
         {title ? title : 'Error!'}
       </DialogTitle>

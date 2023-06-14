@@ -1,6 +1,12 @@
 import { FunctionComponent, ReactElement } from 'react'
 import { SvgIconProps } from '@mui/material'
 
+export type ContactValuesT = {
+  name: string
+  subject: string
+  message: string
+  email: string
+}
 type ContactProps = {}
 export type ContactComponent = FunctionComponent<ContactProps>
 

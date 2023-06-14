@@ -6,7 +6,7 @@
     margin-bottom: 3.125rem;
 
     .line {
-      background: linear-gradient(0deg, rgba(248,248,242,1) 5%, rgba(255,255,255,0) 5%);
+      background: linear-gradient(0deg, rgba(248, 248, 242, 1) 5%, rgba(255, 255, 255, 0) 5%);
       width: 100%;
     }
 
@@ -15,7 +15,7 @@
       position: relative;
       z-index: 1;
       padding-right: 0.25rem;
-      background: linear-gradient(0deg, $element 5%, rgba(255,255,255,0) 5%);
+      background: linear-gradient(0deg, $element 5%, rgba(255, 255, 255, 0) 5%);
     }
 
     .actions {

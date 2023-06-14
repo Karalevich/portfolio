@@ -3,7 +3,7 @@ import { Button, DialogActions, DialogContent, DialogContentText, DialogTitle } 
 import { useAppDispatch } from '../../../../hooks/hooks'
 import { modalActions } from '../../../../actions/modalAction'
 import { InfoModalComponent } from './types'
-import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
+import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined'
 
 export const InfoModal: InfoModalComponent = ({
   title,
@@ -25,8 +25,11 @@ export const InfoModal: InfoModalComponent = ({
   }
   return (
     <>
-      <DialogTitle id='alert-dialog-title' sx={{display: 'flex', alignItems: 'end', columnGap: '1rem'}}>
-        <FeedbackOutlinedIcon sx={{color: '#FFB400'}}/>
+      <DialogTitle
+        id='alert-dialog-title'
+        sx={{ display: 'flex', alignItems: 'end', columnGap: '1rem' }}
+      >
+        <FeedbackOutlinedIcon sx={{ color: '#FFB400' }} />
         <span>{title ? title : 'Important Information!'}</span>
       </DialogTitle>
       <DialogContent>
@@ -40,13 +43,7 @@ export const InfoModal: InfoModalComponent = ({
         <Button variant='outlined' onClick={cancelAction}>
           {cancelText ? cancelText : 'Cancel'}
         </Button>
-        <Button
-          variant='contained'
-          onClick={confirmAction}
-          autoFocus
-          disableElevation
-          color={'primary'}
-        >
+        <Button variant='contained' onClick={confirmAction} autoFocus disableElevation color={'primary'}>
           {confirmText ? confirmText : 'Confirm'}
         </Button>
       </DialogActions>

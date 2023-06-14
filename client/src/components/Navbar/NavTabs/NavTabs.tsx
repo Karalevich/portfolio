@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { IndexToTabNameT, TabNameToIndexT } from '../types'
 import { styled } from '@mui/material/styles'
 import classnames from 'classnames'
-import {  SvgIconProps, Tab, Tabs } from '@mui/material'
+import { SvgIconProps, Tab, Tabs } from '@mui/material'
 import { getIsFetchingLogoutS, getUserS } from '../../../selectors/userSelectors'
 import { modalActions } from '../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../reducers/modal/types'
@@ -80,7 +80,13 @@ export const NavTabs: NavTabsComponent = ({
       <ThemeSwitcher handleSwitchTheme={handleSwitchTheme} isLightTheme={isLightTheme} />
       {/*<LanguageSwitcher/>*/}
 
-      <StyledTabs className={styles.tabs} value={value} onChange={handleChange} orientation='vertical' centered>
+      <StyledTabs
+        className={styles.tabs}
+        value={value}
+        onChange={handleChange}
+        orientation='vertical'
+        centered
+      >
         <Tab
           icon={
             <IconWrapper name={'Home'}>

@@ -55,15 +55,15 @@ export const userActions = {
 
 export const setUsedData =
   (user: UserT, token: string): ThunkT<UserActionsT> =>
-    async (dispatch) => {
-      const saveToken = token ? token : JSON.parse(localStorage.getItem(USER) as string).token
-      try {
-        localStorage.setItem(USER, JSON.stringify({ user, token: saveToken }))
-        dispatch(userActions.setAuthAC(user, saveToken))
-      } catch (e) {
-        console.log(e)
-      }
+  async (dispatch) => {
+    const saveToken = token ? token : JSON.parse(localStorage.getItem(USER) as string).token
+    try {
+      localStorage.setItem(USER, JSON.stringify({ user, token: saveToken }))
+      dispatch(userActions.setAuthAC(user, saveToken))
+    } catch (e) {
+      console.log(e)
     }
+  }
 
 export const removeUsedData = (): ThunkT<UserActionsT> => async (dispatch) => {
   try {
@@ -100,68 +100,68 @@ export const checkAuth = (): ThunkT<UserActionsT> => async (dispatch) => {
 
 export const googleSuccessThunk =
   (
-    response: Omit<TokenResponse, 'error' | 'error_description' | 'error_uri'>,
+    response: Omit<TokenResponse, 'error' | 'error_description' | 'error_uri'>
   ): ThunkT<UserActionsT | ModalActionT> =>
-    async (dispatch) => {
-      try {
-        dispatch(userActions.toggleIsAuthAC())
-        const result = await api.getGoogleUserData(response.access_token)
-        const { name, picture, sub, email }: GoogleUserT = result.data
-        const { data } = await api.googleSign({
-          name,
-          email,
-          imageUrl: picture,
-          id: sub,
-        })
-        await dispatch(setUsedData(data.user, data.token))
-        dispatch(modalActions.closesModalAC())
-      } catch (e) {
-        console.log(e)
-      } finally {
-        dispatch(userActions.toggleIsAuthAC())
-      }
+  async (dispatch) => {
+    try {
+      dispatch(userActions.toggleIsAuthAC())
+      const result = await api.getGoogleUserData(response.access_token)
+      const { name, picture, sub, email }: GoogleUserT = result.data
+      const { data } = await api.googleSign({
+        name,
+        email,
+        imageUrl: picture,
+        id: sub,
+      })
+      await dispatch(setUsedData(data.user, data.token))
+      dispatch(modalActions.closesModalAC())
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(userActions.toggleIsAuthAC())
     }
+  }
 
 export const signUpThunk =
   (formData: CreateUserT): ThunkT<UserActionsT | ModalActionT> =>
-    async (dispatch) => {
-      try {
-        dispatch(userActions.toggleIsAuthAC())
-        const { data } = await api.signUn(formData)
-        await dispatch(setUsedData(data.user, data.token))
-        dispatch(modalActions.closesModalAC())
-      } catch (e) {
-        console.log(e)
-      } finally {
-        dispatch(userActions.toggleIsAuthAC())
-      }
+  async (dispatch) => {
+    try {
+      dispatch(userActions.toggleIsAuthAC())
+      const { data } = await api.signUn(formData)
+      await dispatch(setUsedData(data.user, data.token))
+      dispatch(modalActions.closesModalAC())
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(userActions.toggleIsAuthAC())
     }
+  }
 
 export const signInThunk =
   (formData: Omit<CreateUserT, 'confirmPassword' | 'name'>): ThunkT<UserActionsT | ModalActionT> =>
-    async (dispatch) => {
-      try {
-        dispatch(userActions.toggleIsAuthAC())
-        const { data } = await api.signIn(formData)
-        await dispatch(setUsedData(data.user, data.token))
-        dispatch(modalActions.closesModalAC())
-      } catch (e) {
-        console.log(e)
-      } finally {
-        dispatch(userActions.toggleIsAuthAC())
-      }
+  async (dispatch) => {
+    try {
+      dispatch(userActions.toggleIsAuthAC())
+      const { data } = await api.signIn(formData)
+      await dispatch(setUsedData(data.user, data.token))
+      dispatch(modalActions.closesModalAC())
+    } catch (e) {
+      console.log(e)
+    } finally {
+      dispatch(userActions.toggleIsAuthAC())
     }
+  }
 
 export const resentActivationLinkThunk =
   (email: string): ThunkT<PostsActionT> =>
-    async (dispatch) => {
-      try {
-        await api.resentActivationLink(email)
-      } catch (e) {
-        console.log(e)
-      } finally {
-      }
+  async (dispatch) => {
+    try {
+      await api.resentActivationLink(email)
+    } catch (e) {
+      console.log(e)
+    } finally {
     }
+  }
 
 // export const updateUserDataThunk = (formData: UserType): ThunkType<UserActionsT> => async (dispatch) => {
 //   try {

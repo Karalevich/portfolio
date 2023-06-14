@@ -46,23 +46,19 @@ export const Filter: FilterComponent = () => {
   }, [])
 
   const handleRedirect = () => {
-    if(!user?.isActivated){
-        dispatch(modalActions.openModalAC(MODAL_TYPE.ACTIVATE_ACCOUNT_INFO))
-    }else if(user && user.isActivated){
+    if (!user?.isActivated) {
+      dispatch(modalActions.openModalAC(MODAL_TYPE.ACTIVATE_ACCOUNT_INFO))
+    } else if (user && user.isActivated) {
       redirect(`/blog/addPost`)
     }
-
   }
 
   const debouncedSetSearchValue = useCallback(
-    debounce(
-      (searchQuery: string, sortQuery: number) => {
-        window.scrollTo({ top: 0 })
-        dispatch(actionsPosts.setCurrentPageAC(1))
-        dispatch(getPostsThunk(searchQuery, sortQuery, 1))
-      },
-      400
-    ),
+    debounce((searchQuery: string, sortQuery: number) => {
+      window.scrollTo({ top: 0 })
+      dispatch(actionsPosts.setCurrentPageAC(1))
+      dispatch(getPostsThunk(searchQuery, sortQuery, 1))
+    }, 400),
     []
   )
 
@@ -73,7 +69,7 @@ export const Filter: FilterComponent = () => {
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    window.scrollTo({ top: 0})
+    window.scrollTo({ top: 0 })
     const searchQuery = searchValue.trim()
 
     dispatch(actionsPosts.setCurrentPageAC(1))
@@ -81,7 +77,7 @@ export const Filter: FilterComponent = () => {
   }
 
   const onSortPosts = (item: string) => {
-    window.scrollTo({ top: 0})
+    window.scrollTo({ top: 0 })
     const sortQuery = SELECT.includes(item) ? SELECT.indexOf(item) : 0
     const searchQuery = searchValue.trim()
     dispatch(actionsPosts.setCurrentPageAC(1))

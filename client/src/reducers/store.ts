@@ -4,11 +4,13 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import userReducer from './user/userReducer'
 import postsReducer from './posts/postsReducer'
 import modalReducer from './modal/modalReducer'
+import serviceReducer from './service/serviceReducer'
 
 const reducers = combineReducers({
   user: userReducer,
   posts: postsReducer,
   modal: modalReducer,
+  service: serviceReducer,
 })
 
 export const store = configureStore({

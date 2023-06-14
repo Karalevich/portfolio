@@ -95,7 +95,9 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
       {isFullVersion ? (
         <>
           {mappedPosts}
-          {isFetchingPaginatedPosts && <CircularProgress className={styles.paginatedLoader} size={'2rem'}/>}
+          {isFetchingPaginatedPosts && (
+            <CircularProgress className={styles.paginatedLoader} size={'2rem'} />
+          )}
         </>
       ) : (
         <Slider

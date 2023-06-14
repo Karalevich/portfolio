@@ -17,10 +17,10 @@ export const convertFileBeforeSendToServer = (file: FileWithPath): Promise<strin
       resolve(resultFile)
     }
 
-    reader.onerror = (error) => {
+    reader.onerror = () => {
       reject('file reading has failed')
     }
-    reader.onabort = (error) => {
+    reader.onabort = () => {
       reject('file reading was aborted')
     }
 

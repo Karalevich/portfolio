@@ -7,7 +7,6 @@ import EditIcon from '@mui/icons-material/Edit'
 import ShareIcon from '@mui/icons-material/Share'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { SpeedDial, SpeedDialAction, SpeedDialIcon, styled } from '@mui/material'
-import me from '../../../../assets/img/Me.webp'
 
 const actions = [
   { icon: <ShareIcon fontSize={'small'} />, name: 'Share' },

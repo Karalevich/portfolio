@@ -2,6 +2,7 @@ import axios from 'axios'
 import { PostFromFormT } from '../components/Home/Blog/AddPost/types'
 import { CreateUserT, UserT } from '../reducers/user/types'
 import { USER } from '../constants/user'
+import { ContactValuesT } from '../components/Home/Contact/types'
 
 export const API = axios.create({ withCredentials: true, baseURL: process.env.REACT_APP_API_URl })
 
@@ -27,7 +28,6 @@ export const fetchPosts = (searchQuery: string, sortQuery: number, page: number)
 export const likePost = (id: string) => API.patch(`/posts/${id}/likePost`)
 // export const comment = (value: string, id: string | undefined) => API.post(`/posts/${id}/commentPost`, { value })
 
-
 // USER API
 export const googleSign = (formData: UserT) => API.post('/user/google', formData)
 export const getGoogleUserData = (token: string) =>
@@ -40,9 +40,12 @@ export const signUn = (formData: CreateUserT) => API.post('/user/signup', formDa
 export const signIn = (formData: Omit<CreateUserT, 'confirmPassword' | 'name'>) =>
   API.post('/user/signin', formData)
 export const logOut = () => API.post('/user/logout')
-export const resentActivationLink = (email: string) => API.put(`/user/resentActivationLink`, {email})
+export const resentActivationLink = (email: string) => API.put(`/user/resentActivationLink`, { email })
+export const refresh = () =>
+  axios.get(`${process.env.REACT_APP_API_URl}/user/refresh`, { withCredentials: true })
 // export const updateUserData = (formData: UserType) => API.post('/user/update', formData)
 // export const updateUserImage = (data: { newUserImage: string, email?: string }) => API.post('/user/image', data)
 
-
-export const refresh = () => axios.get(`${process.env.REACT_APP_API_URl}/user/refresh`, { withCredentials: true })
+// SERVICE API
+export const sendMessageFromContactForm = (formData: ContactValuesT) =>
+  axios.post(`${process.env.REACT_APP_API_URl}/service/contactForm`, formData)

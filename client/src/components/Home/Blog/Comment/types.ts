@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-import { AuthorIdT } from '../types'
 
 type CommentProps = {
   authorName: string
