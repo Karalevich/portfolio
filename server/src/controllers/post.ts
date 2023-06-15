@@ -181,7 +181,7 @@ export const getPostsByTags = async (req: Request, res: Response) => {
 
     let additionalPosts: Array<PostDocument> = []
 
-    // If there are less than 3 related posts, fetch additional random posts
+    // If there are less than 3 related blog, fetch additional random blog
     if (relatedPosts.length < 3) {
       const randomPostsCount = 3 - relatedPosts.length
       additionalPosts = await Post
@@ -195,6 +195,6 @@ export const getPostsByTags = async (req: Request, res: Response) => {
     const posts = [...relatedPosts, ...additionalPosts]
     res.status(200).json(posts)
   } catch (e: any | unknown) {
-    res.status(404).send('Error fetching related posts')
+    res.status(404).send('Error fetching related blog')
   }
 }

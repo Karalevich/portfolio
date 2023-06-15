@@ -1,161 +1,39 @@
 @import './src/styles/variables.scss';
 
-.commentSection {
-  .header {
-    width: 100%;
-    margin-bottom: 3.125rem;
-
-    .line {
-      background: linear-gradient(0deg, rgba(248, 248, 242, 1) 5%, rgba(255, 255, 255, 0) 5%);
-      width: 100%;
-    }
-
-    .count {
-      width: max-content;
-      position: relative;
-      z-index: 1;
-      padding-right: 0.25rem;
-      background: linear-gradient(0deg, $element 5%, rgba(255, 255, 255, 0) 5%);
-    }
-
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 0.875rem;
-      align-items: center;
-    }
-
-    .review {
-      display: flex;
-      column-gap: 1rem;
-      align-items: center;
-    }
-
-    .share {
-      display: flex;
-      align-items: center;
-      column-gap: 0.35rem;
-    }
-  }
-
-  .likes {
+.leaveComment {
+  .commentArea {
     display: flex;
     align-items: center;
-    column-gap: 0.1rem;
-    position: relative;
+    column-gap: 1.25rem;
+    margin-bottom: 1.5rem;
   }
 
-  .number {
-    font-size: 110%;
+  .userImage {
+    width: 5.7rem;
+    height: 5.7rem;
+    border-radius: 0.625rem;
+    background-color: $skeleton;
   }
 
-  .favoriteIcon,
-  .shareIcon,
-  .liked {
-    cursor: pointer;
-    color: $paragraph;
-
-    &:hover {
-      color: #b9b7b7;
-    }
-  }
-
-  .liked {
-    color: $element;
-
-    &:hover {
-      color: $element;
-      opacity: 0.8;
-    }
-  }
-
-  .main {
-    .commentArea {
-      display: flex;
-      align-items: center;
-      column-gap: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .userImage {
-      width: 5.7rem;
-      height: 5.7rem;
-      border-radius: 0.625rem;
-      background-color: $skeleton;
-    }
-
-    .comments {
-      display: flex;
-      flex-direction: column;
-      row-gap: 1rem;
-    }
+  .comments {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
   }
 }
 
 @media only screen and (max-width: 767px) {
-  .commentSection {
-    .header {
-      margin-bottom: 1.5rem;
-
-      .actions {
-        padding-top: 0.5rem;
-      }
-
-      .review {
-        column-gap: 1.5rem;
-      }
-    }
-
-    .likes {
-      font-size: 1.25rem;
-      align-items: end;
-    }
-
-    .favoriteIcon,
-    .shareIcon,
-    .liked {
-      font-size: 1.75rem;
-    }
-
-    .main {
-      flex-direction: column;
-
-      .userImage {
-        display: none;
-      }
+  .leaveComment {
+    .userImage {
+      display: none;
     }
   }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .commentSection {
-    .header {
-      margin-bottom: 2rem;
-
-      .actions {
-        padding-top: 0.5rem;
-      }
-
-      .review {
-        column-gap: 1.5rem;
-      }
-    }
-
-    .likes {
-      font-size: 1.25rem;
-      align-items: end;
-    }
-
-    .favoriteIcon,
-    .shareIcon,
-    .liked {
-      font-size: 1.75rem;
-    }
-
-    .main {
-      .comments {
-        gap: 2rem;
-      }
+  .leaveComment {
+    .comments {
+      gap: 2rem;
     }
   }
 }

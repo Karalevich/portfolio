@@ -10,9 +10,9 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { getUserS } from '../../../../selectors/userSelectors'
 import { debounce } from '../../../../utils/debounce'
-import { actionsPosts, getPostsThunk } from '../../../../actions/postsAction'
+import { blogActions, getPostsThunk } from '../../../../actions/blogAction'
 import { SELECT } from 'src/constants/posts'
-import { getSearchValueS, getSortValueS } from '../../../../selectors/postsSelectors'
+import { getSearchValueS, getSortValueS } from '../../../../selectors/blogSelectors'
 import { modalActions } from '../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../reducers/modal/types'
 
@@ -40,8 +40,8 @@ export const Filter: FilterComponent = () => {
 
     return () => {
       observer.disconnect()
-      dispatch(actionsPosts.setSortValueAC(0))
-      dispatch(actionsPosts.setSearchValueAC(''))
+      dispatch(blogActions.setSortValueAC(0))
+      dispatch(blogActions.setSearchValueAC(''))
     }
   }, [])
 
@@ -56,14 +56,14 @@ export const Filter: FilterComponent = () => {
   const debouncedSetSearchValue = useCallback(
     debounce((searchQuery: string, sortQuery: number) => {
       window.scrollTo({ top: 0 })
-      dispatch(actionsPosts.setCurrentPageAC(1))
+      dispatch(blogActions.setCurrentPageAC(1))
       dispatch(getPostsThunk(searchQuery, sortQuery, 1))
     }, 400),
     []
   )
 
   const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(actionsPosts.setSearchValueAC(e.target.value))
+    dispatch(blogActions.setSearchValueAC(e.target.value))
     debouncedSetSearchValue(searchValue.trim(), sortValue)
   }
 
@@ -72,7 +72,7 @@ export const Filter: FilterComponent = () => {
     window.scrollTo({ top: 0 })
     const searchQuery = searchValue.trim()
 
-    dispatch(actionsPosts.setCurrentPageAC(1))
+    dispatch(blogActions.setCurrentPageAC(1))
     dispatch(getPostsThunk(searchQuery, sortValue, 1))
   }
 
@@ -80,9 +80,9 @@ export const Filter: FilterComponent = () => {
     window.scrollTo({ top: 0 })
     const sortQuery = SELECT.includes(item) ? SELECT.indexOf(item) : 0
     const searchQuery = searchValue.trim()
-    dispatch(actionsPosts.setCurrentPageAC(1))
+    dispatch(blogActions.setCurrentPageAC(1))
     dispatch(getPostsThunk(searchQuery, sortQuery, 1))
-    dispatch(actionsPosts.setSortValueAC(sortQuery))
+    dispatch(blogActions.setSortValueAC(sortQuery))
   }
 
   return (

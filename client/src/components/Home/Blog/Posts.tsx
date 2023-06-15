@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import styles from './Blog.module.scss'
 import { PostsContent } from './types'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { actionsPosts, getPaginatedPostsThunk, getPostsThunk } from '../../../actions/postsAction'
+import { blogActions, getPaginatedPostsThunk, getPostsThunk } from '../../../actions/blogAction'
 import {
   getAllPagesS,
   getCurrentPageS,
@@ -14,7 +14,7 @@ import {
   getPostsS,
   getSearchValueS,
   getSortValueS,
-} from '../../../selectors/postsSelectors'
+} from '../../../selectors/blogSelectors'
 import PostCard from './PostCard/PostCard'
 import { PostT } from './PostCard/types'
 import { CircularProgress } from '@mui/material'
@@ -44,7 +44,7 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
     carouselContext?.subscribe(onChange)
     return () => {
       carouselContext?.unsubscribe(onChange)
-      dispatch(actionsPosts.setCurrentPageAC(1))
+      dispatch(blogActions.setCurrentPageAC(1))
     }
   }, [])
 
@@ -55,7 +55,7 @@ const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
 
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && !isReachedLimit) {
-          dispatch(actionsPosts.setCurrentPageAC(currentPage + 1))
+          dispatch(blogActions.setCurrentPageAC(currentPage + 1))
           dispatch(getPaginatedPostsThunk(searchValue, sortValue, currentPage + 1))
         }
       })

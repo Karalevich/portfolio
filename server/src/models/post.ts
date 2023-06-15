@@ -4,12 +4,12 @@ export interface PostDocument extends Document {
   title: string
   description: string
   content: string
-  author: Schema.Types.ObjectId,
+  author: Schema.Types.ObjectId
   tags: Array<string>
-  img: string,
-  likes: Array<Schema.Types.ObjectId>,
-  comments: Array<string>,
-  date: Date,
+  img: string
+  likes: Array<Schema.Types.ObjectId>
+  comments: Array<Schema.Types.ObjectId>
+  date: Date
 }
 
 export interface PostModel extends Model<PostDocument> {}
@@ -27,7 +27,7 @@ const postSchema = new Schema<PostDocument, PostModel>({
     default: [],
   },
   comments: {
-    type: [String],
+    type: [{type: Schema.Types.ObjectId, ref: 'Comment' }],
     default: [],
   },
   date: {

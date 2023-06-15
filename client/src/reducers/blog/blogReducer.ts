@@ -1,40 +1,27 @@
-import { PostsActionT, PostsStateT } from './types'
+import { BlogActionT, BlogStateT } from './types'
 
 export const FETCH_POSTS = 'FETCH_POSTS'
 export const CREATE = 'CREATE'
-export const UPDATE = 'UPDATE'
-export const COMMENTS = 'COMMENTS'
-export const DELETE = 'DELETE'
-export const SET_POST = 'SET_POST'
-export const SET_FETCHING_CERTAIN_POST = 'SET_FETCHING_CERTAIN_POST'
-export const CHANGE_OPENED_POST_ID = 'CHANGE_OPENED_POST_ID'
 export const SET_FETCHING_POSTS = 'SET_FETCHING_POSTS'
-export const SET_RELATED_POST = 'SET_RELATED_POST'
-export const SET_FETCHING_FORM = 'SET_FETCHING_FORM'
-export const SET_FETCHING_RELATED_POSTS = 'SET_FETCHING_RELATED_POSTS'
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 export const SET_SORT_VALUE = 'SET_SORT_VALUE'
 export const SET_SEARCH_VALUE = 'SET_SEARCH_VALUE'
 export const SET_FETCHING_PAGINATED_POSTS = 'SET_FETCHING_PAGINATED_POSTS'
 export const ADD_POSTS = 'ADD_POSTS'
+export const UPDATE = 'UPDATE'
+export const DELETE = 'DELETE'
 
 const initialState = {
   posts: [],
-  relatedPosts: [],
-  post: null,
   isFetchingPosts: false,
-  isFetchingForm: false,
-  isFetchingRelatedPosts: true,
-  isFetchingCertainPost: true,
   isFetchingPaginatedPosts: false,
-  openedPostId: '',
   allPages: 1,
   currentPage: 1,
   searchValue: '',
   sortValue: 0,
 }
 
-export default (state: PostsStateT = initialState, action: PostsActionT) => {
+export default (state: BlogStateT = initialState, action: BlogActionT) => {
   switch (action.type) {
     case FETCH_POSTS:
       return {
@@ -47,35 +34,10 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
         ...state,
         isFetchingPosts: action.flag,
       }
-    case SET_POST:
-      return {
-        ...state,
-        post: action.payload.post,
-      }
-    case SET_RELATED_POST:
-      return {
-        ...state,
-        relatedPosts: action.payload.posts,
-      }
-    case CHANGE_OPENED_POST_ID:
-      return {
-        ...state,
-        openedPostId: action.payload,
-      }
-    case SET_FETCHING_FORM:
-      return {
-        ...state,
-        isFetchingForm: action.flag,
-      }
     case CREATE:
       return {
         ...state,
         posts: [...state.posts, action.payload],
-      }
-    case SET_FETCHING_CERTAIN_POST:
-      return {
-        ...state,
-        isFetchingCertainPost: action.flag,
       }
     case UPDATE:
       return {
@@ -89,11 +51,6 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
       return {
         ...state,
         posts: state.posts.filter((post) => post._id !== action.id),
-      }
-    case SET_FETCHING_RELATED_POSTS:
-      return {
-        ...state,
-        isFetchingRelatedPosts: action.flag,
       }
     case SET_CURRENT_PAGE:
       return {
@@ -123,15 +80,6 @@ export default (state: PostsStateT = initialState, action: PostsActionT) => {
           return self.findIndex((p) => p._id === item._id) === index
         }),
       }
-    // case COMMENTS:
-    //   return {
-    //     ...state,
-    //     posts: state.posts.map(post => {
-    //       if(post._id === action.payload._id) return action.payload
-    //       return post
-    //     }),
-    //     post: action.payload
-    //   }
     default:
       return state
   }

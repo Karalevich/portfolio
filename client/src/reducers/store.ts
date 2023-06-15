@@ -2,13 +2,15 @@ import { Action } from 'redux'
 import thunk, { ThunkAction } from 'redux-thunk'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import userReducer from './user/userReducer'
-import postsReducer from './posts/postsReducer'
+import blogReducer from './blog/blogReducer'
 import modalReducer from './modal/modalReducer'
 import serviceReducer from './service/serviceReducer'
+import postReducer from './post/postReducer'
 
 const reducers = combineReducers({
   user: userReducer,
-  posts: postsReducer,
+  post: postReducer,
+  blog: blogReducer,
   modal: modalReducer,
   service: serviceReducer,
 })

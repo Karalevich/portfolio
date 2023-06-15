@@ -40,7 +40,7 @@ export const Contact: ContactComponent = () => {
     },
     validationSchema: validationContactSchema,
     onSubmit: (values: ContactValuesT, {}: FormikHelpers<ContactValuesT>) => {
-      dispatch(sendMessageFromContactFormThunk(values))
+      dispatch(sendMessageFromContactFormThunk(values, formikContact.resetForm))
     },
   })
   const infoCards = CONTACT_INFO.map((info) => <ContactCard key={info.icon.toString()} {...info} />)

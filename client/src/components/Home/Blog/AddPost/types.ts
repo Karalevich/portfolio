@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react'
-import { FileT } from '../../../../reducers/posts/types'
+import { FileT } from '../../../../reducers/blog/types'
 import { FileWithPath } from 'react-dropzone'
 
 export type PostFromFormT = {

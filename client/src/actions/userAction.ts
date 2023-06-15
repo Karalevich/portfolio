@@ -13,7 +13,7 @@ import { USER } from '../constants/user'
 import { TokenResponse } from '@react-oauth/google'
 import { modalActions } from './modalAction'
 import { ModalActionT } from '../reducers/modal/types'
-import { PostsActionT } from '../reducers/posts/types'
+import { BlogActionT } from '../reducers/blog/types'
 
 export const userActions = {
   setAuthAC: (user: UserT, token: string) =>
@@ -153,7 +153,7 @@ export const signInThunk =
   }
 
 export const resentActivationLinkThunk =
-  (email: string): ThunkT<PostsActionT> =>
+  (email: string): ThunkT<BlogActionT> =>
   async (dispatch) => {
     try {
       await api.resentActivationLink(email)

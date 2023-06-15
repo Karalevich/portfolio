@@ -13,11 +13,12 @@ export const serviceActions = {
 }
 
 export const sendMessageFromContactFormThunk =
-  (formData: ContactValuesT): ThunkT<ServiceActionT> =>
+  (formData: ContactValuesT, resetForm: () => void): ThunkT<ServiceActionT> =>
   async (dispatch) => {
     try {
       dispatch(serviceActions.setLoadingContactFormAC(true))
       await api.sendMessageFromContactForm(formData)
+      resetForm()
     } catch (e) {
       console.log(e)
     } finally {

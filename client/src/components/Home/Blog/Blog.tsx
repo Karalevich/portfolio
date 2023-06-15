@@ -13,7 +13,7 @@ import classnames from 'classnames'
 import Filter from './Filter/Filter'
 import { ROUTES_ANIMATIONS } from '../../AminatedRoutes/types'
 import { useAppSelector } from '../../../hooks/hooks'
-import { getPostsS } from '../../../selectors/postsSelectors'
+import { getPostsS } from '../../../selectors/blogSelectors'
 import { PLACEHOLDER_COUNT_POSTS } from '../../../constants/personalInfo'
 
 export const Blog: BlogComponent = ({ isFullVersion }) => {
@@ -43,7 +43,7 @@ export const Blog: BlogComponent = ({ isFullVersion }) => {
   return (
     <section className={styles.blog}>
       <DynamicCSS
-        properties={[{ value: posts.length || PLACEHOLDER_COUNT_POSTS, prop: 'posts-count' }]}
+        properties={[{ value: posts.length || PLACEHOLDER_COUNT_POSTS, prop: 'blog-count' }]}
       />
       <SectionHeader
         title={'Blog'}

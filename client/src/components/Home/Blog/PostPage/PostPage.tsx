@@ -5,30 +5,30 @@ import { PostPageComponent } from './types'
 import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
-import Comments from '../Comments/Comments'
+import PostPageFooter from '../PostPageFooter/PostPageFooter'
 import React, { useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { actionsPosts, getCertainPostThunk } from '../../../../actions/postsAction'
-import {
-  getCertainPostS,
-  getFetchingCertainPostS,
-  getFetchingRelatedPostsS,
-  getRelatedPostsS,
-} from '../../../../selectors/postsSelectors'
 import { Button, Skeleton } from '@mui/material'
 import { RecommendCardT } from '../PostCard/types'
 import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
 import { modalActions } from '../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../reducers/modal/types'
 import { getUserS } from '../../../../selectors/userSelectors'
+import { getCertainPostThunk, postActions } from '../../../../actions/postAction'
+import {
+  getOpenPostS,
+  getFetchingPostS,
+  getFetchingRelatedPostsS,
+  getRelatedPostsS,
+} from '../../../../selectors/postSelector'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
   const dispatch = useAppDispatch()
-  const post = useAppSelector(getCertainPostS)
+  const post = useAppSelector(getOpenPostS)
   const relatedPosts = useAppSelector(getRelatedPostsS)
   const isFetchingRelatedPosts = useAppSelector(getFetchingRelatedPostsS)
-  const isFetchingCertainPost = useAppSelector(getFetchingCertainPostS)
+  const isFetchingCertainPost = useAppSelector(getFetchingPostS)
   const user = useAppSelector(getUserS)
   const navigate = useNavigate()
   const isRemovePostFromState = useRef(true)
@@ -36,21 +36,19 @@ export const PostPage: PostPageComponent = () => {
   useEffect(() => {
     if (id) {
       dispatch(getCertainPostThunk(id))
-      dispatch(actionsPosts.changeOpenedPostIdAC(id || ''))
     }
   }, [id])
 
   useEffect(() => {
     const cleanUp = () => {
       if (isRemovePostFromState.current) {
-        dispatch(actionsPosts.changeOpenedPostIdAC(''))
-        dispatch(actionsPosts.setCertainPostAC(null))
+        dispatch(postActions.resetPostAC())
       }
     }
     return () => cleanUp()
   }, [isRemovePostFromState])
 
-  const { author, title, date, content, img } = post || {}
+  const { author, title, date, content, img } = post
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
   const isCurrentUserCreator = author && user && user.id === author._id
 
@@ -144,7 +142,7 @@ export const PostPage: PostPageComponent = () => {
         </article>
       </main>
       <footer>
-        <Comments />
+        <PostPageFooter />
       </footer>
     </section>
   )

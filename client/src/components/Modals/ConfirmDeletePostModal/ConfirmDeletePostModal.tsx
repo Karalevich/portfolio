@@ -2,10 +2,10 @@ import React from 'react'
 import { ConfirmDeletePostModalComponent } from './types'
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { deletePostThunk } from '../../../actions/postsAction'
-import { getOpenedPostIdS } from '../../../selectors/postsSelectors'
+import { deletePostThunk } from '../../../actions/blogAction'
 import { useNavigate } from 'react-router-dom'
 import ConfirmModal from '../../Custom/Modal/ConfirmModal/ConfirmModal'
+import { getOpenedPostIdS } from '../../../selectors/postSelector'
 
 export const ConfirmDeletePostModal: ConfirmDeletePostModalComponent = () => {
   const dispatch = useAppDispatch()

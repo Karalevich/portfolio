@@ -6,8 +6,6 @@ import hljs from 'highlight.js'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
-import { actionsPosts, createPostThunk, updatePostThunk } from '../../../../actions/postsAction'
-import { getFetchingFormS, getOpenedPostIdS, getOpenedPostS } from '../../../../selectors/postsSelectors'
 import { Box, Button, FormHelperText } from '@mui/material'
 import DropZone from '../../../Custom/DropZone/DropZone'
 import Input from '../../../Custom/Input/Input'
@@ -17,6 +15,12 @@ import * as yup from 'yup'
 import { useFormik } from 'formik'
 import { FileWithPath } from 'react-dropzone'
 import classname from 'classnames'
+import { createPostThunk, postActions, updatePostThunk } from '../../../../actions/postAction'
+import {
+  getFetchingFormS,
+  getOpenedPostIdS,
+  getPostDataForFormS,
+} from '../../../../selectors/postSelector'
 
 hljs.configure({
   languages: ['javascript', 'python', 'bash', 'css', 'typescript'],
@@ -36,7 +40,7 @@ const modules = {
   },
 }
 
-const initialState = {
+const resetState = {
   title: '',
   description: '',
   tags: '',
@@ -79,11 +83,11 @@ export const AddPost: AddPostComponent = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const openedPostId = useAppSelector(getOpenedPostIdS)
-  const post = useAppSelector(getOpenedPostS)
+  const post = useAppSelector(getPostDataForFormS)
   const isFetchingForm = useAppSelector(getFetchingFormS)
 
   const formikSubmit = useFormik({
-    initialValues: post ? post : initialState,
+    initialValues: post,
     validationSchema: validationPostSchema,
     onSubmit: (values: PostFromFormWithArrayImgT, {}) => {
       const trimmedValue = {
@@ -106,9 +110,11 @@ export const AddPost: AddPostComponent = () => {
   }, [])
 
   const clear = () => {
-    dispatch(actionsPosts.changeOpenedPostIdAC(''))
-    dispatch(actionsPosts.setCertainPostAC(null))
-    formikSubmit.resetForm()
+    dispatch(postActions.resetPostAC())
+    formikSubmit.setFormikState((form) => {
+      return { ...form, values: resetState}
+    })
+    formikSubmit.setErrors({})
   }
 
   const putSelectedFiles = (file: Array<FileWithPath>) => {

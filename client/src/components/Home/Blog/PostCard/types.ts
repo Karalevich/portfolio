@@ -1,8 +1,8 @@
-import { FileT } from '../../../../reducers/posts/types'
+import { FileT } from '../../../../reducers/blog/types'
 import { ForwardedRef, FunctionComponent } from 'react'
 import { AuthorIdT } from '../types'
 
-type CommentT = {
+export type CommentT = {
   author: AuthorIdT
   text: string
 }
