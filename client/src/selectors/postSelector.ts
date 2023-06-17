@@ -11,11 +11,11 @@ export const getOpenPostS = (state: RootStateT) => ({
   date: state.post.date,
   content: state.post.content,
   img: state.post.img,
-  comments: state.post.comments,
   likes: state.post.likes,
 })
 export const getRelatedPostsS = (state: RootStateT) => state.post.relatedPosts
 export const getFetchingRelatedPostsS = (state: RootStateT) => state.post.isFetchingRelatedPosts
+
 export const getFetchingPostS = (state: RootStateT) => state.post.isFetchingPost
 export const getPostDataForFormS = (state: RootStateT): PostFromFormWithArrayImgT => {
   const img = state.post.img ? [dataURLtoFileWithPath(state.post.img as string)] : [] // Convert data URL to FileWithPath

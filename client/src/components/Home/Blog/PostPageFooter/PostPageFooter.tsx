@@ -1,7 +1,5 @@
 import styles from './PostPageFooter.module.scss'
 import { PostPageFooterComponent } from './types'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ShareIcon from '@mui/icons-material/Share'
 import Dropdown from '../../../Custom/Dropdown/Dropdown'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
@@ -9,6 +7,8 @@ import { getUserIdS } from '../../../../selectors/userSelectors'
 import Comments from '../Comments/Comments'
 import { getOpenPostS } from '../../../../selectors/postSelector'
 import { likePostThunk, postActions } from '../../../../actions/postAction'
+import Like from '../../../Custom/Like/Like'
+import { getCountCommentsS } from '../../../../selectors/commentSelector'
 
 const SELECT = ['By default', 'By date', 'By best']
 
@@ -16,7 +16,7 @@ export const PostPageFooter: PostPageFooterComponent = () => {
   const dispatch = useAppDispatch()
   const userId = useAppSelector(getUserIdS)
   const post = useAppSelector(getOpenPostS)
-  const { comments } = post || {}
+  const commentCount = useAppSelector(getCountCommentsS)
 
   const addLike = () => {
     if (userId && post) {
@@ -32,23 +32,16 @@ export const PostPageFooter: PostPageFooterComponent = () => {
       <header className={styles.header}>
         <div className={styles.line}>
           <h3 className={styles.count}>
-            {comments?.length} Comment{Number(comments?.length) > 1 && 's'}
+            {commentCount} Comment{commentCount > 1 && 's'}
           </h3>
         </div>
         <div className={styles.actions}>
           <div className={styles.review}>
-            <span className={styles.likes}>
-              {userId && post?.likes.includes(userId) ? (
-                <FavoriteIcon className={styles.liked} fontSize={'small'} onClick={addLike} />
-              ) : (
-                <FavoriteBorderIcon
-                  className={styles.favoriteIcon}
-                  fontSize={'small'}
-                  onClick={addLike}
-                />
-              )}
-              <p className={styles.number}>{post?.likes.length || 0}</p>
-            </span>
+            <Like
+              isLiked={!!(userId && post?.likes.includes(userId))}
+              onClick={addLike}
+              count={post?.likes.length || 0}
+            />
             <p className={styles.share}>
               <ShareIcon className={styles.shareIcon} fontSize={'small'} />
               Share

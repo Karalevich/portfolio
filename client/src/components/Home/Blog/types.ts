@@ -5,7 +5,7 @@ type BlogProps = {
 }
 export type BlogComponent = FunctionComponent<BlogProps>
 
-export type AuthorIdT = {
+export type AuthorT = {
   _id: string
   name: string
   imageUrl: string

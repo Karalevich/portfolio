@@ -14,6 +14,8 @@ import NotFound from '../NotFound/NotFound'
 import AddPost from '../Home/Blog/AddPost/AddPost'
 import { useAppSelector } from '../../hooks/hooks'
 import { getUserS } from '../../selectors/userSelectors'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorModal from '../Custom/Modal/ErrorModal/ErrorModal'
 
 export const AnimatedRoutes: AnimatedRoutesComponent = () => {
   const location = useLocation()
@@ -41,7 +43,14 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
         <Route path={'/cv'} element={<CV />} />
         <Route path={'/portfolio'} element={<Portfolio />} />
         <Route path={'/blog'} element={<Blog isFullVersion />} />
-        <Route path={'/blog/post/:id'} element={<PostPage />} />
+        <Route
+          path={'/blog/post/:id'}
+          element={
+            <ErrorBoundary fallback={<ErrorModal />}>
+              <PostPage />
+            </ErrorBoundary>
+          }
+        />
         <Route path={'/blog/addPost'} element={user ? <AddPost /> : <NotFound />} />
         <Route path={'/contact'} element={<Contact />} />
         <Route path={'/not-found'} element={<NotFound />} />

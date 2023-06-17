@@ -1,11 +1,6 @@
 import { FileT } from '../../../../reducers/blog/types'
 import { ForwardedRef, FunctionComponent } from 'react'
-import { AuthorIdT } from '../types'
-
-export type CommentT = {
-  author: AuthorIdT
-  text: string
-}
+import { AuthorT } from '../types'
 
 export type PostT = {
   img: FileT
@@ -18,11 +13,11 @@ export type PostT = {
 }
 
 export type CertainPostT = PostT & {
-  comments?: Array<CommentT>
+  comments: Array<string>
   likes: Array<string>
   tags: Array<string>
   content: string
-  author: AuthorIdT
+  author: AuthorT
   date: string
 }
 

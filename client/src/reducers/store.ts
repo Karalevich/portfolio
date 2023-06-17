@@ -6,10 +6,12 @@ import blogReducer from './blog/blogReducer'
 import modalReducer from './modal/modalReducer'
 import serviceReducer from './service/serviceReducer'
 import postReducer from './post/postReducer'
+import commentReducer from './comment/commentReducer'
 
 const reducers = combineReducers({
   user: userReducer,
   post: postReducer,
+  comment: commentReducer,
   blog: blogReducer,
   modal: modalReducer,
   service: serviceReducer,

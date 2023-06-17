@@ -26,7 +26,6 @@ export const deletePost = (id: string) => API.delete(`/posts/${id}`)
 export const fetchPosts = (searchQuery: string, sortQuery: number, page: number) =>
   API.get(`/posts?page=${page}&searchQuery=${searchQuery}&sortQuery=${sortQuery}`)
 export const likePost = (id: string) => API.patch(`/posts/${id}/likePost`)
-// export const comment = (value: string, id: string | undefined) => API.post(`/posts/${id}/commentPost`, { value })
 
 // USER API
 export const googleSign = (formData: UserT) => API.post('/user/google', formData)
@@ -49,3 +48,10 @@ export const refresh = () =>
 // SERVICE API
 export const sendMessageFromContactForm = (formData: ContactValuesT) =>
   axios.post(`${process.env.REACT_APP_API_URl}/service/contactForm`, formData)
+
+// COMMENT API
+export const comment = (message: string, id: string, parentId?: string) =>
+  API.post(`/comment/${id}/addComment`, { message, parentId })
+export const fetchComments = (postId: string, page: number, sortQuery: number) =>
+  API.get(`/comment/${postId}?page=${page}&sortQuery=${sortQuery}`)
+export const deleteComment = (commentId: string) => API.delete(`/comment/${commentId}`)

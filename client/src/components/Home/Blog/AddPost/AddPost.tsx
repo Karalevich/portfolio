@@ -112,7 +112,7 @@ export const AddPost: AddPostComponent = () => {
   const clear = () => {
     dispatch(postActions.resetPostAC())
     formikSubmit.setFormikState((form) => {
-      return { ...form, values: resetState}
+      return { ...form, values: resetState }
     })
     formikSubmit.setErrors({})
   }

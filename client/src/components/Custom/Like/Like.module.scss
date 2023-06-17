@@ -1,0 +1,55 @@
+@import './src/styles/variables.scss';
+
+.likes {
+  display: flex;
+  align-items: center;
+  column-gap: 0.1rem;
+  position: relative;
+}
+
+.number {
+  font-size: 110%;
+}
+
+.favoriteIcon,
+.liked {
+  cursor: pointer;
+  color: $paragraph;
+
+  &:hover {
+    color: #b9b7b7;
+  }
+}
+
+.liked {
+  color: $element;
+
+  &:hover {
+    color: $element;
+    opacity: 0.8;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .likes {
+    font-size: 1.25rem;
+    align-items: end;
+
+    .favoriteIcon,
+    .liked {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .likes {
+    font-size: 1.25rem;
+    align-items: end;
+
+    .favoriteIcon,
+    .liked {
+      font-size: 1.75rem;
+    }
+  }
+}

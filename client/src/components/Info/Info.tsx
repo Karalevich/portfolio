@@ -4,7 +4,7 @@ import { InfoComponent, InfoDrawerComponent } from './types'
 import Avatar from './Avatar/Avatar'
 import Skills from './Skills/Skills'
 import { EXTRA_SKILLS, LANGUAGES, SKILLS } from '../../constants/personalInfo'
-import { Button, SwipeableDrawer, useMediaQuery } from '@mui/material'
+import { Button, Drawer, useMediaQuery } from '@mui/material'
 import { DownloadIcon } from '../Custom/Icons'
 import cv from '../../assets/Andrei_Karalevich_CV.pdf'
 import { Tooltip } from '../Custom/Tooltip'
@@ -30,15 +30,9 @@ export const Info: InfoComponent = forwardRef(({ isOpen, toggleInfo, isFixed }, 
   return (
     <>
       {isTabletOrMobile ? (
-        <SwipeableDrawer
-          open={isOpen}
-          anchor={'left'}
-          onClose={toggleDrawer(false)}
-          onOpen={toggleDrawer(true)}
-          className={styles.mobile}
-        >
+        <Drawer open={isOpen} anchor={'left'} onClose={toggleDrawer(false)} className={styles.mobile}>
           <InfoDrawer isFixed={isFixed} closeDrawer={closeDrawer} />
-        </SwipeableDrawer>
+        </Drawer>
       ) : (
         <InfoDrawer isFixed={isFixed} className={styles.fullScreen} ref={ref} />
       )}

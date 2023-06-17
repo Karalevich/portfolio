@@ -1,6 +1,5 @@
 import { PostActionT, PostStateT } from './types'
 
-export const COMMENTS = 'COMMENTS'
 export const SET_POST = 'SET_POST'
 export const SET_LIKE = 'SET_LIKE'
 export const RESET_POST_STATE = 'RESET_POST_STATE'

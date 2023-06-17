@@ -1,7 +1,7 @@
 import { ActionT } from '../store'
-import { CommentT, RecommendCardT } from '../../components/Home/Blog/PostCard/types'
+import { RecommendCardT } from '../../components/Home/Blog/PostCard/types'
 import { FileT } from '../blog/types'
-import { AuthorIdT } from '../../components/Home/Blog/types'
+import { AuthorT } from '../../components/Home/Blog/types'
 import { postActions } from '../../actions/postAction'
 
 export type PostStateT = {
@@ -14,11 +14,11 @@ export type PostStateT = {
   title: string
   description: string
   _id: string
-  comments?: Array<CommentT>
+  comments: Array<string>
   likes: Array<string>
   tags: Array<string>
   content: string
-  author: AuthorIdT
+  author: AuthorT
   date: string
 }
 

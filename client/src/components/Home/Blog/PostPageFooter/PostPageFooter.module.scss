@@ -38,34 +38,12 @@
     }
   }
 
-  .likes {
-    display: flex;
-    align-items: center;
-    column-gap: 0.1rem;
-    position: relative;
-  }
-
-  .number {
-    font-size: 110%;
-  }
-
-  .favoriteIcon,
-  .shareIcon,
-  .liked {
+  .shareIcon {
     cursor: pointer;
     color: $paragraph;
 
     &:hover {
       color: #b9b7b7;
-    }
-  }
-
-  .liked {
-    color: $element;
-
-    &:hover {
-      color: $element;
-      opacity: 0.8;
     }
   }
 }
@@ -84,14 +62,7 @@
       }
     }
 
-    .likes {
-      font-size: 1.25rem;
-      align-items: end;
-    }
-
-    .favoriteIcon,
-    .shareIcon,
-    .liked {
+    .shareIcon {
       font-size: 1.75rem;
     }
 
@@ -119,14 +90,7 @@
       }
     }
 
-    .likes {
-      font-size: 1.25rem;
-      align-items: end;
-    }
-
-    .favoriteIcon,
-    .shareIcon,
-    .liked {
+    .shareIcon {
       font-size: 1.75rem;
     }
 

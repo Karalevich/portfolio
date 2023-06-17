@@ -2,7 +2,8 @@ import {
   RESET_POST_STATE,
   SET_FETCHING_CERTAIN_POST,
   SET_FETCHING_FORM,
-  SET_FETCHING_RELATED_POSTS, SET_LIKE,
+  SET_FETCHING_RELATED_POSTS,
+  SET_LIKE,
   SET_POST,
   SET_RELATED_POST,
 } from 'src/reducers/post/postReducer'
@@ -32,7 +33,7 @@ export const postActions = {
   setLikestAC: (userId: string) =>
     ({
       type: SET_LIKE,
-      userId
+      userId,
     } as const),
   setFetchingCertainPostAC: (flag: boolean) =>
     ({
@@ -57,10 +58,6 @@ export const postActions = {
       type: SET_FETCHING_FORM,
       flag,
     } as const),
-  // updateCommentsAC: (payload: PostsResponseDataI) => ({
-  //   type: COMMENTS,
-  //   payload
-  // } as const),
 }
 
 export const getCertainPostThunk =
@@ -139,15 +136,3 @@ export const likePostThunk =
       console.log(e)
     }
   }
-
-// export const commentPostThunk = (value: string, id: string | undefined): ThunkType<PostsActionType> => async (dispatch) => {
-//   try {
-//     //dispatch(actionsPosts.setFetchingForm(true))
-//     const { data } = await api.comment(value, id)
-//     dispatch(actionsPosts.updateCommentsAC(data))
-//   } catch (e) {
-//     console.log(e)
-//   } finally {
-//     //dispatch(actionsPosts.setFetchingForm(false))
-//   }
-// }

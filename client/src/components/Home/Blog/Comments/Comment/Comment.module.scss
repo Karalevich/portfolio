@@ -10,16 +10,31 @@
     height: 5.7rem;
     border-radius: 0.625rem;
     background-color: $skeleton;
+    font-size: 400%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .likes {
+  .message {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .actions {
     display: flex;
     align-items: center;
     column-gap: 0.35rem;
     position: relative;
   }
 
-  .favoriteIcon,
+  form[class*='commentArea'] + .actions {
+    margin-bottom: 1.25rem;
+    margin-top: -2rem;
+  }
+
   .shareIcon {
     cursor: pointer;
     color: $paragraph;
@@ -29,24 +44,72 @@
     display: flex;
     column-gap: 1.125rem;
     align-items: baseline;
-    margin-bottom: 0.5rem;
+    justify-content: space-between;
   }
 
   .ownerName {
     color: $element;
     font-weight: 500;
     position: relative;
+  }
 
-    &:after {
-      content: '';
-      position: absolute;
-      right: -0.7rem;
-      top: 50%;
-      height: 0.25rem;
-      width: 0.25rem;
-      border-radius: 50%;
-      background-color: $paragraph;
+  .commentDate {
+    font-size: 80%;
+  }
+
+  .nestedComments {
+    padding-left: 0.5rem;
+    flex-grow: 1;
+    padding-top: 0.25rem;
+  }
+
+  .nestedCommentsStack {
+    display: flex;
+    flex-direction: column;
+
+    .userImage {
+      width: 3rem;
+      height: 3rem;
     }
+
+    .ownerName {
+      font-size: 1.25rem;
+    }
+
+    .comment {
+      column-gap: 0.5rem;
+    }
+  }
+
+  .collapseLine {
+    border: none;
+    padding: 0;
+    width: 0.75rem;
+    position: absolute;
+    cursor: pointer;
+    outline: none;
+    display: block;
+    top: 0;
+    bottom: 0;
+    background: none;
+    transform: translateX(-50%);
+
+    &:before {
+      content: '';
+      background-color: $paragraph;
+      position: absolute;
+      width: 1px;
+      display: block;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transition: background-color 50ms ease-in-out;
+    }
+  }
+
+  .collapseLine:hover::before,
+  .collapseLine:focus-visible:before {
+    background-color: $element;
   }
 }
 
@@ -55,12 +118,11 @@
     flex-direction: column;
     position: relative;
 
-    .likes {
+    .actions {
       font-size: 1.25rem;
       align-items: end;
     }
 
-    .favoriteIcon,
     .shareIcon {
       font-size: 1.75rem;
     }
@@ -99,7 +161,7 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .comment {
-    .likes {
+    .actions {
       font-size: 1.25rem;
       align-items: end;
     }
@@ -108,7 +170,6 @@
       font-size: 1rem;
     }
 
-    .favoriteIcon,
     .shareIcon {
       font-size: 1.75rem;
     }

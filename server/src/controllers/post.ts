@@ -4,6 +4,7 @@ import { LIMIT_CARDS_ON_PAGE } from '../constants'
 import { Request, Response } from 'express'
 import User from '../models/user'
 
+
 export const getCertainPost = async (req: Request, res: Response) => {
   const { id } = req.params
   try {
@@ -48,7 +49,7 @@ export const getPosts = async (req: Request, res: Response) => {
           description: 1,
           likesCount: 1,
         },
-      }
+      },
     ])
 
     res.status(200).json({ posts, allPages: Math.ceil(total / LIMIT_CARDS_ON_PAGE) })
@@ -61,11 +62,11 @@ export const createPosts = async (req: Request, res: Response) => {
   const post = req.body
   try {
     let user = await User.findOne({ _id: req.userId })
-    if(!user){
+    if (!user) {
       return res.status(401).json({ message: 'User does not exist in database', code: 4013 })
     }
 
-    if(!user.isActivated){
+    if (!user.isActivated) {
       return res.status(403).json({ message: 'Please ensure that your account is activated', code: 4031 })
     }
     const newPost = new Post({ ...post, author: req.userId, date: new Date().toISOString() })
@@ -102,17 +103,16 @@ export const deletePost = async (req: Request, res: Response) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(404).send('No post with that id')
-    } else {
-      const post = await Post.findById(id)
-
-      if (post && post.author.toString() !== req.userId) {
-        return res.status(403).send('Forbidden')
-      }
-
-      await Post.findByIdAndRemove(id)
-
-      res.json({ message: 'Post deleted successfully' })
     }
+
+    const post = await Post.findById(id)
+    if (post && post.author.toString() !== req.userId) {
+      return res.status(403).send('Forbidden')
+    }
+
+    await Post.findByIdAndRemove(id)
+
+    res.json({ message: 'Post deleted successfully' })
   } catch (e: any | unknown) {
     res.status(409).json({ message: e.message })
   }
@@ -143,25 +143,6 @@ export const likePost = async (req: Request, res: Response) => {
         .populate('author', 'name imageUrl')
 
       res.status(201).json(updatedPost)
-    }
-  } catch (e: any | unknown) {
-    res.status(409).json({ message: e.message })
-  }
-}
-
-export const commentPost = async (req: Request, res: Response) => {
-  const { id } = req.params
-  const { value } = req.body
-
-  try {
-    const post = await Post.findById(id)
-    if (post && post.comments) {
-      post.comments.push(value)
-      const updatePost = await Post.findByIdAndUpdate(id, post, { new: true })
-
-      res.status(201).json(updatePost)
-    } else {
-      res.status(404).send('No post with that id')
     }
   } catch (e: any | unknown) {
     res.status(409).json({ message: e.message })

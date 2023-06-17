@@ -28,7 +28,7 @@ export const PostPage: PostPageComponent = () => {
   const post = useAppSelector(getOpenPostS)
   const relatedPosts = useAppSelector(getRelatedPostsS)
   const isFetchingRelatedPosts = useAppSelector(getFetchingRelatedPostsS)
-  const isFetchingCertainPost = useAppSelector(getFetchingPostS)
+  const isFetchingPost = useAppSelector(getFetchingPostS)
   const user = useAppSelector(getUserS)
   const navigate = useNavigate()
   const isRemovePostFromState = useRef(true)
@@ -63,7 +63,7 @@ export const PostPage: PostPageComponent = () => {
 
   return (
     <section className={styles.postPage}>
-      {isFetchingCertainPost ? (
+      {isFetchingPost ? (
         <SkeletonPostPage />
       ) : (
         <header>
@@ -115,7 +115,7 @@ export const PostPage: PostPageComponent = () => {
         </header>
       )}
       <main>
-        {!isFetchingCertainPost && (
+        {!isFetchingPost && (
           <article className={styles.postContent}>
             <img className={styles.mainImg} src={img as string} alt={'post preview'} />
             <div dangerouslySetInnerHTML={{ __html: content as string }} className={'ql-editor'} />
