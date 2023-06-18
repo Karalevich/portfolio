@@ -15,6 +15,10 @@ import {
 } from '../../../../selectors/commentSelector'
 import { getUserS } from '../../../../selectors/userSelectors'
 import LoadingButton from '@mui/lab/LoadingButton'
+import CommentAvatar from './CommentAvatar/CommentAvatar'
+import { useMediaQuery } from '@mui/material'
+import { modalActions } from '../../../../actions/modalAction'
+import { MODAL_TYPE } from '../../../../reducers/modal/types'
 
 const postPageFooter = [
   {
@@ -95,6 +99,7 @@ const Comments: CommentsComponent = () => {
   const postId = useAppSelector(getOpenedPostIdS)
   const comments = useAppSelector(getCommentsS)
   const user = useAppSelector(getUserS)
+  const isDekstop = useMediaQuery('(min-width:767px)')
   //const comments = postPageFooter
 
   useEffect(() => {
@@ -121,22 +126,23 @@ const Comments: CommentsComponent = () => {
 
   const onComment = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(addCommentThunk(() => setCommentValue(''), commentValue.trim(), postId))
+    if (!user?.isActivated) {
+      dispatch(modalActions.openModalAC(MODAL_TYPE.ACTIVATE_ACCOUNT_INFO))
+    } else {
+      dispatch(addCommentThunk(() => setCommentValue(''), commentValue.trim(), postId))
+    }
   }
 
   return (
     <article className={styles.leaveComment}>
       <div className={styles.inputWrap}>
-        {user?.imageUrl ? (
-          <img className={styles.userImage} src={user?.imageUrl} alt={user?.name} />
-        ) : (
-          <div className={styles.userImage}>{user?.name[0].toUpperCase()}</div>
-        )}
+        {isDekstop && <CommentAvatar name={user?.name} imageUrl={user?.imageUrl} />}
         <CommentForm
           onSubmit={onComment}
           onChange={onChange}
           value={commentValue}
           isLoadingComments={isLoadingComments}
+          disabled={!user}
         />
       </div>
       {commentGroupByParent[''] && comments.length > 0 && (
@@ -158,7 +164,7 @@ export const CommentList: CommentListComponent = ({ comments, getReplies }) => {
   )
 }
 
-export const CommentForm: CommentFormComponent = ({ value, onChange, onSubmit, isLoadingComments }) => {
+export const CommentForm: CommentFormComponent = ({ value, onChange, onSubmit, isLoadingComments, disabled }) => {
   return (
     <form className={styles.commentArea} onSubmit={onSubmit}>
       <Input
@@ -185,6 +191,7 @@ export const CommentForm: CommentFormComponent = ({ value, onChange, onSubmit, i
         sx={{ alignSelf: 'end', zIndex: 1 }}
         loading={isLoadingComments}
         loadingPosition='center'
+        disabled={disabled}
       >
         Comment
       </LoadingButton>

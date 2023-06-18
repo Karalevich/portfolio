@@ -4,32 +4,41 @@ import { CommentComponent } from './types'
 import { Button, Collapse } from '@mui/material'
 import Like from '../../../../Custom/Like/Like'
 import { CommentForm, CommentList } from '../Comments'
-import { useAppDispatch } from '../../../../../hooks/hooks'
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/hooks'
 import CommentTactics from '../CommentActions/CommentTactics'
-import { deleteCommentThunk } from '../../../../../actions/commentAction'
+import { addCommentThunk, deleteCommentThunk } from '../../../../../actions/commentAction'
+import CommentAvatar from '../CommentAvatar/CommentAvatar'
+import { getOpenedPostIdS } from '../../../../../selectors/postSelector'
 
 export const Comment: CommentComponent = ({
-  author,
-  message,
-  _id,
-  created_at,
-  likes,
-  getReplies,
-}) => {
+                                            author,
+                                            message,
+                                            _id,
+                                            created_at,
+                                            likes,
+                                            getReplies,
+                                          }) => {
   const dispatch = useAppDispatch()
-
+  const postId = useAppSelector(getOpenedPostIdS)
   const [isShowChildren, setIsShowChildren] = useState(false)
   const [isEditMode, setIsEditMode] = useState(false)
+  const [isReplayMode, setIsReplayMode] = useState(false)
   const [commentValue, setCommentValue] = useState(message)
+  const [replayValue, setReplayValue] = useState('')
 
   const childrenComments = getReplies(_id)
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setCommentValue(e.target.value)
-  }
-
   const updateComment = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+  }
+
+  const replayComment = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const resetCallback = () => {
+      setReplayValue('')
+      setIsReplayMode(false)
+    }
+    dispatch(addCommentThunk(resetCallback, replayValue.trim(), postId, _id))
   }
 
   const deleteAction = () => {
@@ -40,27 +49,27 @@ export const Comment: CommentComponent = ({
     setIsEditMode(!isEditMode)
   }
 
-  const replayAction = () => {}
-  const shareAction = () => {}
+  const replayAction = () => {
+    setIsReplayMode(!isReplayMode)
+
+  }
+  const shareAction = () => {
+  }
 
   return (
     <>
       <li className={styles.comment}>
-        <div>
-          {author?.imageUrl ? (
-            <img className={styles.userImage} src={author?.imageUrl} alt={author?.name} />
-          ) : (
-            <div className={styles.userImage}>{author?.name[0].toUpperCase()}</div>
-          )}
-        </div>
+        <CommentAvatar name={author.name} imageUrl={author.imageUrl} />
         <article className={styles.message}>
           <header className={styles.owner}>
-            <h3 className={styles.ownerName}>{author?.name}</h3>
+            <h4 className={styles.ownerName}>{author?.name}</h4>
             <p className={styles.commentDate}>{new Date(`${created_at}`).toLocaleString()}</p>
           </header>
           <main className={styles.commentMessage}>
             {isEditMode ? (
-              <CommentForm onSubmit={updateComment} onChange={onChange} value={commentValue} />
+              <CommentForm onSubmit={updateComment}
+                           onChange={(e: ChangeEvent<HTMLInputElement>) => setCommentValue(e.target.value)}
+                           value={commentValue} />
             ) : (
               <p>{message}</p>
             )}
@@ -75,6 +84,11 @@ export const Comment: CommentComponent = ({
               />
             </div>
           </main>
+          {isReplayMode && <div>
+            <CommentForm onSubmit={replayComment}
+                         onChange={(e: ChangeEvent<HTMLInputElement>) => setReplayValue(e.target.value)}
+                         value={replayValue} />
+          </div>}
           {childrenComments?.length > 0 && (
             <div className={styles.nestedCommentsStack}>
               <Collapse in={isShowChildren} sx={{ position: 'relative' }}>
@@ -83,16 +97,17 @@ export const Comment: CommentComponent = ({
                   <CommentList comments={childrenComments} getReplies={getReplies} />
                 </div>
               </Collapse>
-              {!isShowChildren && (
+              <Collapse in={!isShowChildren} sx={{width: '100%'}}>
                 <Button
                   onClick={() => setIsShowChildren(true)}
                   disableElevation
                   variant='outlined'
                   size={'small'}
+                  fullWidth
                 >
                   Show Replies
                 </Button>
-              )}
+              </Collapse>
             </div>
           )}
         </article>

@@ -15,5 +15,6 @@ type CommentFormProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   onSubmit: (e: FormEvent<HTMLFormElement>) => void
   isLoadingComments?: boolean
+  disabled?: boolean
 }
 export type CommentFormComponent = FunctionComponent<CommentFormProps>

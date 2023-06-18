@@ -5,17 +5,6 @@
   list-style: none;
   column-gap: 1.25rem;
 
-  .userImage {
-    width: 5.7rem;
-    height: 5.7rem;
-    border-radius: 0.625rem;
-    background-color: $skeleton;
-    font-size: 400%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .message {
     width: 100%;
     display: flex;
@@ -67,13 +56,8 @@
     display: flex;
     flex-direction: column;
 
-    .userImage {
-      width: 3rem;
-      height: 3rem;
-    }
-
     .ownerName {
-      font-size: 1.25rem;
+      font-size: 80%;
     }
 
     .comment {
@@ -146,11 +130,6 @@
       p {
         font-size: 1rem;
       }
-    }
-
-    .userImage {
-      width: 4.166rem;
-      height: 4.166rem;
     }
 
     .commentMessage {

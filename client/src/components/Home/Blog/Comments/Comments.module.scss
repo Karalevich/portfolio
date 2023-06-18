@@ -18,13 +18,6 @@
     column-gap: 1.25rem;
   }
 
-  .userImage {
-    width: 5.7rem;
-    height: 5.7rem;
-    border-radius: 0.625rem;
-    background-color: $skeleton;
-  }
-
   .comments {
     display: flex;
     flex-direction: column;
@@ -33,11 +26,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .leaveComment {
-    .userImage {
-      display: none;
-    }
-  }
+
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {

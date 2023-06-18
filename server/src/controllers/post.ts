@@ -3,6 +3,7 @@ import mongoose, { ObjectId } from 'mongoose'
 import { LIMIT_CARDS_ON_PAGE } from '../constants'
 import { Request, Response } from 'express'
 import User from '../models/user'
+import commentService from '../service/comment'
 
 
 export const getCertainPost = async (req: Request, res: Response) => {
@@ -101,14 +102,16 @@ export const deletePost = async (req: Request, res: Response) => {
   }
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(id)) {
+    const post = await Post.findById(id)
+    if (!post) {
       return res.status(404).send('No post with that id')
     }
 
-    const post = await Post.findById(id)
-    if (post && post.author.toString() !== req.userId) {
+    if (post.author.toString() !== req.userId) {
       return res.status(403).send('Forbidden')
     }
+
+    await commentService.deletePostComments(post.comments)
 
     await Post.findByIdAndRemove(id)
 
@@ -126,24 +129,25 @@ export const likePost = async (req: Request, res: Response) => {
   }
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id')
-
     const post = await Post.findById(id)
 
-    if (post) {
-      const index = post.likes.findIndex(idx => idx.toString() === String(req.userId))
-      if (index === -1) {
-        post.likes.push(req.userId as unknown as ObjectId)
-      } else {
-        post.likes = post.likes.filter(idx => idx.toString() !== String(req.userId))
-      }
-
-      const updatedPost = await Post
-        .findByIdAndUpdate(id, post, { new: true })
-        .populate('author', 'name imageUrl')
-
-      res.status(201).json(updatedPost)
+    if (!post) {
+      return res.status(404).send('No post with that id')
     }
+
+    const index = post.likes.findIndex(idx => idx.toString() === String(req.userId))
+    if (index === -1) {
+      post.likes.push(req.userId as unknown as ObjectId)
+    } else {
+      post.likes = post.likes.filter(idx => idx.toString() !== String(req.userId))
+    }
+
+    const updatedPost = await Post
+      .findByIdAndUpdate(id, post, { new: true })
+      .populate('author', 'name imageUrl')
+
+    res.status(201).json(updatedPost)
+
   } catch (e: any | unknown) {
     res.status(409).json({ message: e.message })
   }

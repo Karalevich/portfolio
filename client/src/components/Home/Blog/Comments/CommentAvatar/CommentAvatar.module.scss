@@ -1,0 +1,41 @@
+@import './src/styles/variables.scss';
+
+.userImage {
+  width: 5.7rem;
+  min-width: 5.7rem;
+  height: 5.7rem;
+  border-radius: 0.625rem;
+  background-color: $skeleton;
+  font-size: 400%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f8f8f2;
+}
+
+div[class*='nestedCommentsStack'] {
+  .userImage {
+    width: 3rem;
+    min-width: 3rem;
+    height: 3rem;
+    font-size: 250%;
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  .userImage {
+    width: 4.166rem;
+    min-width: 4.166rem;
+    height: 4.166rem;
+  }
+  div[class*='nestedCommentsStack'] {
+    .userImage {
+      width: 2.25rem;
+      min-width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+}
+
+

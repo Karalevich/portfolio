@@ -3,6 +3,7 @@ import User from '../models/user'
 import Post from '../models/post'
 import Comment from '../models/comment'
 import { LIMIT_COMMENTS_ON_PAGE } from '../constants'
+import commentService from '../service/comment'
 
 export const addComment = async (req: Request, res: Response) => {
   try {
@@ -31,12 +32,20 @@ export const addComment = async (req: Request, res: Response) => {
     await newComment.save()
     await newComment.populate('author', 'name imageUrl')
 
+    //store the new comment id in the post's comments array
     post.comments.unshift(newComment._id)
     await post.save()
 
+    //store new comment id in parent array of child comments
+    const parentComment = await Comment.findById(parentId)
+    if (parentComment) {
+      parentComment.children.push(newComment._id)
+      await parentComment.save()
+    }
+
     res.status(201).json(newComment)
   } catch (e: any | unknown) {
-    res.status(409).json({ message: e.message })
+    res.status(500).json({ message: e.message })
   }
 }
 
@@ -71,7 +80,7 @@ export const getComments = async (req: Request, res: Response) => {
 
     res.status(200).json({ comments: paginatedComments, commentsCount, pagesCount })
   } catch (e: any | unknown) {
-    res.status(404).json({ message: e.message })
+    res.status(500).json({ message: e.message })
   }
 }
 
@@ -86,7 +95,7 @@ export const deleteComment = async (req: Request, res: Response) => {
     const comment = await Comment.findById(id)
 
     if (!comment) {
-      return res.status(404).send('No post with that id')
+      return res.status(404).send('No comment with that id')
     }
 
     if (comment.author.toString() !== req.userId) {
@@ -99,13 +108,12 @@ export const deleteComment = async (req: Request, res: Response) => {
       return res.status(404).send('No post with that id')
     }
 
-    post.comments = post.comments.filter(commentId => commentId.toString() !== id)
+    // Delete the comment and its children recursively
+    await commentService.deleteCommentAndChildren(comment, post)
     await post.save()
-
-    await Comment.findByIdAndRemove(id)
 
     res.status(200).json({ message: 'Comment deleted successfully' })
   } catch (e: any | unknown) {
-    res.status(404).json({ message: e.message })
+    res.status(500).json({ message: e.message })
   }
 }
