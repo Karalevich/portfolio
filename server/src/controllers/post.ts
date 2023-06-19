@@ -1,5 +1,5 @@
 import Post, { PostDocument } from '../models/post'
-import mongoose, { ObjectId } from 'mongoose'
+import { ObjectId } from 'mongoose'
 import { LIMIT_CARDS_ON_PAGE } from '../constants'
 import { Request, Response } from 'express'
 import User from '../models/user'
@@ -62,7 +62,7 @@ export const getPosts = async (req: Request, res: Response) => {
 export const createPosts = async (req: Request, res: Response) => {
   const post = req.body
   try {
-    let user = await User.findOne({ _id: req.userId })
+    let user = await User.findById(req.userId)
     if (!user) {
       return res.status(401).json({ message: 'User does not exist in database', code: 4013 })
     }
@@ -81,12 +81,19 @@ export const createPosts = async (req: Request, res: Response) => {
 
 export const updatePost = async (req: Request, res: Response) => {
   const { id } = req.params
-  const post = req.body
+  const postData = req.body
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id')
+    const post = await Post.findById(id)
+    if (!post) {
+      return res.status(404).send('No post with that id')
+    }
 
-    await Post.findByIdAndUpdate(id, { ...post, id }, { new: true })
+    if (post.author.toString() !== req.userId) {
+      return res.status(403).send('Forbidden')
+    }
+
+    await Post.findByIdAndUpdate(id, { ...postData, id }, { new: true })
 
     res.status(201).json({ message: 'Post is successfully updated' })
   } catch (e: any | unknown) {

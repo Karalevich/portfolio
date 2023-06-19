@@ -4,13 +4,14 @@ import Post from '../models/post'
 import Comment from '../models/comment'
 import { LIMIT_COMMENTS_ON_PAGE } from '../constants'
 import commentService from '../service/comment'
+import { ObjectId } from 'mongoose'
 
 export const addComment = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
     const { message, parentId } = req.body
 
-    let user = await User.findOne({ _id: req.userId })
+    let user = await User.findById(req.userId)
     if (!user) {
       return res.status(401).json({ message: 'User does not exist in database', code: 4013 })
     }
@@ -75,10 +76,10 @@ export const getComments = async (req: Request, res: Response) => {
 
     const commentsCount = comments.length
     const pagesCount = Math.ceil(commentsCount / LIMIT_COMMENTS_ON_PAGE)
-    const paginatedComments = comments.slice(startIndex, startIndex + LIMIT_COMMENTS_ON_PAGE)
+    // const paginatedComments = comments.slice(startIndex, startIndex + LIMIT_COMMENTS_ON_PAGE)
 
 
-    res.status(200).json({ comments: paginatedComments, commentsCount, pagesCount })
+    res.status(200).json({ comments, commentsCount, pagesCount })
   } catch (e: any | unknown) {
     res.status(500).json({ message: e.message })
   }
@@ -112,8 +113,70 @@ export const deleteComment = async (req: Request, res: Response) => {
     await commentService.deleteCommentAndChildren(comment, post)
     await post.save()
 
-    res.status(200).json({ message: 'Comment deleted successfully' })
+    res.status(200).json({ message: 'Comment deleted successfully', commentsCount: post.comments.length })
   } catch (e: any | unknown) {
     res.status(500).json({ message: e.message })
+  }
+}
+
+export const updateComment = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params
+    const { message } = req.body
+
+    let user = await User.findById(req.userId)
+
+    if (!user) {
+      return res.status(401).json({ message: 'User does not exist in database', code: 4013 })
+    }
+
+    const comment = await Comment.findOne({ _id: id, author: req.userId })
+    if (!comment) {
+      return res.status(400).send('Action forbidden')
+    }
+
+    if (!message) {
+      return res.status(400).send('Message is required')
+    }
+
+    comment.message = message
+    await comment.save()
+    await comment.populate('author', 'name imageUrl')
+
+    res.status(201).json(comment)
+  } catch (e: any | unknown) {
+    res.status(500).json({ message: e.message })
+  }
+}
+
+export const likeComment = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params
+
+    let user = await User.findById(req.userId)
+
+    if (!user) {
+      return res.status(401).json({ message: 'User does not exist in database', code: 4013 })
+    }
+
+    const comment = await Comment.findById(id)
+
+    if (!comment) {
+      return res.status(404).send('No comment with that id')
+    }
+
+    const index = comment.likes.findIndex(idx => idx.toString() === String(req.userId))
+    if (index === -1) {
+      comment.likes.push(req.userId as unknown as ObjectId)
+    } else {
+      comment.likes = comment.likes.filter(idx => idx.toString() !== String(req.userId))
+    }
+
+    await comment.save()
+
+    res.status(201).json({message: index === -1 ? 'Like added' : 'Like removed'})
+
+  } catch (e: any | unknown) {
+    res.status(409).json({ message: e.message })
   }
 }

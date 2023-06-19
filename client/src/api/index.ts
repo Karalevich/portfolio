@@ -55,3 +55,7 @@ export const comment = (message: string, id: string, parentId?: string) =>
 export const fetchComments = (postId: string, page: number, sortQuery: number) =>
   API.get(`/comment/${postId}?page=${page}&sortQuery=${sortQuery}`)
 export const deleteComment = (commentId: string) => API.delete(`/comment/${commentId}`)
+export const updateComment = (message: string, commentId: string) =>
+  API.patch(`/comment/${commentId}/updateComment`, { message, commentId })
+export const likeComment = ( commentId: string) =>
+  API.patch(`/comment/${commentId}/likeComment`)

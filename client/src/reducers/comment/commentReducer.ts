@@ -8,6 +8,8 @@ export const SET_COUNT_COMMENTS = 'SET_COUNT_COMMENTS'
 export const SET_PAGES_COUNT = 'SET_PAGES_COUNT'
 export const SET_PAGE = 'SET_PAGE'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const UPDATE_COMMENT = 'UPDATE_COMMENT'
+export const SET_COMMENT_LIKE = 'SET_COMMENT_LIKE'
 
 const initialState = {
   comments: [],
@@ -24,6 +26,29 @@ export default (state: CommentStateT = initialState, action: CommentActionT) => 
       return {
         ...state,
         comments: [action.payload.comment, ...state.comments],
+      }
+    case UPDATE_COMMENT:
+      return {
+        ...state,
+        comments: state.comments.map(comment => {
+          if(comment._id === action.payload.comment._id) return action.payload.comment
+          return comment
+        }),
+      }
+    case SET_COMMENT_LIKE:
+      return {
+        ...state,
+        comments: state.comments.map(comment => {
+          if(comment._id === action.payload.commentId){
+            return {
+              ...comment,
+              likes:  comment.likes.includes(action.payload.userId)
+                ? comment.likes.filter((id) => id !== action.payload.userId)
+                : [...comment.likes, action.payload.userId]
+            }
+          }
+          return comment
+        }),
       }
     case SET_FETCHING_COMMENTS:
       return {
