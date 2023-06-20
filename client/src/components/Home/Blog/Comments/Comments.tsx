@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react'
 import styles from './Comments.module.scss'
 import { CommentFormComponent, CommentListComponent, CommentsComponent } from './types'
-import me from '../../../../assets/img/Me.webp'
 import Input from '../../../Custom/Input/Input'
 import Comment from './Comment/Comment'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
@@ -20,77 +19,6 @@ import { useMediaQuery } from '@mui/material'
 import { modalActions } from '../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../reducers/modal/types'
 
-const postPageFooter = [
-  {
-    _id: '1',
-    author: {
-      name: 'Andrei Karalevich',
-      _id: '11',
-      imageUrl: me,
-    },
-    post: '1',
-    parent: '',
-    children: [],
-    likes: [],
-    message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper accumsan malesuada sed feugiat. 
-    Rhoncus vel ultrices metus ut sed. Sit nunc, in nibh nisi, viverra quis sociismalesuada. Id lacus integer eget 
-    quisque senectus. Egestas consectetur vivamus aliquet platea aliquamluctus tristique sem congue.`,
-    create_at: new Date(),
-    updated_at: new Date(),
-  },
-  {
-    _id: '12',
-    author: {
-      name: 'Andrei Karalevich',
-      _id: '11',
-      imageUrl: me,
-    },
-    post: '1',
-    parent: '1',
-    children: [],
-    likes: [],
-    message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper accumsan malesuada sed feugiat. 
-    Rhoncus vel ultrices metus ut sed. Sit nunc, in nibh nisi, viverra quis sociismalesuada. Id lacus integer eget 
-    quisque senectus. Egestas consectetur vivamus aliquet platea aliquamluctus tristique sem congue.`,
-    create_at: new Date(),
-    updated_at: new Date(),
-  },
-  {
-    _id: '12312312',
-    author: {
-      name: 'Andrei Karalevich',
-      _id: '11',
-      imageUrl: me,
-    },
-    post: '1',
-    parent: '',
-    children: [],
-    likes: [],
-    message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper accumsan malesuada sed feugiat. 
-    Rhoncus vel ultrices metus ut sed. Sit nunc, in nibh nisi, viverra quis sociismalesuada. Id lacus integer eget 
-    quisque senectus. Egestas consectetur vivamus aliquet platea aliquamluctus tristique sem congue.`,
-    create_at: new Date(),
-    updated_at: new Date(),
-  },
-  {
-    _id: '1231sdf12',
-    author: {
-      name: 'Andrei Karalevich',
-      _id: '11',
-      imageUrl: me,
-    },
-    post: '1',
-    parent: '12',
-    children: [],
-    likes: [],
-    message: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper accumsan malesuada sed feugiat. 
-    Rhoncus vel ultrices metus ut sed. Sit nunc, in nibh nisi, viverra quis sociismalesuada. Id lacus integer eget 
-    quisque senectus. Egestas consectetur vivamus aliquet platea aliquamluctus tristique sem congue.`,
-    create_at: new Date(),
-    updated_at: new Date(),
-  },
-]
-
 const Comments: CommentsComponent = () => {
   const [commentValue, setCommentValue] = useState('')
   const dispatch = useAppDispatch()
@@ -100,7 +28,6 @@ const Comments: CommentsComponent = () => {
   const comments = useAppSelector(getCommentsS)
   const user = useAppSelector(getUserS)
   const isDekstop = useMediaQuery('(min-width:767px)')
-  //const comments = postPageFooter
 
   useEffect(() => {
     postId && dispatch(getCommentsThunk(postId, 1, 0))
@@ -164,7 +91,13 @@ export const CommentList: CommentListComponent = ({ comments, getReplies }) => {
   )
 }
 
-export const CommentForm: CommentFormComponent = ({ value, onChange, onSubmit, isLoadingComments, disabled }) => {
+export const CommentForm: CommentFormComponent = ({
+  value,
+  onChange,
+  onSubmit,
+  isLoadingComments,
+  disabled,
+}) => {
   return (
     <form className={styles.commentArea} onSubmit={onSubmit}>
       <Input

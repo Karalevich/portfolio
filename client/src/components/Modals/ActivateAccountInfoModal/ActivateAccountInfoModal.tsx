@@ -17,9 +17,9 @@ export const ActivateAccountInfoModal: ActivateAccountInfoModalComponent = () =>
     <InfoModal
       description={
         <>
-          Please make sure your account is activated first. An activation link has been
-          sent to your email <strong>{userEmail}</strong>. Would you like us to resend the activation
-          link to <strong>{userEmail}</strong>?
+          Please make sure your account is activated first. An activation link has been sent to your
+          email <strong>{userEmail}</strong>. Would you like us to resend the activation link to{' '}
+          <strong>{userEmail}</strong>?
         </>
       }
       confirmText={'Send'}

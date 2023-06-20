@@ -7,7 +7,8 @@ import { CommentForm, CommentList } from '../Comments'
 import { useAppDispatch, useAppSelector } from '../../../../../hooks/hooks'
 import CommentTactics from '../CommentActions/CommentTactics'
 import {
-  addCommentThunk, commentActions,
+  addCommentThunk,
+  commentActions,
   deleteCommentThunk,
   likeCommentThunk,
   updateCommentThunk,
@@ -18,14 +19,7 @@ import { getUserIdS, getUserS } from '../../../../../selectors/userSelectors'
 import { modalActions } from '../../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../../reducers/modal/types'
 
-export const Comment: CommentComponent = ({
-                                            author,
-                                            message,
-                                            _id,
-                                            created_at,
-                                            likes,
-                                            getReplies,
-                                          }) => {
+export const Comment: CommentComponent = ({ author, message, _id, created_at, likes, getReplies }) => {
   const dispatch = useAppDispatch()
   const postId = useAppSelector(getOpenedPostIdS)
   const userId = useAppSelector(getUserIdS)
@@ -78,10 +72,8 @@ export const Comment: CommentComponent = ({
 
   const replayAction = () => {
     setIsReplayMode(!isReplayMode)
-
   }
-  const shareAction = () => {
-  }
+  const shareAction = () => {}
 
   const addLike = () => {
     if (userId) {
@@ -104,14 +96,21 @@ export const Comment: CommentComponent = ({
           </header>
           <main className={styles.commentMessage}>
             {isEditMode ? (
-              <CommentForm onSubmit={updateComment}
-                           onChange={(e: ChangeEvent<HTMLInputElement>) => setCommentValue(e.target.value)}
-                           value={commentValue} isLoadingComments={isLoadingUpdateComment} />
+              <CommentForm
+                onSubmit={updateComment}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setCommentValue(e.target.value)}
+                value={commentValue}
+                isLoadingComments={isLoadingUpdateComment}
+              />
             ) : (
               <p>{message}</p>
             )}
             <div className={styles.actions}>
-              <Like isLiked={!!(userId && likes.includes(userId))} onClick={addLike} count={likes?.length} />
+              <Like
+                isLiked={!!(userId && likes.includes(userId))}
+                onClick={addLike}
+                count={likes?.length}
+              />
               <CommentTactics
                 author={author}
                 deleteAction={deleteAction}
@@ -121,11 +120,16 @@ export const Comment: CommentComponent = ({
               />
             </div>
           </main>
-          {isReplayMode && <div>
-            <CommentForm onSubmit={replayComment}
-                         onChange={(e: ChangeEvent<HTMLInputElement>) => setReplayValue(e.target.value)}
-                         value={replayValue} isLoadingComments={isLoadingReplayComment} />
-          </div>}
+          {isReplayMode && (
+            <div>
+              <CommentForm
+                onSubmit={replayComment}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setReplayValue(e.target.value)}
+                value={replayValue}
+                isLoadingComments={isLoadingReplayComment}
+              />
+            </div>
+          )}
           {childrenComments?.length > 0 && (
             <div className={styles.nestedCommentsStack}>
               <Collapse in={isShowChildren} sx={{ position: 'relative' }}>

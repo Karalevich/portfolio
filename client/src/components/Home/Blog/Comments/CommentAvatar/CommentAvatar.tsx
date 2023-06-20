@@ -2,8 +2,7 @@ import React from 'react'
 import styles from './CommentAvatar.module.scss'
 import { CommentAvatarComponent } from './types'
 
-
-export const CommentAvatar: CommentAvatarComponent = ({name, imageUrl}) => {
+export const CommentAvatar: CommentAvatarComponent = ({ name, imageUrl }) => {
   return (
     <>
       {imageUrl ? (

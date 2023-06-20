@@ -30,21 +30,21 @@ export default (state: CommentStateT = initialState, action: CommentActionT) => 
     case UPDATE_COMMENT:
       return {
         ...state,
-        comments: state.comments.map(comment => {
-          if(comment._id === action.payload.comment._id) return action.payload.comment
+        comments: state.comments.map((comment) => {
+          if (comment._id === action.payload.comment._id) return action.payload.comment
           return comment
         }),
       }
     case SET_COMMENT_LIKE:
       return {
         ...state,
-        comments: state.comments.map(comment => {
-          if(comment._id === action.payload.commentId){
+        comments: state.comments.map((comment) => {
+          if (comment._id === action.payload.commentId) {
             return {
               ...comment,
-              likes:  comment.likes.includes(action.payload.userId)
+              likes: comment.likes.includes(action.payload.userId)
                 ? comment.likes.filter((id) => id !== action.payload.userId)
-                : [...comment.likes, action.payload.userId]
+                : [...comment.likes, action.payload.userId],
             }
           }
           return comment

@@ -16,6 +16,8 @@ import { USER } from './constants/user'
 import { checkAuth } from './actions/userAction'
 import AxiosInterceptor from './components/AxiosIntercetor/AxiosIntercetor'
 import { AppComponent } from './types'
+import ErrorBoundaryFallback from './components/ErrorBoundaryFallback/ErrorBoundaryFallback'
+import { ErrorBoundary } from 'react-error-boundary'
 
 export const App: AppComponent = () => {
   const infoRef = useRef<null | HTMLElement>(null)
@@ -73,15 +75,19 @@ export const App: AppComponent = () => {
       <BrowserRouter>
         <AxiosInterceptor>
           <>
-            <ScrollToTop />
-            <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
-            <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
-            <section className={styles.home} ref={homeRef}>
-              <AnimatedRoutes />
-            </section>
-            <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
-            <Copyright />
-            <Modal />
+            <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
+              <ScrollToTop />
+              <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
+              <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
+              <section className={styles.home} ref={homeRef}>
+                <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
+                  <AnimatedRoutes />
+                </ErrorBoundary>
+              </section>
+              <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
+              <Copyright />
+              <Modal />
+            </ErrorBoundary>
           </>
         </AxiosInterceptor>
       </BrowserRouter>
