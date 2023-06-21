@@ -112,9 +112,8 @@ export const CommentForm: CommentFormComponent = ({
           paddingTop: '2px',
           '.MuiInputBase-inputMultiline': {
             borderRadius: '0.625rem',
+            backgroundColor: 'var(--input-comment-bcg)',
             boxShadow: `#767676 0 0 0 0.1rem`,
-            webkitBoxShadow: '#767676 0 0 0 0.1rem',
-            webkitAppearance: 'none'
           },
         }}
       />

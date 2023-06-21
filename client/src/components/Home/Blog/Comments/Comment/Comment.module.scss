@@ -10,6 +10,20 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    row-gap: 0.25rem;
+  }
+
+  .wrapper {
+    min-height: 5.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  div[class*='nestedCommentsStack'] {
+    .wrapper {
+      min-height: 3rem;
+    }
   }
 
   .actions {
@@ -105,6 +119,16 @@
     .actions {
       font-size: 1.25rem;
       align-items: end;
+    }
+
+    .wrapper {
+      min-height: 4.166rem;
+    }
+
+    div[class*='nestedCommentsStack'] {
+      .wrapper {
+        min-height: 2.25rem;
+      }
     }
 
     .shareIcon {

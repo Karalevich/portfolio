@@ -41,6 +41,7 @@ export const PostPageFooter: PostPageFooterComponent = () => {
               isLiked={!!(userId && post?.likes.includes(userId))}
               onClick={addLike}
               count={post?.likes.length || 0}
+              disabled={!userId}
             />
             <p className={styles.share}>
               <ShareIcon className={styles.shareIcon} fontSize={'small'} />

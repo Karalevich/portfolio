@@ -5,29 +5,23 @@
   align-items: center;
   column-gap: 0.1rem;
   position: relative;
+
+  span[aria-disabled="true"]:active {
+    pointer-events: none;
+  }
+
 }
 
 .number {
   font-size: 110%;
 }
 
-.favoriteIcon,
-.liked {
-  cursor: pointer;
+.favoriteIcon, {
   color: $paragraph;
-
-  &:hover {
-    color: #b9b7b7;
-  }
 }
 
 .liked {
   color: $element;
-
-  &:hover {
-    color: $element;
-    opacity: 0.8;
-  }
 }
 
 @media only screen and (max-width: 767px) {

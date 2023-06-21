@@ -27,6 +27,7 @@ export const LIGHT = [
   { prop: 'bcg-search-input', value: 'rgb(231, 231, 231)' },
   { prop: 'bcg-filter', value: 'rgba(255,255,255, 0.9)' },
   { prop: 'paragraph', value: '#767676' },
+  { prop: 'input-comment-bcg', value: '#e4e6eb' },
 ]
 
 export const DARK = [
@@ -55,6 +56,7 @@ export const DARK = [
   { prop: 'bcg-search-input', value: '#18191A' },
   { prop: 'bcg-filter', value: 'rgba(55,55,55, 0.9)' },
   { prop: 'paragraph', value: '#767676' },
+  { prop: 'input-comment-bcg', value: '#3A3B3C' },
 ]
 
 export const COLORS = ['#26ccff', '#a25afd', '#ff5e7e', '#88ff5a', '#fcff42', '#ffb400', '#ff36ff']

@@ -73,7 +73,8 @@ export const Comment: CommentComponent = ({ author, message, _id, created_at, li
   const replayAction = () => {
     setIsReplayMode(!isReplayMode)
   }
-  const shareAction = () => {}
+  const shareAction = () => {
+  }
 
   const addLike = () => {
     if (userId) {
@@ -90,36 +91,39 @@ export const Comment: CommentComponent = ({ author, message, _id, created_at, li
       <li className={styles.comment}>
         <CommentAvatar name={author.name} imageUrl={author.imageUrl} />
         <article className={styles.message}>
-          <header className={styles.owner}>
-            <h4 className={styles.ownerName}>{author?.name}</h4>
-            <p className={styles.commentDate}>{new Date(`${created_at}`).toLocaleString()}</p>
-          </header>
-          <main className={styles.commentMessage}>
-            {isEditMode ? (
-              <CommentForm
-                onSubmit={updateComment}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setCommentValue(e.target.value)}
-                value={commentValue}
-                isLoadingComments={isLoadingUpdateComment}
-              />
-            ) : (
-              <p>{message}</p>
-            )}
-            <div className={styles.actions}>
-              <Like
-                isLiked={!!(userId && likes.includes(userId))}
-                onClick={addLike}
-                count={likes?.length}
-              />
-              <CommentTactics
-                author={author}
-                deleteAction={deleteAction}
-                editAction={editAction}
-                replayAction={replayAction}
-                shareAction={shareAction}
-              />
-            </div>
-          </main>
+          <div className={styles.wrapper}>
+            <header className={styles.owner}>
+              <h4 className={styles.ownerName}>{author?.name}</h4>
+              <p className={styles.commentDate}>{new Date(`${created_at}`).toLocaleString()}</p>
+            </header>
+            <main className={styles.commentMessage}>
+              {isEditMode ? (
+                <CommentForm
+                  onSubmit={updateComment}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setCommentValue(e.target.value)}
+                  value={commentValue}
+                  isLoadingComments={isLoadingUpdateComment}
+                />
+              ) : (
+                <p>{message}</p>
+              )}
+              <div className={styles.actions}>
+                <Like
+                  isLiked={!!(userId && likes.includes(userId))}
+                  onClick={addLike}
+                  count={likes?.length}
+                  disabled={!userId}
+                />
+                <CommentTactics
+                  author={author}
+                  deleteAction={deleteAction}
+                  editAction={editAction}
+                  replayAction={replayAction}
+                  shareAction={shareAction}
+                />
+              </div>
+            </main>
+          </div>
           {isReplayMode && (
             <div>
               <CommentForm
