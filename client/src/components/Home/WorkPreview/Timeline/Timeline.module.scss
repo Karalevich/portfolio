@@ -1,0 +1,149 @@
+@import './src/styles/variables.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline {
+  height: 12rem;
+  width: 0.3rem;
+
+  &:first-child {
+    height: 8rem;
+  }
+}
+
+.workBox{
+  background-color: $background;
+  padding: 2rem;
+  border-radius: 2px;
+  position: absolute;
+  top: 0;
+  width: 28rem;
+}
+
+.circle {
+  width: 3.125rem;
+  height: 3.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.circleWrapper {
+  position: relative;
+  width: 3.125rem;
+  height: 3.125rem;
+}
+
+.message {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  min-width: 150px;
+  font-weight: bold;
+}
+
+.label {
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-right: 0.5rem;
+  display: inline;
+}
+
+.place {
+  font-weight: 400;
+  color: $paragraph;
+  text-transform: capitalize;
+  font-size: 0.875rem;
+  align-items: center;
+  display: inline;
+}
+
+.spec {
+  display: flex;
+  column-gap: 0.5rem;
+  align-items: center;
+
+  .occupation {
+    color: $main-text;
+  }
+
+  .date {
+    font-size: 0.825rem;
+    color: $text;
+    padding: 0 0.2rem;
+    background-color: $element;
+    border-radius: 1px;
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  .wrapper {
+    align-items: flex-start;
+  }
+
+  .workBox{
+    padding: 1.5rem;
+    width: 25rem;
+  }
+
+  .timeline {
+    margin-left: 1.5625rem;
+    height: 16rem;
+  }
+
+  .label,
+  .place {
+    text-align: right;
+  }
+
+  .place {
+    font-size: 1rem;
+  }
+
+  .spec {
+    width: auto;
+
+    .date {
+      font-size: 0.833rem;
+    }
+  }
+
+  .description {
+    text-align: justify;
+
+    p {
+      font-size: 1rem;
+      line-height: 1.25rem;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .place {
+    font-size: 1rem;
+  }
+
+  .spec {
+    width: auto;
+
+    .date {
+      font-size: 0.833rem;
+    }
+  }
+
+
+  .description {
+    text-align: justify;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
