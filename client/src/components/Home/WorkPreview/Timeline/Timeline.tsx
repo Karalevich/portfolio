@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles'
 import { FreelanceIcon, LeverIcon, NexonIcon, SabbaticalIcon, WargamingIcon } from '../../../Custom/Icons/Motion'
 
 
-export const Timeline: TimelineComponent = ({ setObserver, callback }) => {
+export const Timeline: TimelineComponent = ({ setObserver }) => {
   const [activeStep, setActiveStep] = useState<number>(-1)
   const isDekstop = useMediaQuery('(min-width:768px)')
 
@@ -29,7 +29,6 @@ export const Timeline: TimelineComponent = ({ setObserver, callback }) => {
   const corcles = [circle0, circle1, circle2, circle3, circle4]
   const activateStep = (step: number) => () => {
     setActiveStep(step)
-    callback()
   }
 
 

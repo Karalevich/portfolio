@@ -7,6 +7,7 @@ import modalReducer from './modal/modalReducer'
 import serviceReducer from './service/serviceReducer'
 import postReducer from './post/postReducer'
 import commentReducer from './comment/commentReducer'
+import notistackReducer from './notistack/notistackReducer'
 
 const reducers = combineReducers({
   user: userReducer,
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   comment: commentReducer,
   blog: blogReducer,
   modal: modalReducer,
+  notistack: notistackReducer,
   service: serviceReducer,
 })
 

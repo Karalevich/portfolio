@@ -13,11 +13,6 @@ export const WorkPreview: WorkPreviewComponent = () => {
     setHasReverse(event.target.checked)
   }
 
-  const onCallback = () => {
-    console.log("awesome");
-  }
-
-
   return (
     <section className={styles.workPreview}>
       <SectionHeader
@@ -36,7 +31,6 @@ export const WorkPreview: WorkPreviewComponent = () => {
         fillColor='rgba(255,180,0,0.93)'
         handleObserve={(setObserver) => (
           <Timeline
-            callback={onCallback}
             setObserver={setObserver}
           />
         )}

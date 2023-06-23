@@ -14,6 +14,8 @@ import { TokenResponse } from '@react-oauth/google'
 import { modalActions } from './modalAction'
 import { ModalActionT } from '../reducers/modal/types'
 import { BlogActionT } from '../reducers/blog/types'
+import { notistackActions } from './notistackAction'
+import { NotistackActionT } from '../reducers/notistack/types'
 
 export const userActions = {
   setAuthAC: (user: UserT, token: string) =>
@@ -74,7 +76,7 @@ export const removeUsedData = (): ThunkT<UserActionsT> => async (dispatch) => {
   }
 }
 
-export const logOutThunk = (): ThunkT<UserActionsT> => async (dispatch) => {
+export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async (dispatch) => {
   try {
     dispatch(userActions.setFetchingLogoutAC(true))
     await api.logOut()
@@ -83,6 +85,14 @@ export const logOutThunk = (): ThunkT<UserActionsT> => async (dispatch) => {
     console.log(e)
   } finally {
     dispatch(userActions.setFetchingLogoutAC(false))
+    dispatch(notistackActions.enqueueSnackbarAC(
+      {
+        message: 'Logout successful!',
+        options: {
+          variant: 'success',
+        }
+      }
+    ))
   }
 }
 
@@ -138,7 +148,7 @@ export const signUpThunk =
   }
 
 export const signInThunk =
-  (formData: Omit<CreateUserT, 'confirmPassword' | 'name'>): ThunkT<UserActionsT | ModalActionT> =>
+  (formData: Omit<CreateUserT, 'confirmPassword' | 'name'>): ThunkT<UserActionsT | ModalActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(userActions.toggleIsAuthAC())
@@ -149,6 +159,14 @@ export const signInThunk =
       console.log(e)
     } finally {
       dispatch(userActions.toggleIsAuthAC())
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Login successful!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 

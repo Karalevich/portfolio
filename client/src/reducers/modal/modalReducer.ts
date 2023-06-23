@@ -28,7 +28,7 @@ export default (state: ModalStateT = initialState, action: ModalActionT) => {
         isOpen: false,
       }
     /*since closing the modal is an animated action, we have time to see the default text in the modal when it closes.
-    To prevent this, we must use another action to clear the fields.*/
+    To prevent this, we must use another/separate action to clear the fields.*/
     case RESET_MODAL_DATA:
       return {
         ...state,

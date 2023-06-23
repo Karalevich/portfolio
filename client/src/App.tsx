@@ -18,6 +18,7 @@ import AxiosInterceptor from './components/AxiosIntercetor/AxiosIntercetor'
 import { AppComponent } from './types'
 import ErrorBoundaryFallback from './components/ErrorBoundaryFallback/ErrorBoundaryFallback'
 import { ErrorBoundary } from 'react-error-boundary'
+import useNotifier from './hooks/useNotifier'
 
 export const App: AppComponent = () => {
   const infoRef = useRef<null | HTMLElement>(null)
@@ -26,6 +27,7 @@ export const App: AppComponent = () => {
   const [isOpenNav, setIsOpenNav] = useState(false)
   const [isOpenInfo, setIsOpenInfo] = useState(false)
   const dispatch = useAppDispatch()
+  useNotifier()
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem(USER) as string)
