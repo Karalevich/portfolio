@@ -1,8 +1,6 @@
-import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import React, { useEffect, useRef, useState } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Nav from './components/Navbar/Navbar'
-import { mainTheme } from './styles/themes/mainTheme'
 import Info from './components/Info/Info'
 import Copyright from './components/Copyright/Copyright'
 import Menu from './components/Menu/Menu'
@@ -73,26 +71,24 @@ export const App: AppComponent = () => {
   }
 
   return (
-    <ThemeProvider theme={mainTheme}>
-      <BrowserRouter>
-        <AxiosInterceptor>
-          <>
-            <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
-              <ScrollToTop />
-              <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
-              <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
-              <section className={styles.home} ref={homeRef}>
-                <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
-                  <AnimatedRoutes />
-                </ErrorBoundary>
-              </section>
-              <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
-              <Copyright />
-              <Modal />
-            </ErrorBoundary>
-          </>
-        </AxiosInterceptor>
-      </BrowserRouter>
-    </ThemeProvider>
+    <BrowserRouter>
+      <AxiosInterceptor>
+        <>
+          <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
+            <ScrollToTop />
+            <Menu toggleNav={toggleNav} toggleInfo={toggleInfo} />
+            <Info ref={infoRef} isFixed={isFixed} isOpen={isOpenInfo} toggleInfo={toggleInfo} />
+            <section className={styles.home} ref={homeRef}>
+              <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
+                <AnimatedRoutes />
+              </ErrorBoundary>
+            </section>
+            <Nav toggleNav={toggleNav} isOpen={isOpenNav} />
+            <Copyright />
+            <Modal />
+          </ErrorBoundary>
+        </>
+      </AxiosInterceptor>
+    </BrowserRouter>
   )
 }

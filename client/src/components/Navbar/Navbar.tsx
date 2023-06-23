@@ -6,14 +6,22 @@ import DynamicCSS from '../Custom/DynamicCSS/DynamicCSS'
 import { CSSProp } from '../Custom/DynamicCSS/types'
 import { DARK, LIGHT } from 'src/constants/settings'
 import NavTabs from './NavTabs/NavTabs'
+import { useAppDispatch } from '../../hooks/hooks'
+import { notistackActions } from '../../actions/notistackAction'
 
 export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
   const [theme, setTheme] = useState<Array<CSSProp>>(LIGHT)
   const [isLightTheme, setIsLightTheme] = useState(true)
   const isTabletOrMobile = useMediaQuery('(max-width: 1023px)')
-
+  const dispatch = useAppDispatch()
   const handleSwitchTheme = () => {
     setIsLightTheme(!isLightTheme)
+    dispatch(notistackActions.enqueueSnackbarAC({
+      message: 'Theme successfully changed',
+      options: {
+        variant: 'success',
+      },
+    }))
     if (isLightTheme) {
       setTheme(DARK)
     } else {

@@ -13,6 +13,8 @@ import {
 import { ThunkT } from '../reducers/store'
 import { CommentActionT, CommentT } from '../reducers/comment/types'
 import * as api from '../api'
+import { notistackActions } from './notistackAction'
+import { NotistackActionT } from '../reducers/notistack/types'
 
 export const commentActions = {
   addCommentAC: (comment: CommentT) =>
@@ -117,7 +119,7 @@ export const getCommentsThunk =
   }
 
 export const deleteCommentThunk =
-  (commentId: string): ThunkT<CommentActionT> =>
+  (commentId: string): ThunkT<CommentActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(commentActions.setIsFetchingCommentsAC(true))
@@ -128,11 +130,19 @@ export const deleteCommentThunk =
       console.log(e)
     } finally {
       dispatch(commentActions.setIsFetchingCommentsAC(false))
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Comment successfully deleted!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 
 export const updateCommentThunk =
-  (resetCallback: () => void, message: string, commentId: string): ThunkT<CommentActionT> =>
+  (resetCallback: () => void, message: string, commentId: string): ThunkT<CommentActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       const { data } = await api.updateComment(message, commentId)
@@ -142,6 +152,14 @@ export const updateCommentThunk =
       console.log(e)
     } finally {
       dispatch(commentActions.setIsLoadingCommentAC(false))
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Comment successfully updated!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 

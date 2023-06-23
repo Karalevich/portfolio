@@ -15,6 +15,8 @@ import {
   ADD_POSTS,
 } from '../reducers/blog/blogReducer'
 import { NavigateFunction } from 'react-router-dom'
+import { notistackActions } from './notistackAction'
+import { NotistackActionT } from '../reducers/notistack/types'
 
 export const blogActions = {
   setPostsAC: (posts: Array<PostT>, allPages: number) =>
@@ -76,7 +78,7 @@ export const blogActions = {
 }
 
 export const deletePostThunk =
-  (id: string, navigate: NavigateFunction): ThunkT<BlogActionT> =>
+  (id: string, navigate: NavigateFunction): ThunkT<BlogActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       //dispatch(actionsPosts.setFetchingForm(true))
@@ -87,6 +89,14 @@ export const deletePostThunk =
       console.log(e)
     } finally {
       //dispatch(actionsPosts.setFetchingForm(false))
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Post successfully deleted!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 

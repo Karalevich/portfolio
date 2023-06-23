@@ -111,7 +111,7 @@ export const checkAuth = (): ThunkT<UserActionsT> => async (dispatch) => {
 export const googleSuccessThunk =
   (
     response: Omit<TokenResponse, 'error' | 'error_description' | 'error_uri'>
-  ): ThunkT<UserActionsT | ModalActionT> =>
+  ): ThunkT<UserActionsT | ModalActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(userActions.toggleIsAuthAC())
@@ -129,11 +129,19 @@ export const googleSuccessThunk =
       console.log(e)
     } finally {
       dispatch(userActions.toggleIsAuthAC())
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Login successful!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 
 export const signUpThunk =
-  (formData: CreateUserT): ThunkT<UserActionsT | ModalActionT> =>
+  (formData: CreateUserT): ThunkT<UserActionsT | ModalActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(userActions.toggleIsAuthAC())
@@ -144,6 +152,14 @@ export const signUpThunk =
       console.log(e)
     } finally {
       dispatch(userActions.toggleIsAuthAC())
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Account successfully created!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 
@@ -171,13 +187,21 @@ export const signInThunk =
   }
 
 export const resentActivationLinkThunk =
-  (email: string): ThunkT<BlogActionT> =>
+  (email: string): ThunkT<BlogActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       await api.resentActivationLink(email)
     } catch (e) {
       console.log(e)
     } finally {
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Link successfully sent!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 

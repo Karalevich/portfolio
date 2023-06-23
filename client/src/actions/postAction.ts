@@ -17,6 +17,8 @@ import { convertFileBeforeSendToServer } from '../utils/convertFileBeforeSendToS
 import { blogActions } from './blogAction'
 import { BlogActionT } from '../reducers/blog/types'
 import { CertainPostT, RecommendCardT } from '../components/Home/Blog/PostCard/types'
+import { notistackActions } from './notistackAction'
+import { NotistackActionT } from '../reducers/notistack/types'
 
 export const postActions = {
   setCertainPostAC: (post: CertainPostT) =>
@@ -89,7 +91,7 @@ export const getPostsByTagsThunk =
     }
   }
 export const createPostThunk =
-  (post: PostFromFormWithArrayImgT, navigate: NavigateFunction): ThunkT<PostActionT | BlogActionT> =>
+  (post: PostFromFormWithArrayImgT, navigate: NavigateFunction): ThunkT<PostActionT | BlogActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(postActions.setFetchingFormAC(true))
@@ -104,10 +106,18 @@ export const createPostThunk =
       console.log(e)
     } finally {
       dispatch(postActions.setFetchingFormAC(false))
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Post successfully created!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 export const updatePostThunk =
-  (id: string, post: PostFromFormWithArrayImgT, navigate: NavigateFunction): ThunkT<PostActionT> =>
+  (id: string, post: PostFromFormWithArrayImgT, navigate: NavigateFunction): ThunkT<PostActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(postActions.setFetchingFormAC(true))
@@ -123,6 +133,14 @@ export const updatePostThunk =
       console.log(e)
     } finally {
       dispatch(postActions.setFetchingFormAC(false))
+      dispatch(notistackActions.enqueueSnackbarAC(
+        {
+          message: 'Post successfully updated!',
+          options: {
+            variant: 'success',
+          }
+        }
+      ))
     }
   }
 

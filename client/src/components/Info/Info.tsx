@@ -9,6 +9,8 @@ import { DownloadIcon } from '../Custom/Icons'
 import cv from '../../assets/Andrei_Karalevich_CV.pdf'
 import { Tooltip } from '../Custom/Tooltip'
 import classnames from 'classnames'
+import { useAppDispatch } from '../../hooks/hooks'
+import { notistackActions } from '../../actions/notistackAction'
 
 export const Info: InfoComponent = forwardRef(({ isOpen, toggleInfo, isFixed }, ref) => {
   const isTabletOrMobile = useMediaQuery('(max-width: 1023px)')
@@ -43,6 +45,7 @@ export const Info: InfoComponent = forwardRef(({ isOpen, toggleInfo, isFixed }, 
 export default Info
 
 export const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawer, className }, ref) => {
+  const dispatch = useAppDispatch()
   const onClickHandler = async () => {
     const response = await fetch(cv)
     const blob = await response.blob()
@@ -52,6 +55,12 @@ export const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawe
     alink.href = fileURL
     alink.download = 'Andrei_Karalevich_CV.pdf'
     alink.click()
+    dispatch(notistackActions.enqueueSnackbarAC({
+      message: 'Resume successfully downloaded',
+      options: {
+        variant: 'success',
+      },
+    }))
   }
   return (
     <aside
