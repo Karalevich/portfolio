@@ -7,7 +7,7 @@ type TimelineProps = {
 export type TimelineComponent = FunctionComponent<TimelineProps>
 
 type IconProps = {
-  activeStep: number,
+  activeStep: number
   index: number
 }
 export type IconComponent = FunctionComponent<IconProps>

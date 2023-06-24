@@ -1,8 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { PLACEHOLDER_COUNT_RELATED_POSTS, PLACEHOLDER_POST, SHARE } from 'src/constants/personalInfo'
+import { PLACEHOLDER_COUNT_RELATED_POSTS, PLACEHOLDER_POST } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
 import { PostPageComponent } from './types'
-import { Tooltip } from '../../../Custom/Tooltip'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
 import PostPageFooter from '../PostPageFooter/PostPageFooter'
@@ -21,6 +20,7 @@ import {
   getFetchingRelatedPostsS,
   getRelatedPostsS,
 } from '../../../../selectors/postSelector'
+import ShareGroup from '../../../Custom/ShareGroup/ShareGroup'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
@@ -82,7 +82,7 @@ export const PostPage: PostPageComponent = () => {
             </div>
             <div className={styles.share}>
               <span>SHARE:</span>
-              <ul className={styles.shareList}>{socialMediaIcons()}</ul>
+              {id && <ShareGroup id={id} />}
             </div>
           </article>
           <div className={styles.actionGroup}>
@@ -149,21 +149,3 @@ export const PostPage: PostPageComponent = () => {
 }
 
 export default PostPage
-
-const socialMediaIcons = () => {
-  const icn = []
-  for (const [key, value] of Object.entries(SHARE)) {
-    const [icon, link] = value
-    const mediaIcon = (
-      <Tooltip title={key} placement='top' key={key} arrow>
-        <li className={styles.iconWrapper}>
-          <a href={link as string} target='_blank' className={styles.link}>
-            {icon}
-          </a>
-        </li>
-      </Tooltip>
-    )
-    icn.push(mediaIcon)
-  }
-  return icn
-}

@@ -89,14 +89,14 @@ export const deletePostThunk =
       console.log(e)
     } finally {
       //dispatch(actionsPosts.setFetchingForm(false))
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Post successfully deleted!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 

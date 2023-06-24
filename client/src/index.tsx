@@ -30,5 +30,5 @@ root.render(
         </ThemeProvider>
       </Provider>
     </GoogleOAuthProvider>
-  </StrictMode>,
+  </StrictMode>
 )

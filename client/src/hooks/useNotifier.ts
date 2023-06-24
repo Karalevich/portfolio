@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 import { SnackbarKey, useSnackbar } from 'notistack'
 import { useAppDispatch, useAppSelector } from './hooks'
 import { notistackActions } from '../actions/notistackAction'
 import { getNotificationsS } from '../selectors/notistackSelector'
 
-let displayed: Array<SnackbarKey> = [];
+let displayed: Array<SnackbarKey> = []
 
 const useNotifier = () => {
   const dispatch = useAppDispatch()
@@ -17,7 +17,7 @@ const useNotifier = () => {
   }
 
   const removeDisplayed = (id: SnackbarKey) => {
-    displayed = [...displayed.filter(key => id !== key)]
+    displayed = [...displayed.filter((key) => id !== key)]
   }
 
   React.useEffect(() => {

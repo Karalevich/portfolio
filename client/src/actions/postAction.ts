@@ -91,7 +91,10 @@ export const getPostsByTagsThunk =
     }
   }
 export const createPostThunk =
-  (post: PostFromFormWithArrayImgT, navigate: NavigateFunction): ThunkT<PostActionT | BlogActionT | NotistackActionT> =>
+  (
+    post: PostFromFormWithArrayImgT,
+    navigate: NavigateFunction
+  ): ThunkT<PostActionT | BlogActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(postActions.setFetchingFormAC(true))
@@ -106,18 +109,22 @@ export const createPostThunk =
       console.log(e)
     } finally {
       dispatch(postActions.setFetchingFormAC(false))
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Post successfully created!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 export const updatePostThunk =
-  (id: string, post: PostFromFormWithArrayImgT, navigate: NavigateFunction): ThunkT<PostActionT | NotistackActionT> =>
+  (
+    id: string,
+    post: PostFromFormWithArrayImgT,
+    navigate: NavigateFunction
+  ): ThunkT<PostActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(postActions.setFetchingFormAC(true))
@@ -133,14 +140,14 @@ export const updatePostThunk =
       console.log(e)
     } finally {
       dispatch(postActions.setFetchingFormAC(false))
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Post successfully updated!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 

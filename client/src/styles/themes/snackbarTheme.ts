@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 
 const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
   '&.notistack-MuiContent-success': {
-    borderRadius: '2px'
+    borderRadius: '2px',
   },
   '&.notistack-MuiContent-error': {
     borderRadius: '2px',
@@ -17,7 +17,7 @@ const StyledMaterialDesignContent = styled(MaterialDesignContent)(() => ({
   '&.notistack-MuiContent-info': {
     borderRadius: '2px',
   },
-}));
+}))
 
 export const themeSnackbar = {
   success: StyledMaterialDesignContent,

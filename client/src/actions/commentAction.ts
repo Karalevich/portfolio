@@ -130,19 +130,23 @@ export const deleteCommentThunk =
       console.log(e)
     } finally {
       dispatch(commentActions.setIsFetchingCommentsAC(false))
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Comment successfully deleted!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 
 export const updateCommentThunk =
-  (resetCallback: () => void, message: string, commentId: string): ThunkT<CommentActionT | NotistackActionT> =>
+  (
+    resetCallback: () => void,
+    message: string,
+    commentId: string
+  ): ThunkT<CommentActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       const { data } = await api.updateComment(message, commentId)
@@ -152,14 +156,14 @@ export const updateCommentThunk =
       console.log(e)
     } finally {
       dispatch(commentActions.setIsLoadingCommentAC(false))
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Comment successfully updated!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 

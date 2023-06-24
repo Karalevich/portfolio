@@ -55,12 +55,14 @@ export const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawe
     alink.href = fileURL
     alink.download = 'Andrei_Karalevich_CV.pdf'
     alink.click()
-    dispatch(notistackActions.enqueueSnackbarAC({
-      message: 'Resume successfully downloaded',
-      options: {
-        variant: 'success',
-      },
-    }))
+    dispatch(
+      notistackActions.enqueueSnackbarAC({
+        message: 'Resume successfully downloaded',
+        options: {
+          variant: 'success',
+        },
+      })
+    )
   }
   return (
     <aside

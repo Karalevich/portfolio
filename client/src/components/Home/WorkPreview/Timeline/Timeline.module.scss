@@ -15,7 +15,7 @@
   }
 }
 
-.workBox{
+.workBox {
   background-color: $background;
   padding: 2rem;
   border-radius: 2px;
@@ -81,13 +81,12 @@
   }
 }
 
-
 @media only screen and (max-width: 767px) {
   .wrapper {
     align-items: flex-start;
   }
 
-  .workBox{
+  .workBox {
     padding: 1.5rem;
     width: 25rem;
   }
@@ -137,7 +136,6 @@
     }
   }
 
-
   .description {
     text-align: justify;
 
@@ -146,4 +144,3 @@
     }
   }
 }
-

@@ -3,8 +3,8 @@ import { OptionsObject, SnackbarKey } from 'notistack'
 import { notistackActions } from '../../actions/notistackAction'
 
 export type NotistackT = {
-  key: SnackbarKey,
-  message: string,
+  key: SnackbarKey
+  message: string
   options: OptionsObject
   dismissed?: boolean
 }

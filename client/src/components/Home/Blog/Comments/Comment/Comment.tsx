@@ -73,8 +73,7 @@ export const Comment: CommentComponent = ({ author, message, _id, created_at, li
   const replayAction = () => {
     setIsReplayMode(!isReplayMode)
   }
-  const shareAction = () => {
-  }
+  const shareAction = () => {}
 
   const addLike = () => {
     if (userId) {

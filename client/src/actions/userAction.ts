@@ -85,14 +85,14 @@ export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async 
     console.log(e)
   } finally {
     dispatch(userActions.setFetchingLogoutAC(false))
-    dispatch(notistackActions.enqueueSnackbarAC(
-      {
+    dispatch(
+      notistackActions.enqueueSnackbarAC({
         message: 'Logout successful!',
         options: {
           variant: 'success',
-        }
-      }
-    ))
+        },
+      })
+    )
   }
 }
 
@@ -129,14 +129,14 @@ export const googleSuccessThunk =
       console.log(e)
     } finally {
       dispatch(userActions.toggleIsAuthAC())
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Login successful!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 
@@ -152,19 +152,21 @@ export const signUpThunk =
       console.log(e)
     } finally {
       dispatch(userActions.toggleIsAuthAC())
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Account successfully created!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 
 export const signInThunk =
-  (formData: Omit<CreateUserT, 'confirmPassword' | 'name'>): ThunkT<UserActionsT | ModalActionT | NotistackActionT> =>
+  (
+    formData: Omit<CreateUserT, 'confirmPassword' | 'name'>
+  ): ThunkT<UserActionsT | ModalActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(userActions.toggleIsAuthAC())
@@ -175,14 +177,14 @@ export const signInThunk =
       console.log(e)
     } finally {
       dispatch(userActions.toggleIsAuthAC())
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Login successful!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 
@@ -194,14 +196,14 @@ export const resentActivationLinkThunk =
     } catch (e) {
       console.log(e)
     } finally {
-      dispatch(notistackActions.enqueueSnackbarAC(
-        {
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
           message: 'Link successfully sent!',
           options: {
             variant: 'success',
-          }
-        }
-      ))
+          },
+        })
+      )
     }
   }
 

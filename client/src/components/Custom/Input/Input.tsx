@@ -45,7 +45,7 @@ const InputCustom = styled(InputBase)(({ theme }) => ({
     '&:focus': {
       boxShadow: `#767676 0 0 0 0.1rem`,
       webkitBoxShadow: '#767676 0 0 0 0.1rem',
-      webkitAppearance: 'none'
+      webkitAppearance: 'none',
     },
   },
   '&.Mui-error': {

@@ -1,0 +1,20 @@
+.shareList {
+  display: flex;
+  margin-left: 1.125rem;
+  column-gap: 1rem;
+}
+
+.iconWrapper {
+  cursor: pointer;
+  list-style: none;
+}
+
+@media only screen and (max-width: 767px) {
+  .shareList {
+    margin-left: 0.5rem;
+    column-gap: 0.6rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+}

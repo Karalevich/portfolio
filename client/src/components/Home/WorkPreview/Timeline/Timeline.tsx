@@ -2,13 +2,15 @@ import React, { Fragment, useEffect, useRef, useState } from 'react'
 import styles from './Timeline.module.scss'
 import { IconComponent, TimelineComponent } from './types'
 import { WORK_HISTORY } from '../../../../constants/personalInfo'
-import {
-  Box,
-  Grow, useMediaQuery,
-} from '@mui/material'
+import { Box, Grow, useMediaQuery } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import { FreelanceIcon, LeverIcon, NexonIcon, SabbaticalIcon, WargamingIcon } from '../../../Custom/Icons/Motion'
-
+import {
+  FreelanceIcon,
+  LeverIcon,
+  NexonIcon,
+  SabbaticalIcon,
+  WargamingIcon,
+} from '../../../Custom/Icons/Motion'
 
 export const Timeline: TimelineComponent = ({ setObserver }) => {
   const [activeStep, setActiveStep] = useState<number>(-1)
@@ -31,7 +33,6 @@ export const Timeline: TimelineComponent = ({ setObserver }) => {
     setActiveStep(step)
   }
 
-
   useEffect(() => {
     setObserver(timeline0.current)
     setObserver(timeline1.current)
@@ -44,7 +45,6 @@ export const Timeline: TimelineComponent = ({ setObserver }) => {
     setObserver(circle3.current, activateStep(3))
     setObserver(circle4.current, activateStep(4))
   }, [])
-
 
   return (
     <div className={styles.wrapper}>
@@ -65,7 +65,9 @@ export const Timeline: TimelineComponent = ({ setObserver }) => {
                 className={styles.workBox}
                 sx={{
                   left: `${isDekstop && index % 2 === 0 ? '-1rem' : '4rem'}`,
-                  transform: `translateY(-50%) ${isDekstop && index % 2 === 0 ? 'translateX(-100%)' : ''} !important`,
+                  transform: `translateY(-50%) ${
+                    isDekstop && index % 2 === 0 ? 'translateX(-100%)' : ''
+                  } !important`,
                 }}
               >
                 <h4 className={styles.label}>{step.label}</h4>
@@ -87,7 +89,6 @@ export const Timeline: TimelineComponent = ({ setObserver }) => {
 
 export default Timeline
 
-
 const IconRoot = styled('div')(() => ({
   zIndex: 1,
   color: '#fff',
@@ -101,7 +102,6 @@ const IconRoot = styled('div')(() => ({
 }))
 
 const Icon: IconComponent = ({ activeStep, index }) => {
-
   const icons: { [index: string]: React.ReactElement } = {
     0: activeStep >= index ? <NexonIcon sx={{ fontSize: '2.5rem' }} /> : <div>I</div>,
     1: activeStep >= index ? <SabbaticalIcon sx={{ fontSize: '6rem' }} /> : <div>I</div>,
@@ -110,10 +110,5 @@ const Icon: IconComponent = ({ activeStep, index }) => {
     4: activeStep >= index ? <FreelanceIcon sx={{ fontSize: '20rem' }} /> : <div>I</div>,
   }
 
-  return (
-    <IconRoot>
-      {icons[String(index)]}
-    </IconRoot>
-  )
+  return <IconRoot>{icons[String(index)]}</IconRoot>
 }
-

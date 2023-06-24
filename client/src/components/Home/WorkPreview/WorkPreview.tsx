@@ -29,11 +29,7 @@ export const WorkPreview: WorkPreviewComponent = () => {
         hasReverse={hasReverse}
         initialColor='#767676'
         fillColor='rgba(255,180,0,0.93)'
-        handleObserve={(setObserver) => (
-          <Timeline
-            setObserver={setObserver}
-          />
-        )}
+        handleObserve={(setObserver) => <Timeline setObserver={setObserver} />}
       />
     </section>
   )

@@ -6,17 +6,16 @@
   column-gap: 0.1rem;
   position: relative;
 
-  span[aria-disabled="true"]:active {
+  span[aria-disabled='true']:active {
     pointer-events: none;
   }
-
 }
 
 .number {
   font-size: 110%;
 }
 
-.favoriteIcon, {
+.favoriteIcon {
   color: $paragraph;
 }
 

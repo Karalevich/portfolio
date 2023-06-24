@@ -16,12 +16,14 @@ export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
   const dispatch = useAppDispatch()
   const handleSwitchTheme = () => {
     setIsLightTheme(!isLightTheme)
-    dispatch(notistackActions.enqueueSnackbarAC({
-      message: 'Theme successfully changed',
-      options: {
-        variant: 'success',
-      },
-    }))
+    dispatch(
+      notistackActions.enqueueSnackbarAC({
+        message: 'Theme successfully changed',
+        options: {
+          variant: 'success',
+        },
+      })
+    )
     if (isLightTheme) {
       setTheme(DARK)
     } else {

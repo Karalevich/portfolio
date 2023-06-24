@@ -19,6 +19,16 @@ import {
   VueIcon,
   VueXIcon,
 } from '../components/Custom/Icons'
+import {
+  LinkedinShareButton,
+  LinkedinIcon as LinkedinShareIcon,
+  FacebookShareButton,
+  FacebookIcon as FacebookShareIcon,
+  TwitterShareButton,
+  TwitterIcon as TwitterShareIcon,
+  WhatsappShareButton,
+  WhatsappIcon as WhatsappShareIcon,
+} from 'react-share'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import React from 'react'
 import { PortfolioT, PORTFOLIO_TOPIC, ServiceT } from './types'
@@ -51,10 +61,10 @@ import { ContactCardProps } from '../components/Home/Contact/types'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 
 export const SHARE = {
-  Linkedin: [<LinkedinIcon />, 'https://www.linkedin.com/in/a112k/'],
-  Vkontakte: [<VkIcon />, 'https://vk.com/id134399064'],
-  Facebook: [<FacebookIcon />, 'https://www.facebook.com/profile.php?id=100087547390611'],
-  Twitter: [<TwitterIcon />, 'https://twitter.com/Korol1Andrei'],
+  Linkedin: [LinkedinShareIcon, LinkedinShareButton],
+  Whatsapp: [WhatsappShareIcon, WhatsappShareButton],
+  Facebook: [FacebookShareIcon, FacebookShareButton],
+  Twitter: [TwitterShareIcon, TwitterShareButton],
 }
 
 export const ICONS = {
@@ -363,7 +373,7 @@ export const RECOMMENDATIONS: Array<RecommendationProps> = [
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -407,7 +417,7 @@ Vladislav `,
       'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
       'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
       'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      'unforeseen pivot, but none of that interfered with Andrew\'s ability to adapt quickly to the situation. ' +
+      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
       'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
       'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
@@ -435,9 +445,9 @@ export const WORK_HISTORY = [
     description: (
       <p>
         Nexon America strives to deliver high-quality, immersive, and enjoyable gaming experiences to
-        players, leveraging the free-to-play model and embracing new trends in the industry. The
-        company continues to evolve and adapt to the changing gaming landscape, aiming to bring
-        innovative and exciting games to the North American market.
+        players, leveraging the free-to-play model and embracing new trends in the industry. The company
+        continues to evolve and adapt to the changing gaming landscape, aiming to bring innovative and
+        exciting games to the North American market.
       </p>
     ),
   },
@@ -448,10 +458,10 @@ export const WORK_HISTORY = [
     date: 'Apr 2022 - Jun 2023',
     description: (
       <p>
-        During my professional journey, I embarked on an exciting sabbatical in Germany to prepare for
-        an upcoming international move. This period of extended leave allowed me to dedicate time and
-        focus to ensure a smooth transition to a new country and embrace the challenges and
-        opportunities that awaited me.
+        During my professional journey, I embarked on an exciting sabbatical in Germany to prepare for an
+        upcoming international move. This period of extended leave allowed me to dedicate time and focus
+        to ensure a smooth transition to a new country and embrace the challenges and opportunities that
+        awaited me.
       </p>
     ),
   },
@@ -463,10 +473,10 @@ export const WORK_HISTORY = [
     description: (
       <p>
         Wargaming is most recognized for its flagship title, "World of Tanks," a massively multiplayer
-        online game (MMOG) that focuses on armored warfare. In "World of Tanks," players control
-        various tanks from different eras and engage in team-based battles on realistic battlegrounds.
-        The game has gained a massive player base and has become an eSports phenomenon, with
-        competitive tournaments and events held worldwide.
+        online game (MMOG) that focuses on armored warfare. In "World of Tanks," players control various
+        tanks from different eras and engage in team-based battles on realistic battlegrounds. The game
+        has gained a massive player base and has become an eSports phenomenon, with competitive
+        tournaments and events held worldwide.
       </p>
     ),
   },

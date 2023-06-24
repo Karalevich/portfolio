@@ -1,18 +1,21 @@
-import { CLOSE_SNACKBAR, ENQUEUE_SNACKBAR, REMOVE_SNACKBAR } from '../reducers/notistack/notistackReducer'
+import {
+  CLOSE_SNACKBAR,
+  ENQUEUE_SNACKBAR,
+  REMOVE_SNACKBAR,
+} from '../reducers/notistack/notistackReducer'
 import { SnackbarKey } from 'notistack'
 import { NotistackT } from '../reducers/notistack/types'
 
-
 export const notistackActions = {
-  enqueueSnackbarAC: (notification: Omit<NotistackT, 'key'> & {key?: SnackbarKey}) => {
+  enqueueSnackbarAC: (notification: Omit<NotistackT, 'key'> & { key?: SnackbarKey }) => {
     const key = notification.options && notification.options.key
-    return ({
+    return {
       type: ENQUEUE_SNACKBAR,
       notification: {
         ...notification,
         key: key || new Date().getTime() + Math.random(),
       },
-    } as const)
+    } as const
   },
   closeSnackbarAC: (key: SnackbarKey) =>
     ({
@@ -26,4 +29,3 @@ export const notistackActions = {
       key,
     } as const),
 }
-

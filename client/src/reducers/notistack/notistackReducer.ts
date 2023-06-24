@@ -5,7 +5,7 @@ export const CLOSE_SNACKBAR = 'CLOSE_SNACKBAR'
 export const REMOVE_SNACKBAR = 'REMOVE_SNACKBAR'
 
 const initialState = {
-  notifications: []
+  notifications: [],
 }
 
 export default (state: NotistackStateT = initialState, action: NotistackActionT) => {
@@ -18,18 +18,16 @@ export default (state: NotistackStateT = initialState, action: NotistackActionT)
     case CLOSE_SNACKBAR:
       return {
         ...state,
-        notifications: state.notifications.map(notification => (
-          (action.dismissAll || notification.key === action.key)
+        notifications: state.notifications.map((notification) =>
+          action.dismissAll || notification.key === action.key
             ? { ...notification, dismissed: true }
             : { ...notification }
-        )),
+        ),
       }
     case REMOVE_SNACKBAR:
       return {
         ...state,
-        notifications: state.notifications.filter(
-          notification => notification.key !== action.key,
-        ),
+        notifications: state.notifications.filter((notification) => notification.key !== action.key),
       }
     default:
       return state
