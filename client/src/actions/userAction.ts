@@ -56,7 +56,7 @@ export const userActions = {
 }
 
 export const setUsedData =
-  (user: UserT, token: string): ThunkT<UserActionsT> =>
+  (user: UserT, token: string): ThunkT<UserActionsT | NotistackActionT> =>
   async (dispatch) => {
     const saveToken = token ? token : JSON.parse(localStorage.getItem(USER) as string).token
     try {
@@ -64,15 +64,31 @@ export const setUsedData =
       dispatch(userActions.setAuthAC(user, saveToken))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error saving user',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     }
   }
 
-export const removeUsedData = (): ThunkT<UserActionsT> => async (dispatch) => {
+export const removeUsedData = (): ThunkT<UserActionsT | NotistackActionT> => async (dispatch) => {
   try {
     localStorage.removeItem(USER)
     dispatch(userActions.removeAuthAC())
   } catch (e) {
     console.log(e)
+    dispatch(
+      notistackActions.enqueueSnackbarAC({
+        message: 'Sorry, there was an error while removing user',
+        options: {
+          variant: 'error',
+        },
+      })
+    )
   }
 }
 
@@ -83,6 +99,14 @@ export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async 
     await dispatch(removeUsedData())
   } catch (e) {
     console.log(e)
+    dispatch(
+      notistackActions.enqueueSnackbarAC({
+        message: 'Sorry, there was an error while logout',
+        options: {
+          variant: 'error',
+        },
+      })
+    )
   } finally {
     dispatch(userActions.setFetchingLogoutAC(false))
     dispatch(
@@ -96,13 +120,21 @@ export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async 
   }
 }
 
-export const checkAuth = (): ThunkT<UserActionsT> => async (dispatch) => {
+export const checkAuth = (): ThunkT<UserActionsT | NotistackActionT> => async (dispatch) => {
   try {
     dispatch(userActions.setFetchingLogoutAC(true))
     const { data } = await api.refresh()
     await dispatch(setUsedData(data.user, data.accessToken))
   } catch (e) {
     console.log(e)
+    dispatch(
+      notistackActions.enqueueSnackbarAC({
+        message: 'Sorry, there was an error',
+        options: {
+          variant: 'error',
+        },
+      })
+    )
   } finally {
     dispatch(userActions.setFetchingLogoutAC(false))
   }
@@ -127,6 +159,14 @@ export const googleSuccessThunk =
       dispatch(modalActions.closesModalAC())
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while login',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(userActions.toggleIsAuthAC())
       dispatch(
@@ -150,6 +190,14 @@ export const signUpThunk =
       dispatch(modalActions.closesModalAC())
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while creating account',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(userActions.toggleIsAuthAC())
       dispatch(
@@ -175,6 +223,14 @@ export const signInThunk =
       dispatch(modalActions.closesModalAC())
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while signin',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(userActions.toggleIsAuthAC())
       dispatch(
@@ -195,6 +251,14 @@ export const resentActivationLinkThunk =
       await api.resentActivationLink(email)
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while resent link',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(
         notistackActions.enqueueSnackbarAC({

@@ -63,7 +63,7 @@ export const postActions = {
 }
 
 export const getCertainPostThunk =
-  (id: string): ThunkT<PostActionT> =>
+  (id: string): ThunkT<PostActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(postActions.setFetchingCertainPostAC(true))
@@ -72,13 +72,21 @@ export const getCertainPostThunk =
       dispatch(postActions.setCertainPostAC(data))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while fetching post',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(postActions.setFetchingCertainPostAC(false))
     }
   }
 
 export const getPostsByTagsThunk =
-  (tags: string): ThunkT<PostActionT> =>
+  (tags: string): ThunkT<PostActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(postActions.setFetchingRelatedPostsAC(true))
@@ -86,6 +94,14 @@ export const getPostsByTagsThunk =
       dispatch(postActions.setRelatedPostsAC(data))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while fetching posts',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(postActions.setFetchingRelatedPostsAC(false))
     }
@@ -107,6 +123,14 @@ export const createPostThunk =
       navigate('/blog')
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while creating post',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(postActions.setFetchingFormAC(false))
       dispatch(
@@ -138,6 +162,14 @@ export const updatePostThunk =
       navigate('/blog')
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while updating post',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(postActions.setFetchingFormAC(false))
       dispatch(
@@ -152,12 +184,22 @@ export const updatePostThunk =
   }
 
 export const likePostThunk =
-  (id: string): ThunkT<PostActionT> =>
-  async (dispatch) => {
+  (id: string): ThunkT<PostActionT | NotistackActionT> =>
+  async (dispatch, getState) => {
     try {
       const { data } = await api.likePost(id)
       dispatch(postActions.setCertainPostAC(data))
     } catch (e) {
       console.log(e)
+      const user = getState().user?.user
+      user && dispatch(postActions.setLikestAC(user.id))
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while liking',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     }
   }

@@ -23,6 +23,14 @@ export const sendMessageFromContactFormThunk =
       resetForm()
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while sending message',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(serviceActions.setLoadingContactFormAC(false))
       dispatch(

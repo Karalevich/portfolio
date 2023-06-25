@@ -23,7 +23,7 @@ import {
 } from '../../../../selectors/postSelector'
 
 hljs.configure({
-  languages: ['javascript', 'python', 'bash', 'css', 'typescript'],
+  languages: ['jsx', 'javascript', 'python', 'bash', 'css', 'typescript'],
 })
 
 const modules = {

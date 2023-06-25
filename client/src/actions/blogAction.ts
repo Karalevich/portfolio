@@ -87,6 +87,14 @@ export const deletePostThunk =
       navigate('/blog')
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while deleting post',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       //dispatch(actionsPosts.setFetchingForm(false))
       dispatch(
@@ -101,7 +109,7 @@ export const deletePostThunk =
   }
 
 export const getPostsThunk =
-  (searchQuery: string, sortQuery: number, page: number): ThunkT<BlogActionT> =>
+  (searchQuery: string, sortQuery: number, page: number): ThunkT<BlogActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(blogActions.setFetchingPostsAC(true))
@@ -109,13 +117,21 @@ export const getPostsThunk =
       dispatch(blogActions.setPostsAC(data.posts, data.allPages))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while fetching posts',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(blogActions.setFetchingPostsAC(false))
     }
   }
 
 export const getPaginatedPostsThunk =
-  (searchQuery: string, sortQuery: number, page: number): ThunkT<BlogActionT> =>
+  (searchQuery: string, sortQuery: number, page: number): ThunkT<BlogActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(blogActions.setFetchingPaginatedPostsAC(true))
@@ -123,6 +139,14 @@ export const getPaginatedPostsThunk =
       dispatch(blogActions.addPostsAC(data.posts, data.allPages))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while fetching posts',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(blogActions.setFetchingPaginatedPostsAC(false))
     }

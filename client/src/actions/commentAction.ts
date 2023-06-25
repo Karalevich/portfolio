@@ -87,7 +87,7 @@ export const commentActions = {
 }
 
 export const addCommentThunk =
-  (resetInput: () => void, message: string, postId: string, parentId?: string): ThunkT<CommentActionT> =>
+  (resetInput: () => void, message: string, postId: string, parentId?: string): ThunkT<CommentActionT | NotistackActionT> =>
   async (dispatch, getState) => {
     try {
       dispatch(commentActions.setIsLoadingCommentAC(true))
@@ -97,13 +97,21 @@ export const addCommentThunk =
       dispatch(commentActions.setCountCommentsAC(getState().comment.commentsCount + 1))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while commenting',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(commentActions.setIsLoadingCommentAC(false))
     }
   }
 
 export const getCommentsThunk =
-  (postId: string, page: number, sortQuery: number): ThunkT<CommentActionT> =>
+  (postId: string, page: number, sortQuery: number): ThunkT<CommentActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       dispatch(commentActions.setIsFetchingCommentsAC(true))
@@ -113,6 +121,14 @@ export const getCommentsThunk =
       dispatch(commentActions.setPagesCountAC(data.pagesCount))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while fetching comments',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(commentActions.setIsFetchingCommentsAC(false))
     }
@@ -128,6 +144,14 @@ export const deleteCommentThunk =
       dispatch(commentActions.setCountCommentsAC(data.commentsCount))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while deleting',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(commentActions.setIsFetchingCommentsAC(false))
       dispatch(
@@ -154,6 +178,14 @@ export const updateCommentThunk =
       dispatch(commentActions.updateCommentAC(data))
     } catch (e) {
       console.log(e)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while updating',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     } finally {
       dispatch(commentActions.setIsLoadingCommentAC(false))
       dispatch(
@@ -168,7 +200,7 @@ export const updateCommentThunk =
   }
 
 export const likeCommentThunk =
-  (userId: string, commentId: string): ThunkT<CommentActionT> =>
+  (userId: string, commentId: string): ThunkT<CommentActionT | NotistackActionT> =>
   async (dispatch) => {
     try {
       await api.likeComment(commentId)
@@ -176,5 +208,13 @@ export const likeCommentThunk =
       console.log(e)
       // if the response got with an error we cancel action of setting like in global state
       dispatch(commentActions.setLikeCommentAC(userId, commentId))
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Sorry, there was an error while liking',
+          options: {
+            variant: 'error',
+          },
+        })
+      )
     }
   }

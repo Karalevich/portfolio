@@ -1,6 +1,8 @@
 import { SET_MODAL, CLOSE_MODAL, RESET_MODAL_DATA } from '../reducers/modal/modalReducer'
 import { MODAL_TYPE, ModalActionT } from '../reducers/modal/types'
 import { ThunkT } from '../reducers/store'
+import { notistackActions } from './notistackAction'
+import { NotistackActionT } from '../reducers/notistack/types'
 
 export const modalActions = {
   openModalAC: (modalType: MODAL_TYPE, description?: string) =>
@@ -23,7 +25,7 @@ export const modalActions = {
     } as const),
 }
 
-export const closeModalThunk = (): ThunkT<ModalActionT> => async (dispatch) => {
+export const closeModalThunk = (): ThunkT<ModalActionT | NotistackActionT> => async (dispatch) => {
   try {
     dispatch(modalActions.closesModalAC())
     /*since closing the modal is an animated action, we have time to see the default text in the modal when it closes.
@@ -37,5 +39,13 @@ export const closeModalThunk = (): ThunkT<ModalActionT> => async (dispatch) => {
     dispatch(modalActions.resetModalDataAC())
   } catch (e) {
     console.log(e)
+    dispatch(
+      notistackActions.enqueueSnackbarAC({
+        message: 'Sorry, there was an error while closing modal',
+        options: {
+          variant: 'error',
+        },
+      })
+    )
   }
 }
