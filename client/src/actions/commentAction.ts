@@ -87,7 +87,12 @@ export const commentActions = {
 }
 
 export const addCommentThunk =
-  (resetInput: () => void, message: string, postId: string, parentId?: string): ThunkT<CommentActionT | NotistackActionT> =>
+  (
+    resetInput: () => void,
+    message: string,
+    postId: string,
+    parentId?: string
+  ): ThunkT<CommentActionT | NotistackActionT> =>
   async (dispatch, getState) => {
     try {
       dispatch(commentActions.setIsLoadingCommentAC(true))

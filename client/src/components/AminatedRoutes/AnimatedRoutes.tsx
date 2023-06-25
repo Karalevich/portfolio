@@ -1,21 +1,23 @@
-import { useEffect, useState } from 'react'
+import React, { lazy, useEffect, useState } from 'react'
 import './AnimatedRoutes.scss'
 import { AnimatedRoutesComponent, ROUTES_ANIMATIONS } from './types'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import Home from '../Home/Home'
-import Services from '../Home/Services/Services'
-import ServicePage from '../Home/Services/ServicePage/ServicePage'
-import CV from '../Home/CV/CV'
-import Portfolio from '../Home/Portfolio/Portfolio'
-import Contact from '../Home/Contact/Contact'
-import Blog from '../Home/Blog/Blog'
-import PostPage from '../Home/Blog/PostPage/PostPage'
-import NotFound from '../NotFound/NotFound'
-import AddPost from '../Home/Blog/AddPost/AddPost'
 import { useAppSelector } from '../../hooks/hooks'
 import { getUserS } from '../../selectors/userSelectors'
 import { ErrorBoundary } from 'react-error-boundary'
 import ErrorBoundaryFallback from '../ErrorBoundaryFallback/ErrorBoundaryFallback'
+import LazyLoadSuspense from '../LazyLoadSuspense/LazyLoadSuspense'
+
+const Home = lazy(() => import('../Home/Home'))
+const PostPage = lazy(() => import('../Home/Blog/PostPage/PostPage'))
+const AddPost = lazy(() => import('../Home/Blog/AddPost/AddPost'))
+const NotFound = lazy(() => import('../NotFound/NotFound'))
+const ServicePage = lazy(() => import('../Home/Services/ServicePage/ServicePage'))
+const Services = lazy(() => import('../Home/Services/Services'))
+const CV = lazy(() => import('../Home/CV/CV'))
+const Portfolio = lazy(() => import('../Home/Portfolio/Portfolio'))
+const Contact = lazy(() => import('../Home/Contact/Contact'))
+const Blog = lazy(() => import('../Home/Blog/Blog'))
 
 enum ERROR_BOUNDARY_FALLBACK_TEXT {
   POST_PAGE = 'Sorry for this inconvenience, but some unknown error has occurred during render Post page.',
@@ -44,18 +46,18 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
     <div className={`${transitionStage}`} onAnimationEnd={onHandleAnimation}>
       <Routes location={displayLocation}>
         <Route path={'/'} element={<Navigate replace to='/home' />} />
-        <Route path={'/home'} element={<Home />} />
-        <Route path={'/services'} element={<Services />} />
+        <Route path={'/home'} element={<LazyLoadSuspense children={<Home />} />} />
+        <Route path={'/services'} element={<LazyLoadSuspense children={<Services />} />} />
         <Route
           path={'/services/:servicePage'}
           element={
             <ErrorBoundary fallback={<ErrorBoundaryFallback redirectUrl={'services'} />}>
-              <ServicePage />
+              <LazyLoadSuspense children={<ServicePage />} />
             </ErrorBoundary>
           }
         />
-        <Route path={'/cv'} element={<CV />} />
-        <Route path={'/portfolio'} element={<Portfolio />} />
+        <Route path={'/cv'} element={<LazyLoadSuspense children={<CV />} />} />
+        <Route path={'/portfolio'} element={<LazyLoadSuspense children={<Portfolio />} />} />
         <Route
           path={'/blog'}
           element={
@@ -67,7 +69,7 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
                 />
               }
             >
-              <Blog isFullVersion />
+              <LazyLoadSuspense children={<Blog isFullVersion />} />
             </ErrorBoundary>
           }
         />
@@ -82,7 +84,7 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
                 />
               }
             >
-              <PostPage />
+              <LazyLoadSuspense children={<PostPage />} />
             </ErrorBoundary>
           }
         />
@@ -97,7 +99,11 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
                 />
               }
             >
-              {user && user.isActivated ? <AddPost /> : <NotFound />}
+              {user && user.isActivated ? (
+                <LazyLoadSuspense children={<AddPost />} />
+              ) : (
+                <LazyLoadSuspense children={<NotFound />} />
+              )}
             </ErrorBoundary>
           }
         />
@@ -109,12 +115,12 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
                 <ErrorBoundaryFallback description={ERROR_BOUNDARY_FALLBACK_TEXT.CONTACT_PAGE} />
               }
             >
-              <Contact />
+              <LazyLoadSuspense children={<Contact />} />
             </ErrorBoundary>
           }
         />
-        <Route path={'/not-found'} element={<NotFound />} />
-        <Route path={'*'} element={<NotFound />} />
+        <Route path={'/not-found'} element={<LazyLoadSuspense children={<NotFound />} />} />
+        <Route path={'*'} element={<LazyLoadSuspense children={<NotFound />} />} />
       </Routes>
     </div>
   )

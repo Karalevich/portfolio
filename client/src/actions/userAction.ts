@@ -127,14 +127,6 @@ export const checkAuth = (): ThunkT<UserActionsT | NotistackActionT> => async (d
     await dispatch(setUsedData(data.user, data.accessToken))
   } catch (e) {
     console.log(e)
-    dispatch(
-      notistackActions.enqueueSnackbarAC({
-        message: 'Sorry, there was an error',
-        options: {
-          variant: 'error',
-        },
-      })
-    )
   } finally {
     dispatch(userActions.setFetchingLogoutAC(false))
   }

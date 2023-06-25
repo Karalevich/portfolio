@@ -73,7 +73,7 @@ const TabPanel: TabPanelComponent = ({ projects, ...other }) => {
     <li key={index} className={styles.project}>
       <Card className={styles.card} elevation={0}>
         <div className={styles.imageWrapper}>
-          <img className={styles.previewImg} src={img} alt={'project image'} />
+          <img className={styles.previewImg} src={img} alt={'project image'} loading={'lazy'} />
           <div className={styles.redirect}>
             <div className={styles.buttonGroup}>
               {linkDemo && (

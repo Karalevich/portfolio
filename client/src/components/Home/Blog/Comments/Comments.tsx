@@ -104,7 +104,6 @@ export const CommentForm: CommentFormComponent = ({
         className={styles.textarea}
         value={value}
         onChange={onChange}
-        autoFocus
         fullWidth
         multiline
         rows={3}
