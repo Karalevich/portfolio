@@ -97,6 +97,14 @@ export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async 
     dispatch(userActions.setFetchingLogoutAC(true))
     await api.logOut()
     await dispatch(removeUsedData())
+    dispatch(
+      notistackActions.enqueueSnackbarAC({
+        message: 'Logout successful!',
+        options: {
+          variant: 'success',
+        },
+      })
+    )
   } catch (e) {
     console.log(e)
     dispatch(
@@ -109,14 +117,6 @@ export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async 
     )
   } finally {
     dispatch(userActions.setFetchingLogoutAC(false))
-    dispatch(
-      notistackActions.enqueueSnackbarAC({
-        message: 'Logout successful!',
-        options: {
-          variant: 'success',
-        },
-      })
-    )
   }
 }
 
@@ -149,6 +149,14 @@ export const googleSuccessThunk =
       })
       await dispatch(setUsedData(data.user, data.token))
       dispatch(modalActions.closesModalAC())
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Login successful!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -161,14 +169,6 @@ export const googleSuccessThunk =
       )
     } finally {
       dispatch(userActions.toggleIsAuthAC())
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Login successful!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }
 
@@ -180,6 +180,14 @@ export const signUpThunk =
       const { data } = await api.signUn(formData)
       await dispatch(setUsedData(data.user, data.token))
       dispatch(modalActions.closesModalAC())
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Account successfully created!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -192,14 +200,6 @@ export const signUpThunk =
       )
     } finally {
       dispatch(userActions.toggleIsAuthAC())
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Account successfully created!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }
 
@@ -213,6 +213,14 @@ export const signInThunk =
       const { data } = await api.signIn(formData)
       await dispatch(setUsedData(data.user, data.token))
       dispatch(modalActions.closesModalAC())
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Login successful!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -225,14 +233,6 @@ export const signInThunk =
       )
     } finally {
       dispatch(userActions.toggleIsAuthAC())
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Login successful!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }
 
@@ -241,6 +241,14 @@ export const resentActivationLinkThunk =
   async (dispatch) => {
     try {
       await api.resentActivationLink(email)
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Link successfully sent!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -252,14 +260,6 @@ export const resentActivationLinkThunk =
         })
       )
     } finally {
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Link successfully sent!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }
 

@@ -21,6 +21,14 @@ export const sendMessageFromContactFormThunk =
       dispatch(serviceActions.setLoadingContactFormAC(true))
       await api.sendMessageFromContactForm(formData)
       resetForm()
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Message successfully sent!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -33,13 +41,5 @@ export const sendMessageFromContactFormThunk =
       )
     } finally {
       dispatch(serviceActions.setLoadingContactFormAC(false))
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Message successfully sent!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }

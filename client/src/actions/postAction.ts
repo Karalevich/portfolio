@@ -121,6 +121,15 @@ export const createPostThunk =
       dispatch(blogActions.createPostAC(data))
 
       navigate('/blog')
+
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Post successfully created!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -133,14 +142,6 @@ export const createPostThunk =
       )
     } finally {
       dispatch(postActions.setFetchingFormAC(false))
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Post successfully created!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }
 export const updatePostThunk =
@@ -160,6 +161,15 @@ export const updatePostThunk =
       dispatch(postActions.resetPostAC())
 
       navigate('/blog')
+
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Post successfully updated!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -172,14 +182,6 @@ export const updatePostThunk =
       )
     } finally {
       dispatch(postActions.setFetchingFormAC(false))
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Post successfully updated!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }
 

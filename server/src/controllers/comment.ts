@@ -113,7 +113,7 @@ export const deleteComment = async (req: Request, res: Response) => {
     await commentService.deleteCommentAndChildren(comment, post)
     await post.save()
 
-    res.status(200).json({ message: 'Comment deleted successfully', commentsCount: post.comments.length })
+    res.status(204).json({ message: 'Comment deleted successfully', commentsCount: post.comments.length })
   } catch (e: any | unknown) {
     res.status(500).json({ message: e.message })
   }
