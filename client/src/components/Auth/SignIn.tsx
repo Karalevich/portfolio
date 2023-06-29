@@ -11,10 +11,15 @@ import { getErrSignInMessage, getIsAuthLoading } from '../../selectors/userSelec
 import LoadingButton from '@mui/lab/LoadingButton'
 
 const validationSigninSchema = yup.object({
-  email: yup.string().email('Enter a valid email').required('Email is required'),
+  email: yup
+    .string()
+    .email('Enter a valid email')
+    .required('Email is required')
+    .max(128, 'Email should not be more then 128 characters length'),
   password: yup
     .string()
     .min(8, 'Password should be of minimum 8 characters length')
+    .max(32, 'Password should not be more then 32 characters length')
     .required('Password is required'),
 })
 
@@ -48,7 +53,7 @@ export const SignIn: SignInComponent = () => {
         id='email'
         name='email'
         onChange={formikSignin.handleChange}
-        value={formikSignin.values.email}
+        value={formikSignin.values.email.trim()}
         error={formikSignin.touched.email && Boolean(formikSignin.errors.email)}
         helperText={formikSignin.touched.email && formikSignin.errors.email}
         disabled={isAuthLoading}
@@ -58,7 +63,7 @@ export const SignIn: SignInComponent = () => {
         type='password'
         id='password'
         name='password'
-        value={formikSignin.values.password}
+        value={formikSignin.values.password.trim()}
         onChange={formikSignin.handleChange}
         error={formikSignin.touched.password && Boolean(formikSignin.errors.password)}
         helperText={formikSignin.touched.password && formikSignin.errors.password}

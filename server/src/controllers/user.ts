@@ -4,10 +4,15 @@ import User from '../models/user.js'
 import { Request, Response } from 'express'
 import mailService from '../service/mail'
 import tokenService from '../service/token'
+import { validationResult } from 'express-validator'
 
 export const signin = async (req: Request, res: Response) => {
   const { email, password } = req.body
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(401).json(errors)
+    }
     const user = await User.findOne({ email })
 
     if (!user) {
@@ -35,15 +40,15 @@ export const signin = async (req: Request, res: Response) => {
 }
 
 export const signup = async (req: Request, res: Response) => {
-  const { email, password, confirmPassword, name } = req.body
+  const { email, password, name } = req.body
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json(errors)
+    }
     const user = await User.findOne({ email })
     if (user) {
       return res.status(400).json({ message: 'User already exist', code: 4001 })
-    }
-
-    if (password !== confirmPassword) {
-      return res.status(400).json({ message: 'Password don`t match', code: 4002 })
     }
 
     const hashPassword = await bcrypt.hash(password, 12)
@@ -136,7 +141,7 @@ export const resentActivateLink = async (req: Request, res: Response) => {
     }
 
     await mailService.sendActivationMail(email, `${process.env.API_URL}/user/activate/${user.activationLink}`)
-    return res.status(200).json({message: 'Link sent'})
+    return res.status(200).json({ message: 'Link sent' })
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
   }
