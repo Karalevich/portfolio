@@ -4,6 +4,7 @@ import { LIMIT_CARDS_ON_PAGE } from '../constants'
 import { Request, Response } from 'express'
 import User from '../models/user'
 import commentService from '../service/comment'
+import { validationResult } from 'express-validator'
 
 
 export const getCertainPost = async (req: Request, res: Response) => {
@@ -62,6 +63,11 @@ export const getPosts = async (req: Request, res: Response) => {
 export const createPosts = async (req: Request, res: Response) => {
   const post = req.body
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json(errors)
+    }
+
     let user = await User.findById(req.userId)
     if (!user) {
       return res.status(401).json({ message: 'User does not exist in database', code: 4013 })

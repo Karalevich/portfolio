@@ -81,6 +81,10 @@ export const signup = async (req: Request, res: Response) => {
 export const googleSign = async (req: Request, res: Response) => {
   const { email, name, imageUrl } = req.body
   try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json(errors)
+    }
     let newUser = await User.findOne({ email })
     if (!newUser) {
       newUser = await User.create({
@@ -108,8 +112,12 @@ export const googleSign = async (req: Request, res: Response) => {
 
 export const logOut = async (req: Request, res: Response) => {
   try {
+    let user = await User.findById(req.userId)
+    if (!user) {
+      return res.status(401).json({ message: 'User does not exist in database' })
+    }
     const { refreshToken } = req.cookies
-    const token = await tokenService.removeToken(refreshToken)
+    const token = await tokenService.removeToken(refreshToken, req.userId as string)
     res.clearCookie('refreshToken')
     return res.status(200).json(token)
   } catch (e) {

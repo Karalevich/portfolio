@@ -1,6 +1,7 @@
 import express from 'express'
 import { signin, signup, googleSign, logOut, activate, refresh, resentActivateLink } from '../controllers/user'
 import { body } from 'express-validator'
+import auth from '../middleware/auth'
 
 const router = express.Router()
 
@@ -18,11 +19,17 @@ router.post('/signup',
       throw new Error('Passwords do not match');
     }
     return true;
-  }).withMessage('Passwords does not match'),
+  }),
   body('name').isLength({ min: 3, max: 24 }).withMessage('Invalid length of the name'),
-  signup)
-router.post('/google', googleSign)
-router.post('/logout', logOut)
+  signup
+)
+router.post('/google',
+  body('email').isEmail().isLength({max: 128}).withMessage('Invalid email'),
+  body('name').isLength({ min: 3, max: 128 }).withMessage('Invalid length of the name'),
+  body('imageUrl').isURL().withMessage('Invalid imageUrl'),
+  googleSign
+)
+router.post('/logout', auth, logOut)
 router.get('/activate/:link', activate)
 router.get('/refresh', refresh)
 router.put('/resentActivationLink', resentActivateLink)

@@ -29,12 +29,11 @@ class TokenService {
       token.refreshToken = refreshToken
       return token.save()
     }
-
     return await Token.create({ user: userId, refreshToken })
   }
 
-  async removeToken(refreshToken: string) {
-    return Token.deleteOne({ refreshToken })
+  async removeToken(refreshToken: string, userId: string) {
+    return Token.deleteOne({ refreshToken, user: userId })
   }
 
   validateRefreshToken(token: string): PayloadT | null {

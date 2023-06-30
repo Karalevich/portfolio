@@ -61,8 +61,8 @@ const validationPostSchema = yup.object({
     .required('Description is required')
     .max(150, 'Description is too long')
     .min(90, 'Description should be at least 90 symbols'),
-  tags: yup.string().required('Tags is required').max(48, 'Title is too long'),
-  content: yup.string().required('Content is required'),
+  tags: yup.string().required('Tags is required').max(48, 'Tags is too long'),
+  content: yup.string().required('Content is required').max(15000, 'Content is too long'),
   img: yup
     .array()
     .min(1, 'Image is required')

@@ -2,6 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { PLACEHOLDER_COUNT_RELATED_POSTS, PLACEHOLDER_POST } from 'src/constants/personalInfo'
 import styles from './PostPage.module.scss'
 import { PostPageComponent } from './types'
+import * as DOMPurify from 'dompurify'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
 import RecommendCard from './RecommendCard'
 import PostPageFooter from '../PostPageFooter/PostPageFooter'
@@ -51,6 +52,7 @@ export const PostPage: PostPageComponent = () => {
   const { author, title, date, content, img } = post
   const links = [{ name: 'Home', link: '/home' }, { name: 'Blog', link: '/blog' }, { name: `${title}` }]
   const isCurrentUserCreator = author && user && user.id === author._id
+  const sanitizedContent = DOMPurify.sanitize(content)
 
   const onUpdatePost = () => {
     isRemovePostFromState.current = false
@@ -118,7 +120,7 @@ export const PostPage: PostPageComponent = () => {
         {!isFetchingPost && (
           <article className={styles.postContent}>
             <img className={styles.mainImg} src={img as string} alt={'post preview'} />
-            <div dangerouslySetInnerHTML={{ __html: content as string }} className={'ql-editor'} />
+            <div dangerouslySetInnerHTML={{ __html: sanitizedContent as string }} className={'ql-editor'} />
           </article>
         )}
         <article className={styles.recommendations}>
