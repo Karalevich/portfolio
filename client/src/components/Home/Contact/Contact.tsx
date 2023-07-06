@@ -18,10 +18,11 @@ const validationContactSchema = yup.object({
     .min(3, 'Name should be of minimum 3 characters length')
     .required('Name is required'),
   email: yup.string().email('Enter a valid email').required('Email is required'),
-  subject: yup.string().max(24, 'Subject should be of maximum 32 characters length'),
+  subject: yup.string().max(128, 'Subject should be of maximum 128 characters length'),
   message: yup
     .string()
     .required('Message is required')
+    .max(500, 'Message should not be longer 500')
     .test('word-count', 'Message should have at least 5 words', (value) => {
       const wordCount = value.trim().split(/\s+/).length
       return wordCount >= 5

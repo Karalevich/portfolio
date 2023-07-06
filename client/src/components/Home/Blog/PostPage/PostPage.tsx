@@ -120,7 +120,10 @@ export const PostPage: PostPageComponent = () => {
         {!isFetchingPost && (
           <article className={styles.postContent}>
             <img className={styles.mainImg} src={img as string} alt={'post preview'} />
-            <div dangerouslySetInnerHTML={{ __html: sanitizedContent as string }} className={'ql-editor'} />
+            <div
+              dangerouslySetInnerHTML={{ __html: sanitizedContent as string }}
+              className={'ql-editor'}
+            />
           </article>
         )}
         <article className={styles.recommendations}>

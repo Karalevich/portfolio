@@ -14,8 +14,8 @@ const validationSignupSchema = yup.object({
   name: yup
     .string()
     .required('Name is required')
-    .min(3, 'Name should be in rage from 3 to 24 characters')
-    .max(24, 'Name should be in rage from 3 to 24 characters'),
+    .min(3, 'Name should be in rage from 3 to 128 characters')
+    .max(128, 'Name should be in rage from 3 to 128 characters'),
   email: yup
     .string()
     .email('Enter a valid email')

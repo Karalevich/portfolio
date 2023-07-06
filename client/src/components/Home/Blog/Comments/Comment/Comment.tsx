@@ -130,6 +130,7 @@ export const Comment: CommentComponent = ({ author, message, _id, created_at, li
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setReplayValue(e.target.value)}
                 value={replayValue}
                 isLoadingComments={isLoadingReplayComment}
+                disabled={!user}
               />
             </div>
           )}

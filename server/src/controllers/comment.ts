@@ -5,11 +5,17 @@ import Comment from '../models/comment'
 import { LIMIT_COMMENTS_ON_PAGE } from '../constants'
 import commentService from '../service/comment'
 import { ObjectId } from 'mongoose'
+import { validationResult } from 'express-validator'
 
 export const addComment = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
     const { message, parentId } = req.body
+
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json(errors)
+    }
 
     let user = await User.findById(req.userId)
     if (!user) {
@@ -18,10 +24,6 @@ export const addComment = async (req: Request, res: Response) => {
 
     if (!user.isActivated) {
       return res.status(403).json({ message: 'Please ensure that your account is activated', code: 4031 })
-    }
-
-    if (!message) {
-      return res.status(400).send('Message is required')
     }
 
     const post = await Post.findById(id)
@@ -124,6 +126,11 @@ export const updateComment = async (req: Request, res: Response) => {
     const { id } = req.params
     const { message } = req.body
 
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json(errors)
+    }
+
     let user = await User.findById(req.userId)
 
     if (!user) {
@@ -174,7 +181,7 @@ export const likeComment = async (req: Request, res: Response) => {
 
     await comment.save()
 
-    res.status(201).json({message: index === -1 ? 'Like added' : 'Like removed'})
+    res.status(201).json({ message: index === -1 ? 'Like added' : 'Like removed' })
 
   } catch (e: any | unknown) {
     res.status(409).json({ message: e.message })
