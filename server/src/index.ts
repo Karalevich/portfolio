@@ -9,6 +9,7 @@ import user from './routes/user'
 import post from './routes/post'
 import service from './routes/side-service'
 import comment from './routes/comment'
+import errorMiddleware from './middleware/error'
 
 const app = express()
 app.use(cookieParser())
@@ -26,6 +27,8 @@ app.use('/user', user)
 app.use('/posts', post)
 app.use('/service', service)
 app.use('/comment', comment)
+
+app.use(errorMiddleware)
 
 mongoose.connect(process.env.CONNECTION_URL as string)
   .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
