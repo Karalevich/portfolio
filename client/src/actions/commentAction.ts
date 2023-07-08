@@ -147,6 +147,14 @@ export const deleteCommentThunk =
       const { data } = await api.deleteComment(commentId)
       dispatch(commentActions.deleteCommentAC(commentId))
       dispatch(commentActions.setCountCommentsAC(data.commentsCount))
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Comment successfully deleted!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -159,14 +167,6 @@ export const deleteCommentThunk =
       )
     } finally {
       dispatch(commentActions.setIsFetchingCommentsAC(false))
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Comment successfully deleted!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }
 
@@ -181,6 +181,14 @@ export const updateCommentThunk =
       const { data } = await api.updateComment(message, commentId)
       resetCallback()
       dispatch(commentActions.updateCommentAC(data))
+      dispatch(
+        notistackActions.enqueueSnackbarAC({
+          message: 'Comment successfully updated!',
+          options: {
+            variant: 'success',
+          },
+        })
+      )
     } catch (e) {
       console.log(e)
       dispatch(
@@ -193,14 +201,6 @@ export const updateCommentThunk =
       )
     } finally {
       dispatch(commentActions.setIsLoadingCommentAC(false))
-      dispatch(
-        notistackActions.enqueueSnackbarAC({
-          message: 'Comment successfully updated!',
-          options: {
-            variant: 'success',
-          },
-        })
-      )
     }
   }
 

@@ -15,7 +15,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
       return res.status(498).json({ message: 'Invalid token' })
     }
 
-    req.userId = decodeData?.id
+    req.userId = decodeData.id
 
     next()
   } catch (e) {
