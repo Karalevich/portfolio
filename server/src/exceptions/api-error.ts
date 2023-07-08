@@ -8,12 +8,16 @@ class ApiError extends Error {
     this.code = code
   }
 
+  static BadRequest(message: string, code?: number) {
+    return new ApiError(400, message, code)
+  }
+
   static UnauthorizedError(message: string, code?: number) {
     return new ApiError(401, message, code)
   }
 
-  static BadRequest(message: string, code?: number) {
-    return new ApiError(400, message, code)
+  static Forbidden(message: string, code?: number) {
+    return new ApiError(403, message, code)
   }
 
   static NotFound(message: string, code?: number) {
