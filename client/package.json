@@ -42,7 +42,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "format": "prettier --write ."
+    "test": "react-scripts test",
+    "format": "prettier --write .",
+    "coverage": "yarn test --coverage --watchAll"
   },
   "eslintConfig": {
     "extends": [
@@ -73,6 +75,9 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/axios": "^0.14.0",
     "@types/classnames": "^2.3.1",
@@ -88,5 +93,21 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.8.1"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}",
+      "!src/constants/**/*.{ts,tsx}",
+      "!src/**/types.ts",
+      "!src/**/*.{test,spec,d}.{ts,tsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    }
   }
 }

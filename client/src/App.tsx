@@ -18,7 +18,7 @@ import ErrorBoundaryFallback from './components/ErrorBoundaryFallback/ErrorBound
 import { ErrorBoundary } from 'react-error-boundary'
 import useNotifier from './hooks/useNotifier'
 
-export const App: AppComponent = () => {
+const App: AppComponent = () => {
   const infoRef = useRef<null | HTMLElement>(null)
   const homeRef = useRef<null | HTMLElement>(null)
   const [isFixed, setIsFixed] = useState(false)
@@ -92,3 +92,5 @@ export const App: AppComponent = () => {
     </BrowserRouter>
   )
 }
+
+export default App
