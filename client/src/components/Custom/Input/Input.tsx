@@ -1,17 +1,17 @@
-import styled from '@mui/material/styles/styled'
+import { styled } from '@mui/material/styles'
 import { FormControl, FormHelperText, InputBase, InputLabel } from '@mui/material'
 import { InputComponent } from './types'
 import styles from './Input.module.scss'
 
 const Input: InputComponent = ({ label, helperText, className, ...other }) => {
   return (
-    <FormControl className={className} sx={{ display: 'block' }} fullWidth>
+    <FormControl aria-labelledby={other.id} className={className} sx={{ display: 'block' }} fullWidth>
       {label && (
         <LabelCustom shrink htmlFor={other.id} className={styles.label} error={other.error}>
           {label}
         </LabelCustom>
       )}
-      <InputCustom {...other} />
+      <InputCustom {...other} id={other.id} />
       {helperText && <FormHelperText error={other.error}>{helperText}</FormHelperText>}
     </FormControl>
   )

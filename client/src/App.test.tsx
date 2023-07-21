@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import Copyright from './Copyright'
+import App from './App'
 
-test('renders copyright portfolio Andrei Karalevich', () => {
-  render(<Copyright />)
+
+test('App', () => {
+  render(<App />)
   const linkElement = screen.getByText(/Copyright © 2023 Portfolio Andrei Karalevich/i)
   expect(linkElement).toBeInTheDocument()
 })

@@ -381,7 +381,7 @@ export function VueXIcon(props: SvgIconProps) {
 
 export function GoogleIcon(props: SvgIconProps) {
   return (
-    <SvgIcon {...props} width='24' height='24' fill='none'>
+    <SvgIcon {...props} width='24' height='24' fill='none' data-testid='google-icon'>
       <g clipPath='url(#logo-google_svg__clip0)'>
         <path
           d='M21.99 12.108c0-.84-.069-1.452-.216-2.088H12.2v3.79h5.62c-.113.943-.725 2.362-2.084 3.315l-.02.127 3.028 2.349.21.021c1.926-1.782 3.037-4.404 3.037-7.514'
