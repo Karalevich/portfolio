@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitForElementToBeRemoved } from '@testing-library/react'
 import Like from './Like'
 
-describe('Input', () => {
+describe('Like', () => {
   const mockOnClick = jest.fn()
 
   afterEach(() => {
