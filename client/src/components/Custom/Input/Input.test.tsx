@@ -9,7 +9,8 @@ describe('Input', () => {
     render(
       <ThemeProvider theme={mainTheme}>
         <Input label={'Username'} id={'username'} helperText='Enter your username' />
-      </ThemeProvider>)
+      </ThemeProvider>
+    )
     const inputElement = screen.getByLabelText('Username')
     const helperTextElement = screen.getByText('Enter your username')
 
