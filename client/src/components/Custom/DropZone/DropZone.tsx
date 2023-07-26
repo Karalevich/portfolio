@@ -28,7 +28,7 @@ const DropZone: DropZoneComponent = ({ removeFileFromForm, myFiles, setMyFiles, 
   return (
     <section className={styles.section}>
       <div {...getRootProps({ style })}>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} aria-label='drop-zone-input' />
         <div className={styles.message}>
           <span>Drag photos here or click</span>
         </div>

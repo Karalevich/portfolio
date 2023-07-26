@@ -8,7 +8,7 @@ const DynamicCSS: DynamicCSSComponent = ({ properties }) => {
   })
   const css = ':root {' + generateCss + '}'
 
-  return <style>{css}</style>
+  return <style aria-label='dynamicCSS'>{css}</style>
 }
 
 export default DynamicCSS
