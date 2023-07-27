@@ -34,17 +34,15 @@ export const Dropdown: DropdownComponent = ({ selects, onSelect }) => {
           </Button>
         </Tooltip>
         <Grow in={isOpenSelect}>
-          <div className={styles.menu}>
-            <ul className={styles.list}>
-              {selects.map((item) => (
-                <li key={item} className={styles.item}>
-                  <StyledButton className={styles.itemButton} onClick={onChangeItem(item)}>
-                    <p className={styles.text}>{item}</p>
-                  </StyledButton>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className={styles.menu}>
+            {selects.map((item) => (
+              <li key={item} className={styles.item}>
+                <StyledButton className={styles.itemButton} onClick={onChangeItem(item)}>
+                  <p className={styles.text}>{item}</p>
+                </StyledButton>
+              </li>
+            ))}
+          </ul>
         </Grow>
       </div>
     </ClickAwayListener>
