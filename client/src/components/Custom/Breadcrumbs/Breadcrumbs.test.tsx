@@ -18,7 +18,7 @@ describe('Breadcrumbs component', () => {
         <Routes>
           <Route path='/products/current' element={<Breadcrumbs links={mockLinks} />} />
         </Routes>
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if the breadcrumbs are rendered correctly with the correct links and separators.
@@ -44,7 +44,7 @@ describe('Breadcrumbs component', () => {
           <Route path='/' element={<Breadcrumbs links={mockLinks} />} />
           <Route path='/products' element={<div>Products page</div>} />
         </Routes>
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Click the "Products" link in the breadcrumbs
@@ -55,5 +55,8 @@ describe('Breadcrumbs component', () => {
     // Check if the correct page is displayed after clicking the link.
     const currentPage = screen.getByText('Products page')
     expect(currentPage).toBeInTheDocument()
+
+    // Check if the previous page is removed from the DOM.
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
   })
 })

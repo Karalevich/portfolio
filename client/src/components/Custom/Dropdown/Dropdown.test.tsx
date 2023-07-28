@@ -8,8 +8,7 @@ const mockSelects = ['Option 1', 'Option 2', 'Option 3']
 
 describe('Dropdown component', () => {
   test('renders the initial selected item correctly', () => {
-    render(<Dropdown selects={mockSelects} onSelect={() => {
-    }} />)
+    render(<Dropdown selects={mockSelects} onSelect={() => {}} />)
 
     const initialSelectedItem = mockSelects[0]
     const buttonElement = screen.getByLabelText('Select display order')
@@ -19,8 +18,7 @@ describe('Dropdown component', () => {
   })
 
   test('opens the menu when the button is clicked', () => {
-    render(<Dropdown selects={mockSelects} onSelect={() => {
-    }} />)
+    render(<Dropdown selects={mockSelects} onSelect={() => {}} />)
 
     const dropdownButton = screen.getByRole('button', { name: 'Select display order' })
     const listElement = screen.queryByRole('list')
@@ -51,8 +49,7 @@ describe('Dropdown component', () => {
   })
 
   test('closes the menu when clicking second time on dropdown button', async () => {
-    render(<Dropdown selects={mockSelects} onSelect={() => {
-    }} />)
+    render(<Dropdown selects={mockSelects} onSelect={() => {}} />)
 
     const dropdownButton = screen.getByRole('button', { name: 'Select display order' })
 
