@@ -52,6 +52,7 @@ export const SignIn: SignInComponent = () => {
         placeholder={'Username or Email'}
         id='email'
         name='email'
+        type='email'
         onChange={formikSignin.handleChange}
         value={formikSignin.values.email.trim()}
         error={formikSignin.touched.email && Boolean(formikSignin.errors.email)}
