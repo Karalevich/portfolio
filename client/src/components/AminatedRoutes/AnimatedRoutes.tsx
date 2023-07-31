@@ -43,7 +43,11 @@ export const AnimatedRoutes: AnimatedRoutesComponent = () => {
   }
 
   return (
-    <div className={`${transitionStage}`} onAnimationEnd={onHandleAnimation} aria-label='animation-routes-wrapper'>
+    <div
+      className={`${transitionStage}`}
+      onAnimationEnd={onHandleAnimation}
+      aria-label='animation-routes-wrapper'
+    >
       <Routes location={displayLocation}>
         <Route path={'/'} element={<Navigate replace to='/home' />} />
         <Route path={'/home'} element={<LazyLoadSuspense children={<Home />} />} />

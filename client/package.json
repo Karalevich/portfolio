@@ -42,7 +42,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "format": "prettier --write .",
     "coverage": "yarn test --coverage --watchAll"
   },
@@ -53,7 +53,8 @@
     ]
   },
   "pre-commit": [
-    "format"
+    "format",
+    "test"
   ],
   "plugins": [
     "react-hooks"
@@ -75,10 +76,10 @@
     ]
   },
   "devDependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "@reduxjs/toolkit": "^1.9.3",
     "@types/axios": "^0.14.0",
     "@types/classnames": "^2.3.1",
     "@types/dompurify": "^3.0.2",

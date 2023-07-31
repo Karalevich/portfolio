@@ -18,13 +18,13 @@ describe('Auth Component', () => {
   test('renders the Auth component with Sign In tab', () => {
     // Mock the useSelector return value for isAuthLoading.
     mockedUseAppSelector.mockReturnValueOnce(false)
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
+    const mockDispatch = jest.fn()
+    ;(useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
 
     render(
       <GoogleOAuthProvider clientId={`${process.env.REACT_APP_CLIENT_ID}`}>
         <Auth />
-      </GoogleOAuthProvider>,
+      </GoogleOAuthProvider>
     )
 
     // Assert that the "Sign In" tab is rendered and selected.
@@ -35,10 +35,10 @@ describe('Auth Component', () => {
     const signUpTab = screen.getByRole('tab', { name: 'Sign Up', selected: false })
     expect(signUpTab).toBeInTheDocument()
 
-    const googleButton = screen.getByRole('button', {name: 'Sign In with Google'})
+    const googleButton = screen.getByRole('button', { name: 'Sign In with Google' })
     expect(googleButton).toBeInTheDocument()
 
-    const signInButton = screen.getByRole('button', {name: 'Sign In'})
+    const signInButton = screen.getByRole('button', { name: 'Sign In' })
     expect(signInButton).toBeInTheDocument()
 
     const emailInputElement = screen.getByPlaceholderText('Username or Email')
@@ -51,20 +51,19 @@ describe('Auth Component', () => {
   test('changes the active tab on click', () => {
     // Mock the useSelector return value for isAuthLoading.
     mockedUseAppSelector.mockReturnValueOnce(false)
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
+    const mockDispatch = jest.fn()
+    ;(useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
 
     render(
       <GoogleOAuthProvider clientId={`${process.env.REACT_APP_CLIENT_ID}`}>
         <Auth />
-      </GoogleOAuthProvider>,
+      </GoogleOAuthProvider>
     )
 
     // Click the "Sign Up" tab and check if it becomes active.
     const signUpTab = screen.getByRole('tab', { name: 'Sign Up', selected: false })
     userEvent.click(signUpTab)
     expect(signUpTab).toHaveAttribute('aria-selected', 'true')
-
 
     const signUpText = screen.getByText('Enter your credential information')
     expect(signUpText).toBeInTheDocument()
@@ -76,19 +75,18 @@ describe('Auth Component', () => {
 
     const signInText = screen.getByText('Enter your login information')
     expect(signInText).toBeInTheDocument()
-
   })
 
   test('disables tabs when isAuthLoading is true', () => {
     // Mock the useSelector return value for isAuthLoading.
     mockedUseAppSelector.mockReturnValueOnce(true)
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
+    const mockDispatch = jest.fn()
+    ;(useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
 
     render(
       <GoogleOAuthProvider clientId={`${process.env.REACT_APP_CLIENT_ID}`}>
         <Auth />
-      </GoogleOAuthProvider>,
+      </GoogleOAuthProvider>
     )
 
     // Assert that both tabs are disabled when isAuthLoading is true.

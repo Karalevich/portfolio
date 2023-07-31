@@ -28,7 +28,6 @@ jest.mock('../Home/Blog/AddPost/AddPost', () => {
   return () => <div>Add post page</div>
 })
 
-
 describe('AnimatedRoutes component', () => {
   afterEach(() => {
     jest.clearAllMocks()
@@ -37,7 +36,7 @@ describe('AnimatedRoutes component', () => {
     render(
       <MemoryRouter initialEntries={['/home']}>
         <AnimatedRoutes />
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if Home component is rendered
@@ -50,21 +49,20 @@ describe('AnimatedRoutes component', () => {
     render(
       <MemoryRouter initialEntries={['/services']}>
         <AnimatedRoutes />
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if Services component is rendered
     await waitFor(() => {
       expect(screen.getByText('My Services')).toBeInTheDocument()
     })
-
   })
 
   test('renders the blog page when the URL is /blog', async () => {
     render(
       <MemoryRouter initialEntries={['/blog']}>
         <AnimatedRoutes />
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if Blog component is rendered
@@ -77,7 +75,7 @@ describe('AnimatedRoutes component', () => {
     render(
       <MemoryRouter initialEntries={['/contact']}>
         <AnimatedRoutes />
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if Blog component is rendered
@@ -91,7 +89,7 @@ describe('AnimatedRoutes component', () => {
     render(
       <MemoryRouter initialEntries={['/blog/addPost']}>
         <AnimatedRoutes />
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if Blog component is rendered
@@ -105,7 +103,7 @@ describe('AnimatedRoutes component', () => {
     render(
       <MemoryRouter initialEntries={['/blog/addPost']}>
         <AnimatedRoutes />
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if Blog component is rendered
@@ -119,7 +117,7 @@ describe('AnimatedRoutes component', () => {
     render(
       <MemoryRouter initialEntries={['/blog/addPost']}>
         <AnimatedRoutes />
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if Blog component is rendered
@@ -132,7 +130,7 @@ describe('AnimatedRoutes component', () => {
     render(
       <MemoryRouter initialEntries={['/invalid-url']}>
         <AnimatedRoutes />
-      </MemoryRouter>,
+      </MemoryRouter>
     )
 
     // Check if NotFound component is rendered
@@ -180,5 +178,4 @@ describe('AnimatedRoutes component', () => {
   //   });
   //
   // })
-
 })
