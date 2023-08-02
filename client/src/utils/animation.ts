@@ -1,6 +1,6 @@
-import { COLORS } from '../../constants/settings'
-import { range } from '../../utils/range'
-import { CanvasType } from './types'
+import { COLORS } from '../constants/settings'
+import { range } from './range'
+import { CanvasType } from '../components/Canvas/types'
 
 export const animationConfetti = (canvas: CanvasType, xpos: number) => {
   let leftX = 0

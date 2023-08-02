@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import styles from './Canvas.module.scss'
 import { CanvasComponent, CanvasType } from './types'
 import confetti from 'canvas-confetti'
-import { animationConfetti } from './animation'
+import { animationConfetti } from '../../utils/animation'
 
 let w = 0
 let xpos = 0.5
@@ -42,7 +42,7 @@ export const Canvas: CanvasComponent = () => {
 
   return (
     <>
-      <canvas className={styles.canvas} ref={canvasRef} tabIndex={0} />
+      <canvas className={styles.canvas} ref={canvasRef} tabIndex={0} aria-label='canvas-cofetti'/>
     </>
   )
 }

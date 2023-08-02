@@ -23,15 +23,17 @@ type MockedUseAppSelector<T> = (arg: T) => ReturnType<typeof useAppSelector>
 const mockedUseAppSelector = useAppSelector as jest.MockedFunction<MockedUseAppSelector<any>>
 
 describe('SignIn Component', () => {
-  afterEach(() => {
+  beforeEach(() => {
     jest.clearAllMocks()
-  })
-  test('should display and submit the form with valid data', async () => {
     const mockDispatch = jest.fn();
     (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
+  })
 
-    // Render the component
+  const renderComponent = () => {
     render(<SignIn />)
+  }
+  test('should display and submit the form with valid data', async () => {
+    renderComponent()
 
     // Get input elements
     const emailInput = screen.getByPlaceholderText('Username or Email')
@@ -62,10 +64,7 @@ describe('SignIn Component', () => {
   })
 
   test('should display error message on form submit with invalid data', async () => {
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
-    // Render the component
-    render(<SignIn />)
+    renderComponent()
 
     // Get input elements
     const emailInput = screen.getByPlaceholderText('Username or Email')
@@ -88,10 +87,7 @@ describe('SignIn Component', () => {
   })
 
   test('should display error message on form submit without data', async () => {
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
-    // Render the component
-    render(<SignIn />)
+    renderComponent()
 
     // Get input elements
     const signInButton = screen.getByRole('button')
@@ -110,10 +106,7 @@ describe('SignIn Component', () => {
   test('should display error message if errSignInMessage occurred', () => {
     mockedUseAppSelector.mockReturnValueOnce(false) //isAuthLoading = false
     mockedUseAppSelector.mockReturnValueOnce('Email does not exist')
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
-    // Render the component
-    render(<SignIn />)
+    renderComponent()
 
     expect(screen.getByText('Email does not exist')).toBeInTheDocument()
   })
@@ -122,10 +115,7 @@ describe('SignIn Component', () => {
     mockedUseAppSelector.mockReturnValueOnce(true) //isAuthLoading = true
     mockedUseAppSelector.mockReturnValueOnce(false)
 
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
-    // Render the component
-    render(<SignIn />)
+    renderComponent()
 
     // Get input elements
     const emailInput = screen.getByPlaceholderText('Username or Email')
