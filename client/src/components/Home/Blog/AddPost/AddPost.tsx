@@ -86,6 +86,12 @@ export const AddPost: AddPostComponent = () => {
   const post = useAppSelector(getPostDataForFormS)
   const isFetchingForm = useAppSelector(getFetchingFormS)
 
+  useEffect(() => {
+    return () => {
+      clear()
+    }
+  }, [])
+
   const formikSubmit = useFormik({
     initialValues: post,
     validationSchema: validationPostSchema,
@@ -102,12 +108,6 @@ export const AddPost: AddPostComponent = () => {
       }
     },
   })
-
-  useEffect(() => {
-    return () => {
-      clear()
-    }
-  }, [])
 
   const clear = () => {
     dispatch(postActions.resetPostAC())
