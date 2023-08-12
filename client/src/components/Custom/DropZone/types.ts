@@ -6,5 +6,6 @@ type DropZoneProps = {
   myFiles: Array<FileWithPath>
   setMyFiles: (files: Array<FileWithPath>) => void
   error?: string | boolean
+  disabled?: boolean
 }
 export type DropZoneComponent = FunctionComponent<DropZoneProps>

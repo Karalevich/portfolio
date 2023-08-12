@@ -2,7 +2,6 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { SignFormInput } from '../SignFormInput'
 
-
 describe('SignFormInput', () => {
   test('applies the correct styling', async () => {
     render(<SignFormInput />)

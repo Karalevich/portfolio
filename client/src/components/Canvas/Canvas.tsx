@@ -42,7 +42,7 @@ export const Canvas: CanvasComponent = () => {
 
   return (
     <>
-      <canvas className={styles.canvas} ref={canvasRef} tabIndex={0} aria-label='canvas-cofetti'/>
+      <canvas className={styles.canvas} ref={canvasRef} tabIndex={0} aria-label='canvas-cofetti' />
     </>
   )
 }

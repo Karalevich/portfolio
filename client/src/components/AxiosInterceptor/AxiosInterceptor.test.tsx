@@ -5,7 +5,6 @@ import { API } from '../../api'
 import { store } from '../../reducers/store'
 import { Provider } from 'react-redux'
 
-
 jest.mock('../../actions/userAction')
 jest.mock('../../actions/modalAction')
 jest.mock('react-router-dom', () => ({
@@ -21,7 +20,7 @@ describe('AxiosInterceptor Component', () => {
     return render(
       <Provider store={store}>
         <AxiosInterceptor>Test</AxiosInterceptor>
-      </Provider>,
+      </Provider>
     )
   }
 
@@ -61,6 +60,4 @@ describe('AxiosInterceptor Component', () => {
   //   expect(mockDispatch).toHaveBeenCalledWith({ type: 'SET_ERROR_SIGN_IN_MESSAGE', payload: 'Unauthorized' })
   //
   // })
-
-
 })

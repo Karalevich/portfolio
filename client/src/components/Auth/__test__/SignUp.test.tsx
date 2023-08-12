@@ -25,8 +25,8 @@ const mockedUseAppSelector = useAppSelector as jest.MockedFunction<MockedUseAppS
 describe('SignUp Component', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
+    const mockDispatch = jest.fn()
+    ;(useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
   })
 
   const renderComponent = () => {

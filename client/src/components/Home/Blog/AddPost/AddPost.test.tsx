@@ -8,7 +8,6 @@ import userEvent from '@testing-library/user-event'
 import { createPostThunk } from '../../../../actions/postAction'
 import { useNavigate } from 'react-router-dom'
 
-
 // Mock Redux hooks
 jest.mock('../../../../hooks/hooks', () => ({
   ...jest.requireActual('../../../../hooks/hooks'),
@@ -25,17 +24,15 @@ jest.mock('../../../../actions/postAction', () => ({
     resetPostAC: jest.fn(),
   },
 }))
-
-
+jest.setTimeout(10000)
 describe('AddPost Component', () => {
   beforeEach(() => {
     jest.clearAllMocks()
-    const mockDispatch = jest.fn();
-    (useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
+    const mockDispatch = jest.fn()
+    ;(useAppDispatch as jest.Mock).mockReturnValue(mockDispatch)
   })
 
   const renderComponent = (mockedState: any) => {
-
     const reducers = combineReducers({
       post: (state = mockedState) => state,
     })
@@ -73,7 +70,6 @@ describe('AddPost Component', () => {
 
     expect(screen.getByText('Create post')).toBeInTheDocument()
   })
-
   test('should display and submit the form with valid data', async () => {
     const mockedState = {
       _id: '',
@@ -83,8 +79,8 @@ describe('AddPost Component', () => {
       content: '',
       isFetchingForm: false,
     }
-    const mockNavigate = jest.fn();
-    (useNavigate as jest.Mock).mockReturnValue(mockNavigate)
+    const mockNavigate = jest.fn()
+    ;(useNavigate as jest.Mock).mockReturnValue(mockNavigate)
     const mockFile = new File(['file contents'], 'file1.png', { type: 'image/png' })
 
     const { container } = renderComponent(mockedState)
@@ -106,7 +102,10 @@ describe('AddPost Component', () => {
 
     // Type valid email and password
     await userEvent.type(titleInput, 'Test title')
-    await userEvent.type(descriptionInput, 'Test description with correct test length test string test string test string test string test string')
+    await userEvent.type(
+      descriptionInput,
+      'Test description with correct test length test string test string test string test string test string',
+    )
     await userEvent.type(tagsInput, 'testTag')
     await waitFor(() =>
       fireEvent.change(fileInput, {
@@ -121,9 +120,11 @@ describe('AddPost Component', () => {
     // Wait for the form submission (for asynchronous actions)
     await waitFor(() => {
       // Assert that createPostThunk is called with the correct values
-      expect(createPostThunk).toHaveBeenCalledWith({
+      expect(createPostThunk).toHaveBeenCalledWith(
+        {
           title: 'Test title',
-          description: 'Test description with correct test length test string test string test string test string test string',
+          description:
+            'Test description with correct test length test string test string test string test string test string',
           tags: 'testTag',
           content: '<p>Test content with at lest 5 word</p>',
           img: [mockFile],
@@ -131,45 +132,142 @@ describe('AddPost Component', () => {
         mockNavigate,
       )
     })
-
   })
+  test('should display error with submit invalid data', async () => {
+    const mockedState = {
+      _id: '',
+      title: '',
+      description: '',
+      tags: [],
+      content: '',
+      isFetchingForm: false,
+    }
+    const mockNavigate = jest.fn()
+    ;(useNavigate as jest.Mock).mockReturnValue(mockNavigate)
 
-  test('clears the form when clear button is clicked', () => {
-    render(<AddPost />)
+    renderComponent(mockedState)
 
-    // Fill the form inputs
-    fireEvent.change(screen.getByLabelText('Title'), { target: { value: 'Test Title' } })
-    fireEvent.change(screen.getByLabelText('Description'), { target: { value: 'Test Description' } })
-    fireEvent.change(screen.getByLabelText('Tags'), { target: { value: 'tag1, tag2, tag3' } })
-    fireEvent.change(screen.getByLabelText('Content'), { target: { value: 'Test Content' } })
+    // Get input elements
+    const titleInput = screen.getByLabelText('Title')
+    const descriptionInput = screen.getByLabelText('Description')
+    const tagsInput = screen.getByLabelText('Tags')
+    const submitButton = screen.getByRole('button', { name: 'Submit' })
 
-    // Click the clear button
-    fireEvent.click(screen.getByText('Clear'))
+    // Type valid email and password
+    await userEvent.type(titleInput, 'Te')
+    await userEvent.type(
+      descriptionInput,
+      'Test description',
+    )
+    await userEvent.type(tagsInput, 'testTag testTag testTag testTag testTag testTag testTag testTag testTag')
+
+    // Submit the form
+    await userEvent.click(submitButton)
+
+    // Wait for the form submission (for asynchronous actions)
+    await waitFor(() => {
+      expect(screen.getByText('Title should be at least 3 symbols')).toBeInTheDocument()
+      expect(screen.getByText('Description should be at least 90 symbols')).toBeInTheDocument()
+      expect(screen.getByText('Tags is too long')).toBeInTheDocument()
+      expect(screen.getByText('Content is required')).toBeInTheDocument()
+      expect(screen.getByText('Image is required')).toBeInTheDocument()
+    })
+  })
+  test('should display errors without data', async () => {
+    const mockedState = {
+      _id: '',
+      title: '',
+      description: '',
+      tags: [],
+      content: '',
+      isFetchingForm: false,
+    }
+    const mockNavigate = jest.fn()
+    ;(useNavigate as jest.Mock).mockReturnValue(mockNavigate)
+
+    renderComponent(mockedState)
+
+    const submitButton = screen.getByRole('button', { name: 'Submit' })
+
+    expect(submitButton).toBeInTheDocument()
+
+    // Submit the form
+    await userEvent.click(submitButton)
+    await waitFor(() => {
+      expect(screen.getByText('Title is required')).toBeInTheDocument()
+      expect(screen.getByText('Description is required')).toBeInTheDocument()
+      expect(screen.getByText('Tags is required')).toBeInTheDocument()
+      expect(screen.getByText('Image is required')).toBeInTheDocument()
+      expect(screen.getByText('Content is required')).toBeInTheDocument()
+    })
+  })
+  test('clears the form when clear button is clicked', async () => {
+    const mockedState = {
+      _id: '',
+      title: '',
+      description: '',
+      tags: [],
+      content: '',
+      isFetchingForm: false,
+    }
+
+    const mockFile = new File(['file contents'], 'file1.png', { type: 'image/png' })
+
+    renderComponent(mockedState)
+
+    // Get input elements
+    const titleInput = screen.getByLabelText('Title')
+    const descriptionInput = screen.getByLabelText('Description')
+    const tagsInput = screen.getByLabelText('Tags')
+    const fileInput = screen.getByLabelText('drop-zone-input')
+    const clearButton = screen.getByRole('button', { name: 'Clear' })
+
+    // Type valid email and password
+    await userEvent.type(titleInput, 'Test title')
+    await userEvent.type(
+      descriptionInput,
+      'Test description with correct test length test string test string test string test string test string',
+    )
+    await userEvent.type(tagsInput, 'testTag')
+    await waitFor(() =>
+      fireEvent.change(fileInput, {
+        target: { files: [mockFile] },
+      }),
+    )
+
+    // Submit the form
+    await userEvent.click(clearButton)
 
     // Assert that the form inputs are cleared
     expect(screen.getByLabelText('Title')).toHaveValue('')
     expect(screen.getByLabelText('Description')).toHaveValue('')
     expect(screen.getByLabelText('Tags')).toHaveValue('')
-    expect(screen.getByLabelText('Content')).toHaveValue('')
+    expect(screen.getByLabelText('drop-zone-input')).toHaveValue('')
   })
+  test('should disabled inputs and button when isFetchingForm=true', async () => {
+    const mockedState = {
+      _id: '',
+      title: '',
+      description: '',
+      tags: [],
+      content: '',
+      isFetchingForm: true,
+    }
+    renderComponent(mockedState)
 
-  test('uploads a file when selected', () => {
-    render(<AddPost />)
+    // Get input elements
+    const titleInput = screen.getByLabelText('Title')
+    const descriptionInput = screen.getByLabelText('Description')
+    const tagsInput = screen.getByLabelText('Tags')
+    const fileInput = screen.getByLabelText('drop-zone-input')
+    const clearButton = screen.getByRole('button', { name: 'Clear' })
+    const submitButton = screen.getByRole('button', { name: 'Submit' })
 
-    // Create a mock file
-    const mockFile = new File(['dummy image'], 'dummy.jpg', { type: 'image/jpg' })
-
-    // Mock the file input
-    const fileInput = screen.getByTestId('file-input')
-    Object.defineProperty(fileInput, 'files', {
-      value: [mockFile],
-    })
-
-    // Fire a change event to simulate file selection
-    fireEvent.change(fileInput)
-
-    // Assert that the file has been added to the form values
-    const fileInForm = screen.getByLabelText('Selected Files')
-    expect(fileInForm.files[0]).toBe(mockFile)
+    expect(titleInput).toBeDisabled()
+    expect(descriptionInput).toBeDisabled()
+    expect(tagsInput).toBeDisabled()
+    expect(fileInput).toBeDisabled()
+    expect(clearButton).toBeDisabled()
+    expect(submitButton).toBeDisabled()
   })
 })

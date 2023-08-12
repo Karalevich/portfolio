@@ -4,10 +4,9 @@ import { Banner } from './Banner'
 
 import React from 'react'
 
-
 describe('Banner', () => {
   const renderHelper = () => {
-    return render (
+    return render(
       <MemoryRouter initialEntries={['/home']}>
         <Routes>
           <Route path='/home' element={<Banner />} />

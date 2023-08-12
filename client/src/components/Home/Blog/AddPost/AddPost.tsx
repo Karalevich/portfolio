@@ -194,6 +194,7 @@ export const AddPost: AddPostComponent = () => {
             myFiles={formikSubmit.values.img}
             setMyFiles={putSelectedFiles}
             removeFileFromForm={removeFile}
+            disabled={isFetchingForm}
             error={formikSubmit.touched.img && (formikSubmit.errors.img as string)}
           />
           <div>

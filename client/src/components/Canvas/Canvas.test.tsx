@@ -21,7 +21,6 @@ let removeEventListenerSpy: jest.SpyInstance
 let requestAnimationFrameSpy: jest.SpyInstance<number, [FrameRequestCallback]>
 let cancelAnimationFrameSpy: jest.SpyInstance<void, [number]>
 
-
 describe('Canvas component', () => {
   // Clear all mocks and reset variables before each test
   beforeEach(() => {
@@ -42,7 +41,6 @@ describe('Canvas component', () => {
     renderComponent()
     const canvasElement = screen.getByLabelText('canvas-cofetti')
     expect(canvasElement).toBeInTheDocument()
-
   })
 
   test('sets up event listeners on mount', () => {
