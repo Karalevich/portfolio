@@ -1,37 +1,10 @@
 @import './src/styles/variables.scss';
 
 .leaveComment {
-  .commentArea {
-    display: flex;
-    align-items: center;
-    column-gap: 1.25rem;
-    margin-bottom: 0.25rem;
-    flex-wrap: wrap;
-    justify-content: end;
-    width: 100%;
-  }
-
   .inputWrap {
     width: 100%;
     display: flex;
     align-items: flex-start;
     column-gap: 1.25rem;
-  }
-
-  .comments {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.5rem;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .leaveComment {
-    .comments {
-      gap: 2rem;
-    }
   }
 }

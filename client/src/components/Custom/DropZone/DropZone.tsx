@@ -5,7 +5,13 @@ import FileList from './FileList/FileList'
 import { DropZoneComponent } from './types'
 import { FormHelperText } from '@mui/material'
 
-const DropZone: DropZoneComponent = ({ removeFileFromForm, disabled = false, myFiles, setMyFiles, error }) => {
+const DropZone: DropZoneComponent = ({
+  removeFileFromForm,
+  disabled = false,
+  myFiles,
+  setMyFiles,
+  error,
+}) => {
   const { getRootProps, getInputProps, isFocused, isDragAccept } = useDropzone({
     onDrop: (files) => onUploadFile(files),
     multiple: false,

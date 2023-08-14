@@ -25,6 +25,7 @@ jest.mock('../../../../actions/postAction', () => ({
   },
 }))
 jest.setTimeout(10000)
+
 describe('AddPost Component', () => {
   beforeEach(() => {
     jest.clearAllMocks()
@@ -43,7 +44,7 @@ describe('AddPost Component', () => {
     return render(
       <Provider store={mockedStore}>
         <AddPost />
-      </Provider>,
+      </Provider>
     )
   }
 
@@ -104,13 +105,13 @@ describe('AddPost Component', () => {
     await userEvent.type(titleInput, 'Test title')
     await userEvent.type(
       descriptionInput,
-      'Test description with correct test length test string test string test string test string test string',
+      'Test description with correct test length test string test string test string test string test string'
     )
     await userEvent.type(tagsInput, 'testTag')
     await waitFor(() =>
       fireEvent.change(fileInput, {
         target: { files: [mockFile] },
-      }),
+      })
     )
     await userEvent.type(contentInput!, 'Test content with at lest 5 word')
 
@@ -129,7 +130,7 @@ describe('AddPost Component', () => {
           content: '<p>Test content with at lest 5 word</p>',
           img: [mockFile],
         },
-        mockNavigate,
+        mockNavigate
       )
     })
   })
@@ -155,11 +156,11 @@ describe('AddPost Component', () => {
 
     // Type valid email and password
     await userEvent.type(titleInput, 'Te')
+    await userEvent.type(descriptionInput, 'Test description')
     await userEvent.type(
-      descriptionInput,
-      'Test description',
+      tagsInput,
+      'testTag testTag testTag testTag testTag testTag testTag testTag testTag'
     )
-    await userEvent.type(tagsInput, 'testTag testTag testTag testTag testTag testTag testTag testTag testTag')
 
     // Submit the form
     await userEvent.click(submitButton)
@@ -226,13 +227,13 @@ describe('AddPost Component', () => {
     await userEvent.type(titleInput, 'Test title')
     await userEvent.type(
       descriptionInput,
-      'Test description with correct test length test string test string test string test string test string',
+      'Test description with correct test length test string test string test string test string test string'
     )
     await userEvent.type(tagsInput, 'testTag')
     await waitFor(() =>
       fireEvent.change(fileInput, {
         target: { files: [mockFile] },
-      }),
+      })
     )
 
     // Submit the form

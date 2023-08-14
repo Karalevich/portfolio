@@ -3,7 +3,6 @@ import styles from './Comment.module.scss'
 import { CommentComponent } from './types'
 import { Button, Collapse } from '@mui/material'
 import Like from '../../../../Custom/Like/Like'
-import { CommentForm, CommentList } from '../Comments'
 import { useAppDispatch, useAppSelector } from '../../../../../hooks/hooks'
 import CommentTactics from '../CommentActions/CommentTactics'
 import {
@@ -18,6 +17,8 @@ import { getOpenedPostIdS } from '../../../../../selectors/postSelector'
 import { getUserIdS, getUserS } from '../../../../../selectors/userSelectors'
 import { modalActions } from '../../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../../reducers/modal/types'
+import CommentList from '../CommentList/CommentList'
+import CommentForm from '../CommentForm/CommentForm'
 
 export const Comment: CommentComponent = ({ author, message, _id, created_at, likes, getReplies }) => {
   const dispatch = useAppDispatch()

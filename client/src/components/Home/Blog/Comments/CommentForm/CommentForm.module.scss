@@ -1,0 +1,11 @@
+@import './src/styles/variables.scss';
+
+.commentArea {
+  display: flex;
+  align-items: center;
+  column-gap: 1.25rem;
+  margin-bottom: 0.25rem;
+  flex-wrap: wrap;
+  justify-content: end;
+  width: 100%;
+}

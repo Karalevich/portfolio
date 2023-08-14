@@ -1,8 +1,6 @@
 import React, { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react'
 import styles from './Comments.module.scss'
-import { CommentFormComponent, CommentListComponent, CommentsComponent } from './types'
-import Input from '../../../Custom/Input/Input'
-import Comment from './Comment/Comment'
+import { CommentsComponent } from './types'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { getOpenedPostIdS } from '../../../../selectors/postSelector'
 import { CommentT } from '../../../../reducers/comment/types'
@@ -13,11 +11,12 @@ import {
   getLoadingCommentsS,
 } from '../../../../selectors/commentSelector'
 import { getUserS } from '../../../../selectors/userSelectors'
-import LoadingButton from '@mui/lab/LoadingButton'
 import CommentAvatar from './CommentAvatar/CommentAvatar'
 import { useMediaQuery } from '@mui/material'
 import { modalActions } from '../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../reducers/modal/types'
+import CommentList from './CommentList/CommentList'
+import CommentForm from './CommentForm/CommentForm'
 
 const Comments: CommentsComponent = () => {
   const [commentValue, setCommentValue] = useState('')
@@ -80,54 +79,3 @@ const Comments: CommentsComponent = () => {
 }
 
 export default Comments
-
-export const CommentList: CommentListComponent = ({ comments, getReplies }) => {
-  return (
-    <ul className={styles.comments}>
-      {comments.map((comment) => (
-        <Comment key={comment._id} {...comment} getReplies={getReplies} />
-      ))}
-    </ul>
-  )
-}
-
-export const CommentForm: CommentFormComponent = ({
-  value,
-  onChange,
-  onSubmit,
-  isLoadingComments,
-  disabled,
-}) => {
-  return (
-    <form className={styles.commentArea} onSubmit={onSubmit}>
-      <Input
-        className={styles.textarea}
-        value={value}
-        onChange={onChange}
-        fullWidth
-        multiline
-        rows={3}
-        sx={{
-          paddingTop: '2px',
-          '.MuiInputBase-inputMultiline': {
-            borderRadius: '0.625rem',
-            backgroundColor: 'var(--input-comment-bcg)',
-            boxShadow: `#767676 0 0 0 0.1rem`,
-          },
-        }}
-      />
-      <LoadingButton
-        type={'submit'}
-        disableElevation
-        variant='outlined'
-        size={'small'}
-        sx={{ alignSelf: 'end', zIndex: 1 }}
-        loading={isLoadingComments}
-        loadingPosition='center'
-        disabled={disabled}
-      >
-        Comment
-      </LoadingButton>
-    </form>
-  )
-}

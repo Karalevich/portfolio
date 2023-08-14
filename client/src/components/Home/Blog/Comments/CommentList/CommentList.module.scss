@@ -1,0 +1,13 @@
+@import './src/styles/variables.scss';
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .comments {
+    gap: 2rem;
+  }
+}
