@@ -6,7 +6,12 @@ export const CommentAvatar: CommentAvatarComponent = ({ name, imageUrl }) => {
   return (
     <>
       {imageUrl ? (
-        <img className={styles.userImage} src={imageUrl} alt={name || 'user'} />
+        <img
+          className={styles.userImage}
+          src={imageUrl}
+          alt={name || 'user'}
+          aria-label='avatar-image'
+        />
       ) : (
         <div className={styles.userImage}>{name && name[0].toUpperCase()}</div>
       )}

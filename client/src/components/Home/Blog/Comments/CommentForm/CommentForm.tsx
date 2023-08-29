@@ -1,16 +1,16 @@
-import { CommentFormComponent } from '../types'
 import styles from './CommentForm.module.scss'
 import Input from '../../../../Custom/Input/Input'
 import LoadingButton from '@mui/lab/LoadingButton'
 import React from 'react'
+import { CommentFormComponent } from './types'
 
 const CommentForm: CommentFormComponent = ({
-                                             value,
-                                             onChange,
-                                             onSubmit,
-                                             isLoadingComments,
-                                             disabled,
-                                           }) => {
+  value,
+  onChange,
+  onSubmit,
+  isLoadingComments,
+  disabled,
+}) => {
   return (
     <form className={styles.commentArea} onSubmit={onSubmit} aria-label='comment-form'>
       <Input

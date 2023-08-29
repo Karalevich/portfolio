@@ -88,7 +88,7 @@ export const Comment: CommentComponent = ({ author, message, _id, created_at, li
 
   return (
     <>
-      <li className={styles.comment}>
+      <li className={styles.comment} aria-label='comment'>
         <CommentAvatar name={author.name} imageUrl={author.imageUrl} />
         <article className={styles.message}>
           <div className={styles.wrapper}>

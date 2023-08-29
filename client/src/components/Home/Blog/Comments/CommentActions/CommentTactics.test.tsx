@@ -6,7 +6,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { CommentTacticsProps } from './types'
 
-
 // Mock Redux hooks
 jest.mock('../../../../../hooks/hooks', () => ({
   ...jest.requireActual('../../../../../hooks/hooks'),
@@ -52,7 +51,7 @@ describe('CommentTactics Component', () => {
     return render(
       <Provider store={mockedStore}>
         <CommentTactics {...mockedProps} />
-      </Provider>,
+      </Provider>
     )
   }
   test('renders the component correctly', () => {
@@ -81,7 +80,8 @@ describe('CommentTactics Component', () => {
   })
 
   test('opens the speed dial only with Share and Reply actions if user does not login', async () => {
-    renderComponent({
+    renderComponent(
+      {
         user: {
           user: null,
         },
@@ -105,7 +105,7 @@ describe('CommentTactics Component', () => {
     expect(listActions.length).toBe(2)
 
     expect(screen.getByLabelText('Share')).toBeInTheDocument()
-    expect( screen.getByLabelText('Reply')).toBeInTheDocument()
+    expect(screen.getByLabelText('Reply')).toBeInTheDocument()
   })
 
   test('calls the appropriate action on speed dial action click', async () => {

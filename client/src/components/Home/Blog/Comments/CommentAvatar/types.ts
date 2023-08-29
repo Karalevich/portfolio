@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-type CommentAvatarProps = {
+export type CommentAvatarProps = {
   name?: string
   imageUrl?: string
 }

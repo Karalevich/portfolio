@@ -59,7 +59,7 @@ const mockedInitialProps = {
   message: 'Test message',
   created_at: new Date('2023-05-21T00:15:39.043Z'),
   updated_at: new Date('2023-05-21T00:15:39.043Z'),
-  getReplies: (parentId: string) => ([]),
+  getReplies: (parentId: string) => [],
 }
 
 describe('Comment Component', () => {
@@ -82,7 +82,7 @@ describe('Comment Component', () => {
     return render(
       <Provider store={mockedStore}>
         <Comment {...mockedProps} />
-      </Provider>,
+      </Provider>
     )
   }
 
@@ -95,7 +95,6 @@ describe('Comment Component', () => {
     const message = screen.getByText(mockedInitialProps.message)
     const repliesButton = screen.queryByRole('button', { name: 'Show Replies' })
     const date = screen.getByText(createdDate)
-
 
     expect(authorName).toBeInTheDocument()
     expect(message).toBeInTheDocument()
@@ -121,7 +120,6 @@ describe('Comment Component', () => {
     await waitFor(() => {
       const formElement = screen.getByLabelText('comment-form')
       expect(formElement).toBeInTheDocument()
-
     })
 
     const buttonElement = screen.getByRole('button', { name: 'Comment' })
@@ -138,12 +136,18 @@ describe('Comment Component', () => {
     // Assert that the comment is submitted
     await waitFor(() => {
       // Assert that createPostThunk is called with the correct values
-      expect(addCommentThunk).toHaveBeenCalledWith(expect.any(Function), 'Test comment', 'test post Id', 'test comment id')
+      expect(addCommentThunk).toHaveBeenCalledWith(
+        expect.any(Function),
+        'Test comment',
+        'test post Id',
+        'test comment id'
+      )
     })
   })
 
   test('should show error when user does not activated account', async () => {
-    renderComponent({
+    renderComponent(
+      {
         ...mockedInitialState,
         user: {
           user: {
@@ -152,7 +156,8 @@ describe('Comment Component', () => {
           },
         },
       },
-      mockedInitialProps)
+      mockedInitialProps
+    )
 
     const actionsButton = screen.getByLabelText('SpeedDial controlled open example')
     await act(async () => {
@@ -169,7 +174,6 @@ describe('Comment Component', () => {
     await waitFor(() => {
       const formElement = screen.getByLabelText('comment-form')
       expect(formElement).toBeInTheDocument()
-
     })
 
     const buttonElement = screen.getByRole('button', { name: 'Comment' })
