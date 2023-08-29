@@ -5,14 +5,14 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import React from 'react'
 
 const CommentForm: CommentFormComponent = ({
-  value,
-  onChange,
-  onSubmit,
-  isLoadingComments,
-  disabled,
-}) => {
+                                             value,
+                                             onChange,
+                                             onSubmit,
+                                             isLoadingComments,
+                                             disabled,
+                                           }) => {
   return (
-    <form className={styles.commentArea} onSubmit={onSubmit}>
+    <form className={styles.commentArea} onSubmit={onSubmit} aria-label='comment-form'>
       <Input
         value={value}
         onChange={onChange}

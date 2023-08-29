@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import { AuthorT } from '../../types'
 
-type CommentTacticsProps = {
+export type CommentTacticsProps = {
   editAction?: () => void
   deleteAction?: () => void
   shareAction: () => void
