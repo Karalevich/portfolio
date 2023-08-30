@@ -4,12 +4,11 @@ import styles from './PostPage.module.scss'
 import { PostPageComponent } from './types'
 import * as DOMPurify from 'dompurify'
 import Breadcrumbs from '../../../Custom/Breadcrumbs/Breadcrumbs'
-import RecommendCard from './RecommendCard'
+import RecommendCard from '../RecommendCard/RecommendCard'
 import PostPageFooter from '../PostPageFooter/PostPageFooter'
 import React, { useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
 import { Button, Skeleton } from '@mui/material'
-import { RecommendCardT } from '../PostCard/types'
 import SkeletonPostPage from './SkeletonPostPage/SkeletonPostPage'
 import { modalActions } from '../../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../../reducers/modal/types'
@@ -22,6 +21,7 @@ import {
   getRelatedPostsS,
 } from '../../../../selectors/postSelector'
 import ShareGroup from '../../../Custom/ShareGroup/ShareGroup'
+import { RecommendCardT } from '../RecommendCard/types'
 
 export const PostPage: PostPageComponent = () => {
   const { id } = useParams()
@@ -73,7 +73,12 @@ export const PostPage: PostPageComponent = () => {
           <article className={styles.info}>
             <div className={styles.author}>
               {author?.imageUrl ? (
-                <img className={styles.authorImg} src={author.imageUrl} alt={'post author'} />
+                <img
+                  className={styles.authorImg}
+                  src={author.imageUrl}
+                  alt={'post author'}
+                  aria-label='post-author'
+                />
               ) : (
                 <span className={styles.authorImg}>{author?.name[0].toUpperCase()}</span>
               )}
@@ -119,10 +124,16 @@ export const PostPage: PostPageComponent = () => {
       <main>
         {!isFetchingPost && (
           <article className={styles.postContent}>
-            <img className={styles.mainImg} src={img as string} alt={'post preview'} />
+            <img
+              className={styles.mainImg}
+              src={img as string}
+              alt={'post preview'}
+              aria-label='post preview'
+            />
             <div
               dangerouslySetInnerHTML={{ __html: sanitizedContent as string }}
               className={'ql-editor'}
+              aria-label='content'
             />
           </article>
         )}

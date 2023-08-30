@@ -6,7 +6,7 @@ import { getRandomNumber } from '../../../../../utils/randomFromRange'
 
 export const SkeletonPostPage: SkeletonPostPageComponent = () => {
   return (
-    <section>
+    <section aria-label='skeleton post page'>
       <header>
         <h2>
           {' '}

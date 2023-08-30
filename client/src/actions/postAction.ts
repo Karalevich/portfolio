@@ -16,9 +16,10 @@ import { updateTagsType } from '../utils/updateTagsType'
 import { convertFileBeforeSendToServer } from '../utils/convertFileBeforeSendToServer'
 import { blogActions } from './blogAction'
 import { BlogActionT } from '../reducers/blog/types'
-import { CertainPostT, RecommendCardT } from '../components/Home/Blog/PostCard/types'
+import { CertainPostT } from '../components/Home/Blog/PostCard/types'
 import { notistackActions } from './notistackAction'
 import { NotistackActionT } from '../reducers/notistack/types'
+import { RecommendCardT } from '../components/Home/Blog/RecommendCard/types'
 
 export const postActions = {
   setCertainPostAC: (post: CertainPostT) =>

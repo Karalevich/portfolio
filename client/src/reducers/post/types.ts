@@ -1,8 +1,8 @@
 import { ActionT } from '../store'
-import { RecommendCardT } from '../../components/Home/Blog/PostCard/types'
 import { FileT } from '../blog/types'
 import { AuthorT } from '../../components/Home/Blog/types'
 import { postActions } from '../../actions/postAction'
+import { RecommendCardT } from '../../components/Home/Blog/RecommendCard/types'
 
 export type PostStateT = {
   relatedPosts: Array<RecommendCardT>

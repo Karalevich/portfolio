@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
-import styles from './PostPage.module.scss'
+import styles from './RecommendCard.module.scss'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline'
 import { Card, CardActionArea, CardMedia, Skeleton } from '@mui/material'
-import { RecommendCardComponent } from '../PostCard/types'
+import { RecommendCardComponent } from './types'
 
 const RecommendCard: RecommendCardComponent = ({ img, title, _id, date, author, isFetchingPosts }) => {
   const [isCardHover, setIsCardHover] = useState(false)
@@ -23,6 +23,7 @@ const RecommendCard: RecommendCardComponent = ({ img, title, _id, date, author, 
       elevation={isCardHover ? 8 : 0}
       onMouseEnter={toggleIsCardHover(true)}
       onMouseLeave={toggleIsCardHover(false)}
+      aria-label='recommend-card'
     >
       <CardActionArea className={styles.actionArea} onClick={handleRedirect}>
         {isFetchingPosts ? (

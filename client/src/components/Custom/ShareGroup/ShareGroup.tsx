@@ -21,7 +21,11 @@ export const ShareGroup: ShareGroupComponent = ({ id }) => {
     )
     icn.push(mediaIcon)
   }
-  return <ul className={styles.shareList}>{icn}</ul>
+  return (
+    <ul className={styles.shareList} aria-label='share-group'>
+      {icn}
+    </ul>
+  )
 }
 
 export default ShareGroup
