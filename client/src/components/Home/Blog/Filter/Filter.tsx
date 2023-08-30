@@ -35,11 +35,11 @@ export const Filter: FilterComponent = () => {
     )
 
     if (filterRef.current) {
-      observer.observe(filterRef.current)
+      observer.observe && observer.observe(filterRef.current)
     }
 
     return () => {
-      observer.disconnect()
+      observer.disconnect && observer.disconnect()
       dispatch(blogActions.setSortValueAC(0))
       dispatch(blogActions.setSearchValueAC(''))
     }
@@ -86,7 +86,7 @@ export const Filter: FilterComponent = () => {
   }
 
   return (
-    <article className={styles.filter} ref={filterRef}>
+    <article className={styles.filter} ref={filterRef} aria-label='filter'>
       <form className={styles.search} onSubmit={onSubmit}>
         <div className={styles.searchIconWrapper}>
           <SearchIcon />

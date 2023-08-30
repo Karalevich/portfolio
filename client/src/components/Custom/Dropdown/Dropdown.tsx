@@ -24,7 +24,7 @@ export const Dropdown: DropdownComponent = ({ selects, onSelect }) => {
   }
   return (
     <ClickAwayListener onClickAway={onClickAway}>
-      <div className={styles.select}>
+      <div className={styles.select} aria-label='dropdown'>
         <Tooltip title={'Select display order'} placement='top'>
           <Button onClick={handleClick} className={styles.selectButton} disableRipple>
             <p>{selectedItem}</p>
