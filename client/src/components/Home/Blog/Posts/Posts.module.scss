@@ -1,0 +1,33 @@
+@import './src/styles/variables.scss';
+
+.innerSlide {
+  padding-right: 1rem;
+}
+
+.paginatedLoader {
+  color: $paragraph !important;
+  position: absolute;
+  bottom: -2.2rem;
+  left: calc(50% - 1rem);
+}
+
+@media only screen and (max-width: 767px) {
+
+  .innerSlide {
+    padding-right: 0;
+    padding-left: calc(var(--slide-padding) * 1rem);
+  }
+
+  .lastSlide {
+    --offset-section: calc(100 / var(--posts-count));
+    --offset: calc(
+            (var(--offset-section) * (var(--posts-count) - 2) + (var(--offset-section) * 0.7)) * 1% * -1
+    );
+    transform: translateX(var(--offset)) translateX(0px) !important;
+  }
+
+  .sliderTray {
+    width: calc(var(--posts-count) * (var(--slide-padding) + var(--slide-width)) * 1rem) !important;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
+  }
+}

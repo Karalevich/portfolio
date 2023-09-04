@@ -1,11 +1,10 @@
 import React, { Fragment, useCallback, useContext, useEffect, useRef, useState } from 'react'
 import { CarouselContext, Slide, Slider } from 'pure-react-carousel'
-import { PLACEHOLDER_COUNT_POSTS, PLACEHOLDER_POST } from '../../../constants/personalInfo'
+import { PLACEHOLDER_COUNT_POSTS, PLACEHOLDER_POST } from '../../../../constants/personalInfo'
 import classnames from 'classnames'
-import styles from './Blog.module.scss'
-import { PostsContent } from './types'
-import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
-import { blogActions, getPaginatedPostsThunk, getPostsThunk } from '../../../actions/blogAction'
+import styles from './Posts.module.scss'
+import { useAppDispatch, useAppSelector } from '../../../../hooks/hooks'
+import { blogActions, getPaginatedPostsThunk, getPostsThunk } from '../../../../actions/blogAction'
 import {
   getAllPagesS,
   getCurrentPageS,
@@ -14,10 +13,11 @@ import {
   getPostsS,
   getSearchValueS,
   getSortValueS,
-} from '../../../selectors/blogSelectors'
-import PostCard from './PostCard/PostCard'
-import { PostT } from './PostCard/types'
+} from '../../../../selectors/blogSelectors'
+import PostCard from '../PostCard/PostCard'
+import { PostT } from '../PostCard/types'
 import { CircularProgress } from '@mui/material'
+import { PostsContent } from './types'
 
 const Posts: PostsContent = ({ isTabletOrMobile, isFullVersion }) => {
   const carouselContext = useContext(CarouselContext)

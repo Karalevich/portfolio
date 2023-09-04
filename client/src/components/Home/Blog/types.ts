@@ -11,8 +11,3 @@ export type AuthorT = {
   imageUrl: string
 }
 
-type PostsProps = {
-  isTabletOrMobile: boolean
-  isFullVersion: boolean
-}
-export type PostsContent = FunctionComponent<PostsProps>

@@ -23,8 +23,6 @@ export const PostPageFooter: PostPageFooterComponent = () => {
       // set post with new like for immediate response of user action
       dispatch(postActions.setLikestAC(userId))
       dispatch(likePostThunk(post._id))
-    } else {
-      console.log('You have to login first')
     }
   }
   return (
