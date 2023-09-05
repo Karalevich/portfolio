@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-type PostsProps = {
+export type PostsProps = {
   isTabletOrMobile: boolean
   isFullVersion: boolean
 }

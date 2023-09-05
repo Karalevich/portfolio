@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-type BlogProps = {
+export type BlogProps = {
   isFullVersion: boolean
 }
 export type BlogComponent = FunctionComponent<BlogProps>

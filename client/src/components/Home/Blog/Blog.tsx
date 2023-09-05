@@ -62,6 +62,7 @@ export const Blog: BlogComponent = ({ isFullVersion }) => {
             naturalSlideWidth={310}
             naturalSlideHeight={440}
             currentSlide={0}
+            aria-label='carousel'
           >
             <Posts isTabletOrMobile={isTabletOrMobile} isFullVersion={false} />
             <ButtonBack className={styles.buttonBack}>
