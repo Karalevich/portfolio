@@ -57,8 +57,8 @@ import clans from '../assets/img/services/clans.webp'
 import dockyard from '../assets/img/services/dockyard.avif'
 import ignition from '../assets/img/services/ignition.avif'
 import maplestory from '../assets/img/services/maplestory.avif'
-import { ContactCardProps } from '../components/Home/Contact/types'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
+import { ContactCardProps } from '../components/Home/Contact/ContactCard/types'
 
 export const SHARE = {
   Linkedin: [LinkedinShareIcon, LinkedinShareButton],

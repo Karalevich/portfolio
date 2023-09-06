@@ -3,7 +3,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import React from 'react'
 import styles from './Contact.module.scss'
 import * as yup from 'yup'
-import { ContactCardComponent, ContactComponent, ContactValuesT } from './types'
+import { ContactComponent, ContactValuesT } from './types'
 import Input from 'src/components/Custom/Input/Input'
 import { CONTACT_INFO } from 'src/constants/personalInfo'
 import Map from '../Map/Map'
@@ -11,6 +11,7 @@ import { FormikHelpers, useFormik } from 'formik'
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks'
 import { sendMessageFromContactFormThunk } from '../../../actions/serviceAction'
 import { getIsLoadingContactFormS } from '../../../selectors/serviceSelector'
+import ContactCard from './ContactCard/ContactCard'
 
 const validationContactSchema = yup.object({
   name: yup
@@ -130,25 +131,3 @@ export const Contact: ContactComponent = () => {
 
 export default Contact
 
-const ContactCard: ContactCardComponent = ({ info, icon }) => {
-  const infoList = info.map((inf) => (
-    <li className={styles.item} key={inf.title}>
-      <h4 className={styles.itemTitle}>{inf.title}:</h4>
-      <span className={styles.value}>
-        <a href={`${inf.href}`} target={'_blank'}>
-          {inf.value}
-        </a>
-      </span>
-    </li>
-  ))
-  return (
-    <Card className={styles.card} elevation={0}>
-      <header className={styles.header}>
-        <span className={styles.iconWrapper}>{icon({ fontSize: 'small' })}</span>
-      </header>
-      <main className={styles.main}>
-        <ul className={styles.infoList}>{infoList}</ul>
-      </main>
-    </Card>
-  )
-}

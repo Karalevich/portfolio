@@ -39,67 +39,6 @@
     flex-direction: column;
     justify-content: space-between;
   }
-
-  .card {
-    border-radius: 2px;
-    height: 32%;
-    padding: 1.5625rem 1.5625rem 1rem 1.5625rem;
-    display: flex;
-    flex-direction: column;
-    background-color: $background;
-    transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
-
-    .header {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1.9375rem;
-    }
-
-    .iconWrapper {
-      background-color: $element;
-      height: 2.5rem;
-      width: 2.5rem;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      svg {
-        color: $main-text;
-      }
-    }
-
-    .main {
-      flex: 1;
-    }
-
-    .infoList {
-      color: $paragraph;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .item {
-      list-style: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-
-      .itemTitle {
-        font-weight: 500;
-      }
-
-      .value {
-        transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-        &:hover {
-          color: $element;
-        }
-      }
-    }
-  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -114,50 +53,9 @@
       width: 100%;
     }
 
-    .card {
-      height: 16.917rem;
-      margin-bottom: 2rem;
-      padding: 2rem 2rem 1.5rem 2rem;
-
-      .iconWrapper {
-        height: 3.333rem;
-        width: 3.333rem;
-
-        svg {
-          font-size: 1.7rem;
-        }
-      }
-
-      .item {
-        .itemTitle {
-          font-size: 1.5rem;
-        }
-
-        .value {
-          font-size: 1.25rem;
-        }
-      }
-    }
-
     .send {
       font-size: 1.167rem;
       font-weight: 600;
-    }
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .contact {
-    .card {
-      .item {
-        .itemTitle {
-          font-size: 1.25rem;
-        }
-
-        .value {
-          font-size: 1rem;
-        }
-      }
     }
   }
 }
