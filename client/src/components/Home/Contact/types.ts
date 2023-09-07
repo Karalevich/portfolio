@@ -8,4 +8,3 @@ export type ContactValuesT = {
 }
 type ContactProps = {}
 export type ContactComponent = FunctionComponent<ContactProps>
-

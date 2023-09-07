@@ -11,6 +11,7 @@ export const Map: MapComponent = () => {
         allowFullScreen
         loading='lazy'
         referrerPolicy='no-referrer-when-downgrade'
+        data-testid='map-iframe'
       />
     </section>
   )

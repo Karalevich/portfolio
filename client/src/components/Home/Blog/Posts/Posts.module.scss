@@ -12,7 +12,6 @@
 }
 
 @media only screen and (max-width: 767px) {
-
   .innerSlide {
     padding-right: 0;
     padding-left: calc(var(--slide-padding) * 1rem);
@@ -21,7 +20,7 @@
   .lastSlide {
     --offset-section: calc(100 / var(--posts-count));
     --offset: calc(
-            (var(--offset-section) * (var(--posts-count) - 2) + (var(--offset-section) * 0.7)) * 1% * -1
+      (var(--offset-section) * (var(--posts-count) - 2) + (var(--offset-section) * 0.7)) * 1% * -1
     );
     transform: translateX(var(--offset)) translateX(0px) !important;
   }

@@ -44,7 +44,7 @@ describe('AddPost Component', () => {
     return render(
       <Provider store={mockedStore}>
         <AddPost />
-      </Provider>,
+      </Provider>
     )
   }
 
@@ -130,7 +130,7 @@ describe('AddPost Component', () => {
           content: '<p>Test content with at lest 5 word</p>',
           img: [mockFile],
         },
-        mockNavigate,
+        mockNavigate
       )
     })
   })
@@ -159,7 +159,7 @@ describe('AddPost Component', () => {
     await userEvent.type(descriptionInput, 'Test description')
     await userEvent.type(
       tagsInput,
-      'testTag testTag testTag testTag testTag testTag testTag testTag testTag',
+      'testTag testTag testTag testTag testTag testTag testTag testTag testTag'
     )
 
     // Submit the form
@@ -227,13 +227,13 @@ describe('AddPost Component', () => {
     await userEvent.type(titleInput, 'Test title')
     await userEvent.type(
       descriptionInput,
-      'Test description with correct test length test string test string test string test string test string',
+      'Test description with correct test length test string test string test string test string test string'
     )
     await userEvent.type(tagsInput, 'testTag')
     await waitFor(() =>
       fireEvent.change(fileInput, {
         target: { files: [mockFile] },
-      }),
+      })
     )
 
     // Submit the form

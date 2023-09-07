@@ -79,7 +79,7 @@ describe('PostPageFooter Component', () => {
             <Route path='/postPageFooter' element={<PostPageFooter />} />
           </Routes>
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     )
   }
 

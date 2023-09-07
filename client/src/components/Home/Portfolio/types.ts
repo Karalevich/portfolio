@@ -12,9 +12,3 @@ export type ProjectT = {
   linkRepo?: string
   comingSoon?: boolean
 }
-
-type TabPanelProps = {
-  dir?: string
-  projects: Array<ProjectT>
-}
-export type TabPanelComponent = FunctionComponent<TabPanelProps>

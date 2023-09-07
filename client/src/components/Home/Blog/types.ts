@@ -10,4 +10,3 @@ export type AuthorT = {
   name: string
   imageUrl: string
 }
-

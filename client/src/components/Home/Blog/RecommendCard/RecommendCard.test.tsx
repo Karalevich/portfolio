@@ -38,7 +38,7 @@ describe('PostPageFooter Component', () => {
             <Route path={`/blog/post/${mockedInitialProps._id}`} element={<div>Test post</div>} />
           </Routes>
         </MemoryRouter>
-      </Provider>,
+      </Provider>
     )
   }
 
@@ -107,6 +107,4 @@ describe('PostPageFooter Component', () => {
     await userEvent.unhover(recommendElement)
     expect(recommendElement).toHaveStyle('box-shadow: none')
   })
-
-
 })

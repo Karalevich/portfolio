@@ -54,7 +54,7 @@ describe('Blog Component', () => {
     return render(
       <Provider store={mockedStore}>
         <Blog {...mockedProps} />
-      </Provider>,
+      </Provider>
     )
   }
 
@@ -79,5 +79,4 @@ describe('Blog Component', () => {
 
     expect(carouselElement).toBeInTheDocument()
   })
-
 })

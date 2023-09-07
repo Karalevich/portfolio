@@ -13,7 +13,6 @@ jest.mock('../../../hooks/hooks', () => ({
   useAppDispatch: jest.fn(),
 }))
 
-
 jest.mock('../../../actions/serviceAction', () => ({
   sendMessageFromContactFormThunk: jest.fn(),
 }))
@@ -21,7 +20,6 @@ jest.mock('../../../actions/serviceAction', () => ({
 const initialMockedState = {
   isLoadingContactForm: false,
 }
-
 
 describe('Contact Component', () => {
   beforeEach(() => {
@@ -41,7 +39,7 @@ describe('Contact Component', () => {
     return render(
       <Provider store={mockedStore}>
         <Contact />
-      </Provider>,
+      </Provider>
     )
   }
 
@@ -85,11 +83,11 @@ describe('Contact Component', () => {
       expect(sendMessageFromContactFormThunk).toHaveBeenCalledWith(
         {
           name: 'Test type',
-          email:'test@gmail.com',
+          email: 'test@gmail.com',
           subject: 'test subject',
           message: 'Test content with at lest 5 word',
         },
-        expect.any(Function),
+        expect.any(Function)
       )
     })
   })
@@ -105,7 +103,10 @@ describe('Contact Component', () => {
 
     await userEvent.type(name, 'Te')
     await userEvent.type(email, 'testgmail.com')
-    await userEvent.type(subject, 'test subject test subject test subject test subject test subject test subject test subject test subject test subject test subject test subject test subject ')
+    await userEvent.type(
+      subject,
+      'test subject test subject test subject test subject test subject test subject test subject test subject test subject test subject test subject test subject '
+    )
     await userEvent.type(message, 'Test content with')
 
     // Submit the form
@@ -118,5 +119,4 @@ describe('Contact Component', () => {
       expect(screen.getByText('Message should have at least 5 words')).toBeInTheDocument()
     })
   })
-
 })

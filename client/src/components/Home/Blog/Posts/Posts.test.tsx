@@ -7,7 +7,6 @@ import { PostsProps } from './types'
 import { PLACEHOLDER_COUNT_POSTS } from '../../../../constants/personalInfo'
 import { CarouselProvider } from 'pure-react-carousel'
 
-
 // Mock Redux hooks
 jest.mock('../../../../hooks/hooks', () => ({
   ...jest.requireActual('../../../../hooks/hooks'),
@@ -87,7 +86,7 @@ describe('Posts Component', () => {
         >
           <Posts {...mockedProps} />
         </CarouselProvider>
-      </Provider>,
+      </Provider>
     )
   }
 
@@ -100,10 +99,13 @@ describe('Posts Component', () => {
   })
 
   test('render correct count of placeholder post card', () => {
-    renderComponent({
-      ...mockedInitialState,
-      isFetchingPosts: true,
-    }, mockedInitialProps)
+    renderComponent(
+      {
+        ...mockedInitialState,
+        isFetchingPosts: true,
+      },
+      mockedInitialProps
+    )
 
     const cardElements = screen.getAllByTestId('mock-card')
 
