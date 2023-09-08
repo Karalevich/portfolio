@@ -32,7 +32,6 @@ import {
 import GitHubIcon from '@mui/icons-material/GitHub'
 import React from 'react'
 import { PortfolioT, PORTFOLIO_TOPIC, ServiceT } from './types'
-import { PriceItemProps } from '../components/Home/Price/types'
 import me from '../assets/img/Me.webp'
 import { RecommendationProps } from 'src/components/Home/Recommendations/types'
 import easyGame from '../assets/img/portfolio/easy-game.webp'
@@ -59,6 +58,7 @@ import ignition from '../assets/img/services/ignition.avif'
 import maplestory from '../assets/img/services/maplestory.avif'
 import { ServicePageT } from '../components/Home/Services/ServicePage/types'
 import { ContactCardProps } from '../components/Home/Contact/ContactCard/types'
+import { PriceItemProps } from '../components/Home/Price/PriceItem/types'
 
 export const SHARE = {
   Linkedin: [LinkedinShareIcon, LinkedinShareButton],

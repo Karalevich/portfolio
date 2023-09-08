@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react'
 import { ProjectT } from '../types'
 
-type TabPanelProps = {
+export type TabPanelProps = {
   dir?: string
   projects: Array<ProjectT>
 }

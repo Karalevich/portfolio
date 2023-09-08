@@ -5,7 +5,7 @@ import SectionHeader from '../SectionHeader/SectionHeader'
 import { Tab, Tabs } from '@mui/material'
 import { PORTFOLIO } from 'src/constants/personalInfo'
 import { PORTFOLIO_TOPIC } from '../../../constants/types'
-import { TabPanel } from './TabPanel/TabPanel'
+import TabPanel from './TabPanel/TabPanel'
 
 export const Portfolio: PortfolioComponent = () => {
   const [tabIndex, setTab] = useState(PORTFOLIO_TOPIC.ALL)
@@ -19,7 +19,7 @@ export const Portfolio: PortfolioComponent = () => {
   )
 
   return (
-    <section className={styles.portfolio}>
+    <section className={styles.portfolio} aria-label='portfolio'>
       <SectionHeader
         title={'Portfolio'}
         introduction={`Web technologies are not only my job but also hobby to which I devote all my 

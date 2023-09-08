@@ -4,15 +4,15 @@ import MovingIcon from '@mui/icons-material/Moving'
 import React from 'react'
 import { TabPanelComponent } from './types'
 
-export const TabPanel: TabPanelComponent = ({ projects, ...other }) => {
+const TabPanel: TabPanelComponent = ({ projects, ...other }) => {
   return (
-    <div className={styles.tabPanel} role='tabpanel' {...other}>
+    <div className={styles.tabPanel} aria-label='tabpanel-wrapper' {...other}>
       <ul className={styles.projectList}>
-        {projects.map(({ linkDemo, linkRepo, comingSoon, img }, index) => (
-          <li key={index} className={styles.project}>
+        {projects.map(({ linkDemo, linkRepo, comingSoon, img, name }, index) => (
+          <li key={index} className={styles.project} aria-label='project-tab'>
             <Card className={styles.card} elevation={0}>
               <div className={styles.imageWrapper}>
-                <img className={styles.previewImg} src={img} alt={'project image'} loading={'lazy'} />
+                <img className={styles.previewImg} src={img} alt={name} loading={'lazy'} />
                 <div className={styles.redirect}>
                   <div className={styles.buttonGroup}>
                     {linkDemo && (
@@ -46,3 +46,5 @@ export const TabPanel: TabPanelComponent = ({ projects, ...other }) => {
     </div>
   )
 }
+
+export default TabPanel
