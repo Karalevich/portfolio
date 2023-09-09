@@ -20,7 +20,7 @@ const PriceItem: PriceItemComponent = ({ title, description, price, isPopular, d
 
   const dutiesList = duties.map((duty) => {
     return (
-      <li className={styles.duty} key={duty.name}>
+      <li className={styles.duty} key={duty.name} aria-label='duty'>
         {duty.isRequired ? (
           <CheckIcon className={styles.check} />
         ) : (
@@ -37,6 +37,7 @@ const PriceItem: PriceItemComponent = ({ title, description, price, isPopular, d
         elevation={isCardHover ? 2 : 0}
         onMouseEnter={toggleIsCardHover(true)}
         onMouseLeave={toggleIsCardHover(false)}
+        aria-label='price-item'
       >
         <header className={styles.header}>
           {isPopular && <span className={styles.popular}>Most Popular</span>}

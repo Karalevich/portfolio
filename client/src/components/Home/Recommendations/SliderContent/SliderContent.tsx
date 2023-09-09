@@ -1,14 +1,13 @@
 import React, { ReactElement, useContext, useEffect, useState } from 'react'
-
 import { CarouselContext, Slide, Slider } from 'pure-react-carousel'
-import { SliderContentComponent } from './types'
-import { StarIcon } from '../../Custom/Icons'
-import styles from './Recommendations.module.scss'
-import Card from '@mui/material/Card/Card'
-import { Avatar, Button } from '@mui/material'
-import { linkedInRecommendations, RECOMMENDATIONS } from '../../../constants/personalInfo'
+import { StarIcon } from '../../../Custom/Icons'
+import styles from './SliderContent.module.scss'
+import { Avatar, Button, Card } from '@mui/material'
+import { linkedInRecommendations, RECOMMENDATIONS } from '../../../../constants/personalInfo'
 import MovingIcon from '@mui/icons-material/Moving'
 import classnames from 'classnames'
+
+import { SliderContentComponent } from './types'
 
 const SliderContent: SliderContentComponent = ({ isTabletOrMobile }) => {
   const carouselContext = useContext(CarouselContext)
@@ -59,6 +58,7 @@ const SliderContent: SliderContentComponent = ({ isTabletOrMobile }) => {
 
   return (
     <Slider
+      aria-label='slider'
       classNameAnimation={classnames({
         [styles.lastSlide]: currentSlide === RECOMMENDATIONS.length - 1,
         [styles.sliderTray]: isTabletOrMobile,

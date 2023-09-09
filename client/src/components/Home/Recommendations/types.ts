@@ -11,8 +11,3 @@ export type RecommendationProps = {
   image: string
   index?: number
 }
-
-type SliderContentComponentProps = {
-  isTabletOrMobile: boolean
-}
-export type SliderContentComponent = FunctionComponent<SliderContentComponentProps>

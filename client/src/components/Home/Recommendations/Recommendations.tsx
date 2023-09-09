@@ -5,7 +5,7 @@ import SectionHeader from '../SectionHeader/SectionHeader'
 import { RECOMMENDATIONS } from '../../../constants/personalInfo'
 import { CarouselProvider, DotGroup } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
-import SliderContent from './SliderContent'
+import SliderContent from './SliderContent/SliderContent'
 import DynamicCSS from '../../Custom/DynamicCSS/DynamicCSS'
 import { useMediaQuery } from '@mui/material'
 
