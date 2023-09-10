@@ -41,7 +41,11 @@ export const ServicePage: ServicePageComponent = () => {
         </div>
       )}
       {text.map((t, index) => (
-        <p key={index} className={classnames(styles.text, { [styles.mainIdea]: !image && index === 0 })}>
+        <p
+          aria-label='example-item'
+          key={index}
+          className={classnames(styles.text, { [styles.mainIdea]: !image && index === 0 })}
+        >
           {t}
         </p>
       ))}

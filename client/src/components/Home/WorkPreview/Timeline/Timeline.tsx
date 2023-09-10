@@ -47,7 +47,7 @@ export const Timeline: TimelineComponent = ({ setObserver }) => {
   }, [])
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} aria-label='time-line'>
       {WORK_HISTORY.map((step, index) => (
         <Fragment key={step.date}>
           <div id={`timeline${index}`} ref={timelines[index]} className={styles.timeline} />

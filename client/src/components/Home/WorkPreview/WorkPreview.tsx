@@ -17,10 +17,8 @@ export const WorkPreview: WorkPreviewComponent = () => {
     <section className={styles.workPreview}>
       <SectionHeader
         title={'Work History'}
-        introduction={
-          'I have a broad range of projects that I worked on: ' +
-          'huge B2B platform, E-commerce and game companies like Wargaming and Nexon America which have different target markets.'
-        }
+        introduction={`I have a broad range of projects that I worked on huge B2B platform, E-commerce and game companies like 
+          Wargaming and Nexon America which have different target markets.`}
       />
 
       <Switch className={styles.switch} checked={hasReverse} onChange={handleSwitch} />
