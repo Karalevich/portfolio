@@ -1,0 +1,29 @@
+@import './src/styles/variables';
+
+.footer {
+  width: 100%;
+  margin-top: 1.5625rem;
+  padding-bottom: 1.5625rem;
+  border-bottom: 1.5px solid $substrate2;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  color: $main-text;
+
+  .info {
+    margin-bottom: 0.625rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .property {
+      padding: 0 0.3125rem;
+      box-sizing: border-box;
+      background-color: $element;
+    }
+
+    .available {
+      color: $available;
+    }
+  }
+}

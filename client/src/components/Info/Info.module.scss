@@ -1,38 +1,5 @@
 @import './src/styles/variables';
 
-.infoFixed,
-.infoAbsolute {
-  width: 21.18%;
-  max-width: $max-info-width;
-  background-color: $background;
-  padding: 5.55vh 2.81rem 2.775vh 2.5rem;
-  transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-  .download {
-    width: 100%;
-    margin-top: 1.558rem;
-    height: 2.5rem;
-    line-height: 1.5rem;
-
-    svg {
-      font-size: 1rem;
-      margin-left: 1rem;
-    }
-  }
-}
-
-.infoFixed {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-}
-
-.infoAbsolute {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
 .mobile {
   display: none;
 }
@@ -44,12 +11,4 @@
   .fullScreen {
     display: none;
   }
-  .infoFixed,
-  .infoAbsolute {
-    position: initial;
-    width: 22rem;
-  }
-}
-
-@media only screen and (min-width: 1024px) {
 }
