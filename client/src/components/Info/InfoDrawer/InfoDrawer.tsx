@@ -12,8 +12,9 @@ import { Button } from '@mui/material'
 import { DownloadIcon } from '../../Custom/Icons'
 import { InfoDrawerComponent } from './types'
 
-export const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawer, className }, ref) => {
+const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawer, className }, ref) => {
   const dispatch = useAppDispatch()
+
   const onClickHandler = async () => {
     const response = await fetch(cv)
     const blob = await response.blob()
@@ -32,6 +33,7 @@ export const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawe
       })
     )
   }
+
   return (
     <aside
       ref={ref}
@@ -58,3 +60,5 @@ export const InfoDrawer: InfoDrawerComponent = forwardRef(({ isFixed, closeDrawe
     </aside>
   )
 })
+
+export default InfoDrawer

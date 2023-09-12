@@ -2,7 +2,7 @@ import React, { forwardRef, KeyboardEvent, MouseEvent } from 'react'
 import styles from './Info.module.scss'
 import { InfoComponent } from './types'
 import { Drawer, useMediaQuery } from '@mui/material'
-import { InfoDrawer } from './InfoDrawer/InfoDrawer'
+import InfoDrawer from './InfoDrawer/InfoDrawer'
 
 export const Info: InfoComponent = forwardRef(({ isOpen, toggleInfo, isFixed }, ref) => {
   const isTabletOrMobile = useMediaQuery('(max-width: 1023px)')

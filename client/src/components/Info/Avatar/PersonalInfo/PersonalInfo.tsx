@@ -7,7 +7,7 @@ const PersonalInfo: PersonalInfoComponent = () => {
   const infos = []
   for (const [key, value] of Object.entries(INFO)) {
     const info = (
-      <div className={styles.info} key={key}>
+      <div className={styles.info} key={key} aria-label={key}>
         <span className={styles.property}>{key}:</span>
         <span className={classnames(styles.value, { [styles.available]: key === 'Status' })}>
           {value}
@@ -16,7 +16,11 @@ const PersonalInfo: PersonalInfoComponent = () => {
     )
     infos.push(info)
   }
-  return <footer className={styles.footer}>{infos}</footer>
+  return (
+    <footer className={styles.footer} aria-label='personal-info'>
+      {infos}
+    </footer>
+  )
 }
 
 export default PersonalInfo

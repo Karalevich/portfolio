@@ -18,7 +18,7 @@ export const Skills: SkillsComponent = ({ title, skills, isProgressBar }) => {
         </>
       ) : (
         <>
-          <div className={styles.extra}>
+          <div className={styles.extra} aria-label='extra-skill'>
             <ExtraSkillIcon className={styles.extraSkill} />
             <span>{skill.skillName}</span>
           </div>

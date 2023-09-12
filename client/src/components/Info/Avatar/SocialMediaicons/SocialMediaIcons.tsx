@@ -9,14 +9,18 @@ const SocialMediaIcons: SocialMedialIconsComponent = () => {
     const [icon, link] = value
     const mediaIcon = (
       <Tooltip title={key} placement='top' key={key} arrow>
-        <a href={link as string} target='_blank' className={styles.link}>
+        <a href={link as string} target='_blank' className={styles.link} aria-label={key}>
           <div className={styles.iconWrapper}>{icon}</div>
         </a>
       </Tooltip>
     )
     icn.push(mediaIcon)
   }
-  return <main className={styles.socialMedia}>{icn}</main>
+  return (
+    <main className={styles.socialMedia} aria-label={'social-media'}>
+      {icn}
+    </main>
+  )
 }
 
 export default SocialMediaIcons
