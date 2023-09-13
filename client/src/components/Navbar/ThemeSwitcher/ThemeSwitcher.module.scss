@@ -5,6 +5,16 @@
   margin-bottom: 22.2vh;
   display: flex;
   justify-content: center;
+  position: relative;
+
+  .checkbox {
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
 
   .switcher {
     cursor: pointer;

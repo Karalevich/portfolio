@@ -16,10 +16,10 @@ export const Menu: MenuComponent = ({ toggleNav, toggleInfo }) => {
 
   return (
     <header className={styles.menu}>
-      <IconButton onClick={openInfo} className={styles.icon}>
+      <IconButton onClick={openInfo} className={styles.icon} aria-label='MenuIcon'>
         <MenuIcon />
       </IconButton>
-      <IconButton onClick={openNav} className={styles.icon}>
+      <IconButton onClick={openNav} className={styles.icon} aria-label='MoreVertIcon'>
         <MoreVertIcon />
       </IconButton>
     </header>

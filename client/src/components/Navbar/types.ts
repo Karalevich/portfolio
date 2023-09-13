@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-type NavProps = {
+export type NavProps = {
   toggleNav: (open: boolean) => void
   isOpen: boolean
 }

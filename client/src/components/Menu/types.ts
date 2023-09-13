@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-type MenuProps = {
+export type MenuProps = {
   toggleNav: (open: boolean) => void
   toggleInfo: (open: boolean) => void
 }

@@ -9,11 +9,12 @@ import NavTabs from './NavTabs/NavTabs'
 import { useAppDispatch } from '../../hooks/hooks'
 import { notistackActions } from '../../actions/notistackAction'
 
-export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
+const Nav: NavComponent = ({ toggleNav, isOpen }) => {
   const [theme, setTheme] = useState<Array<CSSProp>>(LIGHT)
   const [isLightTheme, setIsLightTheme] = useState(true)
   const isTabletOrMobile = useMediaQuery('(max-width: 1023px)')
   const dispatch = useAppDispatch()
+
   const handleSwitchTheme = () => {
     setIsLightTheme(!isLightTheme)
     dispatch(
@@ -30,6 +31,7 @@ export const Nav: NavComponent = ({ toggleNav, isOpen }) => {
       setTheme(LIGHT)
     }
   }
+
   const toggleDrawer = (open: boolean) => (event: KeyboardEvent | MouseEvent) => {
     if (
       event &&

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-type NavTabsProps = {
+export type NavTabsProps = {
   className?: string
   closeDrawer?: () => void
   handleSwitchTheme: () => void

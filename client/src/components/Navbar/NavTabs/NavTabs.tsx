@@ -10,7 +10,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { IndexToTabNameT, TabNameToIndexT } from '../types'
 import { styled } from '@mui/material/styles'
 import classnames from 'classnames'
-import { SvgIconProps, Tab, Tabs } from '@mui/material'
+import { Tab, Tabs } from '@mui/material'
 import { getIsFetchingLogoutS, getUserS } from '../../../selectors/userSelectors'
 import { modalActions } from '../../../actions/modalAction'
 import { MODAL_TYPE } from '../../../reducers/modal/types'
@@ -89,44 +89,56 @@ export const NavTabs: NavTabsComponent = ({
       >
         <Tab
           icon={
-            <IconWrapper name={'Home'}>
-              <HomeIcon />
-            </IconWrapper>
+            <Tooltip title={'Home'} placement='top' arrow>
+              <div className={styles.iconWrapper}>
+                <HomeIcon />
+              </div>
+            </Tooltip>
           }
         />
         <Tab
           icon={
-            <IconWrapper name={'Services'}>
-              <ServicesIcon />
-            </IconWrapper>
+            <Tooltip title={'Services'} placement='top' arrow>
+              <div className={styles.iconWrapper}>
+                <ServicesIcon />
+              </div>
+            </Tooltip>
           }
         />
         <Tab
           icon={
-            <IconWrapper name={'CV'}>
-              <CvIcon />
-            </IconWrapper>
+            <Tooltip title={'CV'} placement='top' arrow>
+              <div className={styles.iconWrapper}>
+                <CvIcon />
+              </div>
+            </Tooltip>
           }
         />
         <Tab
           icon={
-            <IconWrapper name={'Portfolio'}>
-              <PortfolioIcon />
-            </IconWrapper>
+            <Tooltip title={'Portfolio'} placement='top' arrow>
+              <div className={styles.iconWrapper}>
+                <PortfolioIcon />
+              </div>
+            </Tooltip>
           }
         />
         <Tab
           icon={
-            <IconWrapper name={'Blog'}>
-              <BlogIcon />
-            </IconWrapper>
+            <Tooltip title={'Blog'} placement='top' arrow>
+              <div className={styles.iconWrapper}>
+                <BlogIcon />
+              </div>
+            </Tooltip>
           }
         />
         <Tab
           icon={
-            <IconWrapper name={'Contact'}>
-              <ContactIcon />
-            </IconWrapper>
+            <Tooltip title={'Contact'} placement='top' arrow>
+              <div className={styles.iconWrapper}>
+                <ContactIcon />
+              </div>
+            </Tooltip>
           }
         />
       </StyledTabs>
@@ -163,20 +175,5 @@ const StyledTabs = styled(Tabs)(({}) => ({
     borderRadius: '3px',
   },
 }))
-
-function IconWrapper(props: SvgIconProps) {
-  const renderChildren = () => {
-    return React.Children.map(props.children, (child) => {
-      if (React.isValidElement(child)) {
-        return React.cloneElement(child, props)
-      }
-    })
-  }
-  return (
-    <Tooltip title={props.name} placement='top' arrow>
-      <div className={styles.iconWrapper}>{renderChildren()}</div>
-    </Tooltip>
-  )
-}
 
 export default NavTabs

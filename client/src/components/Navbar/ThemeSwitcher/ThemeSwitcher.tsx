@@ -11,8 +11,9 @@ export const ThemeSwitcher: ThemeSwitcherComponent = ({ handleSwitchTheme, isLig
 
   return (
     <div className={styles.wrapper}>
+      <input type='checkbox' className={styles.checkbox} onClick={switchTheme} />
       <SwitchThemeIcon
-        onClick={switchTheme}
+        aria-label='switch-theme-icon'
         className={classname(styles.switcher, {
           [styles.light]: isLightTheme,
           [styles.dark]: !isLightTheme,
