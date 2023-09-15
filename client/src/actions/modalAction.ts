@@ -38,7 +38,6 @@ export const closeModalThunk = (): ThunkT<ModalActionT | NotistackActionT> => as
     await delay
     dispatch(modalActions.resetModalDataAC())
   } catch (e) {
-    console.log(e)
     dispatch(
       notistackActions.enqueueSnackbarAC({
         message: 'Sorry, there was an error while closing modal',

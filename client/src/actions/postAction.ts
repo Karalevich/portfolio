@@ -72,7 +72,6 @@ export const getCertainPostThunk =
       await dispatch(getPostsByTagsThunk(data.tags.join()))
       dispatch(postActions.setCertainPostAC(data))
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while fetching post',
@@ -94,7 +93,6 @@ export const getPostsByTagsThunk =
       const { data } = await api.fetchPostsByTags(tags)
       dispatch(postActions.setRelatedPostsAC(data))
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while fetching posts',
@@ -132,7 +130,6 @@ export const createPostThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while creating post',
@@ -172,7 +169,6 @@ export const updatePostThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while updating post',
@@ -193,7 +189,6 @@ export const likePostThunk =
       const { data } = await api.likePost(id)
       dispatch(postActions.setCertainPostAC(data))
     } catch (e) {
-      console.log(e)
       const user = getState().user?.user
       user && dispatch(postActions.setLikestAC(user.id))
       dispatch(

@@ -30,7 +30,6 @@ export const sendMessageFromContactFormThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while sending message',

@@ -95,7 +95,6 @@ export const deletePostThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while deleting post',
@@ -117,7 +116,6 @@ export const getPostsThunk =
       const { data } = await api.fetchPosts(searchQuery, sortQuery, page)
       dispatch(blogActions.setPostsAC(data.posts, data.allPages))
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while fetching posts',
@@ -139,7 +137,6 @@ export const getPaginatedPostsThunk =
       const { data } = await api.fetchPosts(searchQuery, sortQuery, page)
       dispatch(blogActions.addPostsAC(data.posts, data.allPages))
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while fetching posts',

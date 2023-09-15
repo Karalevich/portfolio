@@ -63,7 +63,6 @@ export const setUsedData =
       localStorage.setItem(USER, JSON.stringify({ user, token: saveToken }))
       dispatch(userActions.setAuthAC(user, saveToken))
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error saving user',
@@ -80,7 +79,6 @@ export const removeUsedData = (): ThunkT<UserActionsT | NotistackActionT> => asy
     localStorage.removeItem(USER)
     dispatch(userActions.removeAuthAC())
   } catch (e) {
-    console.log(e)
     dispatch(
       notistackActions.enqueueSnackbarAC({
         message: 'Sorry, there was an error while removing user',
@@ -106,7 +104,6 @@ export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async 
       })
     )
   } catch (e) {
-    console.log(e)
     dispatch(
       notistackActions.enqueueSnackbarAC({
         message: 'Sorry, there was an error while logout',
@@ -126,7 +123,6 @@ export const checkAuth = (): ThunkT<UserActionsT | NotistackActionT> => async (d
     const { data } = await api.refresh()
     await dispatch(setUsedData(data.user, data.accessToken))
   } catch (e) {
-    console.log(e)
   } finally {
     dispatch(userActions.setFetchingLogoutAC(false))
   }
@@ -158,7 +154,6 @@ export const googleSuccessThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while login',
@@ -189,7 +184,6 @@ export const signUpThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while creating account',
@@ -222,7 +216,6 @@ export const signInThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while signin',
@@ -250,7 +243,6 @@ export const resentActivationLinkThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while resent link',
@@ -271,7 +263,7 @@ export const resentActivationLinkThunk =
 //     })
 //     dispatch(setUsedData(data.user, data.token))
 //   } catch (e) {
-//     console.log(e)
+//
 //   }
 // }
 //
@@ -280,7 +272,7 @@ export const resentActivationLinkThunk =
 //     const { data } = await api.updateUserImage({ newUserImage, email })
 //     dispatch(setUsedData(data.user, data.token))
 //   } catch (e) {
-//     console.log(e)
+//
 //   }
 // }
 

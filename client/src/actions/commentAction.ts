@@ -101,7 +101,6 @@ export const addCommentThunk =
       dispatch(commentActions.addCommentAC(data))
       dispatch(commentActions.setCountCommentsAC(getState().comment.commentsCount + 1))
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while commenting',
@@ -125,7 +124,6 @@ export const getCommentsThunk =
       dispatch(commentActions.setCountCommentsAC(data.commentsCount))
       dispatch(commentActions.setPagesCountAC(data.pagesCount))
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while fetching comments',
@@ -156,7 +154,6 @@ export const deleteCommentThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while deleting',
@@ -190,7 +187,6 @@ export const updateCommentThunk =
         })
       )
     } catch (e) {
-      console.log(e)
       dispatch(
         notistackActions.enqueueSnackbarAC({
           message: 'Sorry, there was an error while updating',
@@ -210,7 +206,6 @@ export const likeCommentThunk =
     try {
       await api.likeComment(commentId)
     } catch (e) {
-      console.log(e)
       // if the response got with an error we cancel action of setting like in global state
       dispatch(commentActions.setLikeCommentAC(userId, commentId))
       dispatch(
