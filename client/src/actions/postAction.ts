@@ -69,7 +69,7 @@ export const getCertainPostThunk =
     try {
       dispatch(postActions.setFetchingCertainPostAC(true))
       const { data } = await api.fetchCertainPost(id)
-      await dispatch(getPostsByTagsThunk(data.tags.join()))
+      await dispatch(exports.getPostsByTagsThunk(data.tags.join())) // for test purposes use export
       dispatch(postActions.setCertainPostAC(data))
     } catch (e) {
       dispatch(
@@ -105,6 +105,7 @@ export const getPostsByTagsThunk =
       dispatch(postActions.setFetchingRelatedPostsAC(false))
     }
   }
+
 export const createPostThunk =
   (
     post: PostFromFormWithArrayImgT,
@@ -142,6 +143,7 @@ export const createPostThunk =
       dispatch(postActions.setFetchingFormAC(false))
     }
   }
+
 export const updatePostThunk =
   (
     id: string,
