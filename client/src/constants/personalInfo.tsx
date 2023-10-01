@@ -45,6 +45,7 @@ import shoeSore from '../assets/img/portfolio/shoe.webp'
 import portfolio from '../assets/img/portfolio/portfolio.webp'
 import crypto from '../assets/img/portfolio/crypto.webp'
 import capSore from '../assets/img/portfolio/cap-store.webp'
+import slotMachine from '../assets/img/portfolio/slot-machine.webp'
 import startup from '../assets/img/portfolio/startup.avif'
 import demandbase from '../assets/img/services/demandbase.avif'
 import nexon from '../assets/img/services/nexon.avif'
@@ -606,10 +607,10 @@ export const PORTFOLIO: PortfolioT = {
       topic: PORTFOLIO_TOPIC.LANDING,
     },
     {
-      name: 'space adventures',
-      img: spaceAdventure,
-      linkDemo: 'https://spacedventures.netlify.app',
-      linkRepo: 'https://github.com/AndreyKorolevich/space-adventure',
+      name: 'slot machine',
+      img: slotMachine,
+      linkDemo: 'https://golden-dieffenbachia-31d830.netlify.app/',
+      linkRepo: 'https://github.com/AndreyKorolevich/test-game',
       topic: PORTFOLIO_TOPIC.GAMES,
     },
     {
@@ -624,6 +625,13 @@ export const PORTFOLIO: PortfolioT = {
       img: easyGame,
       linkDemo: 'https://easy-peasy-game.netlify.app',
       linkRepo: 'https://github.com/AndreyKorolevich/canvas-game',
+      topic: PORTFOLIO_TOPIC.GAMES,
+    },
+    {
+      name: 'space adventures',
+      img: spaceAdventure,
+      linkDemo: 'https://spacedventures.netlify.app',
+      linkRepo: 'https://github.com/AndreyKorolevich/space-adventure',
       topic: PORTFOLIO_TOPIC.GAMES,
     },
   ],

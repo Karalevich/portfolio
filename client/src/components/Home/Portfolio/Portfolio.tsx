@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Portfolio.module.scss'
-import { PortfolioComponent } from './types'
+import { PortfolioComponent, ProjectT } from './types'
 import SectionHeader from '../SectionHeader/SectionHeader'
 import { Tab, Tabs } from '@mui/material'
 import { PORTFOLIO } from 'src/constants/personalInfo'
@@ -14,9 +14,15 @@ export const Portfolio: PortfolioComponent = () => {
     setTab(newValue)
   }
 
-  const activeProjects = PORTFOLIO.projects.filter(
-    (project) => project.topic === tabIndex || tabIndex === PORTFOLIO_TOPIC.ALL
-  )
+  const activeProjects = PORTFOLIO.projects.reduce((acc: Array<ProjectT>, project) => {
+    const topicCount = acc.filter((p) => p.topic === project.topic).length
+
+    if ((tabIndex !== PORTFOLIO_TOPIC.ALL || topicCount < 3) && (project.topic === tabIndex || tabIndex === PORTFOLIO_TOPIC.ALL)) {
+      acc.push(project)
+    }
+
+    return acc
+  }, [])
 
   return (
     <section className={styles.portfolio} aria-label='portfolio'>
