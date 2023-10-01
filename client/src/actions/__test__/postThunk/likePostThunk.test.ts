@@ -6,9 +6,7 @@ import { ENQUEUE_SNACKBAR } from '../../../reducers/notistack/notistackReducer'
 import { AnyAction } from 'redux'
 import { API } from '../../../api'
 import { likePostThunk } from '../../postAction'
-import {
-  SET_POST,
-} from '../../../reducers/post/postReducer'
+import { SET_POST } from '../../../reducers/post/postReducer'
 
 // Create axios mock
 const axiosMock = new MockAdapter(API)

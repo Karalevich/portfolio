@@ -40,7 +40,6 @@ describe('getCertainPostThunk', () => {
 
   test('dispatches the correct actions when certain post received', async () => {
     // Return 200 with mocked data
-    // @ts-ignore
     jest
       .spyOn(post, 'getPostsByTagsThunk')
       .mockImplementationOnce(jest.fn().mockReturnValue({ type: 'TAGS' }))

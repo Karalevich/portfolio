@@ -94,7 +94,7 @@ export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async 
   try {
     dispatch(userActions.setFetchingLogoutAC(true))
     await api.logOut()
-    await dispatch(removeUsedData())
+    await dispatch(exports.removeUsedData()) // for test purposes use export
     dispatch(
       notistackActions.enqueueSnackbarAC({
         message: 'Logout successful!',
@@ -121,7 +121,7 @@ export const checkAuth = (): ThunkT<UserActionsT | NotistackActionT> => async (d
   try {
     dispatch(userActions.setFetchingLogoutAC(true))
     const { data } = await api.refresh()
-    await dispatch(setUsedData(data.user, data.accessToken))
+    await dispatch(exports.setUsedData(data.user, data.accessToken))
   } catch (e) {
   } finally {
     dispatch(userActions.setFetchingLogoutAC(false))
@@ -143,7 +143,7 @@ export const googleSuccessThunk =
         imageUrl: picture,
         id: sub,
       })
-      await dispatch(setUsedData(data.user, data.token))
+      await dispatch(exports.setUsedData(data.user, data.token))
       dispatch(modalActions.closesModalAC())
       dispatch(
         notistackActions.enqueueSnackbarAC({
@@ -173,7 +173,7 @@ export const signUpThunk =
     try {
       dispatch(userActions.toggleIsAuthAC())
       const { data } = await api.signUn(formData)
-      await dispatch(setUsedData(data.user, data.token))
+      await dispatch(exports.setUsedData(data.user, data.token))
       dispatch(modalActions.closesModalAC())
       dispatch(
         notistackActions.enqueueSnackbarAC({
@@ -205,7 +205,7 @@ export const signInThunk =
     try {
       dispatch(userActions.toggleIsAuthAC())
       const { data } = await api.signIn(formData)
-      await dispatch(setUsedData(data.user, data.token))
+      await dispatch(exports.setUsedData(data.user, data.token))
       dispatch(modalActions.closesModalAC())
       dispatch(
         notistackActions.enqueueSnackbarAC({
