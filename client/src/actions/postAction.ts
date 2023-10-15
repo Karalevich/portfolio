@@ -69,7 +69,7 @@ export const getCertainPostThunk =
     try {
       dispatch(postActions.setFetchingCertainPostAC(true))
       const { data } = await api.fetchCertainPost(id)
-      await dispatch(getPostsByTagsThunk(data.tags.join())) // for test purposes use export
+      await dispatch(getPostsByTagsThunk(data.tags.join()))
       dispatch(postActions.setCertainPostAC(data))
     } catch (e) {
       dispatch(

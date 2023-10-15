@@ -6,7 +6,7 @@ import { ENQUEUE_SNACKBAR } from '../../../reducers/notistack/notistackReducer'
 import { AnyAction } from 'redux'
 import { API } from '../../../api'
 import * as user from '../../userAction'
-import { SET_FETCHING_LOGOUT } from '../../../reducers/user/userReducer'
+import { LOGOUT, SET_FETCHING_LOGOUT } from '../../../reducers/user/userReducer'
 
 // Create axios mock
 const axiosMock = new MockAdapter(API)
@@ -22,10 +22,6 @@ describe('logOutThunk', () => {
 
   test('dispatches the correct actions when user logout', async () => {
     // Return 200 with mocked data
-    jest
-      .spyOn(user, 'removeUsedData')
-      .mockImplementationOnce(jest.fn().mockReturnValue({ type: 'REMOVE_USER' }))
-
     axiosMock.onPost('/user/logout').reply(200)
 
     const expectedActions = [
@@ -34,7 +30,7 @@ describe('logOutThunk', () => {
         flag: true,
       },
       {
-        type: 'REMOVE_USER',
+        type: LOGOUT,
       },
       {
         type: ENQUEUE_SNACKBAR,

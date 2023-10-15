@@ -5,7 +5,6 @@ import MockAdapter from 'axios-mock-adapter'
 import { ENQUEUE_SNACKBAR } from '../../../reducers/notistack/notistackReducer'
 import { AnyAction } from 'redux'
 import { API } from '../../../api'
-import * as user from '../../userAction'
 import { TOGGLE_IS_AUTH_LOADING } from '../../../reducers/user/userReducer'
 import { CLOSE_MODAL } from '../../../reducers/modal/modalReducer'
 import { signUpThunk } from '../../userAction'
@@ -31,10 +30,6 @@ describe('signUpThunk', () => {
 
   test('dispatches the correct actions when user signup correctly', async () => {
     // Return 200 with mocked data
-    jest
-      .spyOn(user, 'setUsedData')
-      .mockImplementationOnce(jest.fn().mockReturnValue({ type: 'SET_USER' }))
-
     apiMock.onPost('/user/signup', mockData).reply(200, { user: '', token: '' })
 
     const expectedActions = [
@@ -43,6 +38,9 @@ describe('signUpThunk', () => {
       },
       {
         type: 'SET_USER',
+        payload: {
+          user: '',
+        },
       },
       {
         type: CLOSE_MODAL,
@@ -67,7 +65,7 @@ describe('signUpThunk', () => {
     const store = mockStore()
 
     // Dispatch the thunk action
-    await store.dispatch(user.signUpThunk(mockData) as unknown as AnyAction)
+    await store.dispatch(signUpThunk(mockData) as unknown as AnyAction)
     expect(store.getActions()[0]).toEqual(expectedActions[0])
     expect(store.getActions()[1]).toEqual(expectedActions[1])
     expect(store.getActions()[2]).toEqual(expectedActions[2])
@@ -75,10 +73,10 @@ describe('signUpThunk', () => {
 
     expect(store.getActions()[3].type).toEqual(ENQUEUE_SNACKBAR)
     expect(store.getActions()[3].notification.message).toEqual(
-      expectedActions[3].payload?.notification?.message
+      expectedActions[3].payload?.notification?.message,
     )
     expect(store.getActions()[3].notification.options).toEqual(
-      expectedActions[3].payload?.notification?.options
+      expectedActions[3].payload?.notification?.options,
     )
   })
 
@@ -109,17 +107,17 @@ describe('signUpThunk', () => {
     const store = mockStore()
 
     // Dispatch the thunk action
-    await store.dispatch(user.signUpThunk(mockData) as unknown as AnyAction)
+    await store.dispatch(signUpThunk(mockData) as unknown as AnyAction)
 
     expect(store.getActions()[0]).toEqual(expectedActions[0])
     expect(store.getActions()[2]).toEqual(expectedActions[2])
 
     expect(store.getActions()[1].type).toEqual(ENQUEUE_SNACKBAR)
     expect(store.getActions()[1].notification.message).toEqual(
-      expectedActions[1].payload?.notification.message
+      expectedActions[1].payload?.notification.message,
     )
     expect(store.getActions()[1].notification.options).toEqual(
-      expectedActions[1].payload?.notification.options
+      expectedActions[1].payload?.notification.options,
     )
   })
 })

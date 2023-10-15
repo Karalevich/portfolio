@@ -6,7 +6,7 @@ import { ENQUEUE_SNACKBAR } from '../../../reducers/notistack/notistackReducer'
 import { AnyAction } from 'redux'
 import { API } from '../../../api'
 import * as user from '../../userAction'
-import { TOGGLE_IS_AUTH_LOADING } from '../../../reducers/user/userReducer'
+import { SET_USER, TOGGLE_IS_AUTH_LOADING } from '../../../reducers/user/userReducer'
 import axios from 'axios'
 import { CLOSE_MODAL } from '../../../reducers/modal/modalReducer'
 
@@ -44,7 +44,11 @@ describe('googleSuccessThunk', () => {
         type: TOGGLE_IS_AUTH_LOADING,
       },
       {
-        type: 'SET_USER',
+        type: SET_USER,
+        payload: {
+          token: undefined,
+          user: '',
+        },
       },
       {
         type: CLOSE_MODAL,
@@ -76,7 +80,7 @@ describe('googleSuccessThunk', () => {
         prompt: '',
         token_type: '',
         scope: '',
-      }) as unknown as AnyAction
+      }) as unknown as AnyAction,
     )
     expect(store.getActions()[0]).toEqual(expectedActions[0])
     expect(store.getActions()[1]).toEqual(expectedActions[1])
@@ -85,10 +89,10 @@ describe('googleSuccessThunk', () => {
 
     expect(store.getActions()[3].type).toEqual(ENQUEUE_SNACKBAR)
     expect(store.getActions()[3].notification.message).toEqual(
-      expectedActions[3].payload?.notification?.message
+      expectedActions[3].payload?.notification?.message,
     )
     expect(store.getActions()[3].notification.options).toEqual(
-      expectedActions[3].payload?.notification?.options
+      expectedActions[3].payload?.notification?.options,
     )
   })
 
@@ -126,7 +130,7 @@ describe('googleSuccessThunk', () => {
         prompt: '',
         token_type: '',
         scope: '',
-      }) as unknown as AnyAction
+      }) as unknown as AnyAction,
     )
 
     expect(store.getActions()[0]).toEqual(expectedActions[0])
@@ -134,10 +138,10 @@ describe('googleSuccessThunk', () => {
 
     expect(store.getActions()[1].type).toEqual(ENQUEUE_SNACKBAR)
     expect(store.getActions()[1].notification.message).toEqual(
-      expectedActions[1].payload?.notification.message
+      expectedActions[1].payload?.notification.message,
     )
     expect(store.getActions()[1].notification.options).toEqual(
-      expectedActions[1].payload?.notification.options
+      expectedActions[1].payload?.notification.options,
     )
   })
 })

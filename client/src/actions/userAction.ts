@@ -58,7 +58,7 @@ export const userActions = {
 export const setUsedData =
   (user: UserT, token: string): ThunkT<UserActionsT | NotistackActionT> =>
   async (dispatch) => {
-    const saveToken = token ? token : JSON.parse(localStorage.getItem(USER) as string).token
+    const saveToken = token ? token : JSON.parse(localStorage.getItem(USER) as string)?.token
     try {
       localStorage.setItem(USER, JSON.stringify({ user, token: saveToken }))
       dispatch(userActions.setAuthAC(user, saveToken))
@@ -94,7 +94,7 @@ export const logOutThunk = (): ThunkT<UserActionsT | NotistackActionT> => async 
   try {
     dispatch(userActions.setFetchingLogoutAC(true))
     await api.logOut()
-    await dispatch(removeUsedData()) // for test purposes use export
+    await dispatch(removeUsedData())
     dispatch(
       notistackActions.enqueueSnackbarAC({
         message: 'Logout successful!',

@@ -5,7 +5,7 @@ import MockAdapter from 'axios-mock-adapter'
 import { AnyAction } from 'redux'
 import axios from 'axios'
 import * as user from '../../userAction'
-import { SET_FETCHING_LOGOUT } from '../../../reducers/user/userReducer'
+import { SET_FETCHING_LOGOUT, SET_USER } from '../../../reducers/user/userReducer'
 
 // Create axios mock
 const axiosMock = new MockAdapter(axios)
@@ -21,10 +21,6 @@ describe('checkAuth', () => {
 
   test('dispatches the correct actions when user checked', async () => {
     // Return 200 with mocked data
-    jest
-      .spyOn(user, 'setUsedData')
-      .mockImplementationOnce(jest.fn().mockReturnValue({ type: 'SET_USER' }))
-
     axiosMock
       .onGet(`${process.env.REACT_APP_API_URl}/user/refresh`)
       .reply(200, { user: {}, accessToken: '' })
@@ -35,7 +31,10 @@ describe('checkAuth', () => {
         flag: true,
       },
       {
-        type: 'SET_USER',
+        payload: {
+          user: {},
+        },
+        type: SET_USER,
       },
       {
         type: SET_FETCHING_LOGOUT,
