@@ -77,8 +77,10 @@ export const ICONS = {
   Leetcode: [<LeetcodeIcon />, 'https://leetcode.com/korolevich1994/'],
 }
 
+const dateOfBirth = new Date('1994-07-11')
+
 export const INFO = {
-  Age: 28,
+  Age: new Date().getFullYear() - dateOfBirth.getFullYear() - 1,
   Address: 'Los Angeles, CA',
   Status: 'Available',
   Authorization: 'Green Card',
@@ -231,7 +233,7 @@ export const PRICES: Array<PriceItemProps> = [
   {
     title: 'Silver',
     description: 'Most businesses that want just a landing page',
-    price: 35,
+    price: 55,
     isPopular: false,
     duties: [
       {
@@ -275,7 +277,7 @@ export const PRICES: Array<PriceItemProps> = [
   {
     title: 'Gold',
     description: 'Most businesses that want Frontend services',
-    price: 55,
+    price: 75,
     isPopular: true,
     duties: [
       {
@@ -319,7 +321,7 @@ export const PRICES: Array<PriceItemProps> = [
   {
     title: 'Diamond',
     description: 'Most businesses that want Fullstack services',
-    price: 75,
+    price: 95,
     isPopular: false,
     duties: [
       {
@@ -366,31 +368,25 @@ export const linkedInRecommendations = 'https://www.linkedin.com/in/a112k/detail
 
 export const RECOMMENDATIONS: Array<RecommendationProps> = [
   {
-    author: 'David Tanaka',
-    occupation: 'Program Manager',
+    author: 'Yuri Fursov',
+    occupation: 'Principal Software EngineerSearch Engineer',
     title: 'Responsible work!',
-    description:
-      'Andrew spearheaded many projects including urgent Kartrider account login fixes requested ' +
-      'by stakeholders, optimized userflows, internal tool updates, etc. Andrew is one of the most pleasant ' +
-      'and positive co-workers that I have worked with, and I thoroughly enjoyed our time working on completing ' +
-      'projects together! There were moments where our project scope increased or stakeholders led us to make an ' +
-      "unforeseen pivot, but none of that interfered with Andrew's ability to adapt quickly to the situation. " +
-      'No matter what was thrown his way, he always found a way to get the work done! If he noticed anything ' +
-      'concerning, Andrew made sure that I was aware of it immediately so I could properly address the situation ' +
-      'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
-      'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
+    description: ` had the pleasure of working closely with Andrei at Searchstax, where he quickly established himself as an indispensable member of the team. From the moment he joined as a Software Engineer specializing in web development, his impact was significant and immediately noticed. Andrei got up to speed with impressive speed and efficiency, quickly becoming a regular presenter during demo days. His presentations consistently showcased his meticulous attention to detail and commitment to both frontend development and technical excellence.
+
+One of Andrei’s most notable contributions was his impressive work reworking the frontend of Searchstax's main product. He not only identified key bottlenecks but also took the initiative to eliminate a large amount of legacy code, which significantly optimized resource loading. Thanks to his efforts, performance improved by 3-5x, and the project became far more modern, future-proof, and easily extensible. The impact of his work was felt across the entire team, enhancing both the quality and speed of development.
+
+Beyond his technical skills, Andrei is a joy to work with. He’s approachable, energetic, and always brings a positive attitude to the table. His easy-going nature and sense of fun made collaborating with him an absolute pleasure.`,
     image:
-      'https://media.licdn.com/dms/image/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_800_800/0/1660425592931?e=1689811200&v=beta&t=Hzo-UV0yJcEExhsgJvCcuPL-P67mENCbOagIdVtwMqI',
-  },
+'https://media.licdn.com/dms/image/v2/D4E03AQG1LeTOL79NkA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1684116126572?e=1744848000&v=beta&t=g7R4CQnm0h4Kh0t5FPZUeUSToDj5A_4935DcqgBgGFo'  },
   {
-    author: 'Uladzimir Pryshchep',
-    occupation: 'Tem Leader',
+    author: 'Eric Melz',
+    occupation: 'Engineering Leader',
     title: 'Great work!',
-    description: `I have fond memories of working with Andrei, a time filled with victories. He made rapid progress, resolved intricate issues, and always showed an unwavering desire to enhance everything he worked on. We even put in late nights together to finish an important task, and I'm grateful for those moments. We both gained invaluable experience during those times.
-Andrei is a rare gem who can be entrusted with tasks of any complexity. I have no doubt that I will continue to witness Andrei's exceptional talents being applied to create outstanding products`,
+    description: `Andrei reported to me at SearchStax, in my role as a Sr. Director of Engineering and his role as a Frontend Developer. Andrei took on the formidable task of migrating our flagship product, Site Search, from Vue 2 to Vue 3. I was impressed by his expertise and attention to detail. Oftentimes he would recommend improvements to the frontend architecture and fixes for anomalous behavior along with his standard duties. 
+    Andrei also had a healthy curiosity and studied subjects adjacent to his daily responsibilities, such as backend development. I would highly recommend Andrei for any frontend focused job he pursues.`,
     image:
-      'https://media.licdn.com/dms/image/D4D03AQGqRKKdAG-cXA/profile-displayphoto-shrink_800_800/0/1684502868598?e=1690416000&v=beta&t=ycg-SLtVKjmfVbgfFJHO56SCx2tBx9GX-xHF7OiYBBc',
-  },
+'\n' +
+      'https://media.licdn.com/dms/image/v2/C4E03AQHG-Di0e0lfZg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1517721887870?e=1744848000&v=beta&t=FbYHnY0er2_HQVWVnv-xjoGyaHkrPKvXsR8xkCCqdbI'  },
   {
     author: 'Uladzislau Ustsinovich',
     occupation: 'Frontend Developer at LeverX',
@@ -407,8 +403,7 @@ Best wishes,
 
 Vladislav `,
     image:
-      'https://media.licdn.com/dms/image/D4D03AQFQwUfvfZTDkw/profile-displayphoto-shrink_800_800/0/1668418630228?e=1689811200&v=beta&t=TcRoIrvpF_o_x0M7HvI9exTLxHRORJI9qllSMFw1Zb8',
-  },
+'https://media.licdn.com/dms/image/v2/D4D03AQFQwUfvfZTDkw/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1668418633976?e=1744848000&v=beta&t=bzMleiv09O6tLBeE1vhAB-uaVcQAN3ipCEa2DUJmKaE'  },
   {
     author: 'David Tanaka',
     occupation: 'Program Manager',
@@ -424,8 +419,8 @@ Vladislav `,
       'and mitigate any potential delays. It was a pleasure working with an excellent talent like Andrew, and ' +
       'I would highly recommend working with him! Best of luck on your future endeavors, Andrew, and keep in touch!',
     image:
-      'https://media.licdn.com/dms/image/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_800_800/0/1660425592931?e=1689811200&v=beta&t=Hzo-UV0yJcEExhsgJvCcuPL-P67mENCbOagIdVtwMqI',
-  },
+'\n' +
+      'https://media.licdn.com/dms/image/v2/C5603AQFDhMji4nKcaQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1660425595002?e=1744848000&v=beta&t=GD-t9l2mOtDgw83rm4a_ULdz_IJmccIk1dqPAcvyj0A'  },
   {
     author: 'Uladzimir Pryshchep',
     occupation: 'Tem Leader',
@@ -433,8 +428,7 @@ Vladislav `,
     description: `I have fond memories of working with Andrei, a time filled with victories. He made rapid progress, resolved intricate issues, and always showed an unwavering desire to enhance everything he worked on. We even put in late nights together to finish an important task, and I'm grateful for those moments. We both gained invaluable experience during those times.
 Andrei is a rare gem who can be entrusted with tasks of any complexity. I have no doubt that I will continue to witness Andrei's exceptional talents being applied to create outstanding products`,
     image:
-      'https://media.licdn.com/dms/image/D4D03AQGqRKKdAG-cXA/profile-displayphoto-shrink_800_800/0/1684502868598?e=1690416000&v=beta&t=ycg-SLtVKjmfVbgfFJHO56SCx2tBx9GX-xHF7OiYBBc',
-  },
+'https://media.licdn.com/dms/image/v2/D4D03AQGqRKKdAG-cXA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1684502869075?e=1744848000&v=beta&t=UX1D_D6MjTUV8vfn4RzUwnh4WodBvWl8egV8qhOLoBM'  },
 ]
 
 export const WORK_HISTORY = [
