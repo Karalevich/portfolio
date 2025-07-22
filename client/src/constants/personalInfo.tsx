@@ -464,7 +464,7 @@ export const WORK_HISTORY = [
     label: 'Wargaming',
     place: 'Saint Petersburg, Russia',
     occupation: 'Web Engineer',
-    date: 'May 2021 - Mar 2022',
+    date: 'May 2021 - Jun 2022',
     description: (
       <p>
         Wargaming is most recognized for its flagship title, "World of Tanks," a massively multiplayer
@@ -479,7 +479,7 @@ export const WORK_HISTORY = [
     label: 'LeverX Group',
     place: 'Minsk, Belarus',
     occupation: 'FrontEnd Engineer',
-    date: 'Nov 2020 - May 2021',
+    date: 'Aug 2020 - May 2021',
     description: (
       <p>
         LeverX Group is a global technology consulting and software solutions provider that specializes
@@ -493,7 +493,7 @@ export const WORK_HISTORY = [
     label: 'Freelance',
     place: 'Belarus',
     occupation: 'FrontEnd Engineer',
-    date: 'Oct 2019 - Nov 2020',
+    date: 'Oct 2019 - Aug 2020',
     description: (
       <p>
         Work on a technological startup that focuses on developing software and technical solutions for
